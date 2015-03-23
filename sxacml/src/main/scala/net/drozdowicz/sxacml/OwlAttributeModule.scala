@@ -22,7 +22,8 @@ class OwlAttributeModule extends AttributeFinderModule {
     DONE Create ontology values from attribute values - category should become an individual, attribute id should become property, value should become a literal
       DONE RequestOntologyGenerator.convertToOntology(Set[FlatAttributeValue])
 
-   TODO Make the context ontology import the required other ontologies
+   DONE Make the context ontology import the required other ontologies
+   TODO Expand test ontology with something I can reason on
    TODO Run the reasoner
    TODO Run a SPARQL query for the value of the attribute to find
    TODO Convert the SPARQL result to the EvaluationResult

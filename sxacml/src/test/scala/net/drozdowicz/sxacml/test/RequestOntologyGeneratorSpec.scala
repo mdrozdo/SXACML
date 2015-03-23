@@ -1,12 +1,18 @@
 package net.drozdowicz.sxacml.test
 
+import java.io.File
 import java.net.URI
 
 import com.hp.hpl.jena.query.QuerySolution
 import net.drozdowicz.sxacml.{FlatAttributeValue, RequestOntologyGenerator}
 import org.scalatest.{path, FunSpec, Matchers}
 import onto.sparql.{SingleValueResultProcessor, ValueSetResultProcessor, SparqlReader}
-import org.semanticweb.owlapi.model.OWLOntology
+import org.semanticweb.owlapi.apibinding.OWLManager
+import org.semanticweb.owlapi.model.{OWLOntologyIRIMapper, IRI, OWLOntology}
+import org.semanticweb.owlapi.util.SimpleIRIMapper
+import scala.collection.JavaConversions._
+
+import scala.io.Source
 
 /**
  * Created by michal on 2015-03-13.
@@ -23,7 +29,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
     }
 
     def getSingleSparqlResult(ontology : OWLOntology, query: String):Option[QuerySolution] = {
-      val sparqlReader = new SparqlReader(ontology);
+      val sparqlReader = new SparqlReader(ontology)
       var result:Option[QuerySolution] = None
       sparqlReader.executeQuery(query, new SingleValueResultProcessor {
         override def processSolution(sol: QuerySolution): Unit = {
@@ -32,6 +38,12 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
       })
       result
     }
+
+    val ontoMgr = OWLManager.createOWLOntologyManager()
+//    def convertToOntology(requestId : String, requestAttributes : Set[FlatAttributeValue], otherOntologies: Set[OWLOntology] = Set.empty[OWLOntology])
+//      = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, requestAttributes, otherOntologies)
+//    val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr, _: String, _: Set[FlatAttributeValue], _: Set[OWLOntology])
+    val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)_
 
     describe("for a simple request") {
 
@@ -42,7 +54,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
         "buy"
       ))
 
-      val ontology = RequestOntologyGenerator.convertToOntology("123", input);
+      val ontology = convertToOntology("123", input, Set.empty[IRI])
 
       it("should create ontology including request id in ontology id") {
         ontology.getOntologyID.getOntologyIRI.toString should include("123")
@@ -53,7 +65,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
                     |{
                     |	?cat <urn:oasis:names:tc:xacml:1.0:action:action-id> ?val
                     |}""".stripMargin
-        val result = getSingleSparqlResult(ontology, qry);
+        val result = getSingleSparqlResult(ontology, qry)
 
         result should not equal None
         result.get.getLiteral("val").getDatatypeURI should equal("http://www.w3.org/2001/XMLSchema#string")
@@ -66,7 +78,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
                     |{
                     |	?cat rdf:type <urn:oasis:names:tc:xacml:3.0:attribute-category:action>
                     |}""".stripMargin
-        val result = getSingleSparqlResult(ontology, qry);
+        val result = getSingleSparqlResult(ontology, qry)
 
         result should not equal None
       }
@@ -94,7 +106,11 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
         )
       )
 
-      val ontology = RequestOntologyGenerator.convertToOntology("123", input)
+      val toImport = IRI.create("http://drozdowicz.net/sxacml/test1")
+      ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
+        new SimpleIRIMapper(toImport, IRI.create(new File(getClass.getResource("/test1.owl").toURI)))))
+
+      val ontology = convertToOntology("123", input, Set(toImport))
 
       it("should output first property"){
         val qry = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -136,6 +152,11 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
         result should not equal None
         result.get.getLiteral("val").getDatatypeURI should equal("http://www.w3.org/2001/XMLSchema#anyURI")
         result.get.getLiteral("val").getString should equal("http://medico.com/record/patient/BartSimpson")
+      }
+
+      it("should import additional ontologies"){
+        ontology.getDirectImports.size() should be (1)
+        ontology.getDirectImports.head.getOntologyID.getOntologyIRI.get() should equal (toImport)
       }
     }
 
