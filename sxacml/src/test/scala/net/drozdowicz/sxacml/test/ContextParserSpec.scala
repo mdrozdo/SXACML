@@ -3,8 +3,10 @@ package net.drozdowicz.sxacml.test
 import java.net.URI
 
 import net.drozdowicz.sxacml.{FlatAttributeValue, ContextParser}
+import org.junit.runner.RunWith
 import org.scalatest.Matchers
 import org.scalatest.FunSpec
+import org.specs2.runner.JUnitRunner
 import org.wso2.balana.ctx.RequestCtxFactory
 
 

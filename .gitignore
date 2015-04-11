@@ -1,3 +1,5 @@
 *.iml
 onto/onto.iml
 onto/target
+.idea
+todo.txt

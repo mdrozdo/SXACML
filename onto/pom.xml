@@ -3,17 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sxacml</artifactId>
+        <artifactId>sxacml-parent</artifactId>
         <groupId>net.drozdowicz</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../sxacml/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>onto</artifactId>
+    <packaging>jar</packaging>
+
 
     <dependencies>
         <dependency>
             <groupId>net.sourceforge.owlapi</groupId>
             <artifactId>owlapi-distribution</artifactId>
-            <version>4.0.1</version>
+            <version>4.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.owlapi</groupId>
@@ -22,9 +28,6 @@
         </dependency>
     </dependencies>
 
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>onto</artifactId>
 
 
 </project>

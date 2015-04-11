@@ -3,21 +3,25 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.drozdowicz</groupId>
 	<artifactId>sxacml</artifactId>
-    <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>../onto</module>
-    </modules>
-    <name>${project.artifactId}</name>
-	<description>My wonderfull scala app</description>
-	<inceptionYear>2010</inceptionYear>
-	<licenses>
-		<license>
-			<name>My License</name>
-			<url>http://....</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <packaging>jar</packaging>
+
+	<parent>
+		<artifactId>sxacml-parent</artifactId>
+		<groupId>net.drozdowicz</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<name>${project.artifactId}</name>
+	<description>Attribute finder module for WSO2 Identity Server</description>
+	<inceptionYear>2015</inceptionYear>
+	<!--<licenses>-->
+		<!--<license>-->
+			<!--<name>My License</name>-->
+			<!--<url>http://....</url>-->
+			<!--<distribution>repo</distribution>-->
+		<!--</license>-->
+	<!--</licenses>-->
 
 	<properties>
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -25,6 +29,7 @@
 		<encoding>UTF-8</encoding>
 		<scala.tools.version>2.11</scala.tools.version>
 		<scala.version>2.11.0</scala.version>
+		<slf4j.version>1.7.7</slf4j.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -35,22 +40,6 @@
 			<name>bintray</name>
 			<url>http://dl.bintray.com/scalaz/releases</url>
 		</repository>
-        <repository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <!--<repository>-->
-            <!--<id>central</id>-->
-            <!--<name>Maven Repository Switchboard</name>-->
-            <!--<layout>default</layout>-->
-            <!--<url>http://central.maven.org/maven2</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -81,41 +70,38 @@
 		<dependency>
 			<groupId>org.wso2.balana</groupId>
 			<artifactId>org.wso2.balana</artifactId>
-			<version>1.0.0.wso2v8-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.wso2.balana</groupId>
-			<artifactId>org.wso2.balana</artifactId>
-			<version>1.0.0.wso2v8-SNAPSHOT</version>
-			<type>java-source</type>
+			<version>1.0.0.wso2v8</version>
 		</dependency>
         <dependency>
-            <groupId>org.wso2.balana</groupId>
-            <artifactId>org.wso2.balana</artifactId>
-            <version>1.0.0.wso2v8-SNAPSHOT</version>
-            <type>java-source</type>
-        </dependency>
-        <dependency>
-            <groupId>net.drozdowicz</groupId>
-            <artifactId>onto</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.identity.entitlement</artifactId>
+            <version>4.2.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>slf4j.wso2</groupId>
+					<artifactId>slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
         <dependency>
             <groupId>net.sourceforge.owlapi</groupId>
             <artifactId>pellet-owlapi-ignazio1977</artifactId>
             <version>2.4.0-ignazio1977-SNAPSHOT</version>
         </dependency>
-        <!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.jena</groupId> -->
-<!-- 			<artifactId>apache-jena</artifactId> -->
-<!-- 			<version>2.12.1</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.github.ansell.pellet</groupId> -->
-<!-- 			<artifactId>pellet-parent</artifactId> -->
-<!-- 			<version>2.3.6-ansell</version> -->
-<!-- 			<type>pom</type> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>net.sourceforge.owlapi</groupId>
+			<artifactId>owlapi-distribution</artifactId>
+			<version>4.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>net.drozdowicz</groupId>
+			<artifactId>onto</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

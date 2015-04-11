@@ -29,23 +29,23 @@ import scala.collection.mutable.Stack
 import org.scalatest.Assertions
 import org.junit.Test
 
-class StackSuite extends Assertions {
-
-  @Test def stackShouldPopValuesIinLastInFirstOutOrder() {
-    val stack = new Stack[Int]
-    stack.push(1)
-    stack.push(2)
-    assert(stack.pop() === 2)
-    assert(stack.pop() === 1)
-  }
-
-  @Test def stackShouldThrowNoSuchElementExceptionIfAnEmptyStackIsPopped() {
-    val emptyStack = new Stack[String]
-    intercept[NoSuchElementException] {
-      emptyStack.pop()
-    }
-  }
-}
+//class StackSuite extends Assertions {
+//
+//  @Test def stackShouldPopValuesIinLastInFirstOutOrder() {
+//    val stack = new Stack[Int]
+//    stack.push(1)
+//    stack.push(2)
+//    assert(stack.pop() === 2)
+//    assert(stack.pop() === 1)
+//  }
+//
+//  @Test def stackShouldThrowNoSuchElementExceptionIfAnEmptyStackIsPopped() {
+//    val emptyStack = new Stack[String]
+//    intercept[NoSuchElementException] {
+//      emptyStack.pop()
+//    }
+//  }
+//}
 
 /*
 Here's an example of a FunSuite with ShouldMatchers mixed in:
@@ -87,6 +87,7 @@ A Map
 */
 import org.scalatest.FunSpec
 import scala.collection.mutable.Stack
+
 
 class ExampleSpec extends FunSpec with Matchers {
 

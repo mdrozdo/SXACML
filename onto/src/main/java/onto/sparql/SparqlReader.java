@@ -3,6 +3,8 @@ package onto.sparql;
 import onto.utils.Box;
 
 import java.io.Closeable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 import org.mindswap.pellet.KnowledgeBase;
@@ -57,6 +59,19 @@ public class SparqlReader implements Closeable{
 		
 		return result.get();
 	}
+
+    public Set<String> readAllValuesAsString(String query, final String returnName){
+        final Set<String> result = new HashSet<String>();
+        executeQuery(query, new ValueSetResultProcessor() {
+
+            @Override
+            public void processSolution(QuerySolution sol) {
+                result.add(sol.get(returnName).asLiteral().getString());
+            }
+        });
+
+        return result;
+    }
 
 	public void close() {
 		model.close();
