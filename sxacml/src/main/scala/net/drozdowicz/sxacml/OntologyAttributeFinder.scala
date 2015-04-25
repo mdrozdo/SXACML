@@ -4,6 +4,7 @@ import java.net.URI
 
 import com.hp.hpl.jena.query.{QuerySolution, ResultSet}
 import onto.sparql.{ValueSetResultProcessor, IResultProcessor, SparqlReader}
+import onto.utils.OntologyUtils
 import org.semanticweb.owlapi.model._
 import scala.collection.JavaConversions._
 
@@ -13,13 +14,13 @@ import scala.collection.JavaConversions._
 object OntologyAttributeFinder {
   def findAttributeValues(ontology: OWLOntology, requestId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
     val sparql = new SparqlReader(ontology)
-    val individualId = categoryId + ":request_" + requestId
+    val individualId = categoryId + ":request_" + requestId //TODO refactor creating individual id or pass it around
     val qry =
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         |SELECT ?val WHERE
         |{
         | <%s> <%s> ?val
-        |}""".stripMargin.format(individualId, attributeId) //TODO refactor creating individual id or pass it around
+        |}""".stripMargin.format(individualId, attributeId)
     var result = Set.empty[FlatAttributeValue]
     sparql.executeQuery(qry, new ValueSetResultProcessor {
       override def processSolution(sol: QuerySolution): Unit = {
@@ -28,5 +29,10 @@ object OntologyAttributeFinder {
       }
     })
     result
+  }
+
+  def getAllSupportedAttributes(ontology: OWLOntology): Set[String] ={
+    var model = OntologyUtils.createJenaModel(ontology)
+    ontology.getDataPropertiesInSignature().map(dp=>dp.getIRI.toString).toSet
   }
 }

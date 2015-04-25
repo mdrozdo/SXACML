@@ -6,6 +6,8 @@ import java.util
 import java.util.Properties
 
 import onto.sparql.SparqlReader
+import onto.utils.OntologyUtils
+import org.apache.commons.logging.{LogFactory, Log}
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{OWLOntologyIRIMapper, IRI, OWLOntology, OWLOntologyManager}
 import org.semanticweb.owlapi.util.SimpleIRIMapper
@@ -16,8 +18,16 @@ import org.wso2.balana.finder.AttributeFinderModule
 import org.wso2.balana.xacml3.Attributes
 import org.wso2.carbon.identity.entitlement.pip.PIPAttributeFinder
 import collection.JavaConversions._
+import scala.util.control.ControlThrowable
 
 class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
+  private val log = LogFactory.getLog(classOf[OwlAttributeModule])
+
+  //TODO these should be overridden with some values from config
+  val ontologyId = "http://drozdowicz.net/sxacml/test1"
+  val ontologyFilePath = "/test1.owl"
+
+  log.info("OwlAttributeModule defined.")
 
   override def findAttribute(attributeType: URI, attributeId: URI, issuer: String, category: URI, context: EvaluationCtx): EvaluationResult = {
     val attributeValues = findAttributeValues(attributeId, category, context)
@@ -27,24 +37,42 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
   }
 
   override def getAttributeValues(attributeType: URI, attributeId: URI, category: URI, issuer: String, context: EvaluationCtx): util.Set[String] = {
-    findAttributeValues(attributeId, category, context).map(f=>f.valueString)
+    try {
+      findAttributeValues(attributeId, category, context).map(f => f.valueString)
+    }catch safely {
+      case e: Throwable => {
+        log.error("Error while processing the request. "+e.getClass.getName+e.getMessage, e)
+        throw e
+      }
+    }
   }
 
-  override def init(properties: Properties): Unit = {}
+  def safely[T](handler: PartialFunction[Throwable, T]): PartialFunction[Throwable, T] = {
+    case ex: ControlThrowable => throw ex
+    // case ex: OutOfMemoryError (Assorted other nasty exceptions you don't want to catch)
+
+    //If it's an exception they handle, pass it on
+    case ex: Throwable if handler.isDefinedAt(ex) => handler(ex)
+
+    // If they didn't handle it, rethrow. This line isn't necessary, just for clarity
+    case ex: Throwable => throw ex
+  }
+
+  //TODO: Pass as a property the path to a folder that contains the ontologies to import
+  override def init(properties: Properties): Unit = {
+    log.info("Initializing SXACML attribute finder")
+  }
 
   override def isDesignatorSupported() = true
 
-  override def getSupportedCategories(): java.util.Set[String] = {
+  override def getSupportedCategories(): java.util.Set[String] =
     Set("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:action",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:environment")
-  }
 
-  //TODO: Generate supported attributes basing on the data properties and classes from the ontology
-  override def getSupportedAttributes: util.Set[String] = {
-    Set("http://drozdowicz.net/sxacml/test1#isAdult")
-  }
+  override def getSupportedAttributes: util.Set[String] =
+    OntologyAttributeFinder.getAllSupportedAttributes(loadOntology(ontologyFilePath))
 
   override def getModuleName: String = "OwlAttributeFinder"
 
@@ -65,29 +93,40 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
        DONE Make the context ontology import the required other ontologies
        DONE Expand test ontology with something I can reason on -> isAdult
        DONE Run a SPARQL query for the value of the attribute to find
-       TODO Convert the SPARQL result to the EvaluationResult
+       DONE Convert the SPARQL result to the EvaluationResult
        TODO Should there be links added between diff categories? Like "subject1" requests "resourceA"?? Later
        TODO Type of individual should be reflected in some output attribute
        TODO Create an XACML ontology with appropriate classes etc.
        */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
     val requestId = "123" //TODO find a way to generate request Id
-    val ontologyId = "http://drozdowicz.net/sxacml/test1"
-    val ontologyFilePath = "/test1.owl"
 
+    //TODO: The manager should probably be shared between different calls to the method.
     val ontoMgr = OWLManager.createOWLOntologyManager()
     importOntology(ontoMgr, ontologyId, ontologyFilePath)
 
     val attributes = ContextParser.Parse(context.getRequestCtx)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(ontologyId)))
-    val attributeValues = OntologyAttributeFinder.findAttributeValues(requestOntology, requestId, category.toString, attributeId.toString)
-    attributeValues
+    OntologyAttributeFinder.findAttributeValues(requestOntology, requestId, category.toString, attributeId.toString)
   }
 
   private def importOntology(manager: OWLOntologyManager, ontologyId: String, ontologyPath: String) = {
     val toImport = IRI.create(ontologyId)
+    val fileIri = createFileIri(ontologyPath)
+
+    log.debug("Importing ontology %s from file %s".format(ontologyId, fileIri))
     manager.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new SimpleIRIMapper(toImport, IRI.create(new File(getClass.getResource(ontologyPath).toURI)))))
+      new SimpleIRIMapper(toImport, fileIri)))
+  }
+
+
+  private def loadOntology(ontoFilePath: String) : OWLOntology = {
+    val iri = createFileIri(ontoFilePath)
+    OntologyUtils.loadOntology(iri)
+  }
+
+  private def createFileIri(filePath: String): IRI = {
+    IRI.create(getClass.getResource(filePath).toURI)
   }
 
   private def createAttributeValue(flatValue: FlatAttributeValue): AttributeValue = {

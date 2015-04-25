@@ -6,6 +6,7 @@ import java.net.URI
 import com.hp.hpl.jena.query.QuerySolution
 import net.drozdowicz.sxacml.{OntologyAttributeFinder, FlatAttributeValue, RequestOntologyGenerator}
 import onto.sparql.{SingleValueResultProcessor, SparqlReader, ValueSetResultProcessor}
+import onto.utils.OntologyUtils
 import org.scalatest.{Matchers, path}
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{OWLOntologyManager, IRI, OWLOntology, OWLOntologyIRIMapper}
@@ -49,7 +50,16 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
     }
 
+    describe("getSupportedAttributes"){
+      val ontology = OntologyUtils.loadOntology(getOntologyResourceIRI("test1"))
 
+      it("should return data properties from ontology"){
+        val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
+        attributes should contain ( "http://drozdowicz.net/sxacml/test1#isAdult")
+      }
+    }
+
+    //TODO Check if multiple values of attribute can be inferred
 //
 //    describe("if multiple values can be inferred") {
 //
@@ -81,7 +91,11 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   def importOntology(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {
     val toImport = IRI.create("http://drozdowicz.net/sxacml/" + ontoName)
     ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new SimpleIRIMapper(toImport, IRI.create(new File(getClass.getResource("/" + ontoName + ".owl").toURI)))))
+      new SimpleIRIMapper(toImport, getOntologyResourceIRI(ontoName))))
     toImport
+  }
+
+  def getOntologyResourceIRI(ontoName: String): IRI = {
+    IRI.create(new File(getClass.getResource("/" + ontoName + ".owl").toURI))
   }
 }
