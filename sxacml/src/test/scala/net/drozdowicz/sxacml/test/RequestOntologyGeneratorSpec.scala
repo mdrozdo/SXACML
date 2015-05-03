@@ -40,9 +40,6 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
     }
 
     val ontoMgr = OWLManager.createOWLOntologyManager()
-//    def convertToOntology(requestId : String, requestAttributes : Set[FlatAttributeValue], otherOntologies: Set[OWLOntology] = Set.empty[OWLOntology])
-//      = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, requestAttributes, otherOntologies)
-//    val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr, _: String, _: Set[FlatAttributeValue], _: Set[OWLOntology])
     val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)_
 
     describe("for a simple request") {

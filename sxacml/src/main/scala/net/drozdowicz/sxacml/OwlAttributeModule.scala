@@ -11,7 +11,7 @@ import org.apache.commons.logging.{LogFactory, Log}
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{OWLOntologyIRIMapper, IRI, OWLOntology, OWLOntologyManager}
 import org.semanticweb.owlapi.util.SimpleIRIMapper
-import org.wso2.balana.attr.{BagAttribute, AttributeValue}
+import org.wso2.balana.attr.{AttributeFactory, BooleanAttribute, BagAttribute, AttributeValue}
 import org.wso2.balana.cond.EvaluationResult
 import org.wso2.balana.ctx.{Status, EvaluationCtx}
 import org.wso2.balana.finder.AttributeFinderModule
@@ -20,7 +20,7 @@ import org.wso2.carbon.identity.entitlement.pip.PIPAttributeFinder
 import collection.JavaConversions._
 import scala.util.control.ControlThrowable
 
-class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
+class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private val log = LogFactory.getLog(classOf[OwlAttributeModule])
 
   //TODO these should be overridden with some values from config
@@ -31,7 +31,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
 
   override def findAttribute(attributeType: URI, attributeId: URI, issuer: String, category: URI, context: EvaluationCtx): EvaluationResult = {
     val attributeValues = findAttributeValues(attributeId, category, context)
-    val values = attributeValues.map(flatAttr=>createAttributeValue(flatAttr)).toList
+    val values = attributeValues.map(flatAttr => createAttributeValue(flatAttr)).toList
 
     new EvaluationResult(new BagAttribute(attributeType, values))
   }
@@ -39,9 +39,9 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
   override def getAttributeValues(attributeType: URI, attributeId: URI, category: URI, issuer: String, context: EvaluationCtx): util.Set[String] = {
     try {
       findAttributeValues(attributeId, category, context).map(f => f.valueString)
-    }catch safely {
+    } catch safely {
       case e: Throwable => {
-        log.error("Error while processing the request. "+e.getClass.getName+e.getMessage, e)
+        log.error("Error while processing the request. " + e.getClass.getName + e.getMessage, e)
         throw e
       }
     }
@@ -61,6 +61,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
   //TODO: Pass as a property the path to a folder that contains the ontologies to import
   override def init(properties: Properties): Unit = {
     log.info("Initializing SXACML attribute finder")
+    //properties.getProperty()
   }
 
   override def isDesignatorSupported() = true
@@ -120,7 +121,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
   }
 
 
-  private def loadOntology(ontoFilePath: String) : OWLOntology = {
+  private def loadOntology(ontoFilePath: String): OWLOntology = {
     val iri = createFileIri(ontoFilePath)
     OntologyUtils.loadOntology(iri)
   }
@@ -130,12 +131,6 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder{
   }
 
   private def createAttributeValue(flatValue: FlatAttributeValue): AttributeValue = {
-    return new AttributeValue(flatValue.valueType) {
-      override def encode(): String = {
-        return flatValue.valueString
-      }
-    }
+    AttributeFactory.getInstance().createValue(flatValue.valueType, flatValue.valueString)
   }
-
-
 }
