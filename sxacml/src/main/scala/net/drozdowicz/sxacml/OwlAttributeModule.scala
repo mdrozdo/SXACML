@@ -104,20 +104,17 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
     //TODO: The manager should probably be shared between different calls to the method.
     val ontoMgr = OWLManager.createOWLOntologyManager()
-    importOntology(ontoMgr, ontologyId, ontologyFilePath)
+    loadOntology(ontoMgr, ontologyFilePath)
 
     val attributes = ContextParser.Parse(context.getRequestCtx)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(ontologyId)))
     OntologyAttributeFinder.findAttributeValues(requestOntology, requestId, category.toString, attributeId.toString)
   }
 
-  private def importOntology(manager: OWLOntologyManager, ontologyId: String, ontologyPath: String) = {
-    val toImport = IRI.create(ontologyId)
-    val fileIri = createFileIri(ontologyPath)
-
-    log.debug("Importing ontology %s from file %s".format(ontologyId, fileIri))
-    manager.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new SimpleIRIMapper(toImport, fileIri)))
+  private def loadOntology(manager: OWLOntologyManager, ontologyPath: String) = {
+    val ontologyFile = getResourceFile(ontologyPath)
+    log.debug("Importing ontology from file %s".format(ontologyFile.getAbsolutePath))
+    manager.loadOntologyFromOntologyDocument(ontologyFile)
   }
 
 
@@ -128,6 +125,10 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   private def createFileIri(filePath: String): IRI = {
     IRI.create(getClass.getResource(filePath).toURI)
+  }
+
+  private def getResourceFile(filePath: String): File = {
+    new File(getClass.getResource(filePath).toURI)
   }
 
   private def createAttributeValue(flatValue: FlatAttributeValue): AttributeValue = {
