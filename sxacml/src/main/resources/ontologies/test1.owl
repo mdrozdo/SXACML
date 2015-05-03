@@ -88,13 +88,57 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <owl:disjointWith rdf:resource="http://drozdowicz.net/sxacml/test1:underAge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/test1:underAge -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1:underAge">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&conformance-test;age"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:maxExclusive rdf:datatype="&xsd;integer">18</xsd:maxExclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
     </owl:Class>
     
 
 
     <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject -->
 
-    <owl:Class rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1:adult"/>
+                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1:underAge"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
     
 
 
@@ -109,11 +153,11 @@
     
 
 
-    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123 -->
+    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:test_request -->
 
-    <owl:NamedIndividual rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123">
+    <owl:NamedIndividual rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:test_request">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-        <conformance-test:age rdf:datatype="&xsd;integer">45</conformance-test:age>
+        <conformance-test:age rdf:datatype="&xsd;integer">12</conformance-test:age>
     </owl:NamedIndividual>
 </rdf:RDF>
 

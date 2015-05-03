@@ -25,7 +25,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   //TODO these should be overridden with some values from config
   val ontologyId = "http://drozdowicz.net/sxacml/test1"
-  val ontologyFilePath = "/test1.owl"
+  val ontologyFilePath = "/ontologies/test1.owl"
 
   log.info("OwlAttributeModule defined.")
 
@@ -85,30 +85,36 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   //TODO: implement cache?
   override def clearCache(attributeId: Array[String]): Unit = {}
 
-  /*
-       DONE Convert the attributes from the EvaluationCtx to an ontology
-        DONE Extract the attribute values from the EvaluationCtx
-        DONE Create ontology values from attribute values - category should become an individual, attribute id should become property, value should become a literal
-          DONE RequestOntologyGenerator.convertToOntology(Set[FlatAttributeValue])
 
-       DONE Make the context ontology import the required other ontologies
-       DONE Expand test ontology with something I can reason on -> isAdult
-       DONE Run a SPARQL query for the value of the attribute to find
-       DONE Convert the SPARQL result to the EvaluationResult
-       TODO Should there be links added between diff categories? Like "subject1" requests "resourceA"?? Later
-       TODO Type of individual should be reflected in some output attribute
-       TODO Create an XACML ontology with appropriate classes etc.
-       */
+  /*
+         DONE Convert the attributes from the EvaluationCtx to an ontology
+          DONE Extract the attribute values from the EvaluationCtx
+          DONE Create ontology values from attribute values - category should become an individual, attribute id should become property, value should become a literal
+            DONE RequestOntologyGenerator.convertToOntology(Set[FlatAttributeValue])
+
+         DONE Make the context ontology import the required other ontologies
+         DONE Expand test ontology with something I can reason on -> isAdult
+         DONE Run a SPARQL query for the value of the attribute to find
+         DONE Convert the SPARQL result to the EvaluationResult
+         TODO Should there be links added between diff categories? Like "subject1" requests "resourceA"?? Later
+         TODO Type of individual should be reflected in some output attribute
+         TODO Create an XACML ontology with appropriate classes etc.
+         */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
     val requestId = "123" //TODO find a way to generate request Id
 
     //TODO: The manager should probably be shared between different calls to the method.
     val ontoMgr = OWLManager.createOWLOntologyManager()
-    loadOntology(ontoMgr, ontologyFilePath)
+    loadAllOntologiesFromResources(ontoMgr, "/ontologies")
 
     val attributes = ContextParser.Parse(context.getRequestCtx)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(ontologyId)))
     OntologyAttributeFinder.findAttributeValues(requestOntology, requestId, category.toString, attributeId.toString)
+  }
+
+  private def loadAllOntologiesFromResources(manager: OWLOntologyManager, ontologyFolder: String) = {
+    val ontologyPaths = ResourceFiles.getFilesFromResourceDirectory(getClass, ontologyFolder)
+    ontologyPaths.foreach(op=>loadOntology(manager, op))
   }
 
   private def loadOntology(manager: OWLOntologyManager, ontologyPath: String) = {
@@ -116,7 +122,6 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     log.debug("Importing ontology from file %s".format(ontologyFile.getAbsolutePath))
     manager.loadOntologyFromOntologyDocument(ontologyFile)
   }
-
 
   private def loadOntology(ontoFilePath: String): OWLOntology = {
     val iri = createFileIri(ontoFilePath)
