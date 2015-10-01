@@ -3,5 +3,5 @@ onto/onto.iml
 onto/target
 .idea
 todo.txt
-sxacml/src/main/resources/catalog-v001.xml
+catalog-v001.xml
 Thumbs.db
