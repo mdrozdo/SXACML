@@ -1,0 +1,127 @@
+@prefix : <http://drozdowicz.net/sxacml/eHealthSample#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix conformance-test: <urn:oasis:names:tc:xacml:2.0:conformance-test:> .
+@base <http://drozdowicz.net/sxacml/eHealthSample> .
+
+<http://drozdowicz.net/sxacml/eHealthSample> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://drozdowicz.net/sxacml/eHealthSample#isAdult
+
+:isAdult rdf:type owl:DatatypeProperty ;
+         
+         rdfs:range xsd:boolean ;
+         
+         rdfs:domain owl:Thing .
+
+
+
+###  urn:oasis:names:tc:xacml:2.0:conformance-test:age
+
+conformance-test:age rdf:type owl:DatatypeProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://drozdowicz.net/sxacml/eHealthSample:BloodPressure
+
+<http://drozdowicz.net/sxacml/eHealthSample:BloodPressure> rdf:type owl:Class ;
+                                                           
+                                                           rdfs:subClassOf <http://drozdowicz.net/sxacml/eHealthSample:MedicalData> .
+
+
+
+###  http://drozdowicz.net/sxacml/eHealthSample:GlucoseLevel
+
+<http://drozdowicz.net/sxacml/eHealthSample:GlucoseLevel> rdf:type owl:Class ;
+                                                          
+                                                          rdfs:subClassOf <http://drozdowicz.net/sxacml/eHealthSample:MedicalData> .
+
+
+
+###  http://drozdowicz.net/sxacml/eHealthSample:MedicalData
+
+<http://drozdowicz.net/sxacml/eHealthSample:MedicalData> rdf:type owl:Class ;
+                                                         
+                                                         rdfs:subClassOf <urn:oasis:names:tc:xacml:3.0:attribute-category:resource> .
+
+
+
+###  http://drozdowicz.net/sxacml/eHealthSample:underAge
+
+<http://drozdowicz.net/sxacml/eHealthSample:underAge> rdf:type owl:Class ;
+                                                      
+                                                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty conformance-test:age ;
+                                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                 owl:onDatatype xsd:integer ;
+                                                                                                 owl:withRestrictions ( [ xsd:maxExclusive 18
+                                                                                                                        ]
+                                                                                                                      )
+                                                                                               ]
+                                                                          ] ,
+                                                                          [ rdf:type owl:Class ;
+                                                                            owl:intersectionOf ( <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject>
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty :isAdult ;
+                                                                                                   owl:hasValue "false"^^xsd:boolean
+                                                                                                 ]
+                                                                                               )
+                                                                          ] ;
+                                                      
+                                                      rdfs:subClassOf <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject> .
+
+
+
+###  urn:oasis:names:tc:xacml:1.0:subject-category:access-subject
+
+<urn:oasis:names:tc:xacml:1.0:subject-category:access-subject> rdf:type owl:Class .
+
+
+
+###  urn:oasis:names:tc:xacml:3.0:attribute-category:resource
+
+<urn:oasis:names:tc:xacml:3.0:attribute-category:resource> rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:test_request
+
+<urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:test_request> rdf:type owl:NamedIndividual ,
+                                                                                     <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject> ;
+                                                                            
+                                                                            conformance-test:age 12 .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

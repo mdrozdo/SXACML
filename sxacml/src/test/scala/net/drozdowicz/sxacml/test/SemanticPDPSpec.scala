@@ -4,21 +4,21 @@ import java.io.File
 
 import org.apache.commons.io.FileUtils
 import org.custommonkey.xmlunit.{XMLAssert, XMLUnit}
-import org.scalatest.{Matchers, path}
+import org.scalatest.{OneInstancePerTest, Matchers, path}
 
 import scala.net.drozdowicz.sxacml.SemanticPDP
 
 /**
  * Created by michal on 2015-03-13.
  */
-class SemanticPDPSpec extends path.FunSpec with Matchers {
+class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest {
 
   describe("SemanticPDP") {
     XMLUnit.setIgnoreWhitespace(true)
-    describe("for simple datatype property from ontology") {
-      val policyLocation = relativeToAbsolute("basic/policies")
-      val pdp = new SemanticPDP(policyLocation)
+    val policyLocation = relativeToAbsolute("basic/policies")
+    val pdp = new SemanticPDP(policyLocation)
 
+    describe("for simple datatype property from ontology") {
       it("if subject is adult returns permit") {
         val request = readFile("basic/requests/Adult.xml")
         val actualResponse = pdp.evaluate(request)

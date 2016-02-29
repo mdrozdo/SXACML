@@ -96,6 +96,6 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   }
 
   def getOntologyResourceIRI(ontoName: String): IRI = {
-    IRI.create(new File(getClass.getResource("/" + ontoName + ".owl").toURI))
+    IRI.create(new File(getClass.getResource("/ontologies/" + ontoName + ".owl").toURI))
   }
 }

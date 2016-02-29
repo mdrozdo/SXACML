@@ -5,7 +5,7 @@ import java.net.URI
 
 import com.hp.hpl.jena.query.QuerySolution
 import net.drozdowicz.sxacml.{FlatAttributeValue, RequestOntologyGenerator}
-import org.scalatest.{path, FunSpec, Matchers}
+import org.scalatest.{OneInstancePerTest, path, FunSpec, Matchers}
 import onto.sparql.{SingleValueResultProcessor, ValueSetResultProcessor, SparqlReader}
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{OWLOntologyIRIMapper, IRI, OWLOntology}
@@ -17,7 +17,7 @@ import scala.io.Source
 /**
  * Created by michal on 2015-03-13.
  */
-class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
+class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneInstancePerTest {
 
   describe("RequestOntologyGenerator") {
     def process(f : QuerySolution => Unit) = {
@@ -103,11 +103,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
         )
       )
 
-      val toImport = IRI.create("http://drozdowicz.net/sxacml/test1")
-      ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-        new SimpleIRIMapper(toImport, IRI.create(new File(getClass.getResource("/test1.owl").toURI)))))
-
-      val ontology = convertToOntology("123", input, Set(toImport))
+      val ontology = convertToOntology("123", input, Set.empty[IRI])
 
       it("should output first property"){
         val qry = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -152,6 +148,11 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers {
       }
 
       it("should import additional ontologies"){
+        val toImport = IRI.create("http://drozdowicz.net/sxacml/test1")
+        ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
+          new SimpleIRIMapper(toImport, IRI.create(new File(getClass.getResource("/ontologies/test1.owl").toURI)))))
+
+        val ontology = convertToOntology("456", input, Set(toImport))
         ontology.getDirectImports.size() should be (1)
         ontology.getDirectImports.head.getOntologyID.getOntologyIRI.get() should equal (toImport)
       }

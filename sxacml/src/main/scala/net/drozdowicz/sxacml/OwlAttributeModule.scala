@@ -20,14 +20,20 @@ import org.wso2.carbon.identity.entitlement.pip.PIPAttributeFinder
 import collection.JavaConversions._
 import scala.util.control.ControlThrowable
 
+//TODO Make this a super simple wrapper over something more functional etc.
+// There shouldn't be any logic in this class, only the stuff necessary to satisfy Balana's interfaces
 class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private val log = LogFactory.getLog(classOf[OwlAttributeModule])
 
   //TODO these should be overridden with some values from config
-  val ontologyId = "http://drozdowicz.net/sxacml/test1"
-  val ontologyFilePath = "/ontologies/test1.owl"
+  private val ontologyId = "http://drozdowicz.net/sxacml/test1"
+
+  //TODO Remove - this shouldn't be necessary
+  private val ontologyFilePath = "/ontologies/test1.owl"
 
   log.info("OwlAttributeModule defined.")
+
+  private val ontoMgr = OWLManager.createOWLOntologyManager()
 
   override def findAttribute(attributeType: URI, attributeId: URI, issuer: String, category: URI, context: EvaluationCtx): EvaluationResult = {
     val attributeValues = findAttributeValues(attributeId, category, context)
@@ -62,6 +68,8 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   override def init(properties: Properties): Unit = {
     log.info("Initializing SXACML attribute finder")
     //properties.getProperty()
+
+    loadAllOntologiesFromResources(ontoMgr, "/ontologies")
   }
 
   override def isDesignatorSupported() = true
@@ -72,6 +80,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
       "urn:oasis:names:tc:xacml:3.0:attribute-category:action",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:environment")
 
+  //TODO: Load from many ontologies
   override def getSupportedAttributes: util.Set[String] =
     OntologyAttributeFinder.getAllSupportedAttributes(loadOntology(ontologyFilePath))
 
@@ -87,25 +96,12 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
 
   /*
-         DONE Convert the attributes from the EvaluationCtx to an ontology
-          DONE Extract the attribute values from the EvaluationCtx
-          DONE Create ontology values from attribute values - category should become an individual, attribute id should become property, value should become a literal
-            DONE RequestOntologyGenerator.convertToOntology(Set[FlatAttributeValue])
-
-         DONE Make the context ontology import the required other ontologies
-         DONE Expand test ontology with something I can reason on -> isAdult
-         DONE Run a SPARQL query for the value of the attribute to find
-         DONE Convert the SPARQL result to the EvaluationResult
          TODO Should there be links added between diff categories? Like "subject1" requests "resourceA"?? Later
          TODO Type of individual should be reflected in some output attribute
          TODO Create an XACML ontology with appropriate classes etc.
          */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
     val requestId = "123" //TODO find a way to generate request Id
-
-    //TODO: The manager should probably be shared between different calls to the method.
-    val ontoMgr = OWLManager.createOWLOntologyManager()
-    loadAllOntologiesFromResources(ontoMgr, "/ontologies")
 
     val attributes = ContextParser.Parse(context.getRequestCtx)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(ontologyId)))

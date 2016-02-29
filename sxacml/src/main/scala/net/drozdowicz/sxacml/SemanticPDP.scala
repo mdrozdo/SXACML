@@ -2,6 +2,7 @@ package scala.net.drozdowicz.sxacml
 
 import java.io.{IOException, File}
 import java.util
+import java.util.Properties
 
 import net.drozdowicz.sxacml.OwlAttributeModule
 import org.wso2.balana.finder.{AttributeFinderModule, AttributeFinder}
@@ -14,8 +15,8 @@ import collection.JavaConversions._
  */
 class SemanticPDP(policyLocation: String/*, ontologyPath: String*/) {
 
-  var balana = initBalana()
-  var pdp = createPdp()
+  val balana = initBalana()
+  val pdp = createPdp()
 
   def evaluate(request: String): String = {
     pdp.evaluate(request)
@@ -27,10 +28,13 @@ class SemanticPDP(policyLocation: String/*, ontologyPath: String*/) {
   }
 
   private def createPdp(): PDP = {
-    val pdpConfig: PDPConfig = balana.getPdpConfig
-    val attributeFinder: AttributeFinder = pdpConfig.getAttributeFinder
-    val finderModules: util.List[AttributeFinderModule] = attributeFinder.getModules
-    finderModules.add(new OwlAttributeModule)
+    val pdpConfig = balana.getPdpConfig
+    val attributeFinder = pdpConfig.getAttributeFinder
+    val finderModules = attributeFinder.getModules.filter(m=>m.getClass() != classOf[OwlAttributeModule]);
+
+    val attributeModule = new OwlAttributeModule
+    attributeModule.init(new Properties)
+    finderModules.add(attributeModule)
     attributeFinder.setModules(finderModules)
     return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, null, true))
   }
