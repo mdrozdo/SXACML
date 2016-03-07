@@ -8,6 +8,17 @@ import org.semanticweb.owlapi.model._
  * Created by michal on 2015-03-18.
  */
 object RequestOntologyGenerator {
+  val idAttributes = Array(
+    "urn:oasis:names:tc:xacml:1.0:subject:subject-id",
+    "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+    "urn:oasis:names:tc:xacml:1.0:action:action-id"
+  )
+
+  def attributeDescribesId(attributeValue: FlatAttributeValue): Boolean = {
+    idAttributes.contains(attributeValue.attributeId.toString) &&
+      "http://www.w3.org/2001/XMLSchema#anyURI".equalsIgnoreCase(attributeValue.valueType.toString)
+  }
+
   def convertToOntology(owlManager: OWLOntologyManager)(requestId : String, requestAttributes : Set[FlatAttributeValue], otherOntologies: Set[IRI]) : OWLOntology = {
     val factory = owlManager.getOWLDataFactory()
 
@@ -15,7 +26,10 @@ object RequestOntologyGenerator {
     val ontology = owlManager.createOntology(IRI.create(ontologyId))
 
     requestAttributes.foreach(attributeValue=>{
-      val category = factory.getOWLNamedIndividual(IRI.create(attributeValue.categoryId + ":request_"+requestId))
+
+      val uri = if(attributeDescribesId(attributeValue)) attributeValue.valueString
+        else attributeValue.categoryId + ":request_"+requestId;
+      val category = factory.getOWLNamedIndividual(IRI.create(uri))
       val categoryClass = factory.getOWLClass(IRI.create(attributeValue.categoryId))
       val classAxiom = factory.getOWLClassAssertionAxiom(categoryClass, category)
       owlManager.addAxiom(ontology, classAxiom)
