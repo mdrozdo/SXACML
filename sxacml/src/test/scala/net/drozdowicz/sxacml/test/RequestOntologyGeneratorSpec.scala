@@ -79,6 +79,8 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
 
         result should not equal None
       }
+
+
     }
 
     describe("for a category with multiple attribute values"){
@@ -158,6 +160,30 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
       }
     }
 
-    //TODO refactor verification code into a nice custom matcher
+
+    describe("for a subject with anyURI id"){
+      val input = Set(
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
+          new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
+          "http://dbpedia.org/page/Bart_Simpson"
+        )
+      )
+
+      val ontology = convertToOntology("123", input, Set.empty[IRI])
+
+      it("should output subject with matching URI"){
+        val qry = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                    |SELECT ?uri WHERE
+                    |{
+                    |	?uri rdf:type <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject>
+                    |}""".stripMargin
+        val result = getSingleSparqlResult(ontology, qry)
+
+        result should not equal None
+        result.get.getResource("uri").getURI should equal("http://dbpedia.org/page/Bart_Simpson")
+      }
+    }
   }
 }

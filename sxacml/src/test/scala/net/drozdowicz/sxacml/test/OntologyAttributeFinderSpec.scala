@@ -60,31 +60,39 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     }
 
     //TODO Check if multiple values of attribute can be inferred
-//
-//    describe("if multiple values can be inferred") {
-//
-//      val input = Set(
-//        FlatAttributeValue(
-//          new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-//          new URI("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
-//          new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-//          "http://medico.com/record/patient/BartSimpson"
-//        )
-//      )
-//
-//      val toImport: IRI = importOntology(ontoMgr, "test1")
-//
-//      val ontology = convertToOntology("123", input, Set(toImport))
-//
-//      it("should return all inferred values") {
-//        val values = OntologyAttributeFinder.findAttributeValues(ontology, "123",
-//          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource", "http://drozdowicz.net/sxacml/test1#isAdult")
-//
-//        values.size should be(2)
-//        values should contain only ("false") //TODO better return flat attribute value?
-//      }
-//
-//    }
+
+    describe("if multiple values can be inferred") {
+
+      val input = Set(
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
+          new URI("urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"),
+          "bs@simpsons.com"
+        )
+      )
+
+      val toImport: IRI = importOntology(ontoMgr, "testMultiValues")
+
+      val ontology = convertToOntology("123", input, Set(toImport))
+
+      it("should return all inferred values") {
+        val values = OntologyAttributeFinder.findAttributeValues(ontology, "123",
+          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/test1#hasParentName")
+
+        values.size should be(2)
+        values should contain only (
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          URI.create("http://drozdowicz.net/sxacml/test1#hasParentName"),
+          URI.create("http://www.w3.org/2001/XMLSchema#string"),
+          "Homer Simpson"),
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          URI.create("http://drozdowicz.net/sxacml/test1#hasParentName"),
+          URI.create("http://www.w3.org/2001/XMLSchema#string"),
+          "Marge Simpson"))
+      }
+
+    }
 
   }
 
