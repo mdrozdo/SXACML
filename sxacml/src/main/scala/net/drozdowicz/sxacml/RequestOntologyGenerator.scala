@@ -27,8 +27,7 @@ object RequestOntologyGenerator {
 
     requestAttributes.foreach(attributeValue=>{
 
-      val uri = if(attributeDescribesId(attributeValue)) attributeValue.valueString
-        else attributeValue.categoryId + ":request_"+requestId;
+      val uri: String = getCategoryIndividualUri(requestId, attributeValue)
       val category = factory.getOWLNamedIndividual(IRI.create(uri))
       val categoryClass = factory.getOWLClass(IRI.create(attributeValue.categoryId))
       val classAxiom = factory.getOWLClassAssertionAxiom(categoryClass, category)
@@ -48,5 +47,11 @@ object RequestOntologyGenerator {
 
     owlManager.saveOntology(ontology, new SystemOutDocumentTarget())
     ontology
+  }
+
+  def getCategoryIndividualUri(requestId: String, attributeValue: FlatAttributeValue): String = {
+    val uri = if (attributeDescribesId(attributeValue)) attributeValue.valueString
+    else attributeValue.categoryId + ":request_" + requestId;
+    uri
   }
 }

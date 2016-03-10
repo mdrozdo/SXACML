@@ -6,6 +6,7 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY testMultiValue2 "http://drozdowicz.net/sxacml/testMultiValue#" >
     <!ENTITY testMultiValue "http://drozdowicz.net/sxacml/testMultiValue:" >
     <!ENTITY conformance-test "urn:oasis:names:tc:xacml:2.0:conformance-test:" >
 ]>
@@ -18,8 +19,9 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:testMultiValue2="http://drozdowicz.net/sxacml/testMultiValue#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testMultiValue"/>
+    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testMultiValues"/>
     
 
 
@@ -34,9 +36,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testMultiValue:hasParentName -->
+    <!-- http://drozdowicz.net/sxacml/testMultiValue#hasParentName -->
 
-    <owl:DatatypeProperty rdf:about="&testMultiValue;hasParentName">
+    <owl:DatatypeProperty rdf:about="&testMultiValue2;hasParentName">
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
     </owl:DatatypeProperty>
@@ -71,12 +73,12 @@
     
 
 
-    <!-- bs@simpsons.com -->
+    <!-- http://dbpedia.org/page/Bart_Simpson -->
 
-    <owl:NamedIndividual rdf:about="bs@simpsons.com">
+    <owl:NamedIndividual rdf:about="http://dbpedia.org/page/Bart_Simpson">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-        <testMultiValue:hasParentName rdf:datatype="&xsd;string">Homer Simpson</testMultiValue:hasParentName>
-        <testMultiValue:hasParentName rdf:datatype="&xsd;string">Marge Simpson</testMultiValue:hasParentName>
+        <testMultiValue2:hasParentName rdf:datatype="&xsd;string">Homer Simpson</testMultiValue2:hasParentName>
+        <testMultiValue2:hasParentName rdf:datatype="&xsd;string">Marge Simpson</testMultiValue2:hasParentName>
     </owl:NamedIndividual>
 </rdf:RDF>
 

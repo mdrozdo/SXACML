@@ -12,9 +12,8 @@ import scala.collection.JavaConversions._
  * Created by michal on 2015-03-18.
  */
 object OntologyAttributeFinder {
-  def findAttributeValues(ontology: OWLOntology, requestId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
+  def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
     val sparql = new SparqlReader(ontology)
-    val individualId = categoryId + ":request_" + requestId //TODO refactor creating individual id or pass it around
     val qry =
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         |SELECT ?val WHERE

@@ -104,8 +104,11 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     val requestId = "123" //TODO find a way to generate request Id
 
     val attributes = ContextParser.Parse(context.getRequestCtx)
+    val categoryIndividualIds = attributes
+      .map(at=>(at.categoryId, RequestOntologyGenerator.getCategoryIndividualUri(requestId, at)))
+      .toMap
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(ontologyId)))
-    OntologyAttributeFinder.findAttributeValues(requestOntology, requestId, category.toString, attributeId.toString)
+    OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
   }
 
   private def loadAllOntologiesFromResources(manager: OWLOntologyManager, ontologyFolder: String) = {
