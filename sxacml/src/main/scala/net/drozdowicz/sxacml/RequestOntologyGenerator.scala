@@ -1,5 +1,7 @@
 package net.drozdowicz.sxacml
 
+import java.net.URI
+
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.io.SystemOutDocumentTarget
 import org.semanticweb.owlapi.model._
@@ -34,7 +36,12 @@ object RequestOntologyGenerator {
       owlManager.addAxiom(ontology, classAxiom)
 
       val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
-      val value = factory.getOWLLiteral(attributeValue.valueString, factory.getOWLDatatype(IRI.create(attributeValue.valueType)))
+      val datatype = if(attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
+        factory.getOWLDatatype(IRI.create(attributeValue.valueType))
+      else
+        factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
+
+      val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
       val propertyAxiom = factory.getOWLDataPropertyAssertionAxiom(attribute, category, value);
       owlManager.addAxiom(ontology, propertyAxiom)
     })

@@ -185,5 +185,32 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         result.get.getResource("uri").getURI should equal("http://dbpedia.org/page/Bart_Simpson")
       }
     }
+
+    describe("for a subject with non XMLSchema datatype id"){
+      val input = Set(
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
+          new URI("urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"),
+          "bart@simpsons.com"
+        )
+      )
+
+      val ontology = convertToOntology("123", input, Set.empty[IRI])
+
+      it("should output id with string datatype for reasoning compatibility"){
+        val qry = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                    |SELECT ?val WHERE
+                    |{
+                    |	?cat rdf:type <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject>.
+                    | ?cat <urn:oasis:names:tc:xacml:1.0:subject:subject-id> ?val
+                    |}""".stripMargin
+        val result = getSingleSparqlResult(ontology, qry)
+
+        result should not equal None
+        result.get.getLiteral("val").getDatatypeURI should equal("http://www.w3.org/2001/XMLSchema#string")
+        result.get.getLiteral("val").getString should equal("bart@simpsons.com")
+      }
+    }
   }
 }
