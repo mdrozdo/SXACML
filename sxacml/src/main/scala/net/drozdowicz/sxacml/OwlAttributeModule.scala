@@ -3,7 +3,7 @@ package net.drozdowicz.sxacml
 import java.io.File
 import java.net.URI
 import java.util
-import java.util.Properties
+import java.util.{UUID, Properties}
 
 import onto.sparql.SparqlReader
 import onto.utils.OntologyUtils
@@ -101,7 +101,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
          TODO Create an XACML ontology with appropriate classes etc.
          */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
-    val requestId = "123" //TODO find a way to generate request Id
+    val requestId = UUID.randomUUID().toString
 
     val attributes = ContextParser.Parse(context.getRequestCtx)
     val categoryIndividualIds = attributes
