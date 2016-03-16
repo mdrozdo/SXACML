@@ -3,20 +3,18 @@ package net.drozdowicz.sxacml.test
 import java.io.File
 import java.net.URI
 
-import com.hp.hpl.jena.query.QuerySolution
-import net.drozdowicz.sxacml.{OntologyAttributeFinder, FlatAttributeValue, RequestOntologyGenerator}
-import onto.sparql.{SingleValueResultProcessor, SparqlReader, ValueSetResultProcessor}
+import net.drozdowicz.sxacml.{FlatAttributeValue, OntologyAttributeFinder, RequestOntologyGenerator}
 import onto.utils.OntologyUtils
 import org.scalatest.{Matchers, path}
 import org.semanticweb.owlapi.apibinding.OWLManager
-import org.semanticweb.owlapi.model.{OWLOntologyManager, IRI, OWLOntology, OWLOntologyIRIMapper}
+import org.semanticweb.owlapi.model.{IRI, OWLOntologyIRIMapper, OWLOntologyManager}
 import org.semanticweb.owlapi.util.SimpleIRIMapper
 
 import scala.collection.JavaConversions._
 
 /**
- * Created by michal on 2015-03-13.
- */
+  * Created by michal on 2015-03-13.
+  */
 class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
   describe("OntologyAttributeFinder") {
@@ -53,7 +51,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
           "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "urn:sxacml:attributes:type")
 
-        values should contain (FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+        values should contain(FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           URI.create("urn:sxacml:attributes:type"),
           URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
           "http://drozdowicz.net/sxacml/test1#Adult"))
@@ -63,12 +61,12 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
 
 
-    describe("getSupportedAttributes"){
+    describe("getSupportedAttributes") {
       val ontology = OntologyUtils.loadOntology(getOntologyResourceIRI("test1"))
 
-      it("should return data properties from ontology"){
+      it("should return data properties from ontology") {
         val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
-        attributes should contain ( "http://drozdowicz.net/sxacml/test1#isAdult")
+        attributes should contain("http://drozdowicz.net/sxacml/test1#isAdult")
       }
     }
 
@@ -92,15 +90,15 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testMultiValue#hasParentName")
 
         values.size should be(2)
-        values should contain only (
+        values should contain only(
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
-          URI.create("http://www.w3.org/2001/XMLSchema#string"),
-          "Homer Simpson"),
+            URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
+            URI.create("http://www.w3.org/2001/XMLSchema#string"),
+            "Homer Simpson"),
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
-          URI.create("http://www.w3.org/2001/XMLSchema#string"),
-          "Marge Simpson"))
+            URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
+            URI.create("http://www.w3.org/2001/XMLSchema#string"),
+            "Marge Simpson"))
       }
 
     }
