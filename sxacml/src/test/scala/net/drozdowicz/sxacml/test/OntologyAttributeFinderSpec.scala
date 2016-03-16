@@ -49,7 +49,19 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           "true"))
       }
 
+      it("should output type of the individual as an attribute value") {
+        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
+          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "urn:sxacml:attributes:type")
+
+        values should contain (FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          URI.create("urn:sxacml:attributes:type"),
+          URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+          "http://drozdowicz.net/sxacml/test1#Adult"))
+      }
+
     }
+
+
 
     describe("getSupportedAttributes"){
       val ontology = OntologyUtils.loadOntology(getOntologyResourceIRI("test1"))

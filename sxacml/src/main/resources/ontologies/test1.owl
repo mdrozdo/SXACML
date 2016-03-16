@@ -58,9 +58,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/test1:adult -->
+    <!-- http://drozdowicz.net/sxacml/test1#Adult -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1:adult">
+    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1#Adult">
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&conformance-test;age"/>
@@ -88,14 +88,25 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/sxacml/test1:underAge"/>
+        <owl:disjointWith rdf:resource="http://drozdowicz.net/sxacml/test1#UnderAge"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/sxacml/test1:underAge -->
+    <!-- http://drozdowicz.net/sxacml/test1#UnderAge -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1:underAge">
+    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1#UnderAge">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&conformance-test;age"/>
@@ -111,17 +122,6 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </owl:equivalentClass>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
-                        <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
     </owl:Class>
     
@@ -133,8 +133,8 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1:adult"/>
-                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1:underAge"/>
+                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1#Adult"/>
+                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1#UnderAge"/>
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
