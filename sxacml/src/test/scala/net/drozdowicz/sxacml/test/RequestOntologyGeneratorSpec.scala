@@ -156,7 +156,9 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
       it("should import additional ontologies") {
         val toImport = IRI.create("http://drozdowicz.net/sxacml/test1")
         ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-          new SimpleIRIMapper(toImport, IRI.create(new File(getClass.getResource("/ontologies/test1.owl").toURI)))))
+          new SimpleIRIMapper(IRI.create("http://drozdowicz.net/sxacml/test1"), IRI.create(new File(getClass.getResource("/ontologies/test1.owl").toURI))),
+          new SimpleIRIMapper(IRI.create("http://drozdowicz.net/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
+        ))
 
         val ontology = convertToOntology("456", input, Set(toImport))
         ontology.getDirectImports.size() should be(1)

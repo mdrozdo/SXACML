@@ -8,7 +8,8 @@ import java.util.{Properties, UUID}
 import onto.utils.OntologyUtils
 import org.apache.commons.logging.LogFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
-import org.semanticweb.owlapi.model.{IRI, OWLOntology, OWLOntologyManager}
+import org.semanticweb.owlapi.model.{OWLOntologyIRIMapper, IRI, OWLOntology, OWLOntologyManager}
+import org.semanticweb.owlapi.util.AutoIRIMapper
 import org.wso2.balana.attr.{AttributeFactory, AttributeValue, BagAttribute}
 import org.wso2.balana.cond.EvaluationResult
 import org.wso2.balana.ctx.EvaluationCtx
@@ -65,7 +66,6 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   }
 
   /*
-         TODO Should there be links added between diff categories? Like "subject1" requests "resourceA"?? Later
          TODO Create an XACML ontology with appropriate classes etc.
          */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
@@ -84,22 +84,9 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     ontologyFolderPath = properties.getProperty("ontologyFolderPath")
     rootOntologyId = properties.getProperty("rootOntologyId")
 
-    loadAllOntologiesFromResources(ontoMgr, ontologyFolderPath)
-  }
-
-  private def loadAllOntologiesFromResources(manager: OWLOntologyManager, ontologyFolder: String) = {
-    val ontologyPaths = ResourceFiles.getFilesFromResourceDirectory(getClass, ontologyFolder)
-    ontologyPaths.foreach(op => loadOntology(manager, op))
-  }
-
-  private def loadOntology(manager: OWLOntologyManager, ontologyPath: String) = {
-    val ontologyFile = getResourceFile(ontologyPath)
-    log.debug("Importing ontology from file %s".format(ontologyFile.getAbsolutePath))
-    manager.loadOntologyFromOntologyDocument(ontologyFile)
-  }
-
-  private def getResourceFile(filePath: String): File = {
-    new File(getClass.getResource(filePath).toURI)
+    ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
+      new AutoIRIMapper(new File(getClass.getResource(ontologyFolderPath).toURI), true))
+    )
   }
 
   override def isDesignatorSupported() = true

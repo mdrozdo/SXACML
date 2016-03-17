@@ -12,8 +12,8 @@
 ]>
 
 
-<rdf:RDF xmlns="http://drozdowicz.net/sxacml/test1#"
-     xml:base="http://drozdowicz.net/sxacml/test1"
+<rdf:RDF xmlns="http://drozdowicz.net/sxacml/testMultiValues#"
+     xml:base="http://drozdowicz.net/sxacml/testMultiValues"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:testMultiValue="http://drozdowicz.net/sxacml/testMultiValue:"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -21,7 +21,9 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:testMultiValue2="http://drozdowicz.net/sxacml/testMultiValue#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testMultiValues"/>
+    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testMultiValues">
+        <owl:imports rdf:resource="http://drozdowicz.net/sxacml/request"/>
+    </owl:Ontology>
     
 
 
@@ -55,11 +57,6 @@
 
     
 
-
-    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject -->
-
-    <owl:Class rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-    
 
 
     <!-- 

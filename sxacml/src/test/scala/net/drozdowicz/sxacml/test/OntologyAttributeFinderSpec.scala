@@ -8,7 +8,7 @@ import onto.utils.OntologyUtils
 import org.scalatest.{Matchers, path}
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{IRI, OWLOntologyIRIMapper, OWLOntologyManager}
-import org.semanticweb.owlapi.util.SimpleIRIMapper
+import org.semanticweb.owlapi.util.{AutoIRIMapper, SimpleIRIMapper}
 
 import scala.collection.JavaConversions._
 
@@ -19,6 +19,9 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
   describe("OntologyAttributeFinder") {
     val ontoMgr = OWLManager.createOWLOntologyManager()
+    ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
+      new AutoIRIMapper(new File(getClass.getResource("/ontologies/").toURI), true))
+    )
 
     val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr) _
 
@@ -33,7 +36,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         )
       )
 
-      val toImport: IRI = importOntology(ontoMgr, "test1")
+      val toImport: IRI = getOntologyIRI(ontoMgr, "test1")
 
       val ontology = convertToOntology("123", input, Set(toImport))
 
@@ -62,7 +65,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
 
     describe("getSupportedAttributes") {
-      val ontology = OntologyUtils.loadOntology(getOntologyResourceIRI("test1"))
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/test1"))
 
       it("should return data properties from ontology") {
         val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
@@ -86,7 +89,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         )
       )
 
-      val toImport: IRI = importOntology(ontoMgr, "testMultiValues")
+      val toImport: IRI = getOntologyIRI(ontoMgr, "testMultiValues")
 
       val ontology = convertToOntology("456", input, Set(toImport))
 
@@ -119,7 +122,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         )
       )
 
-      val toImport: IRI = importOntology(ontoMgr, "testIdMatch")
+      val toImport: IRI = getOntologyIRI(ontoMgr, "testIdMatch")
 
       val ontology = convertToOntology("123", input, Set(toImport))
 
@@ -139,14 +142,8 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
   }
 
-  def importOntology(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {
-    val toImport = IRI.create("http://drozdowicz.net/sxacml/" + ontoName)
-    ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new SimpleIRIMapper(toImport, getOntologyResourceIRI(ontoName))))
-    toImport
+  def getOntologyIRI(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {
+    IRI.create("http://drozdowicz.net/sxacml/" + ontoName)
   }
 
-  def getOntologyResourceIRI(ontoName: String): IRI = {
-    IRI.create(new File(getClass.getResource("/ontologies/" + ontoName + ".owl").toURI))
-  }
 }

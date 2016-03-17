@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://drozdowicz.net/sxacml/request#"
+     xml:base="http://drozdowicz.net/sxacml/request"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/request"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/request#identifier -->
+
+    <rdfs:Datatype rdf:about="http://drozdowicz.net/sxacml/request#identifier">
+        <owl:equivalentClass rdf:resource="&xsd;anyURI"/>
+        <owl:equivalentClass rdf:resource="&xsd;string"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:x500Name"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:2.0:data-type:dnsName"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:2.0:data-type:ipAddress"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">
+        <owl:equivalentClass rdf:resource="&xsd;string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:data-type:x500Name -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:1.0:data-type:x500Name">
+        <owl:equivalentClass rdf:resource="&xsd;string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:data-type:dnsName -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:2.0:data-type:dnsName">
+        <owl:equivalentClass rdf:resource="&xsd;string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:data-type:ipAddress -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:2.0:data-type:ipAddress">
+        <owl:equivalentClass rdf:resource="&xsd;string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression">
+        <owl:equivalentClass rdf:resource="&xsd;string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:action:action-id -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:action:action-id">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:resource:resource-id -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject:subject-id -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
+        </owl:hasKey>
+    </owl:Class>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:action -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:action:action-id"/>
+        </owl:hasKey>
+    </owl:Class>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:environment -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:resource -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:resource:resource-id"/>
+        </owl:hasKey>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
