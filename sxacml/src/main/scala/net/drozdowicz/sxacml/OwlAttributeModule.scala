@@ -23,11 +23,9 @@ import scala.util.control.ControlThrowable
 class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private val log = LogFactory.getLog(classOf[OwlAttributeModule])
 
-  //TODO these should be overridden with some values from config
-  private val ontologyId = "http://drozdowicz.net/sxacml/test1"
+  private var ontologyFolderPath: String = "/"
+  private var rootOntologyId: String = "" //TODO: Set to the base XACML ontology
 
-  //TODO Remove - this shouldn't be necessary
-  private val ontologyFilePath = "/ontologies/test1.owl"
 
   log.info("OwlAttributeModule defined.")
 
@@ -78,16 +76,17 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     val categoryIndividualIds = attributes
       .map(at => (at.categoryId, RequestOntologyGenerator.getCategoryIndividualUri(requestId, at)))
       .toMap
-    val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(ontologyId)))
+    val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
     OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
   }
 
   //TODO: Pass as a property the path to a folder that contains the ontologies to import
   override def init(properties: Properties): Unit = {
     log.info("Initializing SXACML attribute finder")
-    //properties.getProperty()
+    ontologyFolderPath = properties.getProperty("ontologyFolderPath")
+    rootOntologyId = properties.getProperty("rootOntologyId")
 
-    loadAllOntologiesFromResources(ontoMgr, "/ontologies")
+    loadAllOntologiesFromResources(ontoMgr, ontologyFolderPath)
   }
 
   private def loadAllOntologiesFromResources(manager: OWLOntologyManager, ontologyFolder: String) = {
@@ -113,13 +112,12 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
       "urn:oasis:names:tc:xacml:3.0:attribute-category:action",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:environment")
 
-  //TODO: Load from many ontologies
   override def getSupportedAttributes: util.Set[String] =
-    OntologyAttributeFinder.getAllSupportedAttributes(loadOntology(ontologyFilePath))
+    OntologyAttributeFinder.getAllSupportedAttributes(getOntologyById(rootOntologyId)) //assuming root onto imports others and
 
-  private def loadOntology(ontoFilePath: String): OWLOntology = {
-    val iri = createFileIri(ontoFilePath)
-    OntologyUtils.loadOntology(iri)
+  private def getOntologyById(ontoId: String): OWLOntology = {
+    val iri = IRI.create(ontoId)
+    ontoMgr.getOntology(iri)
   }
 
   private def createFileIri(filePath: String): IRI = {

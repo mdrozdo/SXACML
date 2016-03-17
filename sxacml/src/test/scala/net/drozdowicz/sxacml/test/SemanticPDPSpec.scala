@@ -16,7 +16,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
   describe("SemanticPDP") {
     XMLUnit.setIgnoreWhitespace(true)
     val policyLocation = relativeToAbsolute("basic/policies")
-    val pdp = new SemanticPDP(policyLocation)
+    val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/test1")
 
     describe("for simple datatype property from ontology") {
       it("if subject is adult returns permit") {

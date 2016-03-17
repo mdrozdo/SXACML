@@ -13,7 +13,7 @@ import collection.JavaConversions._
 /**
  * Created by michal on 2015-05-02.
  */
-class SemanticPDP(policyLocation: String/*, ontologyPath: String*/) {
+class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntologyId: String) {
 
   val balana = initBalana()
   val pdp = createPdp()
@@ -33,7 +33,13 @@ class SemanticPDP(policyLocation: String/*, ontologyPath: String*/) {
     val finderModules = attributeFinder.getModules.filter(m=>m.getClass() != classOf[OwlAttributeModule]);
 
     val attributeModule = new OwlAttributeModule
-    attributeModule.init(new Properties)
+    val properties = new Properties
+    properties.putAll(Map(
+      "ontologyFolderPath" -> ontologyFolderPath,
+      "rootOntologyId" -> rootOntologyId
+    ))
+
+    attributeModule.init(properties)
     finderModules.add(attributeModule)
     attributeFinder.setModules(finderModules)
     return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, null, true))
