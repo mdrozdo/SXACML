@@ -14,10 +14,12 @@ import scala.collection.JavaConversions._
   */
 object OntologyAttributeFinder {
 
+  private val typePropertyURI = "urn:sxacml:attributes:type"
+
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
     val queryFunction = queryForAttribute(ontology, individualId, categoryId, attributeId, _: String, _: (QuerySolution) => FlatAttributeValue)
 
-    if (attributeId.equalsIgnoreCase("urn:sxacml:attributes:type")) {
+    if (attributeId.equalsIgnoreCase(typePropertyURI)) {
       queryFunction(
         """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           |SELECT ?val WHERE
@@ -58,6 +60,6 @@ object OntologyAttributeFinder {
 
   def getAllSupportedAttributes(ontology: OWLOntology): Set[String] = {
     var model = OntologyUtils.createJenaModel(ontology)
-    ontology.getDataPropertiesInSignature().map(dp => dp.getIRI.toString).toSet
+    ontology.getDataPropertiesInSignature().map(dp => dp.getIRI.toString).toSet + typePropertyURI
   }
 }

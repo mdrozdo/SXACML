@@ -66,7 +66,6 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   /*
          TODO Should there be links added between diff categories? Like "subject1" requests "resourceA"?? Later
-         TODO Type of individual should be reflected in some output attribute
          TODO Create an XACML ontology with appropriate classes etc.
          */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
@@ -80,7 +79,6 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
   }
 
-  //TODO: Pass as a property the path to a folder that contains the ontologies to import
   override def init(properties: Properties): Unit = {
     log.info("Initializing SXACML attribute finder")
     ontologyFolderPath = properties.getProperty("ontologyFolderPath")

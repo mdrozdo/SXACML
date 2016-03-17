@@ -68,6 +68,11 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
         attributes should contain("http://drozdowicz.net/sxacml/test1#isAdult")
       }
+
+      it("should return type property") {
+        val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
+        attributes should contain("urn:sxacml:attributes:type")
+      }
     }
 
     describe("if multiple values can be inferred") {
