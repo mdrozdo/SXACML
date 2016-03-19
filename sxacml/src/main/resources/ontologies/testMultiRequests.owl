@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY subject "urn:oasis:names:tc:xacml:1.0:subject:" >
+    <!ENTITY request "http://drozdowicz.net/sxacml/request#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY conformance-test "urn:oasis:names:tc:xacml:2.0:conformance-test:" >
+]>
+
+
+<rdf:RDF xmlns="http://drozdowicz.net/sxacml/testMultiRequests#"
+     xml:base="http://drozdowicz.net/sxacml/testMultiRequests"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:subject="urn:oasis:names:tc:xacml:1.0:subject:"
+     xmlns:request="http://drozdowicz.net/sxacml/request#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
+    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testMultiRequests">
+        <owl:imports rdf:resource="http://drozdowicz.net/sxacml/request"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/test1#isAdult -->
+
+    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/sxacml/test1#isAdult">
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:conformance-test:age -->
+
+    <owl:DatatypeProperty rdf:about="&conformance-test;age"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/testMultiRequests#Adult -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/sxacml/testMultiRequests#Adult">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&conformance-test;age"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">18</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <owl:disjointWith rdf:resource="http://drozdowicz.net/sxacml/testMultiRequests#UnderAge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/testMultiRequests#UnderAge -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/sxacml/testMultiRequests#UnderAge">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&conformance-test;age"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:maxExclusive rdf:datatype="&xsd;integer">18</xsd:maxExclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </owl:Class>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/testMultiRequests#Adult"/>
+                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/testMultiRequests#UnderAge"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/testMultiRequests#alice -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/testMultiRequests#alice">
+        <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <conformance-test:age rdf:datatype="&xsd;integer">15</conformance-test:age>
+        <subject:subject-id rdf:datatype="&xsd;string">alice</subject:subject-id>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/sxacml/testMultiRequests#bob -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/testMultiRequests#bob">
+        <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <conformance-test:age rdf:datatype="&xsd;integer">23</conformance-test:age>
+        <subject:subject-id rdf:datatype="&xsd;string">bob</subject:subject-id>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
