@@ -62,8 +62,6 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
     }
 
-
-
     describe("getSupportedAttributes") {
       val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/test1"))
 
@@ -78,68 +76,88 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       }
     }
 
-    describe("if multiple values can be inferred") {
+    describe("findAttributeValues") {
+      describe("if multiple values can be inferred") {
 
-      val input = Set(
-        FlatAttributeValue(
-          new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
-          new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-          "http://dbpedia.org/page/Bart_Simpson"
+        val input = Set(
+          FlatAttributeValue(
+            new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+            new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
+            new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://dbpedia.org/page/Bart_Simpson"
+          )
         )
-      )
 
-      val toImport: IRI = getOntologyIRI(ontoMgr, "testMultiValues")
+        val toImport: IRI = getOntologyIRI(ontoMgr, "testMultiValues")
 
-      val ontology = convertToOntology("456", input, Set(toImport))
+        val ontology = convertToOntology("456", input, Set(toImport))
 
-      it("should return all inferred values") {
-        val values = OntologyAttributeFinder.findAttributeValues(ontology, "http://dbpedia.org/page/Bart_Simpson",
-          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testMultiValue#hasParentName")
+        it("should return all inferred values") {
+          val values = OntologyAttributeFinder.findAttributeValues(ontology, "http://dbpedia.org/page/Bart_Simpson",
+            "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testMultiValue#hasParentName")
+
+          values.size should be(2)
+          values should contain only(
+            FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+              URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
+              URI.create("http://www.w3.org/2001/XMLSchema#string"),
+              "Homer Simpson"),
+            FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+              URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
+              URI.create("http://www.w3.org/2001/XMLSchema#string"),
+              "Marge Simpson"))
+        }
+
+      }
+
+      describe("when subject id is specified (and not anyURI)") {
+
+        val input = Set(
+          FlatAttributeValue(
+            new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+            new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
+            new URI("urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"),
+            "bart@simpsons.com"
+          )
+        )
+
+        val toImport: IRI = getOntologyIRI(ontoMgr, "testIdMatch")
+
+        val ontology = convertToOntology("123", input, Set(toImport))
+
+        it("should match subject by id") {
+          val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
+            "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testIdMatch#hasFirstName")
+
+          values.size should be(1)
+          values should contain only (
+            FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+              URI.create("http://drozdowicz.net/sxacml/testIdMatch#hasFirstName"),
+              URI.create("http://www.w3.org/2001/XMLSchema#string"),
+              "Bart"))
+        }
+
+      }
+    }
+
+    describe("findInstancesOfClass") {
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchy"))
+
+      it("should return individuals from class defined in attribute value") {
+        val values : Set[FlatAttributeValue] = OntologyAttributeFinder.findInstancesOfClass(ontology, "foo")
 
         values.size should be(2)
         values should contain only(
-          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-            URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
-            URI.create("http://www.w3.org/2001/XMLSchema#string"),
-            "Homer Simpson"),
-          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-            URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
-            URI.create("http://www.w3.org/2001/XMLSchema#string"),
-            "Marge Simpson"))
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo/foo1"),
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo/foo2"))
       }
-
     }
-
-    describe("when subject id is specified (and not anyURI)") {
-
-      val input = Set(
-        FlatAttributeValue(
-          new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
-          new URI("urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"),
-          "bart@simpsons.com"
-        )
-      )
-
-      val toImport: IRI = getOntologyIRI(ontoMgr, "testIdMatch")
-
-      val ontology = convertToOntology("123", input, Set(toImport))
-
-      it("should match subject by id") {
-        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
-          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testIdMatch#hasFirstName")
-
-        values.size should be(1)
-        values should contain only (
-          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-            URI.create("http://drozdowicz.net/sxacml/testIdMatch#hasFirstName"),
-            URI.create("http://www.w3.org/2001/XMLSchema#string"),
-            "Bart"))
-      }
-
-    }
-
   }
 
   def getOntologyIRI(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {

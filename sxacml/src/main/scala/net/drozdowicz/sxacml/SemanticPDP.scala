@@ -5,7 +5,7 @@ import java.util
 import java.util.Properties
 
 import net.drozdowicz.sxacml.OwlAttributeModule
-import org.wso2.balana.finder.{AttributeFinderModule, AttributeFinder}
+import org.wso2.balana.finder.{ResourceFinderModule, AttributeFinderModule, AttributeFinder, ResourceFinder}
 import org.wso2.balana.{PDPConfig, PDP, Balana}
 import org.wso2.balana.finder.impl.FileBasedPolicyFinderModule
 import collection.JavaConversions._
@@ -29,21 +29,38 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
 
   private def createPdp(): PDP = {
     val pdpConfig = balana.getPdpConfig
-    val attributeFinder = pdpConfig.getAttributeFinder
-    val finderModules = attributeFinder.getModules.filter(m=>m.getClass() != classOf[OwlAttributeModule]);
+    val attributeFinder = initializeAttributeFinder(pdpConfig)
+    val resourceFinder = initializeResourceFinder(pdpConfig)
+        
+    return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, resourceFinder, true))
+  }
 
+  def initializeAttributeFinder(pdpConfig: PDPConfig): AttributeFinder = {
+    val attributeFinder = pdpConfig.getAttributeFinder
+    val finderModules = attributeFinder.getModules.filter(m => m.getClass() != classOf[OwlAttributeModule]);
+    finderModules.add(createAttributeModule)
+    attributeFinder.setModules(finderModules)
+    attributeFinder
+  }
+
+  private def createAttributeModule: AttributeFinderModule = {
     val attributeModule = new OwlAttributeModule
     val properties = new Properties
     properties.putAll(Map(
       "ontologyFolderPath" -> ontologyFolderPath,
       "rootOntologyId" -> rootOntologyId
     ))
-
     attributeModule.init(properties)
-    finderModules.add(attributeModule)
-    attributeFinder.setModules(finderModules)
-    return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, null, true))
+    attributeModule
   }
 
+  def initializeResourceFinder(pdpConfig: PDPConfig): ResourceFinder = {
+    val resourceFinder = pdpConfig.getResourceFinder
+    val finderModules = resourceFinder.getModules.filter(m => m.getClass() != classOf[OwlResourceClassFinderModule]);
+    finderModules.add(createResourceModule)
+    resourceFinder.setModules(finderModules)
+    resourceFinder
+  }
 
+  private def createResourceModule: ResourceFinderModule = new OwlResourceClassFinderModule()
 }

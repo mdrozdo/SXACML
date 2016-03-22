@@ -8,18 +8,21 @@ import onto.utils.OntologyUtils
 import org.semanticweb.owlapi.model._
 
 import scala.collection.JavaConversions._
+import scala.net.drozdowicz.sxacml.Constants
 
 /**
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
+  def findInstancesOfClass(ontology: OWLOntology, className: String): Set[FlatAttributeValue] = {
+    Set.empty[FlatAttributeValue]
+  }
 
-  private val typePropertyURI = "urn:sxacml:attributes:type"
 
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
     val queryFunction = queryForAttribute(ontology, individualId, categoryId, attributeId, _: String, _: (QuerySolution) => FlatAttributeValue)
 
-    if (attributeId.equalsIgnoreCase(typePropertyURI)) {
+    if (attributeId.equalsIgnoreCase(Constants.TYPE_PROPERTY_URI)) {
       queryFunction(
         """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           |SELECT ?val WHERE
@@ -46,6 +49,7 @@ object OntologyAttributeFinder {
     }
   }
 
+
   private def queryForAttribute(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String, sparqlQuery: String, valueGetter: (QuerySolution) => FlatAttributeValue): Set[FlatAttributeValue] = {
     val sparql = new SparqlReader(ontology)
 
@@ -60,6 +64,6 @@ object OntologyAttributeFinder {
 
   def getAllSupportedAttributes(ontology: OWLOntology): Set[String] = {
     var model = OntologyUtils.createJenaModel(ontology)
-    ontology.getDataPropertiesInSignature().map(dp => dp.getIRI.toString).toSet + typePropertyURI
+    ontology.getDataPropertiesInSignature().map(dp => dp.getIRI.toString).toSet + Constants.TYPE_PROPERTY_URI
   }
 }

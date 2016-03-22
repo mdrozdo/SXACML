@@ -34,13 +34,9 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   override def findAttribute(attributeType: URI, attributeId: URI, issuer: String, category: URI, context: EvaluationCtx): EvaluationResult = {
     val attributeValues = findAttributeValues(attributeId, category, context)
-    val values = attributeValues.map(flatAttr => createAttributeValue(flatAttr)).toList
+    val values = attributeValues.map(flatAttr => flatAttr.createAttributeValue).toList
 
     new EvaluationResult(new BagAttribute(attributeType, values))
-  }
-
-  private def createAttributeValue(flatValue: FlatAttributeValue): AttributeValue = {
-    AttributeFactory.getInstance().createValue(flatValue.valueType, flatValue.valueString)
   }
 
   override def getAttributeValues(attributeType: URI, attributeId: URI, category: URI, issuer: String, context: EvaluationCtx): util.Set[String] = {
@@ -65,9 +61,6 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     case ex: Throwable => throw ex
   }
 
-  /*
-         TODO Create an XACML ontology with appropriate classes etc.
-         */
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
     val requestId = UUID.randomUUID().toString
 
