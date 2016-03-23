@@ -62,5 +62,7 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     resourceFinder
   }
 
-  private def createResourceModule: ResourceFinderModule = new OwlResourceClassFinderModule()
+  private def createResourceModule: ResourceFinderModule = {
+    new OwlResourceClassFinderModule(ontologyFolderPath, rootOntologyId)
+  }
 }

@@ -5,7 +5,7 @@
 	</Attribute>
   </Attributes>
   <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
-    <Attribute IncludeInResult="true" AttributeId="urn:sxacml:attributes:type">
+    <Attribute IncludeInResult="true" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
       <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://drozdowicz.net/sxacml/testResourceHierarchy#foo</AttributeValue>
     </Attribute>
     <Attribute AttributeId="urn:oasis:names:tc:xacml:2.0:resource:scope" IncludeInResult="false">

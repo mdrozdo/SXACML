@@ -75,7 +75,22 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
         val actualResponse = pdp.evaluate(request)
         val expectedResponse = readFile("basic/responses/ResourceClass.xml")
 
-        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+        assertThat(actualResponse, isSimilarTo(expectedResponse)
+          .ignoreWhitespace()
+          .withNodeMatcher(new DefaultNodeMatcher(
+            ElementSelectors.conditionalBuilder()
+              .whenElementIsNamed("Result")
+              .thenUse(ElementSelectors.byXPath("./xacml:Attributes/xacml:Attribute[@AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"]/xacml:AttributeValue",
+                Map("xacml"->"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
+                ElementSelectors.byNameAndText))
+              .whenElementIsNamed("Attributes")
+              .thenUse(ElementSelectors.byNameAndAllAttributes)
+              .whenElementIsNamed("Attribute")
+              .thenUse(ElementSelectors.byNameAndAllAttributes)
+              .elseUse(ElementSelectors.byName)
+              .build())
+          )
+        )
       }
     }
   }
