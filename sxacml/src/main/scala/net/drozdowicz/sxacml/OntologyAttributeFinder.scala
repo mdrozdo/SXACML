@@ -9,21 +9,32 @@ import org.semanticweb.owlapi.model._
 
 import scala.collection.JavaConversions._
 import scala.net.drozdowicz.sxacml.Constants
+import scala.net.drozdowicz.sxacml.JavaOptionals._
 
 /**
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
-  def findInstancesOfClass(ontology: OWLOntology, className: String): Set[FlatAttributeValue] = {
-    Set.empty[FlatAttributeValue]
+  def findInstancesOfClass(ontology: OWLOntology, categoryId: String, attributeId: String, classId: String): Set[FlatAttributeValue] = {
+//    val classId = ontology.getOntologyID.getOntologyIRI.toOption
+//      .map(iri=>iri.toString).getOrElse(requestOntologyId)
+
+    queryOntology(ontology,
+      """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        |SELECT ?val WHERE
+        |{
+        | ?val rdf:type <%s>
+        |}""".stripMargin.format(classId),
+      (sol: QuerySolution) => {
+        val solution = sol.getResource("val")
+        FlatAttributeValue(URI.create(categoryId), URI.create(attributeId), URI.create("http://www.w3.org/2001/XMLSchema#anyURI"), solution.getURI)
+      }
+    )
   }
 
-
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
-    val queryFunction = queryForAttribute(ontology, individualId, categoryId, attributeId, _: String, _: (QuerySolution) => FlatAttributeValue)
-
     if (attributeId.equalsIgnoreCase(Constants.TYPE_PROPERTY_URI)) {
-      queryFunction(
+      queryOntology(ontology,
         """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           |SELECT ?val WHERE
           |{
@@ -35,7 +46,7 @@ object OntologyAttributeFinder {
         }
       )
     } else {
-      queryFunction(
+      queryOntology(ontology,
         """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           |SELECT ?val WHERE
           |{
@@ -50,7 +61,7 @@ object OntologyAttributeFinder {
   }
 
 
-  private def queryForAttribute(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String, sparqlQuery: String, valueGetter: (QuerySolution) => FlatAttributeValue): Set[FlatAttributeValue] = {
+  private def queryOntology(ontology: OWLOntology, sparqlQuery: String, valueGetter: (QuerySolution) => FlatAttributeValue): Set[FlatAttributeValue] = {
     val sparql = new SparqlReader(ontology)
 
     var result = Set.empty[FlatAttributeValue]

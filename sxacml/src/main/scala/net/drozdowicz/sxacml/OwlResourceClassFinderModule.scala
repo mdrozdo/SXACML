@@ -13,9 +13,6 @@ class OwlResourceClassFinderModule extends ResourceFinderModule() {
 
   override def isDescendantSupported() = true
 
-  override def findChildResources( parentResourceId: AttributeValue, context: EvaluationCtx ) =
-    new ResourceFinderResult()
-
   override def findDescendantResources(parentResourceId: AttributeValue , context: EvaluationCtx ) =
     new ResourceFinderResult()
 

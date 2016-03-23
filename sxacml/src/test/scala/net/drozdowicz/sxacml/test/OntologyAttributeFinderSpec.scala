@@ -143,20 +143,28 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     describe("findInstancesOfClass") {
       val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchy"))
 
-      it("should return individuals from class defined in attribute value") {
-        val values : Set[FlatAttributeValue] = OntologyAttributeFinder.findInstancesOfClass(ontology, "foo")
+      it("given class id should return individuals from class defined in attribute value") {
+        val values = OntologyAttributeFinder.findInstancesOfClass(ontology,
+          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
+          "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+          "http://drozdowicz.net/sxacml/testResourceHierarchy#foo")
 
         values.size should be(2)
         values should contain only(
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo/foo1"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo1"),
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo/foo2"))
+            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
       }
+
+
+//TODO      it("given class name should return individuals from class defined in attribute value") {
+//
+//      }
     }
   }
 
