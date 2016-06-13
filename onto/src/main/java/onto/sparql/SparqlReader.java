@@ -17,7 +17,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.InfModel;
 
 
-//TODO enable declaration of prefixes when instantiating the reader, to reuse between queries
+//TODO ??? enable declaration of prefixes when instantiating the reader, to reuse between queries
 public class SparqlReader implements Closeable{
 
 	private InfModel model;

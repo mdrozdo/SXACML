@@ -161,10 +161,27 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
             "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
       }
 
+      it("given class name should return individuals from class defined in attribute value") {
+        val values = OntologyAttributeFinder.findInstancesOfClass(ontology,
+          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
+          "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+          "foo")
 
-//TODO      it("given class name should return individuals from class defined in attribute value") {
-//
-//      }
+        values.size should be(2)
+        values should contain only(
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo1"),
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
+      }
+    }
+
+    describe("findInstancesOfClass") {
+
     }
   }
 

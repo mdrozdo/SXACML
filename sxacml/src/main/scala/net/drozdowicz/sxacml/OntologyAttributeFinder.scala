@@ -10,12 +10,29 @@ import org.semanticweb.owlapi.model._
 import scala.collection.JavaConversions._
 import scala.net.drozdowicz.sxacml.Constants
 import scala.net.drozdowicz.sxacml.JavaOptionals._
+import scala.util.matching.Regex
 
 /**
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
-  def findInstancesOfClass(ontology: OWLOntology, categoryId: String, attributeId: String, classId: String): Set[FlatAttributeValue] = {
+
+  def isIRI(value: String): Boolean = {
+    
+    return pattern.pattern.matcher(value).matches()
+  }
+
+  def findInstancesOfClass(ontology: OWLOntology, categoryId: String, attributeId: String, classIdOrName: String): Set[FlatAttributeValue] = {
+
+    val classId = if(isIRI(classIdOrName)){
+        classIdOrName
+      } else {
+      ontology.getOntologyID.getOntologyIRI.toOption
+        .map(iri=>iri.toString).get + "#" + classIdOrName;
+    }
+
+    //val ontologyId = ontology.getOntologyID.getOntologyIRI.toOption.map(iri=>iri.toString).getOrElse(requestOntologyId)
+
 //    val classId = ontology.getOntologyID.getOntologyIRI.toOption
 //      .map(iri=>iri.toString).getOrElse(requestOntologyId)
 
