@@ -18,8 +18,7 @@ import scala.util.matching.Regex
 object OntologyAttributeFinder {
 
   def isIRI(value: String): Boolean = {
-    
-    return pattern.pattern.matcher(value).matches()
+    return "" != IRI.create(value).getNamespace
   }
 
   def findInstancesOfClass(ontology: OWLOntology, categoryId: String, attributeId: String, classIdOrName: String): Set[FlatAttributeValue] = {
@@ -30,11 +29,6 @@ object OntologyAttributeFinder {
       ontology.getOntologyID.getOntologyIRI.toOption
         .map(iri=>iri.toString).get + "#" + classIdOrName;
     }
-
-    //val ontologyId = ontology.getOntologyID.getOntologyIRI.toOption.map(iri=>iri.toString).getOrElse(requestOntologyId)
-
-//    val classId = ontology.getOntologyID.getOntologyIRI.toOption
-//      .map(iri=>iri.toString).getOrElse(requestOntologyId)
 
     queryOntology(ontology,
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
