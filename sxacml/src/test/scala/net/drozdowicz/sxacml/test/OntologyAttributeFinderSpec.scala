@@ -180,8 +180,44 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       }
     }
 
-    describe("findInstancesOfClass") {
+    describe("findInstancesFromHierarchy") {
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchy"))
 
+      it("given individual id should return individuals related by the property mapped with hierarchyDesignator annotation") {
+        val values = OntologyAttributeFinder.findInstancesFromHierarchy(ontology,
+          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
+          "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#fooRoot")
+
+        values.size should be(2)
+        values should contain only(
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#foo1"),
+          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+            "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#foo2"))
+      }
+
+//      it("given class name should return individuals from class defined in attribute value") {
+//        val values = OntologyAttributeFinder.findInstancesOfClass(ontology,
+//          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
+//          "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+//          "foo")
+//
+//        values.size should be(2)
+//        values should contain only(
+//          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+//            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+//            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+//            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo1"),
+//          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+//            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
+//            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
+//            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
+//      }
     }
   }
 

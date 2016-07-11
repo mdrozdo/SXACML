@@ -43,6 +43,10 @@ object OntologyAttributeFinder {
     )
   }
 
+  def findInstancesFromHierarchy(ontology: OWLOntology, categoryId: String, attributeId: String, classIdOrName: String): Set[FlatAttributeValue] = {
+    Set.empty[FlatAttributeValue]
+  }
+
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
     if (attributeId.equalsIgnoreCase(Constants.TYPE_PROPERTY_URI)) {
       queryOntology(ontology,
