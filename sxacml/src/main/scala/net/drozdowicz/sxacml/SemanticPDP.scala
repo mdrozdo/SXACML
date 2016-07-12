@@ -30,8 +30,8 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
   private def createPdp(): PDP = {
     val pdpConfig = balana.getPdpConfig
     val attributeFinder = initializeAttributeFinder(pdpConfig)
-    val resourceFinder = initializeResourceFinder(pdpConfig)
-        
+    val resourceFinder = initializeResourceFinders(pdpConfig)
+
     return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, resourceFinder, true))
   }
 
@@ -54,15 +54,19 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     attributeModule
   }
 
-  def initializeResourceFinder(pdpConfig: PDPConfig): ResourceFinder = {
+  def initializeResourceFinders(pdpConfig: PDPConfig): ResourceFinder = {
     val resourceFinder = pdpConfig.getResourceFinder
-    val finderModules = resourceFinder.getModules.filter(m => m.getClass() != classOf[OwlResourceClassFinderModule]);
-    finderModules.add(createResourceModule)
+    val finderModules = resourceFinder.getModules.filter(m =>
+      m.getClass() != classOf[OwlResourceClassFinderModule]
+        && m.getClass() != classOf[OwlResourceHierarchyFinderModule]);
+    finderModules.add({
+      new OwlResourceClassFinderModule(ontologyFolderPath, rootOntologyId)
+    })
+    finderModules.add({
+      new OwlResourceHierarchyFinderModule(ontologyFolderPath, rootOntologyId)
+    })
     resourceFinder.setModules(finderModules)
     resourceFinder
   }
 
-  private def createResourceModule: ResourceFinderModule = {
-    new OwlResourceClassFinderModule(ontologyFolderPath, rootOntologyId)
   }
-}

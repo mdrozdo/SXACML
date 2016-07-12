@@ -9,7 +9,7 @@ import org.semanticweb.owlapi.model.{IRI, OWLOntologyIRIMapper}
 import org.semanticweb.owlapi.util.AutoIRIMapper
 import org.wso2.balana.attr.AttributeValue
 import org.wso2.balana.ctx.EvaluationCtx
-import org.wso2.balana.finder.{ResourceFinderResult, ResourceFinderModule}
+import org.wso2.balana.finder.{ResourceFinderModule, ResourceFinderResult}
 
 import scala.collection.JavaConversions._
 import scala.util.control.ControlThrowable
@@ -17,10 +17,10 @@ import scala.util.control.ControlThrowable
 /**
   * Created by michal on 19.03.2016.
   */
-class OwlResourceClassFinderModule(ontologyFolderPath: String, rootOntologyId: String) extends ResourceFinderModule() {
-  private val log = LogFactory.getLog(classOf[OwlResourceClassFinderModule])
+class OwlResourceHierarchyFinderModule(ontologyFolderPath: String, rootOntologyId: String) extends ResourceFinderModule() {
+  private val log = LogFactory.getLog(classOf[OwlResourceHierarchyFinderModule])
 
-  log.info("OwlResourceClassFinderModule defined.")
+  log.info("OwlResourceHierarchyFinderModule defined.")
 
   private val ontoMgr = OWLManager.createOWLOntologyManager()
   ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
@@ -34,15 +34,12 @@ class OwlResourceClassFinderModule(ontologyFolderPath: String, rootOntologyId: S
 
   override def findDescendantResources(parentResourceId: AttributeValue , context: EvaluationCtx ) = {
     try {
-      val instances = OntologyAttributeFinder.findInstancesOfClass(rootOntology,
-        "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
-        "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
-        parentResourceId.encode())
-
-      if(instances.isEmpty)
-        new ResourceFinderResult()
-      else
-        new ResourceFinderResult(instances.map(f => f.createAttributeValue())
+      new ResourceFinderResult(OntologyAttributeFinder.findInstancesFromHierarchy(rootOntology,
+          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
+          "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
+          parentResourceId.encode(),
+          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild")
+        .map(f => f.createAttributeValue())
       )
     } catch safely {
       case e: Throwable => {

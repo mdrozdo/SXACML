@@ -68,9 +68,10 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("when using resource finder"){
-      val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/testResourceHierarchy")
 
       it("retrieves individuals from class specified in request") {
+        val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/testResourceHierarchy")
+
         val request = readFile("basic/requests/ResourceClass.xml")
         val actualResponse = pdp.evaluate(request)
         val expectedResponse = readFile("basic/responses/ResourceClass.xml")
@@ -94,6 +95,8 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
       }
 
       it("retrieves individuals from hierarchy defined by hierarchy designator property") {
+        val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty")
+
         val request = readFile("basic/requests/ResourceClassProperty.xml")
         val actualResponse = pdp.evaluate(request)
         val expectedResponse = readFile("basic/responses/ResourceClassProperty.xml")
