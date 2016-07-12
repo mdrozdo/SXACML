@@ -28,6 +28,8 @@ class OwlResourceHierarchyFinderModule(ontologyFolderPath: String, rootOntologyI
   )
   private val rootOntology = ontoMgr.loadOntology(IRI.create(rootOntologyId))
 
+  private val hierarchyDesignatorId = OntologyAttributeFinder.getHierarchyDesignator(rootOntology)
+
   override def isChildSupported() = false
 
   override def isDescendantSupported() = true

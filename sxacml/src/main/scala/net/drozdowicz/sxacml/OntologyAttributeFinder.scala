@@ -6,6 +6,7 @@ import com.hp.hpl.jena.query.QuerySolution
 import onto.sparql.{SparqlReader, ValueSetResultProcessor}
 import onto.utils.OntologyUtils
 import org.semanticweb.owlapi.model._
+import org.semanticweb.owlapi.model.parameters.Imports
 
 import scala.collection.JavaConversions._
 import scala.net.drozdowicz.sxacml.Constants
@@ -16,9 +17,26 @@ import scala.util.matching.Regex
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
+  def getHierarchyDesignator(rootOntology: OWLOntology) = {
+    val query =
+      """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        |PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
+        |SELECT ?prop WHERE
+        |{
+        | ?prop sxacml:hierarchyDesignator ?ignored
+        |}""".stripMargin
 
-  def isIRI(value: String): Boolean = {
-    return "" != IRI.create(value).getNamespace
+    val sparql = new SparqlReader(rootOntology)
+    var result : Option[String] = None
+    sparql.executeQuery(query, new ValueSetResultProcessor {
+      override def processSolution(sol: QuerySolution): Unit = {
+        val solution = sol.getResource("prop")
+        if(solution != null){
+          result = Some(solution.getURI)
+        }
+      }
+    })
+    result
   }
 
   def findInstancesOfClass(ontology: OWLOntology, categoryId: String, attributeId: String, classIdOrName: String): Set[FlatAttributeValue] = {
@@ -85,6 +103,9 @@ object OntologyAttributeFinder {
     }
   }
 
+  private def isIRI(value: String): Boolean = {
+    return "" != IRI.create(value).getNamespace
+  }
 
   private def queryOntology(ontology: OWLOntology, sparqlQuery: String, valueGetter: (QuerySolution) => FlatAttributeValue): Set[FlatAttributeValue] = {
     val sparql = new SparqlReader(ontology)

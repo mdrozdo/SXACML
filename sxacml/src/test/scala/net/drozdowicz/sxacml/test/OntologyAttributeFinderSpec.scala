@@ -180,6 +180,16 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       }
     }
 
+    describe("findHierarchyDesignator") {
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty"))
+
+      it("should return id of property marked with hierarchyDesignator annotation") {
+        var actual = OntologyAttributeFinder.getHierarchyDesignator(ontology)
+
+        actual should be("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild")
+      }
+    }
+
     describe("findInstancesFromHierarchy") {
       val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty"))
 
