@@ -181,13 +181,14 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     }
 
     describe("findInstancesFromHierarchy") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchy"))
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty"))
 
-      it("given individual id should return individuals related by the property mapped with hierarchyDesignator annotation") {
+      it("given individual id should return individuals related by the hierarchyDesignator property") {
         val values = OntologyAttributeFinder.findInstancesFromHierarchy(ontology,
           "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
           "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
-          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#fooRoot")
+          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#fooRoot",
+          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild")
 
         values.size should be(2)
         values should contain only(

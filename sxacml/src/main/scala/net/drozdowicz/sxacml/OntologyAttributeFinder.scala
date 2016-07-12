@@ -43,8 +43,18 @@ object OntologyAttributeFinder {
     )
   }
 
-  def findInstancesFromHierarchy(ontology: OWLOntology, categoryId: String, attributeId: String, classIdOrName: String): Set[FlatAttributeValue] = {
-    Set.empty[FlatAttributeValue]
+  def findInstancesFromHierarchy(ontology: OWLOntology, categoryId: String, attributeId: String, rootIdOrName: String, hierarchyDesignatorId: String): Set[FlatAttributeValue] = {
+    queryOntology(ontology,
+      """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        |SELECT ?val WHERE
+        |{
+        | <%s> <%s> ?val
+        |}""".stripMargin.format(rootIdOrName, hierarchyDesignatorId),
+      (sol: QuerySolution) => {
+        val solution = sol.getResource("val")
+        FlatAttributeValue(URI.create(categoryId), URI.create(attributeId), URI.create("http://www.w3.org/2001/XMLSchema#anyURI"), solution.getURI)
+      }
+    )
   }
 
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
