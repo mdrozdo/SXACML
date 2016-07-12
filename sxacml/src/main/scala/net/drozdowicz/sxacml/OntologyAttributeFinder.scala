@@ -7,6 +7,7 @@ import onto.sparql.{SparqlReader, ValueSetResultProcessor}
 import onto.utils.OntologyUtils
 import org.semanticweb.owlapi.model._
 import org.semanticweb.owlapi.model.parameters.Imports
+import org.semanticweb.owlapi.search.EntitySearcher
 
 import scala.collection.JavaConversions._
 import scala.net.drozdowicz.sxacml.Constants
@@ -17,7 +18,20 @@ import scala.util.matching.Regex
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
+
   def getHierarchyDesignator(rootOntology: OWLOntology) = {
+    val factory = rootOntology.getOWLOntologyManager.getOWLDataFactory
+    rootOntology.getObjectPropertiesInSignature(Imports.INCLUDED)
+      .filter(p =>
+        !EntitySearcher.getAnnotations(p, rootOntology, factory.getOWLAnnotationProperty(
+          IRI.create("http://drozdowicz.net/sxacml/request#hierarchyDesignator"))
+        ).isEmpty)
+      .map(p => p.getIRI.toString)
+      .headOption
+  }
+
+  //THIS DOESN'T WORK while using OWL-API/Pellet for SPARQL processing. Should work if using a real triple store.
+  def getHierarchyDesignatorSparql(rootOntology: OWLOntology) = {
     val query =
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         |PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>

@@ -186,7 +186,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       it("should return id of property marked with hierarchyDesignator annotation") {
         var actual = OntologyAttributeFinder.getHierarchyDesignator(ontology)
 
-        actual should be("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild")
+        actual should be(Some("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild"))
       }
     }
 
