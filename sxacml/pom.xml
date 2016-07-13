@@ -43,10 +43,7 @@
 		<!--</repository>-->
 		<repository>
 			<id>wso2-nexus</id>
-			<url>http://maven.wso2.org/nexus/content/repositories/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+			<url>http://maven.wso2.org/nexus/content/groups/wso2-public</url>
 		</repository>
 		<repository>
 			<snapshots>
@@ -86,35 +83,35 @@
 		<dependency>
 			<groupId>org.wso2.balana</groupId>
 			<artifactId>org.wso2.balana</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.4</version>
 		</dependency>
-		<dependency>
-			<groupId>commons-io.wso2</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4.0.wso2v1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>commons-io.wso2</groupId>-->
+			<!--<artifactId>commons-io</artifactId>-->
+			<!--<version>2.4.0.wso2v1</version>-->
+		<!--</dependency>-->
 		<dependency>
             <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.entitlement</artifactId>
-            <version>5.0.8</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-io</artifactId>
-                    <groupId>commons-io</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-jdk14</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
+            <version>5.5.0-m3</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>commons-io</artifactId>-->
+                    <!--<groupId>commons-io</groupId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>jcl-over-slf4j</artifactId>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>slf4j-api</artifactId>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>slf4j-jdk14</artifactId>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.owlapi</groupId>
