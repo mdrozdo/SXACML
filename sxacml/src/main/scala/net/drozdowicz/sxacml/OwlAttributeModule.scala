@@ -77,8 +77,9 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     ontologyFolderPath = properties.getProperty("ontologyFolderPath")
     rootOntologyId = properties.getProperty("rootOntologyId")
 
+    log.info("Mapping ontology folder to:" + ontologyFolderPath)
     ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new AutoIRIMapper(new File(getClass.getResource(ontologyFolderPath).toURI), true))
+      new AutoIRIMapper(new File(ontologyFolderPath), true))
     )
   }
 

@@ -24,7 +24,7 @@ class OwlResourceHierarchyFinderModule(ontologyFolderPath: String, rootOntologyI
 
   private val ontoMgr = OWLManager.createOWLOntologyManager()
   ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-    new AutoIRIMapper(new File(getClass.getResource(ontologyFolderPath).toURI), true))
+    new AutoIRIMapper(new File(ontologyFolderPath), true))
   )
   private val rootOntology = ontoMgr.loadOntology(IRI.create(rootOntologyId))
 

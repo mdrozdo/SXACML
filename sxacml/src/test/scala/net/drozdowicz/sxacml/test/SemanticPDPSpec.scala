@@ -21,7 +21,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
     val policyLocation = relativeToAbsolute("basic/policies")
 
     describe("for simple datatype property from ontology") {
-      val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/test1")
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/test1")
 
       it("if subject is adult returns permit") {
         val request = readFile("basic/requests/Adult.xml")
@@ -41,7 +41,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("for multiple requests in a single document"){
-      val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/testMultiRequests")
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/testMultiRequests")
 
       it("returns multiple decisions in single response, with data from ontology") {
         val request = readFile("basic/requests/MultiRequest.xml")
@@ -70,7 +70,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
     describe("when using resource finder"){
 
       it("retrieves individuals from class specified in request") {
-        val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/testResourceHierarchy")
+        val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/testResourceHierarchy")
 
         val request = readFile("basic/requests/ResourceClass.xml")
         val actualResponse = pdp.evaluate(request)
@@ -95,7 +95,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
       }
 
       it("retrieves individuals from hierarchy defined by hierarchy designator property") {
-        val pdp = new SemanticPDP(policyLocation, "/ontologies", "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty")
+        val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty")
 
         val request = readFile("basic/requests/ResourceClassProperty.xml")
         val actualResponse = pdp.evaluate(request)
