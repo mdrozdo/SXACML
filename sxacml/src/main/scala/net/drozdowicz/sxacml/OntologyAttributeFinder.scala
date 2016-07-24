@@ -2,6 +2,8 @@ package net.drozdowicz.sxacml
 
 import java.net.URI
 
+import _root_.onto.sparql.ValueSetResultProcessor
+import _root_.onto.sparql.ValueSetResultProcessor
 import com.hp.hpl.jena.query.QuerySolution
 import onto.sparql.{SparqlReader, ValueSetResultProcessor}
 import onto.utils.OntologyUtils

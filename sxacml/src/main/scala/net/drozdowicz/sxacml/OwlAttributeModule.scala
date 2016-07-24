@@ -33,10 +33,17 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private val ontoMgr = OWLManager.createOWLOntologyManager()
 
   override def findAttribute(attributeType: URI, attributeId: URI, issuer: String, category: URI, context: EvaluationCtx): EvaluationResult = {
-    val attributeValues = findAttributeValues(attributeId, category, context)
-    val values = attributeValues.map(flatAttr => flatAttr.createAttributeValue).toList
+    try {
+      val attributeValues = findAttributeValues(attributeId, category, context)
+      val values = attributeValues.map(flatAttr => flatAttr.createAttributeValue).toList
 
-    new EvaluationResult(new BagAttribute(attributeType, values))
+      new EvaluationResult(new BagAttribute(attributeType, values))
+    } catch safely {
+      case e: Throwable => {
+        log.error("Error while processing the request: findAttribute. " + e.getClass.getName + e.getMessage, e)
+        throw e
+      }
+    }
   }
 
   override def getAttributeValues(attributeType: URI, attributeId: URI, category: URI, issuer: String, context: EvaluationCtx): util.Set[String] = {
@@ -44,7 +51,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
       findAttributeValues(attributeId, category, context).map(f => f.valueString)
     } catch safely {
       case e: Throwable => {
-        log.error("Error while processing the request. " + e.getClass.getName + e.getMessage, e)
+        log.error("Error while processing the request: getAttributeValues. " + e.getClass.getName + e.getMessage, e)
         throw e
       }
     }
@@ -73,14 +80,21 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   }
 
   override def init(properties: Properties): Unit = {
-    log.info("Initializing SXACML attribute finder")
-    ontologyFolderPath = properties.getProperty("ontologyFolderPath")
-    rootOntologyId = properties.getProperty("rootOntologyId")
+    try{
+      log.info("Initializing SXACML attribute finder")
+      ontologyFolderPath = properties.getProperty("ontologyFolderPath")
+      rootOntologyId = properties.getProperty("rootOntologyId")
 
-    log.info("Mapping ontology folder to:" + ontologyFolderPath)
-    ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new AutoIRIMapper(new File(ontologyFolderPath), true))
-    )
+      log.info("Mapping ontology folder to:" + ontologyFolderPath)
+      ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
+        new AutoIRIMapper(new File(ontologyFolderPath), true))
+      )
+    } catch safely {
+      case e: Throwable => {
+        log.error("Error while processing the request: init. " + e.getClass.getName + e.getMessage, e)
+        throw e
+      }
+    }
   }
 
   override def isDesignatorSupported() = true
@@ -91,12 +105,30 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
       "urn:oasis:names:tc:xacml:3.0:attribute-category:action",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:environment")
 
-  override def getSupportedAttributes: util.Set[String] =
-    OntologyAttributeFinder.getAllSupportedAttributes(getOntologyById(rootOntologyId)) //assuming root onto imports others and
+  override def getSupportedAttributes: util.Set[String] = {
+   try{
+     val ontology = getOntologyById(rootOntologyId)
+     if(ontology == null){
+       log.error("Couldn't load ontology with id: " + rootOntologyId)
+       return Set.empty[String]
+     }
+     OntologyAttributeFinder.getAllSupportedAttributes(ontology) //assuming root onto imports others and
+  } catch safely {
+     case e: Throwable => {
+       log.error("Error while processing the request: getSupportedAttributes. " + e.getClass.getName + e.getMessage, e)
+       throw e
+     }
+   }
+  }
 
   private def getOntologyById(ontoId: String): OWLOntology = {
     val iri = IRI.create(ontoId)
-    ontoMgr.getOntology(iri)
+    val ontology = ontoMgr.getOntology(iri)
+    if(ontology != null){
+      ontology
+    } else {
+      ontoMgr.loadOntology(iri)
+    }
   }
 
   private def createFileIri(filePath: String): IRI = {
