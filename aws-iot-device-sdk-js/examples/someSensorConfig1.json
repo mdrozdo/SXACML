@@ -1,0 +1,9 @@
+{
+	"host": "a1tmfuzbyzrpfc.iot.eu-west-1.amazonaws.com",
+	"port": 8883,
+	"clientId": "SomeSensor",
+	"thingName": "SomeSensor",
+	"caCert": "root-CA.crt",
+	"clientCert": "41f8abd261-certificate.pem.crt",
+	"privateKey": "41f8abd261-private.pem.key"
+}
