@@ -71,12 +71,28 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
     val requestId = UUID.randomUUID().toString
 
+    log.debug(s"Locating attribute: '$attributeId', category: '$category'.")
     val attributes = ContextParser.Parse(context.getRequestCtx)
+    if(log.isDebugEnabled) {
+      val attributesString = attributes
+        .map(at => "'"+at.categoryId+"' : '"+at.attributeId+"' = '"+ at.valueString +"@" + at.valueType)
+        .mkString(";\r\n")
+      log.debug(s"Received context with attributes: \r\n$attributesString")
+    }
     val categoryIndividualIds = attributes
       .map(at => (at.categoryId, RequestOntologyGenerator.getCategoryIndividualUri(requestId, at)))
       .toMap
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
-    OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
+    val result = OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
+
+    if(log.isDebugEnabled){
+      //TODO: Move to a toString implementation.
+      val attributesString = result
+        .map(at => "'"+at.categoryId+"' : '"+at.attributeId+"' = '"+ at.valueString +"@" + at.valueType)
+        .mkString(";\r\n")
+      log.debug(s"Retrieved attribute values: \r\n$attributesString")
+    }
+    result
   }
 
   override def init(properties: Properties): Unit = {
@@ -137,8 +153,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   override def getModuleName: String = "OwlAttributeFinder"
 
-  override def overrideDefaultCache(): Boolean = false
-
+  override def overrideDefaultCache(): Boolean = true
   //TODO: implement cache?
   override def clearCache(): Unit = {}
 
