@@ -1,6 +1,13 @@
 import com.google.inject.AbstractModule
 import java.time.Clock
+import javax.inject.{Inject, Provider}
 
+import ontoplay.OntologyHelper
+import ontoplay.jobs.{JenaOwlReaderConfiguration, OwlApiReaderConfiguration}
+import ontoplay.models.ontologyReading.OntologyReader
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig
+import ontoplay.models.ontologyReading.owlApi.OwlApiReader
+import play.api.Environment
 import services.{ApplicationTimer, AtomicCounter, Counter}
 
 /**
@@ -23,6 +30,16 @@ class Module extends AbstractModule {
     bind(classOf[ApplicationTimer]).asEagerSingleton()
     // Set AtomicCounter as the implementation for Counter.
     bind(classOf[Counter]).to(classOf[AtomicCounter])
+
+    bind(classOf[OntologyReader]).toProvider(classOf[JenaReaderProvider])
+    class JenaReaderProvider @Inject()(val env: Environment) extends Provider[OntologyReader]{
+      override def get(): OntologyReader = Option(OntologyReader.getGlobalInstance).getOrElse({
+        //TODO: Change to use local constants
+        new JenaOwlReaderConfiguration().initialize(OntologyHelper.file, new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString, OntologyHelper.fileName))
+        OntologyReader.getGlobalInstance
+      })
+    }
+
   }
 
 }
