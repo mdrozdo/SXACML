@@ -2,10 +2,8 @@ package controllers
 
 import javax.inject._
 
-import ontoplay.OntologyHelper
 import play.api._
 import play.api.mvc._
-import ontoplay.controllers.OntologyController
 import ontoplay.models.ontologyModel.OntoClass
 import ontoplay.models.ontologyReading.OntologyReader;
 
@@ -30,5 +28,5 @@ class HomeController @Inject()(val ontoReader: OntologyReader) extends Controlle
     Ok(views.html.index(owlClass))
   }
 
-  protected def getOwlClassFromName(className: String): OntoClass = ontoReader.getOwlClass(OntologyHelper.nameSpace + className)
+  protected def getOwlClassFromName(className: String): OntoClass = ontoReader.getOwlClass(className)
 }

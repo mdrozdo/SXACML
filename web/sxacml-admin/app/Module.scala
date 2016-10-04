@@ -2,12 +2,11 @@ import com.google.inject.AbstractModule
 import java.time.Clock
 import javax.inject.{Inject, Provider}
 
-import ontoplay.OntologyHelper
 import ontoplay.jobs.{JenaOwlReaderConfiguration, OwlApiReaderConfiguration}
 import ontoplay.models.ontologyReading.OntologyReader
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig
 import ontoplay.models.ontologyReading.owlApi.OwlApiReader
-import play.api.Environment
+import play.api.{Environment, Play}
 import services.{ApplicationTimer, AtomicCounter, Counter}
 
 /**
@@ -21,6 +20,15 @@ import services.{ApplicationTimer, AtomicCounter, Counter}
  * configuration file.
  */
 class Module extends AbstractModule {
+  val ontologyName: String = "TAN.OWL"
+  val file: String = "file:" + "configuration/uploads/" + ontologyName
+  val fileName: String = "configuration/uploads/" + ontologyName
+  val checkFile: String = "file:samples/TAN/TANCheckk.owl"
+  val checkFileName: String = "./samples/TAN/TANCheckk.owl"
+  val checkFilePath: String = "./samples/OrganizationCheck"
+  val nameSpace: String = "http://www.tan.com#"
+  val iriString: String = "http://www.tan.com"
+
 
   override def configure() = {
     // Use the system clock as the default implementation of Clock
@@ -35,7 +43,7 @@ class Module extends AbstractModule {
     class JenaReaderProvider @Inject()(val env: Environment) extends Provider[OntologyReader]{
       override def get(): OntologyReader = Option(OntologyReader.getGlobalInstance).getOrElse({
         //TODO: Change to use local constants
-        new JenaOwlReaderConfiguration().initialize(OntologyHelper.file, new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString, OntologyHelper.fileName))
+        new JenaOwlReaderConfiguration().initialize(file, new JenaOwlReaderConfig().useLocalMapping(iriString, fileName))
         OntologyReader.getGlobalInstance
       })
     }
