@@ -1,7 +1,8 @@
 import com.google.inject.AbstractModule
 import java.time.Clock
-import javax.inject.{Inject, Provider}
+import javax.inject.{Inject, Provider, Singleton}
 
+import ontoplay.OntologyHelper
 import ontoplay.jobs.{JenaOwlReaderConfiguration, OwlApiReaderConfiguration}
 import ontoplay.models.ontologyReading.OntologyReader
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig
@@ -20,14 +21,11 @@ import services.{ApplicationTimer, AtomicCounter, Counter}
  * configuration file.
  */
 class Module extends AbstractModule {
-  val ontologyName: String = "TAN.OWL"
-  val file: String = "file:" + "configuration/uploads/" + ontologyName
-  val fileName: String = "configuration/uploads/" + ontologyName
-  val checkFile: String = "file:samples/TAN/TANCheckk.owl"
-  val checkFileName: String = "./samples/TAN/TANCheckk.owl"
-  val checkFilePath: String = "./samples/OrganizationCheck"
-  val nameSpace: String = "http://www.tan.com#"
-  val iriString: String = "http://www.tan.com"
+  val fileName: String = "test1.owl"
+  val folderPath: String = "onto";
+  val checkFileName: String = "temp.owl"
+  val checkFolderPath: String = "onto"
+  val ontologyNamespace: String = "http://drozdowicz.net/sxacml/test1"
 
 
   override def configure() = {
@@ -39,15 +37,18 @@ class Module extends AbstractModule {
     // Set AtomicCounter as the implementation for Counter.
     bind(classOf[Counter]).to(classOf[AtomicCounter])
 
-    bind(classOf[OntologyReader]).toProvider(classOf[JenaReaderProvider])
+    bind(classOf[OntologyReader]).toProvider(classOf[JenaReaderProvider]).in(classOf[Singleton])
     class JenaReaderProvider @Inject()(val env: Environment) extends Provider[OntologyReader]{
-      override def get(): OntologyReader = Option(OntologyReader.getGlobalInstance).getOrElse({
-        //TODO: Change to use local constants
-        new JenaOwlReaderConfiguration().initialize(file, new JenaOwlReaderConfig().useLocalMapping(iriString, fileName))
+      override def get() = Option(OntologyReader.getGlobalInstance).getOrElse({
+        new JenaOwlReaderConfiguration().initialize(ontologyNamespace, new JenaOwlReaderConfig().useLocalMapping(ontologyNamespace, folderPath))
         OntologyReader.getGlobalInstance
       })
     }
 
+    bind(classOf[OntologyHelper]).toProvider(classOf[OntologyHelperProvider]).in(classOf[Singleton])
+    class OntologyHelperProvider @Inject()(val env: Environment, val ontoReader : OntologyReader) extends Provider[OntologyHelper]{
+      override def get() = new OntologyHelper(fileName, folderPath, checkFileName, checkFolderPath, ontologyNamespace, ontoReader)
+    }
   }
 
 }
