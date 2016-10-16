@@ -1,0 +1,8 @@
+*.iml
+onto/onto.iml
+onto/target
+.idea
+todo.txt
+catalog-v001.xml
+Thumbs.db
+*.sublime-workspace
