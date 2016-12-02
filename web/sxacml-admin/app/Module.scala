@@ -1,13 +1,6 @@
 import java.time.Clock
-import javax.inject.{Provider, Singleton}
 
-import collection.JavaConversions._
 import com.google.inject.AbstractModule
-import com.google.inject.name.Names
-import ontoplay.OntologyHelper
-import ontoplay.jobs.JenaOwlReaderConfiguration
-import ontoplay.models.ontologyReading.OntologyReader
-import ontoplay.models.ontologyReading.jena.{JenaOwlReader, JenaOwlReaderConfig}
 import play.api.{Configuration, Environment}
 import services.{ApplicationTimer, AtomicCounter, Counter}
 
