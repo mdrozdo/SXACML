@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="identity-samples-remote-user-mgt" />
+        <module name="identity-tests" />
+        <module name="javax.cache.wso2" />
+        <module name="oauth10a-resource-owner-equivalent" />
+        <module name="onto" />
+        <module name="org.wso2.carbon.addressing" />
+        <module name="org.wso2.carbon.apache.jasper.fragment" />
+        <module name="org.wso2.carbon.application.deployer" />
+        <module name="org.wso2.carbon.authenticator.proxy" />
+        <module name="org.wso2.carbon.base" />
+        <module name="org.wso2.carbon.bootstrap" />
+        <module name="org.wso2.carbon.bridge" />
+        <module name="org.wso2.carbon.cluster.mgt.core" />
+        <module name="org.wso2.carbon.coordination.common" />
+        <module name="org.wso2.carbon.coordination.core" />
+        <module name="org.wso2.carbon.core" />
+        <module name="org.wso2.carbon.core.bootup.validator" />
+        <module name="org.wso2.carbon.core.common" />
+        <module name="org.wso2.carbon.core.services" />
+        <module name="org.wso2.carbon.feature.mgt.core" />
+        <module name="org.wso2.carbon.feature.mgt.services" />
+        <module name="org.wso2.carbon.feature.mgt.ui" />
+        <module name="org.wso2.carbon.framework.exporter" />
+        <module name="org.wso2.carbon.http.bridge" />
+        <module name="org.wso2.carbon.i18n" />
+        <module name="org.wso2.carbon.identity.application.authentication.endpoint" />
+        <module name="org.wso2.carbon.identity.application.authentication.framework" />
+        <module name="org.wso2.carbon.identity.application.authenticator.basicauth" />
+        <module name="org.wso2.carbon.identity.authentication" />
+        <module name="org.wso2.carbon.identity.authorization.core" />
+        <module name="org.wso2.carbon.identity.authorization.ui" />
+        <module name="org.wso2.carbon.identity.base" />
+        <module name="org.wso2.carbon.identity.core" />
+        <module name="org.wso2.carbon.identity.entitlement" />
+        <module name="org.wso2.carbon.identity.entitlement (1)" />
+        <module name="org.wso2.carbon.identity.entitlement.common" />
+        <module name="org.wso2.carbon.identity.entitlement.filter" />
+        <module name="org.wso2.carbon.identity.entitlement.mediator" />
+        <module name="org.wso2.carbon.identity.entitlement.proxy" />
+        <module name="org.wso2.carbon.identity.entitlement.ui" />
+        <module name="org.wso2.carbon.identity.menu.ui" />
+        <module name="org.wso2.carbon.identity.mgt" />
+        <module name="org.wso2.carbon.identity.mgt.ui" />
+        <module name="org.wso2.carbon.identity.oauth" />
+        <module name="org.wso2.carbon.identity.oauth.common" />
+        <module name="org.wso2.carbon.identity.oauth.endpoint" />
+        <module name="org.wso2.carbon.identity.oauth.mediator" />
+        <module name="org.wso2.carbon.identity.oauth.ui" />
+        <module name="org.wso2.carbon.identity.provider" />
+        <module name="org.wso2.carbon.identity.provider.openid.admin" />
+        <module name="org.wso2.carbon.identity.provider.openid.admin.ui" />
+        <module name="org.wso2.carbon.identity.provider.openid.ui" />
+        <module name="org.wso2.carbon.identity.provider.ui" />
+        <module name="org.wso2.carbon.identity.relyingparty" />
+        <module name="org.wso2.carbon.identity.relyingparty.ui" />
+        <module name="org.wso2.carbon.identity.samples.entitlement.pip" />
+        <module name="org.wso2.carbon.identity.scim.common" />
+        <module name="org.wso2.carbon.identity.scim.provider" />
+        <module name="org.wso2.carbon.identity.scim.ui" />
+        <module name="org.wso2.carbon.identity.sso.agent" />
+        <module name="org.wso2.carbon.identity.sso.saml" />
+        <module name="org.wso2.carbon.identity.sso.saml.common" />
+        <module name="org.wso2.carbon.identity.sso.saml.tomcat.agent" />
+        <module name="org.wso2.carbon.identity.sso.saml.ui" />
+        <module name="org.wso2.carbon.identity.sts.mgt" />
+        <module name="org.wso2.carbon.identity.sts.mgt.ui" />
+        <module name="org.wso2.carbon.identity.sts.passive" />
+        <module name="org.wso2.carbon.identity.sts.passive.ui" />
+        <module name="org.wso2.carbon.identity.sts.store" />
+        <module name="org.wso2.carbon.identity.thrift.authentication" />
+        <module name="org.wso2.carbon.identity.user.profile" />
+        <module name="org.wso2.carbon.identity.user.profile.ui" />
+        <module name="org.wso2.carbon.identity.user.registration" />
+        <module name="org.wso2.carbon.identity.user.registration.ui" />
+        <module name="org.wso2.carbon.identity.user.store.configuration" />
+        <module name="org.wso2.carbon.identity.user.store.configuration.deployer" />
+        <module name="org.wso2.carbon.identity.user.store.configuration.ui" />
+        <module name="org.wso2.carbon.jasper.patch" />
+        <module name="org.wso2.carbon.logging" />
+        <module name="org.wso2.carbon.ndatasource.common" />
+        <module name="org.wso2.carbon.ndatasource.core" />
+        <module name="org.wso2.carbon.ndatasource.rdbms" />
+        <module name="org.wso2.carbon.osgi.security" />
+        <module name="org.wso2.carbon.p2.touchpoint" />
+        <module name="org.wso2.carbon.queuing" />
+        <module name="org.wso2.carbon.registry.api" />
+        <module name="org.wso2.carbon.registry.core" />
+        <module name="org.wso2.carbon.registry.server" />
+        <module name="org.wso2.carbon.registry.xboot" />
+        <module name="org.wso2.carbon.roles.mgt" />
+        <module name="org.wso2.carbon.roles.mgt.ui" />
+        <module name="org.wso2.carbon.securevault" />
+        <module name="org.wso2.carbon.server" />
+        <module name="org.wso2.carbon.server.admin" />
+        <module name="org.wso2.carbon.server.admin.common" />
+        <module name="org.wso2.carbon.server.admin.ui" />
+        <module name="org.wso2.carbon.servletbridge" />
+        <module name="org.wso2.carbon.tomcat" />
+        <module name="org.wso2.carbon.tomcat.ext" />
+        <module name="org.wso2.carbon.tomcat.fragment.dummy" />
+        <module name="org.wso2.carbon.tomcat.patch" />
+        <module name="org.wso2.carbon.ui" />
+        <module name="org.wso2.carbon.ui.menu.general" />
+        <module name="org.wso2.carbon.ui.menu.governance" />
+        <module name="org.wso2.carbon.ui.menu.registry" />
+        <module name="org.wso2.carbon.ui.menu.tools" />
+        <module name="org.wso2.carbon.user.api" />
+        <module name="org.wso2.carbon.user.core" />
+        <module name="org.wso2.carbon.utils" />
+        <module name="org.wso2.identity.passivests.filter" />
+        <module name="org.wso2.identity.styles" />
+        <module name="org.wso2.sample.is.sso.agent" />
+        <module name="org.wso2.sample.user.store.manager" />
+        <module name="org.wso2.stratos.identity.dashboard.ui" />
+        <module name="PassiveSTSSampleApp" />
+        <module name="pellet-cli-ignazio1977" />
+        <module name="pellet-core-ignazio1977" />
+        <module name="pellet-examples-ignazio1977" />
+        <module name="pellet-explanation-ignazio1977" />
+        <module name="pellet-jena-ignazio1977" />
+        <module name="pellet-modularity-ignazio1977" />
+        <module name="pellet-owlapi-ignazio1977" />
+        <module name="pellet-pellint-ignazio1977" />
+        <module name="pellet-profiler-ignazio1977" />
+        <module name="pellet-query-ignazio1977" />
+        <module name="pellet-test-ignazio1977" />
+        <module name="scim-provisioning" />
+        <module name="sxacml" />
+        <module name="wso2is" />
+      </profile>
+      <profile default="false" name="Annotation profile for org.wso2.balana.samples.image.filtering" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-cli" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-cli" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-modularity" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-modularity" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-protege" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-protege" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-profiler" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-profiler" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-test" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-test" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-core" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-core" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-examples" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-examples" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-pellint" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-pellint" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-explanation" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-explanation" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-jena" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-jena" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-owlapi" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-owlapi" />
+      </profile>
+      <profile default="false" name="Annotation profile for pellet-query" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="pellet-query" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="balana" target="1.5" />
+      <module name="balana-distribution" target="1.5" />
+      <module name="balana-documentation" target="1.5" />
+      <module name="balana-samples" target="1.5" />
+      <module name="carbon-components" target="1.6" />
+      <module name="carbon-kernel" target="1.6" />
+      <module name="carbon-parent" target="1.6" />
+      <module name="carbon-ui-menu-parent" target="1.6" />
+      <module name="feature-manager" target="1.6" />
+      <module name="identity" target="1.6" />
+      <module name="identity-features" target="1.5" />
+      <module name="identity-integration-tests" target="1.5" />
+      <module name="identity-profile-gen" target="1.5" />
+      <module name="identity-samples-remote-user-mgt" target="1.5" />
+      <module name="identity-server-parent" target="1.5" />
+      <module name="identity-server-styles-parent" target="1.5" />
+      <module name="identity-tests" target="1.5" />
+      <module name="javax.cache.wso2" target="1.6" />
+      <module name="oauth10a-resource-owner-equivalent" target="1.5" />
+      <module name="onto" target="1.5" />
+      <module name="org.eclipse.equinox.p2.engine" target="1.6" />
+      <module name="org.wso2.balana" target="1.5" />
+      <module name="org.wso2.balana.samples.custom.algo" target="1.5" />
+      <module name="org.wso2.balana.samples.hierarchical.resource" target="1.5" />
+      <module name="org.wso2.balana.samples.image.filtering" target="1.6" />
+      <module name="org.wso2.balana.samples.kmarket.trading" target="1.5" />
+      <module name="org.wso2.balana.utils" target="1.5" />
+      <module name="org.wso2.carbon.addressing" target="1.6" />
+      <module name="org.wso2.carbon.apache.jasper.fragment" target="1.6" />
+      <module name="org.wso2.carbon.application.deployer" target="1.6" />
+      <module name="org.wso2.carbon.authenticator.proxy" target="1.6" />
+      <module name="org.wso2.carbon.base" target="1.6" />
+      <module name="org.wso2.carbon.bootstrap" target="1.6" />
+      <module name="org.wso2.carbon.bridge" target="1.6" />
+      <module name="org.wso2.carbon.cluster.mgt.core" target="1.6" />
+      <module name="org.wso2.carbon.coordination.common" target="1.6" />
+      <module name="org.wso2.carbon.coordination.core" target="1.6" />
+      <module name="org.wso2.carbon.core" target="1.6" />
+      <module name="org.wso2.carbon.core.bootup.validator" target="1.6" />
+      <module name="org.wso2.carbon.core.common" target="1.6" />
+      <module name="org.wso2.carbon.core.services" target="1.6" />
+      <module name="org.wso2.carbon.feature.mgt.core" target="1.6" />
+      <module name="org.wso2.carbon.feature.mgt.services" target="1.6" />
+      <module name="org.wso2.carbon.feature.mgt.ui" target="1.6" />
+      <module name="org.wso2.carbon.framework.exporter" target="1.6" />
+      <module name="org.wso2.carbon.http.bridge" target="1.6" />
+      <module name="org.wso2.carbon.i18n" target="1.6" />
+      <module name="org.wso2.carbon.identity.application.authentication.endpoint" target="1.5" />
+      <module name="org.wso2.carbon.identity.application.authentication.framework" target="1.6" />
+      <module name="org.wso2.carbon.identity.application.authenticator.basicauth" target="1.6" />
+      <module name="org.wso2.carbon.identity.authentication" target="1.6" />
+      <module name="org.wso2.carbon.identity.authorization.core" target="1.6" />
+      <module name="org.wso2.carbon.identity.authorization.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.base" target="1.6" />
+      <module name="org.wso2.carbon.identity.core" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement (1)" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement.common" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement.filter" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement.mediator" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement.proxy" target="1.6" />
+      <module name="org.wso2.carbon.identity.entitlement.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.menu.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.mgt" target="1.6" />
+      <module name="org.wso2.carbon.identity.mgt.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.oauth" target="1.6" />
+      <module name="org.wso2.carbon.identity.oauth.common" target="1.6" />
+      <module name="org.wso2.carbon.identity.oauth.endpoint" target="1.5" />
+      <module name="org.wso2.carbon.identity.oauth.mediator" target="1.6" />
+      <module name="org.wso2.carbon.identity.oauth.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.provider" target="1.6" />
+      <module name="org.wso2.carbon.identity.provider.openid.admin" target="1.6" />
+      <module name="org.wso2.carbon.identity.provider.openid.admin.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.provider.openid.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.provider.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.relyingparty" target="1.6" />
+      <module name="org.wso2.carbon.identity.relyingparty.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.samples.entitlement.pip" target="1.6" />
+      <module name="org.wso2.carbon.identity.samples.sts" target="1.6" />
+      <module name="org.wso2.carbon.identity.scim.common" target="1.5" />
+      <module name="org.wso2.carbon.identity.scim.provider" target="1.5" />
+      <module name="org.wso2.carbon.identity.scim.ui" target="1.5" />
+      <module name="org.wso2.carbon.identity.sso.agent" target="1.6" />
+      <module name="org.wso2.carbon.identity.sso.saml" target="1.6" />
+      <module name="org.wso2.carbon.identity.sso.saml.common" target="1.6" />
+      <module name="org.wso2.carbon.identity.sso.saml.tomcat.agent" target="1.6" />
+      <module name="org.wso2.carbon.identity.sso.saml.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.sts.mgt" target="1.6" />
+      <module name="org.wso2.carbon.identity.sts.mgt.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.sts.passive" target="1.6" />
+      <module name="org.wso2.carbon.identity.sts.passive.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.sts.store" target="1.6" />
+      <module name="org.wso2.carbon.identity.thrift.authentication" target="1.6" />
+      <module name="org.wso2.carbon.identity.user.profile" target="1.6" />
+      <module name="org.wso2.carbon.identity.user.profile.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.user.registration" target="1.6" />
+      <module name="org.wso2.carbon.identity.user.registration.ui" target="1.6" />
+      <module name="org.wso2.carbon.identity.user.store.configuration" target="1.5" />
+      <module name="org.wso2.carbon.identity.user.store.configuration.deployer" target="1.5" />
+      <module name="org.wso2.carbon.identity.user.store.configuration.ui" target="1.6" />
+      <module name="org.wso2.carbon.jasper.patch" target="1.6" />
+      <module name="org.wso2.carbon.logging" target="1.6" />
+      <module name="org.wso2.carbon.ndatasource.common" target="1.6" />
+      <module name="org.wso2.carbon.ndatasource.core" target="1.6" />
+      <module name="org.wso2.carbon.ndatasource.rdbms" target="1.6" />
+      <module name="org.wso2.carbon.osgi.security" target="1.6" />
+      <module name="org.wso2.carbon.p2.touchpoint" target="1.6" />
+      <module name="org.wso2.carbon.queuing" target="1.6" />
+      <module name="org.wso2.carbon.registry.api" target="1.6" />
+      <module name="org.wso2.carbon.registry.core" target="1.6" />
+      <module name="org.wso2.carbon.registry.server" target="1.6" />
+      <module name="org.wso2.carbon.registry.xboot" target="1.6" />
+      <module name="org.wso2.carbon.roles.mgt" target="1.6" />
+      <module name="org.wso2.carbon.roles.mgt.ui" target="1.6" />
+      <module name="org.wso2.carbon.securevault" target="1.6" />
+      <module name="org.wso2.carbon.server" target="1.6" />
+      <module name="org.wso2.carbon.server.admin" target="1.6" />
+      <module name="org.wso2.carbon.server.admin.common" target="1.6" />
+      <module name="org.wso2.carbon.server.admin.ui" target="1.6" />
+      <module name="org.wso2.carbon.servletbridge" target="1.6" />
+      <module name="org.wso2.carbon.tomcat" target="1.6" />
+      <module name="org.wso2.carbon.tomcat.ext" target="1.6" />
+      <module name="org.wso2.carbon.tomcat.fragment.dummy" target="1.6" />
+      <module name="org.wso2.carbon.tomcat.patch" target="1.6" />
+      <module name="org.wso2.carbon.ui" target="1.6" />
+      <module name="org.wso2.carbon.ui.menu.general" target="1.6" />
+      <module name="org.wso2.carbon.ui.menu.governance" target="1.6" />
+      <module name="org.wso2.carbon.ui.menu.registry" target="1.6" />
+      <module name="org.wso2.carbon.ui.menu.tools" target="1.6" />
+      <module name="org.wso2.carbon.user.api" target="1.6" />
+      <module name="org.wso2.carbon.user.core" target="1.6" />
+      <module name="org.wso2.carbon.utils" target="1.6" />
+      <module name="org.wso2.identity.passivests.filter" target="1.5" />
+      <module name="org.wso2.identity.styles" target="1.5" />
+      <module name="org.wso2.identity.styles.feature" target="1.5" />
+      <module name="org.wso2.identity.ui.feature" target="1.5" />
+      <module name="org.wso2.identity.utils.feature" target="1.5" />
+      <module name="org.wso2.sample.is.sso.agent" target="1.5" />
+      <module name="org.wso2.sample.user.store.manager" target="1.5" />
+      <module name="org.wso2.stratos.identity.dashboard.ui" target="1.5" />
+      <module name="PassiveSTSSample" target="1.5" />
+      <module name="PassiveSTSSampleApp" target="1.5" />
+      <module name="pellet-cli" target="1.6" />
+      <module name="pellet-cli-ignazio1977" target="1.7" />
+      <module name="pellet-core" target="1.6" />
+      <module name="pellet-core-ignazio1977" target="1.7" />
+      <module name="pellet-distribution" target="1.5" />
+      <module name="pellet-distribution-ignazio1977" target="1.5" />
+      <module name="pellet-examples" target="1.6" />
+      <module name="pellet-examples-ignazio1977" target="1.7" />
+      <module name="pellet-explanation" target="1.6" />
+      <module name="pellet-explanation-ignazio1977" target="1.7" />
+      <module name="pellet-jena" target="1.6" />
+      <module name="pellet-jena-ignazio1977" target="1.7" />
+      <module name="pellet-modularity" target="1.6" />
+      <module name="pellet-modularity-ignazio1977" target="1.7" />
+      <module name="pellet-owlapi" target="1.6" />
+      <module name="pellet-owlapi-ignazio1977" target="1.7" />
+      <module name="pellet-parent" target="1.5" />
+      <module name="pellet-parent-ignazio1977" target="1.5" />
+      <module name="pellet-pellint" target="1.6" />
+      <module name="pellet-pellint-ignazio1977" target="1.7" />
+      <module name="pellet-profiler" target="1.6" />
+      <module name="pellet-profiler-ignazio1977" target="1.7" />
+      <module name="pellet-protege" target="1.6" />
+      <module name="pellet-query" target="1.6" />
+      <module name="pellet-query-ignazio1977" target="1.7" />
+      <module name="pellet-test" target="1.6" />
+      <module name="pellet-test-ignazio1977" target="1.7" />
+      <module name="platform-parent" target="1.6" />
+      <module name="scim-provisioning" target="1.5" />
+      <module name="server-role-manager" target="1.6" />
+      <module name="sxacml" target="1.6" />
+      <module name="sxacml-parent" target="1.5" />
+      <module name="wso2is" target="1.5" />
+      <module name="wso2is-identity-samples" target="1.5" />
+      <module name="wso2is-identity-samples-oauth10a" target="1.5" />
+      <module name="wso2is-identity-samples-oauth2" target="1.5" />
+      <module name="wso2is-identity-samples-passivests" target="1.5" />
+      <module name="wso2is-identity-samples-scim" target="1.5" />
+      <module name="wso2is-identity-samples-sso" target="1.5" />
+      <module name="wso2is-identity-samples-sts" target="1.5" />
+      <module name="wso2is-identity-samples-usermgt" target="1.5" />
+      <module name="wso2is-identity-samples-xacml" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

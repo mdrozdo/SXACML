@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/cli" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/core" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/distribution" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/examples" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/explanation" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/jena" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/modularity" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/owlapi" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/pellint" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/profiler" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/query" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Documents/ibspan/github/pellet/test" charset="UTF-8" />
+  </component>
+</project>

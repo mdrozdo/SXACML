@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../github/pellet" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/cli" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/distribution" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/examples" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/explanation" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/jena" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/modularity" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/owlapi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/pellint" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/profiler" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/protege" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/query" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../github/pellet/test" charset="UTF-8" />
+    <file url="file://C:/wso2/t/components" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
