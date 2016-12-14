@@ -24,7 +24,7 @@ class HomeController @Inject()(val ontoReader: OntologyReader) extends Controlle
    * a path of `/`.
    */
   def index = Action {
-    val owlClass = getOwlClassFromName("Organization")
+    val owlClass = getOwlClassFromName("Wine")
     Ok(views.html.index(owlClass))
   }
 
