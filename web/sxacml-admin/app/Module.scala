@@ -25,6 +25,7 @@ class Module(environment: Environment, configuration: Configuration) extends Abs
     // Set AtomicCounter as the implementation for Counter.
     bind(classOf[Counter]).to(classOf[AtomicCounter])
 
+
     install(new ontoplay.Module(new play.Environment(environment), new play.Configuration(configuration)));
   }
 }
