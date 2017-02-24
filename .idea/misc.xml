@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="C:/wso2/kernel/4.2.0/parent/pom.xml" />
+        <option value="$PROJECT_DIR$/sxacml/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/pom.xml" />
+        <option value="C:/wso2/kernel/4.2.0/core/pom.xml" />
+        <option value="C:/wso2/t/parent/pom.xml" />
+        <option value="C:/wso2/t/components/pom.xml" />
+        <option value="C:/wso2/t/components/identity/org.wso2.carbon.identity.entitlement/4.2.2/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/pellet/pom.xml" />
+        <option value="C:/wso2/t/components/identity/pom.xml" />
+        <option value="C:/wso2/t/components/identity/org.wso2.carbon.identity.samples.entitlement.pip/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-core/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-distribution/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-documentation/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-samples/custom-combining-algo/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-samples/hierarchical-resource/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-samples/kmarket-trading-sample/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-samples/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-samples/web-page-image-filtering/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/modules/balana-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/../../github/balana/pom.xml" />
+        <option value="C:/wso2/t/products/is/5.0.0/modules/samples/oauth2/playground2/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>

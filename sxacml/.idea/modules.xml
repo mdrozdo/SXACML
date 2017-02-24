@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/balana.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/balana.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-distribution/balana-distribution.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-distribution/balana-distribution.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-documentation/balana-documentation.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-documentation/balana-documentation.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/balana-samples.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/balana-samples.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/assembla/sxacml/onto/onto.iml" filepath="$USER_HOME$/Documents/ibspan/assembla/sxacml/onto/onto.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-core/org.wso2.balana.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-core/org.wso2.balana.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/custom-combining-algo/org.wso2.balana.samples.custom.algo.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/custom-combining-algo/org.wso2.balana.samples.custom.algo.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/web-page-image-filtering/org.wso2.balana.samples.image.filtering.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/web-page-image-filtering/org.wso2.balana.samples.image.filtering.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/kmarket-trading-sample/org.wso2.balana.samples.kmarket.trading.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-samples/kmarket-trading-sample/org.wso2.balana.samples.kmarket.trading.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/balana/modules/balana-utils/org.wso2.balana.utils.iml" filepath="$USER_HOME$/Documents/ibspan/github/balana/modules/balana-utils/org.wso2.balana.utils.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/cli/pellet-cli-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/cli/pellet-cli-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/core/pellet-core-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/core/pellet-core-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/distribution/pellet-distribution-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/distribution/pellet-distribution-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/examples/pellet-examples-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/examples/pellet-examples-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/explanation/pellet-explanation-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/explanation/pellet-explanation-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/jena/pellet-jena-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/jena/pellet-jena-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/modularity/pellet-modularity-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/modularity/pellet-modularity-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/owlapi/pellet-owlapi-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/owlapi/pellet-owlapi-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/pellet-parent-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/pellet-parent-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/pellint/pellet-pellint-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/pellint/pellet-pellint-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/profiler/pellet-profiler-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/profiler/pellet-profiler-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/query/pellet-query-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/query/pellet-query-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/github/pellet/test/pellet-test-ignazio1977.iml" filepath="$USER_HOME$/Documents/ibspan/github/pellet/test/pellet-test-ignazio1977.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/ibspan/assembla/sxacml/sxacml/sxacml.iml" filepath="$USER_HOME$/Documents/ibspan/assembla/sxacml/sxacml/sxacml.iml" />
+    </modules>
+  </component>
+</project>
