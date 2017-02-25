@@ -8,6 +8,8 @@ GET     /                           controllers.HomeController.index
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
+GET     /admin                      controllers.AdminController.admin
+GET     /help                       controllers.HelpController.help
 
 #Add ontoplay routes
 ->         /                           ontoplay.Routes

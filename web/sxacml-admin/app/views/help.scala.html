@@ -1,0 +1,26 @@
+@import ontoplay.models.ontologyModel.OntoClass
+@import play.data.Form
+@import ontoplay.views.html._
+
+@()
+
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("SXACML Administration") {
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="http://getbootstrap.com/examples/dashboard/#">Overview <span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Help</h1>
+            <p>Nothing to see here. Move along.</p>
+        </div>
+    </div>
+</div>
+}

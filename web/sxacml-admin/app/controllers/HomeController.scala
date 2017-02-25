@@ -25,7 +25,7 @@ class HomeController @Inject()(val ontoReader: OntologyReader) extends Controlle
    */
   def index = Action {
     val owlClass = getOwlClassFromName("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject")
-    Ok(views.html.index(owlClass))
+    Ok(views.html.index())
   }
 
   protected def getOwlClassFromName(className: String): OntoClass = ontoReader.getOwlClass(className)
