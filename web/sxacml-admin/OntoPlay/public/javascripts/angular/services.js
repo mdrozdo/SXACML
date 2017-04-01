@@ -48,7 +48,8 @@
           
         });
 	}
-	
+
+	//TODO: differentiate between class mapping and class save. Best to pass url from above.
 	var add=function(data,elementName){
 		var url='';
 		if(isAddIndividual())
