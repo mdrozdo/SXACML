@@ -1,6 +1,7 @@
 package net.drozdowicz.sxacml
 
 import scala.compat.Platform
+import scala.net.drozdowicz.sxacml.SemanticPDP
 
 object SemPDPApp {
 
@@ -47,17 +48,15 @@ object SemPDPApp {
     }
     val options = parseOptions(Map(),arglist)
     println(options)
-    //  	val policyLocation = getArgument("p", "policy")
-    //  	val ontologyPath = getArgument("o", "ontology")
-    //  	val ontologyUri = getArgument("u", "uri")
-    //
-    //    val pdp = new SemanticPDP(policyLocation, ontologyPath, ontologyUri)
+      val policyLocation = options.get('p).getOrElse("")
+      val ontologyPath = options.get('o).getOrElse("")
+      val ontologyUri = options.get('u).getOrElse("")
 
-    Iterator.continually(readFromStdIn).takeWhile(p => p.nonEmpty).flatMap(o=>o).foreach(l => {
-      //val response = pdp.evaluate(request)
-      //println(response)
-      println(l)
+    val pdp = new SemanticPDP(policyLocation, ontologyPath, ontologyUri)
+
+    Iterator.continually(readFromStdIn).takeWhile(p => p.nonEmpty).flatMap(o=>o).foreach(request => {
+      val response = pdp.evaluate(request)
+      println(response)
     })
-    //val response = pdp.evaluate(request)
   }
 }

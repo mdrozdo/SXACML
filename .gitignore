@@ -54,3 +54,6 @@ fabric.properties
 
 # Meld
 *.orig
+
+# Maven
+dependency-reduced-pom.xml
