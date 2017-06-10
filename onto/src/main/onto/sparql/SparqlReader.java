@@ -10,11 +10,11 @@ import java.util.Set;
 import onto.utils.OntologyUtils;
 import org.semanticweb.owlapi.model.OWLOntology;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.InfModel;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.InfModel;
 
 
 //TODO ??? enable declaration of prefixes when instantiating the reader, to reuse between queries

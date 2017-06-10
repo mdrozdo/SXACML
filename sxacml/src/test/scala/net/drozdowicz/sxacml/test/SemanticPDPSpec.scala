@@ -128,8 +128,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
 
   private def relativeToAbsolute(relativePath: String): String = {
     (new File(".")).getCanonicalPath +
-      File.separator + "sxacml" +
-      File.separator + "src" +
+     File.separator + "src" +
       File.separator + "test" +
       File.separator + "resources" +
       File.separator + relativePath.replace("/", File.separator)

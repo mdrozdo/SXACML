@@ -1,11 +1,11 @@
 package onto.utils;
 
-import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
-import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
-import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import org.mindswap.pellet.KnowledgeBase;
-import org.mindswap.pellet.jena.PelletInfGraph;
+import openllet.core.KnowledgeBase;
+import openllet.jena.PelletInfGraph;
+import openllet.owlapi.OpenlletReasoner;
+import openllet.owlapi.OpenlletReasonerFactory;
+import org.apache.jena.rdf.model.InfModel;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -18,9 +18,9 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 public class OntologyUtils {
 
     public static InfModel createJenaModel(OWLOntology ontology) {
-        PelletReasoner reasoner = PelletReasonerFactory.getInstance().createNonBufferingReasoner(ontology);
+        OpenlletReasoner reasoner = OpenlletReasonerFactory.getInstance().createNonBufferingReasoner(ontology);
         KnowledgeBase kb = reasoner.getKB();
-        PelletInfGraph graph = new org.mindswap.pellet.jena.PelletReasoner().bind(kb);
+        PelletInfGraph graph = new openllet.jena.PelletReasoner().bind(kb);
         return ModelFactory.createInfModel(graph);
     }
 

@@ -2,7 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../../github/pellet" vcs="Git" />
-    <mapping directory="C:/wso2/t/components" vcs="svn" />
   </component>
 </project>

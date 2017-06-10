@@ -1,7 +1,7 @@
 package onto.sparql;
 
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
 
 public abstract class ValueSetResultProcessor implements IResultProcessor {
 

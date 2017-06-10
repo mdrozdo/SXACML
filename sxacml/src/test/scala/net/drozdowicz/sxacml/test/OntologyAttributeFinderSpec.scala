@@ -20,7 +20,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   describe("OntologyAttributeFinder") {
     val ontoMgr = OWLManager.createOWLOntologyManager()
     ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new AutoIRIMapper(new File("./sxacml/src/test/resources/ontologies/"), true))
+      new AutoIRIMapper(new File("./src/test/resources/ontologies/"), true))
     )
 
     val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr) _

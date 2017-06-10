@@ -3,7 +3,7 @@ package net.drozdowicz.sxacml.test
 import java.io.File
 import java.net.URI
 
-import com.hp.hpl.jena.query.QuerySolution
+import org.apache.jena.query.QuerySolution
 import net.drozdowicz.sxacml.{FlatAttributeValue, RequestOntologyGenerator}
 import onto.sparql.{SingleValueResultProcessor, SparqlReader, ValueSetResultProcessor}
 import org.scalatest.{Matchers, OneInstancePerTest, path}
