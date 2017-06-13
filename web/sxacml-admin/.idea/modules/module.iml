@@ -18,6 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../OntoPlay/target/scala-2.11/resource_managed/main" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../OntoPlay/target/scala-2.11/resource_managed/test" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../OntoPlay/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../OntoPlay/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../OntoPlay/target/coffeescript" />
       <excludeFolder url="file://$MODULE_DIR$/../../OntoPlay/target/jshint" />
       <excludeFolder url="file://$MODULE_DIR$/../../OntoPlay/target/less" />
