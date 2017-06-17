@@ -1,6 +1,8 @@
 import java.time.Clock
 
 import com.google.inject.AbstractModule
+import controllers.SxacmlMainTemplate
+import ontoplay.controllers.MainTemplate
 import play.api.{Configuration, Environment}
 import services.{ApplicationTimer, AtomicCounter, Counter}
 
@@ -27,5 +29,7 @@ class Module(environment: Environment, configuration: Configuration) extends Abs
 
 
     install(new ontoplay.Module(new play.Environment(environment), new play.Configuration(configuration)));
+    bind(classOf[MainTemplate]).to(classOf[SxacmlMainTemplate])
+
   }
 }

@@ -14,8 +14,6 @@
     <orderEntry type="library" name="Maven: com.github.ansell.jjtraveler:jjtraveler:0.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.ansell.aterms:shared-objects:1.4.9-p1" level="project" />
     <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-jdk1.5:0.7.3" level="project" />
-    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.11.0" level="project" />
-    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" name="Maven: org.apache.jena:jena-arq:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.jena:jena-core:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.jena:jena-iri:1.1.2" level="project" />
