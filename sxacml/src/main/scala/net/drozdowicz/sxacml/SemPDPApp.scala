@@ -5,7 +5,8 @@ import scala.net.drozdowicz.sxacml.SemanticPDP
 
 object SemPDPApp {
 
-  val usage = """
+  val usage =
+    """
     Usage: sempdp -p policyPath -o ontologyFolderPath -u ontologyUri
     After running, the process will accept XACML requests on the StdIn.
   """
@@ -17,7 +18,9 @@ object SemPDPApp {
   def readFromStdIn: Option[String] = {
     val lines = io.Source.stdin.getLines
 
-    (lines.span(l => !matchesRequestEnd(l)) match { case (h, t) => (h.toList, t.take(1).toList) })
+    (lines.span(l => !matchesRequestEnd(l)) match {
+      case (h, t) => (h.toList, t.take(1).toList)
+    })
     match {
       case (_, List()) => None
       case (h, t) => Some((h ::: t).mkString(Platform.EOL))
@@ -26,11 +29,14 @@ object SemPDPApp {
 
   def main(args: Array[String]) {
 
-    if (args.length == 0) println(usage)
+    if (args.length == 0){
+      println(usage)
+      sys.exit(1)
+    }
     val arglist = args.toList
     type OptionMap = Map[Symbol, String]
 
-    def parseOptions(map : OptionMap, list: List[String]) : OptionMap = {
+    def parseOptions(map: OptionMap, list: List[String]): OptionMap = {
       list match {
         case Nil => map
         case "-p" :: value :: tail =>
@@ -42,19 +48,20 @@ object SemPDPApp {
         //        case string :: opt2 :: tail if isSwitch(opt2) =>
         //          parseOptions(map ++ Map('infile -> string), list.tail)
         //        case string :: Nil =>  parseOptions(map ++ Map('infile -> string), list.tail)
-        case option :: tail => println("Unknown option "+option)
+        case option :: tail => println("Unknown option " + option)
           sys.exit(1)
       }
     }
-    val options = parseOptions(Map(),arglist)
+
+    val options = parseOptions(Map(), arglist)
     println(options)
-      val policyLocation = options.get('p).getOrElse("")
-      val ontologyPath = options.get('o).getOrElse("")
-      val ontologyUri = options.get('u).getOrElse("")
+    val policyLocation = options.get('p).getOrElse("")
+    val ontologyPath = options.get('o).getOrElse("")
+    val ontologyUri = options.get('u).getOrElse("")
 
     val pdp = new SemanticPDP(policyLocation, ontologyPath, ontologyUri)
 
-    Iterator.continually(readFromStdIn).takeWhile(p => p.nonEmpty).flatMap(o=>o).foreach(request => {
+    Iterator.continually(readFromStdIn).takeWhile(p => p.nonEmpty).flatMap(o => o).foreach(request => {
       val response = pdp.evaluate(request)
       println(response)
     })
