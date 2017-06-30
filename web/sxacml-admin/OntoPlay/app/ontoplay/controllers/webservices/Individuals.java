@@ -1,8 +1,8 @@
 package ontoplay.controllers.webservices;
 
 import com.google.gson.GsonBuilder;
-import com.hp.hpl.jena.ontology.AnnotationProperty;
-import ontoplay.OntologyHelper;
+import org.apache.jena.ontology.AnnotationProperty;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
@@ -14,7 +14,6 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.owlGeneration.OntologyGenerator;
-import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLOntology;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -32,8 +31,8 @@ public class Individuals extends OntologyController {
 	private OntologyUtils utils;
 
 	@Inject
-	public Individuals(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils){
-		super(ontologyHelper);
+	public Individuals(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils){
+		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 
 		this.ontologyGenerator = generator;
@@ -42,7 +41,7 @@ public class Individuals extends OntologyController {
 
 	public Result getIndividualsByClassName(String className) {
 		try {
-			OntoClass owlClass = ontoHelper.getOwlClass(className);
+			OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
 			List<OwlIndividual> individuals = ontologyReader.getIndividuals(owlClass);
 
@@ -79,8 +78,8 @@ public class Individuals extends OntologyController {
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 
-			ontoHelper.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
+			ontologyUtils.checkOntology(generatedOntology);
+			//OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
 			utils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");
@@ -104,7 +103,7 @@ public class Individuals extends OntologyController {
 					AnnotationAxiom.readIterator(ontologyReader.getAnnotationsAxioms()));
 
 			return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
-		} catch (NullArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return ok("Individual Not Found");
 		} catch (Exception e) {
 			return ok("Individual Not Found " + e.toString());

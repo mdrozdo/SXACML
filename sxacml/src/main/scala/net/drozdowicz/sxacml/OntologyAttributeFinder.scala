@@ -2,9 +2,7 @@ package net.drozdowicz.sxacml
 
 import java.net.URI
 
-import _root_.onto.sparql.ValueSetResultProcessor
-import _root_.onto.sparql.ValueSetResultProcessor
-import com.hp.hpl.jena.query.QuerySolution
+import org.apache.jena.query.QuerySolution
 import onto.sparql.{SparqlReader, ValueSetResultProcessor}
 import onto.utils.OntologyUtils
 import org.semanticweb.owlapi.model._
@@ -13,7 +11,8 @@ import org.semanticweb.owlapi.search.EntitySearcher
 
 import scala.collection.JavaConversions._
 import scala.net.drozdowicz.sxacml.Constants
-import scala.net.drozdowicz.sxacml.JavaOptionals._
+import scala.compat.java8.OptionConverters._
+//import scala.net.drozdowicz.sxacml.JavaOptionals._
 import scala.util.matching.Regex
 
 /**
@@ -23,11 +22,12 @@ object OntologyAttributeFinder {
 
   def getHierarchyDesignator(rootOntology: OWLOntology) = {
     val factory = rootOntology.getOWLOntologyManager.getOWLDataFactory
+    //TODO change to non-deprecated
     rootOntology.getObjectPropertiesInSignature(Imports.INCLUDED)
       .filter(p =>
-        !EntitySearcher.getAnnotations(p, rootOntology, factory.getOWLAnnotationProperty(
+        EntitySearcher.getAnnotations(p, rootOntology, factory.getOWLAnnotationProperty(
           IRI.create("http://drozdowicz.net/sxacml/request#hierarchyDesignator"))
-        ).isEmpty)
+        ).findAny().isPresent)
       .map(p => p.getIRI.toString)
       .headOption
   }
@@ -60,7 +60,7 @@ object OntologyAttributeFinder {
     val classId = if(isIRI(classIdOrName)){
         classIdOrName
       } else {
-      ontology.getOntologyID.getOntologyIRI.toOption
+      ontology.getOntologyID.getOntologyIRI.asScala
         .map(iri=>iri.toString).get + "#" + classIdOrName;
     }
 

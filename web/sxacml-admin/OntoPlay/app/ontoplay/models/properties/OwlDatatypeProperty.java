@@ -1,6 +1,6 @@
 package ontoplay.models.properties;
 
-import com.hp.hpl.jena.ontology.Individual;
+import org.apache.jena.ontology.Individual;
 
 import ontoplay.models.ontologyModel.OntoProperty;
 
@@ -34,11 +34,5 @@ public class OwlDatatypeProperty implements OntoProperty{
 	@Override
 	public String getUri(){
 		return String.format("%s%s", namespace, localName);
-	}
-
-	@Override
-	public Individual getIndividual() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

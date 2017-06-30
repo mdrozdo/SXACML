@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import ontoplay.OntoplayConfig;
+import ontoplay.controllers.MainTemplate;
 import org.apache.commons.io.FileUtils;
 
 import play.mvc.Controller;
@@ -17,10 +18,12 @@ import javax.inject.Inject;
 public class UploadController extends Controller {
 
 	private OntoplayConfig config;
+	private MainTemplate mainTemplate;
 
 	@Inject
-	public UploadController(OntoplayConfig config){
+	public UploadController(OntoplayConfig config, MainTemplate mainTemplate){
 		this.config = config;
+		this.mainTemplate = mainTemplate;
 	}
 
 	/**
@@ -28,7 +31,9 @@ public class UploadController extends Controller {
 	 */
 
 	public Result showUploadPage() {
-		return ok(ontoplay.views.html.configuration.upload.render(config.getOntologyFileName(), config.getOntologyNamespace()));
+
+		return ok(ontoplay.views.html.configuration.upload.render(config.getOntologyFileName(), config.getOntologyNamespace(),
+				mainTemplate.getRenderFunction()));
 	}
 
 	public Result upload() {

@@ -2,27 +2,25 @@ package ontoplay.models.ontologyReading.jena;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.File;
 import java.util.*;
 
 import com.google.inject.assistedinject.Assisted;
-import com.hp.hpl.jena.util.FileManager;
+import org.apache.jena.util.FileManager;
 import ontoplay.OntoplayConfig;
-import org.mindswap.pellet.jena.PelletReasonerFactory;
+import openllet.jena.PelletReasonerFactory;
 
-import com.hp.hpl.jena.ontology.AnnotationProperty;
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntDocumentManager;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntProperty;
-import com.hp.hpl.jena.ontology.OntResource;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.ResIterator;
-import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.vocabulary.OWL2;
-import com.hp.hpl.jena.vocabulary.RDF;
+import org.apache.jena.ontology.AnnotationProperty;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntDocumentManager;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntProperty;
+import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.ResIterator;
+import org.apache.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.vocabulary.OWL2;
+import org.apache.jena.vocabulary.RDF;
 
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.InvalidConfigurationException;
@@ -32,18 +30,10 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
-import ontoplay.models.ontologyReading.jena.propertyFactories.AnnotationDataPropertyFactory;
-import ontoplay.models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
-import ontoplay.models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
-import ontoplay.models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
-import ontoplay.models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
-import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 public class JenaOwlReader implements OntologyReader{
-	private final OntoplayConfig config;
 	private OntModel model;
 	private String ontologyNamespace;
 	private boolean ignorePropsWithNoDomain;
@@ -52,22 +42,27 @@ public class JenaOwlReader implements OntologyReader{
 	@Inject
 	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, OntoplayConfig config, @Assisted boolean ignorePropsWithNoDomain) {
 		this.owlPropertyFactory = owlPropertyFactory;
-		this.config = config;
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 
 		config.addObserver(new Observer() {
 			@Override
 			public void update(Observable o, Object arg) {
-				readModel();
+				readModel(((OntoplayConfig) o).getOntologyFilePath(), ((OntoplayConfig) o).getMappings());
 			}
 		});
 
-		readModel();
+		readModel(config.getOntologyFilePath(), config.getMappings());
 	}
 
-	private void readModel() {
+	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, String filePath, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
+		this.owlPropertyFactory = owlPropertyFactory;
+		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
+
+		readModel(filePath, localMappings);
+	}
+
+	private void readModel(String filePath, List<FolderMapping> localMappings) {
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
-		List<FolderMapping> localMappings = config.getMappings();
 		if (localMappings != null) {
 			OntDocumentManager dm = model.getDocumentManager();
 
@@ -76,12 +71,11 @@ public class JenaOwlReader implements OntologyReader{
 			}
 		}
 
-		String filePath = config.getOntologyFilePath();
 		try(InputStream fileStream = FileManager.get().open(filePath)){
 			model.read(fileStream, null);
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new IllegalArgumentException("Error when reading the file from: "+filePath, e);
+			throw new IllegalArgumentException("Error when reading the file from: "+ filePath, e);
 		}
 
 		this.model = model;

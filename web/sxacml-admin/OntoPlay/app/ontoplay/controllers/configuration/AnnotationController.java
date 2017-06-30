@@ -11,20 +11,20 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.xml.xpath.XPathExpressionException;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.OntoplayConfig;
 import ontoplay.models.ontologyReading.OntologyReader;
-import org.mindswap.pellet.jena.PelletReasonerFactory;
+import openllet.jena.PelletReasonerFactory;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.hp.hpl.jena.ontology.DatatypeProperty;
-import com.hp.hpl.jena.ontology.ObjectProperty;
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.DatatypeProperty;
+import org.apache.jena.ontology.ObjectProperty;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.util.FileManager;
+import org.apache.jena.util.iterator.ExtendedIterator;
 
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
@@ -45,8 +45,8 @@ public class AnnotationController extends OntologyController {
 	private OntologyReader ontologyReader;
 
 	@Inject
-	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config){
-		super(ontologyHelper);
+	public AnnotationController(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config){
+		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;
 		this.config = config;

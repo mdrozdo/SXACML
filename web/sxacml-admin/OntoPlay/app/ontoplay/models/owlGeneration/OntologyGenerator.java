@@ -9,6 +9,8 @@ import ontoplay.models.ConfigurationException;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.stream.Collectors;
+
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
@@ -80,7 +82,13 @@ public class OntologyGenerator {
                 addToOntologyAsClass(destinationOntology, resultExpression, classUri);
             } else if(condition.getClassRelation() == ClassRelation.SUBCLASS){
 			    addToOntologyAsSubclass(destinationOntology, resultExpression, classUri);
-            }
+            } else {
+            	throw new UnsupportedOperationException("Unknown class relation: " + condition.getClassRelation());
+			}
+
+			List<OWLAxiom> axioms = destinationOntology.axioms().collect(Collectors.toList());
+
+			addImportDeclarations(destinationOntology, axioms);
 
 			return destinationOntology;
 
@@ -148,7 +156,7 @@ public class OntologyGenerator {
 
 				OWLImportsDeclaration importsDeclaration = factory.getOWLImportsDeclaration(ontoIRI);
 				if (!ontoIRI.toString().contains("XMLSchema")
-						&& !destinationOntology.getOntologyID().getOntologyIRI().equals(ontoIRI)
+						&& !destinationOntology.getOntologyID().getOntologyIRI().get().equals(ontoIRI)
 						&& !destinationOntology.getImportsDeclarations().contains(importsDeclaration)) {
 					AddImport addImportChange = new AddImport(destinationOntology, importsDeclaration);
 					manager.applyChange(addImportChange);
@@ -182,7 +190,7 @@ public class OntologyGenerator {
 	}
 
 	private String getNamespace(IRI iri){
-		String namespace = iri.getStart();
+		String namespace = iri.getNamespace();
 		if(namespace.endsWith("#") || namespace.endsWith("/")){
 			namespace = namespace.substring(0, namespace.length()-1);
 		}
@@ -226,7 +234,7 @@ public class OntologyGenerator {
 		OWLNamedIndividual individual=factory.getOWLNamedIndividual(IRI.create(individualUri));
 		if(individual == null)
 			return false;
-		OWLEntityRemover remover = new OWLEntityRemover(manager,manager.getOntologies());
+		OWLEntityRemover remover = new OWLEntityRemover(manager.ontologies());
 		individual.accept(remover);
 		manager.applyChanges(remover.getChanges());	
 		OutputStream out;

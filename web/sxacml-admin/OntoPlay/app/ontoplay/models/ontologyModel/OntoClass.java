@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.semanticweb.owlapi.model.IRI;
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntClass;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
 
 public class OntoClass implements OwlElement {
 
@@ -19,7 +19,7 @@ public class OntoClass implements OwlElement {
 		this.namespace = namespace;
 		this.localName = name;
 		this.properties = properties;
-		if(ontClass  != null && ontClass.getSuperClass()!=null)
+		if(ontClass != null && ontClass.getSuperClass()!=null)
 			this.superClass = new OntoClass(ontClass.getSuperClass());
 		
 	}
@@ -91,12 +91,6 @@ public class OntoClass implements OwlElement {
 	@Override
 	public String getLabel() {
 		return label;
-	}
-
-	@Override
-	public Individual getIndividual() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

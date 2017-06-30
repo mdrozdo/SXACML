@@ -54,3 +54,8 @@ fabric.properties
 
 # Meld
 *.orig
+
+# Maven shade
+dependency-reduced-pom.xml
+
+.idea/kotlinc.xml
