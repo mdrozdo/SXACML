@@ -11,6 +11,9 @@ GET     /message                    controllers.AsyncController.message
 GET     /admin                      controllers.AdminController.admin
 GET     /help                       controllers.HelpController.help
 
+GET     /authorization              controllers.AuthorizationController.index
+POST     /authorization/pdp          controllers.AuthorizationController.evaluateRequest
+
 #Add ontoplay routes
 ->         /                           ontoplay.Routes
 

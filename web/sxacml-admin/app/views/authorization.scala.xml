@@ -1,0 +1,8 @@
+@()
+
+<?xml version=”1.0”?>
+<resources xmlns=”http://ietf.org/ns/home-documents” >
+    <resource rel=”http://docs.oasis-open.org/ns/xacml/relation/pdp”>
+        <link href=”@routes.AuthorizationController.evaluateRequest()”/>
+    </resource>
+</resources>
