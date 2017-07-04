@@ -12,10 +12,13 @@ lazy val root = (project in file("."))
 
 scalaVersion := "2.11.7"
 
+resolvers += "Local Maven Repository" at Path.userHome.asFile.toURI.toURL+".m2/repository/"
+
 libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+  "net.drozdowicz" % "sxacml" % "0.0.1-SNAPSHOT"
 )
 
