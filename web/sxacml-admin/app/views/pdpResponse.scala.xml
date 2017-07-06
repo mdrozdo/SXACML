@@ -1,4 +1,4 @@
-@(response: String)
+@(response: scala.xml.Elem)
 
 <?xml version=”1.0”?>
 <Request xmlns=”urn:oasis:names:tc:xacml:3.0:core:schema:wd-17”>
