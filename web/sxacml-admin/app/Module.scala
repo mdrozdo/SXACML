@@ -3,7 +3,7 @@ import java.time.Clock
 import com.google.inject.AbstractModule
 import controllers.SxacmlMainTemplate
 import ontoplay.controllers.MainTemplate
-import play.api.{Configuration, Environment}
+import play.api.{Configuration, Environment, Logger}
 import services.{ApplicationTimer, AtomicCounter, Counter}
 
 /**
@@ -27,7 +27,10 @@ class Module(environment: Environment, configuration: Configuration) extends Abs
     // Set AtomicCounter as the implementation for Counter.
     bind(classOf[Counter]).to(classOf[AtomicCounter])
 
-
+    Logger.info("Running in folder: " + environment.rootPath)
+    Logger.info("Testing file: " + environment.getFile("."))
+    Logger.info("Config is null? : " + (configuration == null))
+    Logger.info("Config: " + configuration.underlying.origin().url())
     install(new ontoplay.Module(new play.Environment(environment), new play.Configuration(configuration)));
     bind(classOf[MainTemplate]).to(classOf[SxacmlMainTemplate])
 

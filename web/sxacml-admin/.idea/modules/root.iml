@@ -25,15 +25,27 @@
       <excludeFolder url="file://$MODULE_DIR$/../../target/less" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/resolution-cache" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/streams" />
+      <excludeFolder url="file://$MODULE_DIR$/../../target/universal" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/web" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="module" exported="" />
+    <orderEntry type="library" name="SBT: xom:xom:1.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: xerces:xmlParserAPIs:2.6.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: xalan:xalan:2.6.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.7.25:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.codehaus.woodstox:wstx-asl:3.2.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom:axiom-impl:1.2.11:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom:axiom-api:1.2.11:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-javamail_1.4_spec:1.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-activation_1.1_spec:1.0.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: jdom:jdom:1.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: jaxen:jaxen:1.1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: dom4j:dom4j:1.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.ibm.icu:icu4j:2.6.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.tukaani:xz:1.6:jar" level="project" />
     <orderEntry type="library" name="SBT: org.tinyjee.jgraphx:jgraphx:2.0.0.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.8.0-alpha2:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.slf4j:jcl-over-slf4j:1.7.22:jar" level="project" />
     <orderEntry type="library" name="SBT: org.jgrapht:jgrapht-ext:1.0.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.jgrapht:jgrapht-core:1.0.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.eclipse.rdf4j:rdf4j-util:2.1.4:jar" level="project" />
@@ -86,7 +98,6 @@
     <orderEntry type="library" name="SBT: com.google.inject.extensions:guice-multibindings:4.1.0:jar" level="project" />
     <orderEntry type="library" name="SBT: com.google.inject.extensions:guice-assistedinject:4.1.0:jar" level="project" />
     <orderEntry type="library" name="SBT: com.google.inject:guice:4.1.0:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.google.guava:guava:20.0:jar" level="project" />
     <orderEntry type="library" name="SBT: com.github.jsonld-java:jsonld-java:0.9.0:jar" level="project" />
     <orderEntry type="library" name="SBT: com.github.galigator.openllet:openllet-query:2.6.1:jar" level="project" />
     <orderEntry type="library" name="SBT: com.github.galigator.openllet:openllet-owlapi:2.6.1:jar" level="project" />
@@ -95,145 +106,261 @@
     <orderEntry type="library" name="SBT: com.github.galigator.openllet:openllet-core:2.6.1:jar" level="project" />
     <orderEntry type="library" name="SBT: com.github.ben-manes.caffeine:caffeine:2.3.5:jar" level="project" />
     <orderEntry type="library" name="SBT: com.github.andrewoma.dexx:collection:0.6:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-databind:2.8.5:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-core:2.8.5:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-annotations:2.8.5:jar" level="project" />
     <orderEntry type="library" name="SBT: xml-apis:xml-apis:1.4.01:jar" level="project" />
     <orderEntry type="library" name="SBT: xerces:xercesImpl:2.11.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: xalan:xalan:2.7.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: xalan:serializer:2.7.2:jar" level="project" />
     <orderEntry type="library" name="SBT: tyrex:tyrex:1.0.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.yaml:snakeyaml:1.16:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.webbitserver:webbit:0.4.14:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.w3c.css:sac:1.3:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.springframework:spring-core:4.2.7.RELEASE:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.springframework:spring-context:4.2.7.RELEASE:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.springframework:spring-beans:4.2.7.RELEASE:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.slf4j:jul-to-slf4j:1.7.21:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-support:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-safari-driver:2.48.2:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-remote-driver:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-leg-rc:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-java:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-ie-driver:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-htmlunit-driver:2.48.2:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-firefox-driver:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-edge-driver:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-chrome-driver:2.48.2:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-api:2.48.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scalatestplus.play:scalatestplus-play_2.11:1.5.1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scalatest:scalatest_2.11:2.2.6:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-stm:scala-stm_2.11:0.7:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scala-sbt:test-interface:1.0:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.scala-lang.modules:scala-xml_2.11:1.0.2:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-xml_2.11:1.0.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.4:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.11.7:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.11.7:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.reflections:reflections:0.9.10:jar" level="project" />
     <orderEntry type="library" name="SBT: org.reactivestreams:reactive-streams:1.0.0:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.joda:joda-convert:1.8.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.jboss.logging:jboss-logging:3.2.1.Final:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.javassist:javassist:3.20.0-GA:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.hibernate:hibernate-validator:5.2.4.Final:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.hamcrest:hamcrest-core:1.3:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.fluentlenium:fluentlenium-core:0.10.9:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty.websocket:websocket-common:9.2.15.v20160210:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty.websocket:websocket-client:9.2.15.v20160210:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty.websocket:websocket-api:9.2.15.v20160210:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty:jetty-util:9.2.15.v20160210:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty:jetty-io:9.2.15.v20160210:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.asynchttpclient:netty-resolver-dns:2.0.11:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.asynchttpclient:netty-resolver:2.0.11:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.asynchttpclient:netty-codec-dns:2.0.11:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.asynchttpclient:async-http-client:2.0.11:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-servlet-api:8.0.33:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.commons:commons-lang3:3.4:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.apache.commons:commons-exec:1.3:jar" level="project" />
-    <orderEntry type="library" name="SBT: oauth.signpost:signpost-core:1.2.1.2:jar" level="project" />
-    <orderEntry type="library" name="SBT: oauth.signpost:signpost-commonshttp4:1.2.1.2:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.nekohtml:nekohtml:1.9.22:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.htmlunit:htmlunit-core-js:2.17:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.htmlunit:htmlunit:2.20:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.cssparser:cssparser:0.9.18:jar" level="project" />
-    <orderEntry type="library" name="SBT: net.sf.ehcache:ehcache-core:2.6.11:jar" level="project" />
-    <orderEntry type="library" name="SBT: net.jodah:typetools:0.4.4:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: net.java.dev.jna:jna-platform:4.1.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: net.java.dev.jna:jna:4.1.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: junit:junit:4.12:jar" level="project" />
-    <orderEntry type="library" name="SBT: joda-time:joda-time:2.9.4:jar" level="project" />
     <orderEntry type="library" name="SBT: javax.validation:validation-api:1.1.0.Final:jar" level="project" />
     <orderEntry type="library" name="SBT: javax.transaction:jta:1.1:jar" level="project" />
     <orderEntry type="library" name="SBT: javax.inject:javax.inject:1:jar" level="project" />
-    <orderEntry type="library" name="SBT: javax.el:javax.el-api:3.0.0:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-transport-native-epoll:4.0.41.Final:linux-x86_64:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-transport:4.0.41.Final:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-handler:4.0.41.Final:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-common:4.0.41.Final:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-codec-http:4.0.41.Final:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-codec:4.0.41.Final:jar" level="project" />
-    <orderEntry type="library" name="SBT: io.netty:netty-buffer:4.0.41.Final:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: io.netty:netty:3.5.2.Final:jar" level="project" />
     <orderEntry type="library" name="SBT: commons-codec:commons-codec:1.10:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.zaxxer:HikariCP:2.5.0:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:twirl-api_2.11:1.1.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-ws_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: com.typesafe.play:play-test_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-streams_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-server_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-netty-utils:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-netty-server_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-logback_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-json_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-jdbc_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-jdbc-api_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-java_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-java-ws_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-java-jdbc_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-iteratees_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-functional_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-exceptions:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-datacommons_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:play-cache_2.11:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.play:build-link:2.5.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.netty:netty-reactive-streams-http:1.0.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.netty:netty-reactive-streams:1.0.8:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-stream_2.11:2.4.10:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-slf4j_2.11:2.4.10:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-actor_2.11:2.4.10:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe:ssl-config-core_2.11:0.2.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe:ssl-config-akka_2.11:0.2.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe:config:1.3.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: com.novocode:junit-interface:0.11:jar" level="project" />
     <orderEntry type="library" name="SBT: com.jolbox:bonecp:0.8.0.RELEASE:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.h2database:h2:1.4.192:jar" level="project" />
     <orderEntry type="library" name="SBT: com.googlecode.usc:jdbcdslog:1.0.6.2:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: com.google.code.gson:gson:2.3.1:jar" level="project" />
     <orderEntry type="library" name="SBT: com.google.code.gson:gson:2.2.2:jar" level="project" />
     <orderEntry type="library" name="SBT: com.google.code.findbugs:jsr305:3.0.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.6:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.7.6:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.fasterxml:classmate:1.1.0:jar" level="project" />
-    <orderEntry type="library" name="SBT: ch.qos.logback:logback-core:1.1.7:jar" level="project" />
-    <orderEntry type="library" name="SBT: ch.qos.logback:logback-classic:1.1.7:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: cglib:cglib-nodep:2.1_3:jar" level="project" />
     <orderEntry type="library" name="SBT: aopalliance:aopalliance:1.0:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.hermit-reasoner:org.semanticweb.hermit:1.3.8.4:jar" level="project" />
-    <orderEntry type="library" name="SBT: dk.brics.automaton:automaton:1.11-8:jar" level="project" />
-    <orderEntry type="library" name="SBT: jaxen:jaxen:1.1.4:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-activation_1.1_spec:1.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-javamail_1.4_spec:1.7.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-stax-api_1.0_spec:1.0.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.james:apache-mime4j-core:0.7.2:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom:axiom-api:1.2.14:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom:axiom-c14n:1.2.14:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom:axiom-dom:1.2.14:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom:axiom-impl:1.2.14:jar" level="project" />
     <orderEntry type="library" name="SBT: org.codehaus.woodstox:stax2-api:3.1.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.codehaus.woodstox:woodstox-core-asl:4.1.4:jar" level="project" />
     <orderEntry type="library" name="SBT: net.drozdowicz:sxacml:0.0.1-SNAPSHOT:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-java8-compat_2.11:0.8.0:jar" level="project" />
-    <orderEntry type="library" name="scala-sdk-2.12.2" level="application" />
+    <orderEntry type="library" scope="TEST" name="SBT: cglib:cglib-nodep:3.2.4:jar" level="project" />
+    <orderEntry type="library" name="SBT: ch.qos.logback:logback-classic:1.2.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: ch.qos.logback:logback-core:1.2.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.fasterxml:classmate:1.3.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-annotations:2.8.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-core:2.8.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-databind:2.8.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.8.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.9:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: com.google.code.findbugs:jsr305:3.0.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: com.google.code.gson:gson:2.8.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.google.errorprone:error_prone_annotations:2.0.18:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.google.guava:guava:22.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.google.j2objc:j2objc-annotations:1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.hazelcast:hazelcast-all:3.5.4:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe:config:1.3.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe:ssl-config-core_2.11:0.2.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-actor_2.11:2.5.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-http-core_2.11:10.0.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-parsing_2.11:10.0.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-slf4j_2.11:2.5.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-stream_2.11:2.5.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:build-link:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:cachecontrol_2.11:1.1.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:filters-helpers_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ahc-ws-standalone_2.11:1.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ahc-ws_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-akka-http-server_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-cache_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ehcache_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-exceptions:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-functional_2.11:2.6.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-guice_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-java-forms_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-java-jdbc_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-java_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-jdbc-api_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-jdbc_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-json_2.11:2.6.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-logback_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-netty-utils:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-server_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-streams_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: com.typesafe.play:play-test_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ws-standalone-json_2.11:1.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ws-standalone-xml_2.11:1.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ws-standalone_2.11:1.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-ws_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play_2.11:2.6.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:shaded-asynchttpclient:1.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:shaded-oauth:1.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:twirl-api_2.11:1.3.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.zaxxer:HikariCP:2.6.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-collections:commons-collections:3.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-collections.wso2:commons-collections:3.2.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-dbcp.wso2:commons-dbcp:1.4.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-fileupload:commons-fileupload:1.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-httpclient:commons-httpclient:3.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-io.wso2:commons-io:2.4.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-lang:commons-lang:2.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-lang.wso2:commons-lang:2.6.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-pool:commons-pool:1.5.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: commons-pool.wso2:commons-pool:1.5.6.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: io.jsonwebtoken:jjwt:0.7.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: jargs:jargs:1.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.activation:activation:1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.cache:cache-api:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.mail:mail:1.4.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.servlet:servlet-api:2.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.ws.rs:jsr311-api:1.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.xml.stream:stax-api:1.0-2:jar" level="project" />
+    <orderEntry type="library" name="SBT: jline:jline:0.9.94:jar" level="project" />
+    <orderEntry type="library" name="SBT: joda-time:joda-time:2.9.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: junit:junit:4.11:jar" level="project" />
+    <orderEntry type="library" name="SBT: libthrift.wso2:libthrift:0.8.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: log4j:log4j:1.2.17:jar" level="project" />
+    <orderEntry type="library" name="SBT: net.drozdowicz:onto:0.0.1-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="SBT: net.jcip:jcip-annotations:1.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: net.jodah:typetools:0.5.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: net.sf.ehcache:ehcache:2.10.4:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.cssparser:cssparser:0.9.23:jar" level="project" />
+    <orderEntry type="library" name="SBT: net.sourceforge.findbugs:annotations:1.3.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.htmlunit:htmlunit:2.27:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.htmlunit:htmlunit-core-js:2.27:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: net.sourceforge.htmlunit:neko-htmlunit:2.27:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.abdera.wso2:abdera:1.0.0.wso2v3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ant:ant:1.7.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ant:ant-launcher:1.7.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ant.wso2:ant:1.7.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.axis2:axis2-kernel:1.6.1-wso2v17:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.axis2:axis2-transport-base:1.6.1-wso2v12:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.axis2.transport:axis2-transport-mail:1.1.0-wso2v13:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.axis2.wso2:axis2:1.6.1.wso2v12:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.commons:commons-lang3:3.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.commons.ssl:not-yet-commons-ssl:0.3.9:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.geronimo.specs:geronimo-ws-metadata_2.0_spec:1.1.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.geronimo.specs.wso2:geronimo-stax-api_1.0_spec:1.0.1.wso2v2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.apache.httpcomponents:httpclient:4.5.3:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.apache.httpcomponents:httpcore:4.4.6:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.apache.httpcomponents:httpmime:4.5.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.httpcomponents.wso2:httpcore:4.3.3.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.log4j.wso2:log4j:1.2.17.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.neethi:neethi:2.0.4:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.rampart.wso2:rampart-core:1.6.1.wso2v20:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.santuario:xmlsec:1.4.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-annotations-api:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-api:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-catalina:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-catalina-ha:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-jdbc:7.0.47:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-juli:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-tribes:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat:tomcat-util:7.0.69:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.tomcat.wso2:jdbc-pool:7.0.34.wso2v2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.woden:woden-api:1.0M9:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.woden:woden-impl-commons:1.0M9:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.woden:woden-impl-dom:1.0M9:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ws.commons.axiom.wso2:axiom:1.2.11.wso2v10:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ws.commons.schema:XmlSchema:1.4.7:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ws.commons.schema.wso2:XmlSchema:1.4.7.wso2v3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.ws.security.wso2:wss4j:1.5.11.wso2v13:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.xalan:xalan:2.7.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.xerces:resolver:2.9.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.xerces:serializer:2.9.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.xerces:xercesImpl:2.9.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.xerces:xml-apis:2.9.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.atteo.classindex:classindex:3.4:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.bouncycastle:bcprov-ext-jdk15:1.40:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.bouncycastle:bcprov-jdk15on:1.52:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.codehaus.mojo:animal-sniffer-annotations:1.14:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.codehaus.woodstox:woodstox-core-asl:4.2.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.compass-project.wso2:compass:2.0.1.wso2v2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.eclipse.equinox:javax.servlet:3.0.0.v201112011016:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.eclipse.equinox:org.eclipse.equinox.http.helper:1.1.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty:jetty-client:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty:jetty-http:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty:jetty-io:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty:jetty-util:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.eclipse.osgi:org.eclipse.osgi:3.9.1.v20130814-1242:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.eclipse.osgi:org.eclipse.osgi.services:3.3.100.v20130513-1956:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.ehcache:jcache:1.0.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.fluentlenium:fluentlenium-core:3.2.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.hamcrest:hamcrest-core:1.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.hibernate:hibernate-validator:5.4.1.Final:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.igniterealtime.smack.wso2:smack:3.0.4.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.igniterealtime.smack.wso2:smackx:3.0.4.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.javassist:javassist:3.21.0-GA:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.jboss.logging:jboss-logging:3.3.0.Final:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.joda:joda-convert:1.7:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.json:json:20140107:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.json.wso2:json:3.0.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.opensaml:opensaml:2.2.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.opensaml:opensaml1:1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.opensaml:openws:1.2.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.opensaml:xmltooling:1.2.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.reflections:reflections:0.9.11:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-xml_2.11:1.0.6:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:htmlunit-driver:2.27:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-api:3.4.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-firefox-driver:3.4.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-remote-driver:3.4.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.seleniumhq.selenium:selenium-support:3.4.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.slf4j:jcl-over-slf4j:1.7.25:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.slf4j:jul-to-slf4j:1.7.25:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.slf4j:log4j-over-slf4j:1.5.5:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.slf4j:slf4j-simple:1.7.5:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.springframework:spring-beans:4.3.9.RELEASE:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.springframework:spring-context:4.3.9.RELEASE:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.springframework:spring-core:4.3.9.RELEASE:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.typelevel:macro-compat_2.11:1.1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.balana:org.wso2.balana:1.0.4:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.balana:org.wso2.balana.utils:1.0.4:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:javax.cache.wso2:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.authenticator.proxy:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.authenticator.stub:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.base:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.bootstrap:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.core:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.core.common:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.core.services:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.logging:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.queuing:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.registry.api:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.registry.core:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.registry.xboot:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.securevault:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.user.api:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.user.core:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon:org.wso2.carbon.utils:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.commons:org.wso2.carbon.tenant.common:4.5.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.identity:org.wso2.carbon.identity.authenticator.thrift:5.5.0-m3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.identity:org.wso2.carbon.identity.base:5.5.0-m3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.identity:org.wso2.carbon.identity.core:5.5.0-m3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.identity:org.wso2.carbon.identity.entitlement:5.5.0-m3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.identity:org.wso2.carbon.identity.entitlement.common:5.5.0-m3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.carbon.identity:org.wso2.carbon.identity.notification.mgt:5.5.0-m3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.com.hazelcast:hazelcast:3.5.4.wso2v2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.commons-collections:commons-collections:3.2.2.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.commons-fileupload:commons-fileupload:1.3.1.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.commons-httpclient:commons-httpclient:3.1.0.wso2v3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.joda-time:joda-time:2.8.2.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.org.apache.neethi:neethi:2.0.4.wso2v5:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.org.bouncycastle:bcprov-jdk15on:1.52.0.wso2v1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.orbit.org.opensaml:opensaml:2.6.4.wso2v3:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.wso2.securevault:org.wso2.securevault:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.xmlunit:xmlunit-core:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.xmlunit:xmlunit-matchers:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="SBT: velocity:velocity:1.5:jar" level="project" />
+    <orderEntry type="library" name="SBT: wrapper:wrapper:3.2.3:jar" level="project" />
+    <orderEntry type="library" name="SBT: wsdl4j:wsdl4j:1.6.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: wsdl4j.wso2:wsdl4j:1.6.2.wso2v4:jar" level="project" />
+    <orderEntry type="library" name="SBT: xerces.wso2:xercesImpl:2.8.1.wso2v2:jar" level="project" />
   </component>
 </module>

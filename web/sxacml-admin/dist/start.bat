@@ -1,0 +1,1 @@
+bin\sxacml-admin.bat -Dpidfile.path=/dev/null
