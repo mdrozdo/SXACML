@@ -2,7 +2,6 @@ package controllers
 
 import javax.inject._
 
-import play.api._
 import play.api.mvc._
 
 /**
@@ -10,8 +9,7 @@ import play.api.mvc._
   * application's home page.
   */
 @Singleton
-class HelpController @Inject()() extends Controller{
-
+class HelpController @Inject()() extends Controller {
 
 
   /**

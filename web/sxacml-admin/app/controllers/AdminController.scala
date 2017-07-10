@@ -2,10 +2,9 @@ package controllers
 
 import javax.inject._
 
-import play.api._
-import play.api.mvc._
 import ontoplay.models.ontologyModel.OntoClass
-import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.OntologyReader
+import play.api.mvc._;
 
 
 /**
@@ -13,8 +12,7 @@ import ontoplay.models.ontologyReading.OntologyReader;
   * application's home page.
   */
 @Singleton
-class AdminController @Inject()(val ontoReader: OntologyReader) extends Controller{
-
+class AdminController @Inject()(val ontoReader: OntologyReader) extends Controller {
 
 
   /**
