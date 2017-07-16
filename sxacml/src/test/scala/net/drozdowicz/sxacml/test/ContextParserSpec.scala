@@ -69,6 +69,68 @@ class ContextParserSpec extends FunSpec with Matchers {
       )
     }
 
+    it("should parse content with list of simple attribute values") {
+      val reqStr = """<?xml version="1.0" encoding="utf-8"?>
+                     |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     |  <Attributes
+                     |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+                     |    <Content>
+                     |      <md:record xmlns:md="urn:example:med:schemas:record">
+                     |        <md:patientDoB>1992-03-21</md:patientDoB>
+                     |        <md:patient-number>555555</md:patient-number>
+                     |      </md:record>
+                     |    </Content>
+                     |  </Attributes>
+                     |</Request>""".stripMargin
+
+      val reqCtx = RequestCtxFactory.getFactory.getRequestCtx(reqStr)
+      val attributeValues = ContextParser.Parse(reqCtx)
+
+      attributeValues should contain (
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+          new URI("urn:example:med:schemas:record:patientDoB"),
+          new URI("http://www.w3.org/2001/XMLSchema#string"),
+          "1992-03-21"
+        ))
+      attributeValues should contain (
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+          new URI("urn:example:med:schemas:record:patient-number"),
+          new URI("http://www.w3.org/2001/XMLSchema#string"),
+          "555555"
+        )
+      )
+    }
+
+    ignore("should parse content with resource class id") {
+      val reqStr = """<?xml version="1.0" encoding="utf-8"?>
+                     |
+                     |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     |  <Attributes
+                     |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+                     |    <Content>
+                     |      <md:record xmlns:md="urn:example:med:schemas:record">
+                     |        <md:patientDoB>1992-03-21</md:patientDoB>
+                     |        <md:patient-number>555555</md:patient-number>
+                     |      </md:record>
+                     |    </Content>
+                     |  </Attributes>
+                     |</Request>""".stripMargin
+
+      val reqCtx = RequestCtxFactory.getFactory.getRequestCtx(reqStr)
+      val attributeValues = ContextParser.Parse(reqCtx)
+
+      attributeValues should contain (
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+          new URI("sxacml:resource:resource-class-id"),
+          new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
+          "urn:example:med:schemas:record:record"
+        )
+      )
+    }
+
     it("should parse list of multiple categories and values") {
       val reqStr = """<?xml version="1.0" encoding="utf-8"?>
                      |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
