@@ -8,7 +8,7 @@ import scala.collection.JavaConversions._
 import org.wso2.balana.ctx.AbstractRequestCtx
 import org.wso2.balana.xacml3.Attributes
 
-import scala.xml.{Elem, Node}
+import scala.xml.{Elem, Node, Text}
 
 /**
  * Created by michal on 2015-03-13.
@@ -31,28 +31,37 @@ object ContextParser {
     adapter.rootElem
   }
 
-  def Parse(ctx: AbstractRequestCtx): Set[FlatAttributeValue] = {
+  def Parse(ctx: AbstractRequestCtx): Seq[ContextAttributeValue] = {
     def parseAttributes(as: Attributes) = {
       as.getAttributes.flatMap(
           a => a.getValues.map(
             v => FlatAttributeValue(as.getCategory, a.getId, v.getType, v.encode())))
     }
 
-    def parseContent(category: URI, contentRoot: Node): Set[FlatAttributeValue] = {
+    def parseContent(category: URI, contentRoot: Node): Seq[ContextAttributeValue] = {
       if(contentRoot != null) {
         contentRoot.nonEmptyChildren.flatMap(node => {
           node match {
             case el: Elem => {
-              val name = el.namespace + ":" + el.label
+              val name = new URI(el.scope.uri + ":" + el.label)
               val xsdType = new URI("http://www.w3.org/2001/XMLSchema#string")
-              val value = el.text
-              new Some(FlatAttributeValue(category, new URI(name), xsdType, value))
+
+              el.nonEmptyChildren.flatMap(c=> {
+                c match {
+                  case text: Text => {
+                    if(text.data.trim() != "") Some(FlatAttributeValue(category, name, xsdType, text.data))
+                    else None
+                  }
+                  case child: Elem => Some(NestedAttributeValue(category, name, parseContent(category, el)))
+                  case _ => None
+                }
+              })
             }
             case _ => None
           }
-        }).toSet
+        })
       } else {
-        Set.empty[FlatAttributeValue]
+        Seq.empty[ContextAttributeValue]
       }
     }
 
@@ -62,6 +71,6 @@ object ContextParser {
         val content = parseContent(as.getCategory, asXml(as.getContent))
         attrs ++ content
       }
-    ).toSet
+    ).toSeq
   }
 }

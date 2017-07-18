@@ -43,7 +43,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
 
     describe("for a simple request") {
 
-      val input = Set(FlatAttributeValue(
+      val input = Seq(FlatAttributeValue(
         new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action"),
         new URI("urn:oasis:names:tc:xacml:1.0:action:action-id"),
         new URI("http://www.w3.org/2001/XMLSchema#string"),
@@ -85,7 +85,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
     }
 
     describe("for a category with multiple attribute values") {
-      val input = Set(
+      val input = Seq(
         FlatAttributeValue(
           new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
@@ -168,7 +168,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
 
 
     describe("for a subject with anyURI id") {
-      val input = Set(
+      val input = Seq(
         FlatAttributeValue(
           new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
@@ -194,7 +194,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
     }
 
     describe("for a subject with non XMLSchema datatype id") {
-      val input = Set(
+      val input = Seq(
         FlatAttributeValue(
           new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),

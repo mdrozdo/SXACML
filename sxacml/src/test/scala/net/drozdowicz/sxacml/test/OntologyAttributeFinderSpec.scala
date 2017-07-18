@@ -27,7 +27,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
     describe("for a request with data property") {
 
-      val input = Set(
+      val input = Seq(
         FlatAttributeValue(
           new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           new URI("urn:oasis:names:tc:xacml:2.0:conformance-test:age"),
@@ -79,7 +79,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     describe("findAttributeValues") {
       describe("if multiple values can be inferred") {
 
-        val input = Set(
+        val input = Seq(
           FlatAttributeValue(
             new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
             new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),
@@ -112,7 +112,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       describe("when subject id is specified (and not anyURI)") {
 
-        val input = Set(
+        val input = Seq(
           FlatAttributeValue(
             new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
             new URI("urn:oasis:names:tc:xacml:1.0:subject:subject-id"),

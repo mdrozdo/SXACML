@@ -13,29 +13,33 @@ object RequestOntologyGenerator {
     "urn:oasis:names:tc:xacml:1.0:action:action-id"
   )
 
-  def convertToOntology(owlManager: OWLOntologyManager)(requestId: String, requestAttributes: Set[FlatAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
+  def convertToOntology(owlManager: OWLOntologyManager)(requestId: String, requestAttributes: Seq[ContextAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
     val factory = owlManager.getOWLDataFactory()
 
     val ontologyId = "http://drozdowicz.net/sxacml/onto/request/" + requestId
     val ontology = owlManager.createOntology(IRI.create(ontologyId))
 
-    requestAttributes.foreach(attributeValue => {
+    requestAttributes.foreach(at => {
+      at match{
+        case attributeValue:FlatAttributeValue => {
+          val uri: String = getCategoryIndividualUri(requestId, attributeValue)
+          val category = factory.getOWLNamedIndividual(IRI.create(uri))
+          val categoryClass = factory.getOWLClass(IRI.create(attributeValue.categoryId))
+          val classAxiom = factory.getOWLClassAssertionAxiom(categoryClass, category)
+          owlManager.addAxiom(ontology, classAxiom)
 
-      val uri: String = getCategoryIndividualUri(requestId, attributeValue)
-      val category = factory.getOWLNamedIndividual(IRI.create(uri))
-      val categoryClass = factory.getOWLClass(IRI.create(attributeValue.categoryId))
-      val classAxiom = factory.getOWLClassAssertionAxiom(categoryClass, category)
-      owlManager.addAxiom(ontology, classAxiom)
+          val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
+          val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
+            factory.getOWLDatatype(IRI.create(attributeValue.valueType))
+          else
+            factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
 
-      val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
-      val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
-        factory.getOWLDatatype(IRI.create(attributeValue.valueType))
-      else
-        factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
+          val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
+          val propertyAxiom = factory.getOWLDataPropertyAssertionAxiom(attribute, category, value);
+          owlManager.addAxiom(ontology, propertyAxiom)
+        }
+      }
 
-      val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
-      val propertyAxiom = factory.getOWLDataPropertyAssertionAxiom(attribute, category, value);
-      owlManager.addAxiom(ontology, propertyAxiom)
     })
 
     otherOntologies.foreach(ontologyIRI => {
