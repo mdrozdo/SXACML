@@ -75,21 +75,13 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     val attributes = ContextParser.Parse(context.getRequestCtx)
     if(log.isDebugEnabled) {
       val attributesString = attributes
-        .map(at => {
-          at match{
-            case flat: FlatAttributeValue => "'"+flat.categoryId+"' : '"+flat.attributeId+"' = '"+ flat.valueString +"@" + flat.valueType
-          }
-        })
+        .map {
+          case flat: FlatAttributeValue => "'" + flat.categoryId + "' : '" + flat.attributeId + "' = '" + flat.valueString + "@" + flat.valueType
+        }
         .mkString(";\r\n")
       log.debug(s"Received context with attributes: \r\n$attributesString")
     }
-    val categoryIndividualIds = attributes
-      .map(at => {
-        at match{
-          case flat:FlatAttributeValue => (flat.categoryId, RequestOntologyGenerator.getCategoryIndividualUri(requestId, flat))
-        }
-      })
-      .toMap
+    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(requestId, attributes)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
     val result = OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
 

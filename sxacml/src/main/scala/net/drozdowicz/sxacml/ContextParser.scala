@@ -79,7 +79,7 @@ object ContextParser {
                     if(text.data.trim() != "") Some(FlatAttributeValue(category, name, xsdType, text.data))
                     else None
                   }
-                  case child: Elem => Some(NestedAttributeValue(category, name, parseContentAttributes(category, el)))
+                  case child: Elem => Some(NestedAttributeValue(category, el.scope.uri, el.label, parseContentAttributes(category, el)))
                   case _ => None
                 }
               })

@@ -1,5 +1,9 @@
 package net.drozdowicz.sxacml
 
+import java.net.URI
+import java.util.jar.Attributes
+
+import net.drozdowicz.sxacml.RequestOntologyGenerator.getCategoryIndividualUri
 import org.semanticweb.owlapi.io.SystemOutDocumentTarget
 import org.semanticweb.owlapi.model._
 
@@ -13,34 +17,58 @@ object RequestOntologyGenerator {
     "urn:oasis:names:tc:xacml:1.0:action:action-id"
   )
 
+  def getCategoryIndividualIds(requestId: String, attributes: Seq[ContextAttributeValue]) = {
+    val categoryAttributes = attributes.groupBy(at => at.categoryId)
+    categoryAttributes.map { case (cat, atts) => {
+      (cat, getCategoryIndividualUri(requestId, atts))
+    }
+    }
+  }
+
+  //TODO: Split into subroutines
   def convertToOntology(owlManager: OWLOntologyManager)(requestId: String, requestAttributes: Seq[ContextAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
     val factory = owlManager.getOWLDataFactory()
 
     val ontologyId = "http://drozdowicz.net/sxacml/onto/request/" + requestId
     val ontology = owlManager.createOntology(IRI.create(ontologyId))
 
-    requestAttributes.foreach(at => {
-      at match{
-        case attributeValue:FlatAttributeValue => {
-          val uri: String = getCategoryIndividualUri(requestId, attributeValue)
-          val category = factory.getOWLNamedIndividual(IRI.create(uri))
-          val categoryClass = factory.getOWLClass(IRI.create(attributeValue.categoryId))
-          val classAxiom = factory.getOWLClassAssertionAxiom(categoryClass, category)
-          owlManager.addAxiom(ontology, classAxiom)
+    val categoryIds = getCategoryIndividualIds(requestId, requestAttributes)
 
-          val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
-          val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
-            factory.getOWLDatatype(IRI.create(attributeValue.valueType))
-          else
-            factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
+    val categoryIndividuals = categoryIds.map {
+      case (cat, id) => {
+        val category = factory.getOWLNamedIndividual(IRI.create(id))
+        val categoryClass = factory.getOWLClass(IRI.create(cat))
+        val classAxiom = factory.getOWLClassAssertionAxiom(categoryClass, category)
+        owlManager.addAxiom(ontology, classAxiom)
 
-          val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
-          val propertyAxiom = factory.getOWLDataPropertyAssertionAxiom(attribute, category, value);
-          owlManager.addAxiom(ontology, propertyAxiom)
-        }
+        (cat, category)
       }
+    }
 
-    })
+    requestAttributes.foreach {
+      case attributeValue: FlatAttributeValue =>
+        val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
+        val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
+          factory.getOWLDatatype(IRI.create(attributeValue.valueType))
+        else
+          factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
+
+        val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
+        val propertyAxiom = factory.getOWLDataPropertyAssertionAxiom(attribute,
+          categoryIndividuals(attributeValue.categoryId), value)
+        owlManager.addAxiom(ontology, propertyAxiom)
+
+      case NestedAttributeValue(categoryId, namespace, localName, children) =>
+        val elementId = new URI(namespace + ":" + localName)
+        val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId)))
+        val elementClass = factory.getOWLClass(IRI.create(elementId))
+        val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, element)
+        owlManager.addAxiom(ontology, classAxiom)
+
+        val property = factory.getOWLObjectProperty(namespace + ":has" + localName.capitalize)
+        val propertyAxiom = factory.getOWLObjectPropertyAssertionAxiom(property, categoryIndividuals(categoryId), element)
+        owlManager.addAxiom(ontology, propertyAxiom)
+    }
 
     otherOntologies.foreach(ontologyIRI => {
       val importDecl = factory.getOWLImportsDeclaration(ontologyIRI)
@@ -52,11 +80,19 @@ object RequestOntologyGenerator {
     ontology
   }
 
-  def getCategoryIndividualUri(requestId: String, attributeValue: FlatAttributeValue): String = {
-    val uri = if (attributeDescribesId(attributeValue)) attributeValue.valueString
-    else attributeValue.categoryId + ":request_" + requestId;
-    uri
+  def getCategoryIndividualUri(requestId: String, attributes: Seq[ContextAttributeValue]) = {
+    val catId = attributes.head.categoryId
+
+    val flatAttributes = (attributes.head match {
+      case nested: NestedAttributeValue => nested.children
+      case _: FlatAttributeValue => attributes
+    }).filter(at => at.isInstanceOf[FlatAttributeValue]).map(at => at.asInstanceOf[FlatAttributeValue])
+
+    flatAttributes.find(at => attributeDescribesId(at)).map(av => av.valueString)
+      .getOrElse(catId + ":request_" + requestId)
   }
+
+  def getIndividualUri(requestId: String, elementId: URI) = elementId + "_request_" + requestId
 
   def attributeDescribesId(attributeValue: FlatAttributeValue): Boolean = {
     idAttributes.contains(attributeValue.attributeId.toString) &&

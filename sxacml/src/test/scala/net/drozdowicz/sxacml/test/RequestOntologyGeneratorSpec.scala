@@ -4,7 +4,7 @@ import java.io.File
 import java.net.URI
 
 import org.apache.jena.query.QuerySolution
-import net.drozdowicz.sxacml.{FlatAttributeValue, RequestOntologyGenerator}
+import net.drozdowicz.sxacml.{FlatAttributeValue, NestedAttributeValue, RequestOntologyGenerator}
 import onto.sparql.{SingleValueResultProcessor, SparqlReader, ValueSetResultProcessor}
 import org.scalatest.{Matchers, OneInstancePerTest, path}
 import org.semanticweb.owlapi.apibinding.OWLManager
@@ -33,6 +33,18 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
       sparqlReader.executeQuery(query, new SingleValueResultProcessor {
         override def processSolution(sol: QuerySolution): Unit = {
           result = Some(sol)
+        }
+      })
+      result
+    }
+
+    def getMultiSparqlResult(ontology: OWLOntology, query: String): Seq[QuerySolution] = {
+      val sparqlReader = new SparqlReader(ontology)
+      var result: List[QuerySolution] = List()
+
+      sparqlReader.executeQuery(query, new ValueSetResultProcessor {
+        override def processSolution(sol: QuerySolution): Unit = {
+          result = sol :: result
         }
       })
       result
@@ -218,6 +230,75 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         result should not equal None
         result.get.getLiteral("val").getDatatypeURI should equal("http://www.w3.org/2001/XMLSchema#string")
         result.get.getLiteral("val").getString should equal("bart@simpsons.com")
+      }
+
+      describe("for a resource with nested attributes") {
+        val input = Seq(
+          NestedAttributeValue(
+            new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            "urn:example:med:schemas:record",
+            "patient",
+            Seq(
+              FlatAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                new URI("urn:example:med:schemas:record:patientDoB"),
+                new URI("http://www.w3.org/2001/XMLSchema#string"),
+                "1992-03-21"
+              ),
+              FlatAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                new URI(
+                  "urn:example:med:schemas:record:patient-number"),
+                new URI("http://www.w3.org/2001/XMLSchema#string"),
+                "555555"
+              ),
+              NestedAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                "urn:example:med:schemas:record",
+                "patientContact",
+                Seq(
+                  FlatAttributeValue(
+                    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                    new URI(
+                      "urn:example:med:schemas:record:email"),
+                    new URI("http://www.w3.org/2001/XMLSchema#string"),
+                    "b.simpson@example.com"
+                  )
+                )
+              )
+            )
+          )
+        )
+
+        val ontology = convertToOntology("111", input, Set.empty[IRI])
+
+        it("should output individual of class id from element uri") {
+          val qry =
+            """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+              |SELECT ?ind WHERE
+              |{
+              |	?ind rdf:type <urn:example:med:schemas:record:patient>
+              |}""".stripMargin
+          val result = getSingleSparqlResult(ontology, qry)
+
+          result should not equal None
+          result.get.getResource("ind").getNameSpace should equal("urn:example:med:schemas:record:")
+        }
+
+        it("should output relation between category and nested individual") {
+          val qry =
+            """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+              |SELECT ?prop WHERE
+              |{
+              |	?cat rdf:type <urn:oasis:names:tc:xacml:3.0:attribute-category:resource>.
+              | ?ind rdf:type <urn:example:med:schemas:record:patient>.
+              | ?cat ?prop ?ind.
+              |
+              |}""".stripMargin
+          val result = getMultiSparqlResult(ontology, qry)
+
+          result.map(r=>r.getResource("prop").getURI.toString) should contain ("urn:example:med:schemas:record:hasPatient")
+        }
       }
     }
   }

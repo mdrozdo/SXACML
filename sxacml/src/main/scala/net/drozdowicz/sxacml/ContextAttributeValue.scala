@@ -9,7 +9,7 @@ import org.wso2.balana.attr.{AttributeFactory, AttributeValue}
  */
 
 sealed trait ContextAttributeValue{
-
+  val categoryId:URI
 }
 
 case class FlatAttributeValue(categoryId:URI, attributeId:URI, valueType: URI, valueString: String) extends ContextAttributeValue {
@@ -18,6 +18,6 @@ case class FlatAttributeValue(categoryId:URI, attributeId:URI, valueType: URI, v
   }
 }
 
-case class NestedAttributeValue(categoryId:URI, elementId: URI, children: Seq[ContextAttributeValue]) extends ContextAttributeValue{
+case class NestedAttributeValue(categoryId:URI, namespace: String, localName: String, children: Seq[ContextAttributeValue]) extends ContextAttributeValue{
 
 }

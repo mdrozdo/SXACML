@@ -159,7 +159,8 @@ class ContextParserSpec extends FunSpec with Matchers {
       attributeValues should contain (
         NestedAttributeValue(
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-          new URI("urn:example:med:schemas:record:patient"),
+          "urn:example:med:schemas:record",
+          "patient",
           Seq(
             FlatAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
@@ -176,7 +177,8 @@ class ContextParserSpec extends FunSpec with Matchers {
             ),
             NestedAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-              new URI("urn:example:med:schemas:record:patientContact"),
+              "urn:example:med:schemas:record",
+              "patientContact",
               Seq(
                 FlatAttributeValue(
                   new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
