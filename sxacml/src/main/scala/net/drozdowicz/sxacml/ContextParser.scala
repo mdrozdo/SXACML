@@ -31,6 +31,16 @@ object ContextParser {
     adapter.rootElem
   }
 
+
+  def classIdForCategory(category: URI): URI = {
+    category.toString match{
+      case "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" => new URI("sxacml:subject:subject-class-id")
+      case "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" => new URI("sxacml:resource:resource-class-id")
+      case "urn:oasis:names:tc:xacml:3.0:attribute-category:action" => new URI("sxacml:action:action-class-id")
+      case "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" => new URI("sxacml:environment:environment-class-id")
+    }
+  }
+
   def Parse(ctx: AbstractRequestCtx): Seq[ContextAttributeValue] = {
     def parseAttributes(as: Attributes) = {
       as.getAttributes.flatMap(
@@ -39,6 +49,23 @@ object ContextParser {
     }
 
     def parseContent(category: URI, contentRoot: Node): Seq[ContextAttributeValue] = {
+      (parseRootClassId(category, contentRoot) ++ parseContentAttributes(category, contentRoot)).toSeq
+    }
+
+    def parseRootClassId(category: URI, contentRoot: Node) : Option[FlatAttributeValue] = {
+      if(contentRoot != null) {
+        Some(FlatAttributeValue(
+          category,
+          classIdForCategory(category),
+          new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
+          contentRoot.scope.uri + ":" + contentRoot.label
+        ))
+      } else {
+        None
+      }
+    }
+
+    def parseContentAttributes(category: URI, contentRoot: Node): Seq[ContextAttributeValue] = {
       if(contentRoot != null) {
         contentRoot.nonEmptyChildren.flatMap(node => {
           node match {
@@ -52,7 +79,7 @@ object ContextParser {
                     if(text.data.trim() != "") Some(FlatAttributeValue(category, name, xsdType, text.data))
                     else None
                   }
-                  case child: Elem => Some(NestedAttributeValue(category, name, parseContent(category, el)))
+                  case child: Elem => Some(NestedAttributeValue(category, name, parseContentAttributes(category, el)))
                   case _ => None
                 }
               })
@@ -67,9 +94,7 @@ object ContextParser {
 
     ctx.getAttributesSet.flatMap(
       as => {
-        val attrs = parseAttributes(as)
-        val content = parseContent(as.getCategory, asXml(as.getContent))
-        attrs ++ content
+        parseAttributes(as) ++ parseContent(as.getCategory, asXml(as.getContent))
       }
     ).toSeq
   }

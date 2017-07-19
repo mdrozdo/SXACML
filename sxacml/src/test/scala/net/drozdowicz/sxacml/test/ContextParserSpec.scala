@@ -103,7 +103,7 @@ class ContextParserSpec extends FunSpec with Matchers {
       )
     }
 
-    ignore("should parse content with resource class id") {
+    it("should parse content with resource class id") {
       val reqStr = """<?xml version="1.0" encoding="utf-8"?>
                      |
                      |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
