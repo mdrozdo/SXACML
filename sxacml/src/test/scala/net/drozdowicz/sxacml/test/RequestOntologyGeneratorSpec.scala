@@ -297,7 +297,26 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
               |}""".stripMargin
           val result = getMultiSparqlResult(ontology, qry)
 
-          result.map(r=>r.getResource("prop").getURI.toString) should contain ("urn:example:med:schemas:record:hasPatient")
+          result.map(r => r.getResource("prop").getURI.toString) should contain("urn:example:med:schemas:record:hasPatient")
+        }
+
+        it("should output property values of nested individual") {
+          val qry =
+            """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+              |SELECT ?prop ?val WHERE
+              |{
+              |	?ind rdf:type <urn:example:med:schemas:record:patient>.
+              | ?ind ?prop ?val
+              |
+              |}""".stripMargin
+          val result = getMultiSparqlResult(ontology, qry)
+
+          result.flatMap(r => {
+            if (r.get("val").isLiteral) Some((r.getResource("prop").getURI, r.getLiteral("val").getString)) else None
+          }) should contain allOf (
+            ("urn:example:med:schemas:record:patientDoB", "1992-03-21"),
+            ("urn:example:med:schemas:record:patient-number", "555555")
+          )
         }
       }
     }
