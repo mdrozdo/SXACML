@@ -236,6 +236,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         val input = Seq(
           NestedAttributeValue(
             new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            None,
             "urn:example:med:schemas:record",
             "patient",
             Seq(
@@ -254,6 +255,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
               ),
               NestedAttributeValue(
                 new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                None,
                 "urn:example:med:schemas:record",
                 "patientContact",
                 Seq(

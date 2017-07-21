@@ -11,14 +11,14 @@ import org.wso2.balana.xacml3.Attributes
 import scala.xml.{Elem, Node, Text}
 
 /**
- * Created by michal on 2015-03-13.
- */
+  * Created by michal on 2015-03-13.
+  */
 object ContextParser {
 
   def asXml(dom: _root_.org.w3c.dom.Node): Node = {
 
     var el = dom
-    while(el != null && el.getNodeType != org.w3c.dom.Node.ELEMENT_NODE){
+    while (el != null && el.getNodeType != org.w3c.dom.Node.ELEMENT_NODE) {
       el = el.getNextSibling
     }
 
@@ -33,7 +33,7 @@ object ContextParser {
 
 
   def classIdForCategory(category: URI): URI = {
-    category.toString match{
+    category.toString match {
       case "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" => new URI("sxacml:subject:subject-class-id")
       case "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" => new URI("sxacml:resource:resource-class-id")
       case "urn:oasis:names:tc:xacml:3.0:attribute-category:action" => new URI("sxacml:action:action-class-id")
@@ -44,21 +44,21 @@ object ContextParser {
   def Parse(ctx: AbstractRequestCtx): Seq[ContextAttributeValue] = {
     def parseAttributes(as: Attributes) = {
       as.getAttributes.flatMap(
-          a => a.getValues.map(
-            v => FlatAttributeValue(as.getCategory, a.getId, v.getType, v.encode())))
+        a => a.getValues.map(
+          v => FlatAttributeValue(as.getCategory, a.getId, v.getType, v.encode())))
     }
 
     def parseContent(category: URI, contentRoot: Node): Seq[ContextAttributeValue] = {
       (parseRootClassId(category, contentRoot) ++ parseContentAttributes(category, contentRoot)).toSeq
     }
 
-    def parseRootClassId(category: URI, contentRoot: Node) : Option[FlatAttributeValue] = {
-      if(contentRoot != null) {
+    def parseRootClassId(category: URI, contentRoot: Node): Option[FlatAttributeValue] = {
+      if (contentRoot != null) {
         Some(FlatAttributeValue(
           category,
           classIdForCategory(category),
           new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-          contentRoot.scope.uri + ":" + contentRoot.label
+          contentRoot.namespace + ":" + contentRoot.label
         ))
       } else {
         None
@@ -66,24 +66,24 @@ object ContextParser {
     }
 
     def parseContentAttributes(category: URI, contentRoot: Node): Seq[ContextAttributeValue] = {
-      if(contentRoot != null) {
+      if (contentRoot != null) {
         contentRoot.nonEmptyChildren.flatMap(node => {
           node match {
-            case el: Elem => {
-              val name = new URI(el.scope.uri + ":" + el.label)
+            case el: Elem =>
+              val name = new URI(el.namespace + ":" + el.label)
               val xsdType = new URI("http://www.w3.org/2001/XMLSchema#string")
+              val propertyId = el.attribute("http://drozdowicz.net/sxacml/request", "property").map(a => new URI(a.text))
 
-              el.nonEmptyChildren.flatMap(c=> {
+              el.nonEmptyChildren.flatMap(c => {
                 c match {
-                  case text: Text => {
-                    if(text.data.trim() != "") Some(FlatAttributeValue(category, name, xsdType, text.data))
+                  case text: Text =>
+                    if (text.data.trim() != "") Some(FlatAttributeValue(category, name, xsdType, text.data))
                     else None
-                  }
-                  case child: Elem => Some(NestedAttributeValue(category, el.scope.uri, el.label, parseContentAttributes(category, el)))
+                  case child: Elem =>
+                    Some(NestedAttributeValue(category, propertyId, el.namespace, el.label, parseContentAttributes(category, el)))
                   case _ => None
                 }
               })
-            }
             case _ => None
           }
         })

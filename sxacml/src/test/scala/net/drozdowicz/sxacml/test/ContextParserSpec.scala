@@ -159,6 +159,7 @@ class ContextParserSpec extends FunSpec with Matchers {
       attributeValues should contain (
         NestedAttributeValue(
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+          None,
           "urn:example:med:schemas:record",
           "patient",
           Seq(
@@ -177,6 +178,7 @@ class ContextParserSpec extends FunSpec with Matchers {
             ),
             NestedAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+              None,
               "urn:example:med:schemas:record",
               "patientContact",
               Seq(
@@ -188,6 +190,57 @@ class ContextParserSpec extends FunSpec with Matchers {
                   "b.simpson@example.com"
                 )
               )
+            )
+          )
+        )
+      )
+    }
+
+    it("should parse content with nested element and property attribute") {
+      val reqStr =
+        """<?xml version="1.0" encoding="utf-8"?>
+          |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          |  <Attributes
+          |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+          |    <Content>
+          |      <md:record xmlns:md="urn:example:med:schemas:record" xmlns:req="http://drozdowicz.net/sxacml/request">
+          |        <md:patient req:property="urn:example:med:schemas:record:describes">
+          |          <md:patientDoB>1992-03-21</md:patientDoB>
+          |          <md:patient-number>555555</md:patient-number>
+          |        </md:patient>
+          |      </md:record>
+          |    </Content>
+          |  </Attributes>
+          |</Request>""".stripMargin
+
+      val reqCtx = RequestCtxFactory.getFactory.getRequestCtx(reqStr)
+      val attributeValues = ContextParser.Parse(reqCtx)
+
+      attributeValues should contain allOf (
+      FlatAttributeValue(
+        new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+        new URI("sxacml:resource:resource-class-id"),
+        new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
+        "urn:example:med:schemas:record:record"
+      ),
+      NestedAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+          Some(new URI("urn:example:med:schemas:record:describes")),
+          "urn:example:med:schemas:record",
+          "patient",
+          Seq(
+            FlatAttributeValue(
+              new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+              new URI("urn:example:med:schemas:record:patientDoB"),
+              new URI("http://www.w3.org/2001/XMLSchema#string"),
+              "1992-03-21"
+            ),
+            FlatAttributeValue(
+              new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+              new URI(
+                "urn:example:med:schemas:record:patient-number"),
+              new URI("http://www.w3.org/2001/XMLSchema#string"),
+              "555555"
             )
           )
         )

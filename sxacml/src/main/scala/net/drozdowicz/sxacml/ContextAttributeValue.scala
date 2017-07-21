@@ -18,6 +18,6 @@ case class FlatAttributeValue(categoryId:URI, attributeId:URI, valueType: URI, v
   }
 }
 
-case class NestedAttributeValue(categoryId:URI, namespace: String, localName: String, children: Seq[ContextAttributeValue]) extends ContextAttributeValue{
+case class NestedAttributeValue(categoryId:URI, propertyId:Option[URI], namespace: String, localName: String, children: Seq[ContextAttributeValue]) extends ContextAttributeValue{
 
 }
