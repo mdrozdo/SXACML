@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Content>
+      <port2:Person xmlns:port2="http://www.semanticweb.org/rafal/ontologies/2017/6/port2" xmnls:req="http://drozdowicz.net/sxacml/request">
+        <port2:Company req:property="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#isHiredBy">
+          <port2:hasName>Stark Transport</port2:hasName>
+        </port2:Company>
+      </port2:Person>
+    </Content>
+    <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">cristiano.cosio@starktransport.com</AttributeValue>
+        </Attribute>
+    </Attributes>
+	<Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+	    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Entry</AttributeValue>
+        </Attribute>
+	</Attributes>
+	<Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+	    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">InternalParking</AttributeValue>
+        </Attribute>
+	</Attributes>
+</Request>
