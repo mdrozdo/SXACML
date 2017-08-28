@@ -42,7 +42,7 @@ object RequestOntologyGenerator {
 
           Seq(factory.getOWLDataPropertyAssertionAxiom(attribute, parent, value))
 
-        case NestedAttributeValue(categoryId, namespace, localName, children) =>
+        case NestedAttributeValue(categoryId, propertyId, namespace, localName, children) =>
           val elementId = new URI(namespace + ":" + localName)
           val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId)))
           val elementClass = factory.getOWLClass(IRI.create(elementId))
