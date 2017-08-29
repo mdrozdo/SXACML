@@ -99,7 +99,7 @@
     <DataPropertyAssertion>
         <DataProperty IRI="#hasName"/>
         <NamedIndividual IRI="#StarkTransport2"/>
-        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Stark Transport</Literal>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Stark Transport 2</Literal>
     </DataPropertyAssertion>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#is"/>
