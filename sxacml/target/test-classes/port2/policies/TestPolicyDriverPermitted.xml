@@ -1,0 +1,16 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"  PolicyId="IsDriverContracted"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0">
+    <Target></Target>
+    <Rule Effect="Permit" RuleId="DriverPermitted">
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of">
+                <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal"></Function>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
+                <AttributeDesignator AttributeId="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#isHiredByContracted"
+                                     Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
+                                     DataType="http://www.w3.org/2001/XMLSchema#boolean"
+                                     MustBePresent="true"></AttributeDesignator>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>
