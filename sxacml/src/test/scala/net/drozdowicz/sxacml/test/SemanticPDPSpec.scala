@@ -121,7 +121,9 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("port ontology sample") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://www.semanticweb.org/rafal/ontologies/2017/6/port2")
+      val pdp = new SemanticPDP(relativeToAbsolute("port2/policies"),
+        relativeToAbsolute("ontologies"),
+        "http://www.semanticweb.org/rafal/ontologies/2017/6/port2")
 
       it("driver should be permitted") {
         val request = readFile("port2/requests/Driver.xml")

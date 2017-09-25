@@ -43,12 +43,12 @@ object RequestOntologyGenerator {
           Seq(factory.getOWLDataPropertyAssertionAxiom(attribute, parent, value))
 
         case NestedAttributeValue(categoryId, propertyId, namespace, localName, children) =>
-          val elementId = new URI(namespace + ":" + localName)
+          val elementId = new URI(namespace + "#" + localName)
           val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId)))
           val elementClass = factory.getOWLClass(IRI.create(elementId))
           val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, element)
 
-          val property = factory.getOWLObjectProperty(namespace + ":has" + localName.capitalize)
+          val property = factory.getOWLObjectProperty(namespace + "#has" + localName.capitalize)
           val propertyAxiom = factory.getOWLObjectPropertyAssertionAxiom(property, parent, element)
           Seq(classAxiom, propertyAxiom) ++ axiomsFromAttributes(element, children, categoryIndividuals, factory)
       }
@@ -98,7 +98,7 @@ object RequestOntologyGenerator {
     }).filter(at => at.isInstanceOf[FlatAttributeValue]).map(at => at.asInstanceOf[FlatAttributeValue])
 
     flatAttributes.find(at => attributeDescribesId(at)).map(av => av.valueString)
-      .getOrElse(catId + ":request_" + requestId)
+      .getOrElse(catId + "#request_" + requestId)
   }
 
   def getIndividualUri(requestId: String, elementId: URI): String = elementId + "_request_" + requestId

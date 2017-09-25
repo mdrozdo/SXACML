@@ -58,7 +58,7 @@ object ContextParser {
           category,
           classIdForCategory(category),
           new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-          contentRoot.namespace + ":" + contentRoot.label
+          contentRoot.namespace + "#" + contentRoot.label
         ))
       } else {
         None
@@ -70,7 +70,7 @@ object ContextParser {
         contentRoot.nonEmptyChildren.flatMap(node => {
           node match {
             case el: Elem =>
-              val name = new URI(el.namespace + ":" + el.label)
+              val name = new URI(el.namespace + "#" + el.label)
               val xsdType = new URI("http://www.w3.org/2001/XMLSchema#string")
               val propertyId = el.attribute("http://drozdowicz.net/sxacml/request", "property").map(a => new URI(a.text))
 

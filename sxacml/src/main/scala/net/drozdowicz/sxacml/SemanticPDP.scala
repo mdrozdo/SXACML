@@ -29,6 +29,8 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
 
   private def createPdp(): PDP = {
     val pdpConfig = balana.getPdpConfig
+    pdpConfig.getPolicyFinder.setModules(Set(new FileBasedPolicyFinderModule()))
+    pdpConfig.getPolicyFinder.init()
     val attributeFinder = initializeAttributeFinder(pdpConfig)
     val resourceFinder = initializeResourceFinders(pdpConfig)
 
