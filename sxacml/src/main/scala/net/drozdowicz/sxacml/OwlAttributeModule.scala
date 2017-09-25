@@ -75,9 +75,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     val attributes = ContextParser.Parse(context.getRequestCtx)
     if(log.isDebugEnabled) {
       val attributesString = attributes
-        .map {
-          case flat: FlatAttributeValue => "'" + flat.categoryId + "' : '" + flat.attributeId + "' = '" + flat.valueString + "@" + flat.valueType
-        }
+        .map(_.toString)
         .mkString(";\r\n")
       log.debug(s"Received context with attributes: \r\n$attributesString")
     }
