@@ -6,7 +6,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2">
-    <Prefix name="" IRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#"/>
+    <Prefix name="" IRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
@@ -25,13 +25,16 @@
         <NamedIndividual IRI="#StarkTransport2"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#ValenciaPort"/>
+        <ObjectProperty IRI="#is"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Driver"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#is"/>
+        <NamedIndividual IRI="#ValenciaPort"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#isHiredByContracted"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Yard"/>
@@ -52,8 +55,29 @@
         <NamedIndividual IRI="#StarkTransport"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#ContractedDriver"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#ContractedHaulier"/>
     </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#ContractedDriver"/>
+        <DataHasValue>
+            <DataProperty IRI="#isHiredByContracted"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+        </DataHasValue>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#ContractedDriver"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ContractedDriver"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isHiredBy"/>
+            <Class IRI="#ContractedHaulier"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
     <SubClassOf>
         <Class IRI="#ContractedHaulier"/>
         <Class IRI="#Company"/>
@@ -81,6 +105,10 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Company"/>
+        <NamedIndividual IRI="#StarkTransport"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ContractedHaulier"/>
         <NamedIndividual IRI="#StarkTransport"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -134,6 +162,22 @@
         <ObjectProperty IRI="#isHiredBy"/>
         <Class IRI="#Company"/>
     </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasName"/>
+        <Class IRI="#Company"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#isHiredByContracted"/>
+        <Class IRI="#Person"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#isHiredByContracted"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
     <HasKey>
         <Class IRI="#Company"/>
         <DataProperty IRI="#hasName"/>
