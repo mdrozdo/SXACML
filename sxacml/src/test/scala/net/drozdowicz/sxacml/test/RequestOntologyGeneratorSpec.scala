@@ -280,7 +280,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
               ),
               NestedAttributeValue(
                 new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-                None,
+                Some(new URI("urn:example:med:schemas:record#contact")),
                 "urn:example:med:schemas:record",
                 "patientContact",
                 Seq(
@@ -325,6 +325,21 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           val result = getMultiSparqlResult(ontology, qry)
 
           result.map(r => r.getResource("prop").getURI.toString) should contain("urn:example:med:schemas:record#hasPatient")
+        }
+
+        it("should output property with specified name") {
+          val qry =
+            """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+              |SELECT ?prop WHERE
+              |{
+              | ?patient rdf:type <urn:example:med:schemas:record#patient>.
+              | ?email rdf:type <urn:example:med:schemas:record#patientContact>.
+              | ?patient ?prop ?email.
+              |
+              |}""".stripMargin
+          val result = getMultiSparqlResult(ontology, qry)
+
+          result.map(r => r.getResource("prop").getURI.toString) should contain("urn:example:med:schemas:record#contact")
         }
 
         it("should output property values of nested individual") {

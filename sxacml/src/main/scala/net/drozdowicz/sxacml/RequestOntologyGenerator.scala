@@ -61,7 +61,8 @@ object RequestOntologyGenerator {
           val elementClass = factory.getOWLClass(IRI.create(elementId))
           val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, element)
 
-          val property = factory.getOWLObjectProperty(namespace + "#has" + localName.capitalize)
+          val propertyIdVal = propertyId.map(p=>p.toString).getOrElse(namespace + "#has" + localName.capitalize)
+          val property = factory.getOWLObjectProperty(propertyIdVal)
           val propertyAxiom = factory.getOWLObjectPropertyAssertionAxiom(property, parent, element)
           Seq(classAxiom, propertyAxiom) ++ axiomsFromAttributes(element, children, categoryIndividuals, factory)
       }
