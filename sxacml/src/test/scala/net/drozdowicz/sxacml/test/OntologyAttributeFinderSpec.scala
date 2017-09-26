@@ -41,7 +41,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       val ontology = convertToOntology("123", input, Set(toImport))
 
       it("should find value of derived attribute ") {
-        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
+        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject#request_123",
           "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/test1#isAdult")
 
         values should contain only (FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
@@ -51,7 +51,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       }
 
       it("should output type of the individual as an attribute value") {
-        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
+        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject#request_123",
           "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "urn:sxacml:attributes:type")
 
         values should contain(FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
@@ -126,7 +126,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         val ontology = convertToOntology("123", input, Set(toImport))
 
         it("should match subject by id") {
-          val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject:request_123",
+          val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject#request_123",
             "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testIdMatch#hasFirstName")
 
           values.size should be(1)

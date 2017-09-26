@@ -205,6 +205,31 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
       }
     }
 
+    describe("for a subject subject-class-id attribute") {
+      val input = Seq(
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          new URI("sxacml:subject:subject-class-id"),
+          new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
+          "http://drozdowicz.net/sxacml/test#SomeSubjectClass"
+        )
+      )
+
+      val ontology = convertToOntology("123", input, Set.empty[IRI])
+
+      it("should output subject of type matching class-id attribute") {
+        val qry =
+          """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            |SELECT ?uri WHERE
+            |{
+            |	?uri rdf:type <http://drozdowicz.net/sxacml/test#SomeSubjectClass>
+            |}""".stripMargin
+        val result = getSingleSparqlResult(ontology, qry)
+
+        result should not equal None
+      }
+    }
+
     describe("for a subject with non XMLSchema datatype id") {
       val input = Seq(
         FlatAttributeValue(
@@ -242,14 +267,14 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
             Seq(
               FlatAttributeValue(
                 new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-                new URI("urn:example:med:schemas:record:patientDoB"),
+                new URI("urn:example:med:schemas:record#patientDoB"),
                 new URI("http://www.w3.org/2001/XMLSchema#string"),
                 "1992-03-21"
               ),
               FlatAttributeValue(
                 new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
                 new URI(
-                  "urn:example:med:schemas:record:patient-number"),
+                  "urn:example:med:schemas:record#patient-number"),
                 new URI("http://www.w3.org/2001/XMLSchema#string"),
                 "555555"
               ),
@@ -262,7 +287,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
                   FlatAttributeValue(
                     new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
                     new URI(
-                      "urn:example:med:schemas:record:email"),
+                      "urn:example:med:schemas:record#email"),
                     new URI("http://www.w3.org/2001/XMLSchema#string"),
                     "b.simpson@example.com"
                   )
@@ -279,12 +304,12 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
             """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
               |SELECT ?ind WHERE
               |{
-              |	?ind rdf:type <urn:example:med:schemas:record:patient>
+              |	?ind rdf:type <urn:example:med:schemas:record#patient>
               |}""".stripMargin
           val result = getSingleSparqlResult(ontology, qry)
 
           result should not equal None
-          result.get.getResource("ind").getNameSpace should equal("urn:example:med:schemas:record:")
+          result.get.getResource("ind").getNameSpace should equal("urn:example:med:schemas:record#")
         }
 
         it("should output relation between category and nested individual") {
@@ -293,13 +318,13 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
               |SELECT ?prop WHERE
               |{
               |	?cat rdf:type <urn:oasis:names:tc:xacml:3.0:attribute-category:resource>.
-              | ?ind rdf:type <urn:example:med:schemas:record:patient>.
+              | ?ind rdf:type <urn:example:med:schemas:record#patient>.
               | ?cat ?prop ?ind.
               |
               |}""".stripMargin
           val result = getMultiSparqlResult(ontology, qry)
 
-          result.map(r => r.getResource("prop").getURI.toString) should contain("urn:example:med:schemas:record:hasPatient")
+          result.map(r => r.getResource("prop").getURI.toString) should contain("urn:example:med:schemas:record#hasPatient")
         }
 
         it("should output property values of nested individual") {
@@ -307,7 +332,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
             """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
               |SELECT ?prop ?val WHERE
               |{
-              |	?ind rdf:type <urn:example:med:schemas:record:patient>.
+              |	?ind rdf:type <urn:example:med:schemas:record#patient>.
               | ?ind ?prop ?val
               |
               |}""".stripMargin
@@ -316,8 +341,8 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           result.flatMap(r => {
             if (r.get("val").isLiteral) Some((r.getResource("prop").getURI, r.getLiteral("val").getString)) else None
           }) should contain allOf (
-            ("urn:example:med:schemas:record:patientDoB", "1992-03-21"),
-            ("urn:example:med:schemas:record:patient-number", "555555")
+            ("urn:example:med:schemas:record#patientDoB", "1992-03-21"),
+            ("urn:example:med:schemas:record#patient-number", "555555")
           )
         }
       }
