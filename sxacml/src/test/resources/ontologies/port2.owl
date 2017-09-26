@@ -6,7 +6,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2">
-    <Prefix name="" IRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2"/>
+    <Prefix name="" IRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
@@ -62,6 +62,13 @@
     </Declaration>
     <EquivalentClasses>
         <Class IRI="#ContractedDriver"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isHiredBy"/>
+            <Class IRI="#ContractedHaulier"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ContractedDriver"/>
         <DataHasValue>
             <DataProperty IRI="#isHiredByContracted"/>
             <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
@@ -70,13 +77,6 @@
     <SubClassOf>
         <Class IRI="#ContractedDriver"/>
         <Class IRI="#Person"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#ContractedDriver"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#isHiredBy"/>
-            <Class IRI="#ContractedHaulier"/>
-        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#ContractedHaulier"/>
