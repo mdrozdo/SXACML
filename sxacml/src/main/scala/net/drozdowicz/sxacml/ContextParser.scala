@@ -15,33 +15,34 @@ import scala.xml.{Elem, Node, Text}
   */
 object ContextParser {
 
-  def asXml(dom: _root_.org.w3c.dom.Node): Node = {
-
-    var el = dom
-    while (el != null && el.getNodeType != org.w3c.dom.Node.ELEMENT_NODE) {
-      el = el.getNextSibling
-    }
-
-    val source = new DOMSource(el)
-    val adapter = new scala.xml.parsing.NoBindingFactoryAdapter
-    val saxResult = new SAXResult(adapter)
-    val transformerFactory = javax.xml.transform.TransformerFactory.newInstance()
-    val transformer = transformerFactory.newTransformer()
-    transformer.transform(source, saxResult)
-    adapter.rootElem
-  }
-
-
-  def classIdForCategory(category: URI): URI = {
-    category.toString match {
-      case "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" => new URI("sxacml:subject:subject-class-id")
-      case "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" => new URI("sxacml:resource:resource-class-id")
-      case "urn:oasis:names:tc:xacml:3.0:attribute-category:action" => new URI("sxacml:action:action-class-id")
-      case "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" => new URI("sxacml:environment:environment-class-id")
-    }
-  }
-
   def Parse(ctx: AbstractRequestCtx): Seq[ContextAttributeValue] = {
+
+    def asXml(dom: _root_.org.w3c.dom.Node): Node = {
+
+      var el = dom
+      while (el != null && el.getNodeType != org.w3c.dom.Node.ELEMENT_NODE) {
+        el = el.getNextSibling
+      }
+
+      val source = new DOMSource(el)
+      val adapter = new scala.xml.parsing.NoBindingFactoryAdapter
+      val saxResult = new SAXResult(adapter)
+      val transformerFactory = javax.xml.transform.TransformerFactory.newInstance()
+      val transformer = transformerFactory.newTransformer()
+      transformer.transform(source, saxResult)
+      adapter.rootElem
+    }
+
+
+    def classIdForCategory(category: URI): URI = {
+      category.toString match {
+        case "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" => new URI("sxacml:subject:subject-class-id")
+        case "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" => new URI("sxacml:resource:resource-class-id")
+        case "urn:oasis:names:tc:xacml:3.0:attribute-category:action" => new URI("sxacml:action:action-class-id")
+        case "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" => new URI("sxacml:environment:environment-class-id")
+      }
+    }
+
     def parseAttributes(as: Attributes) = {
       as.getAttributes.flatMap(
         a => a.getValues.map(

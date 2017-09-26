@@ -18,6 +18,13 @@ object RequestOntologyGenerator {
     "urn:oasis:names:tc:xacml:1.0:action:action-id"
   )
 
+  val classIdForCategory = Map(
+    "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" -> new URI("sxacml:subject:subject-class-id"),
+    "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" -> new URI("sxacml:resource:resource-class-id"),
+    "urn:oasis:names:tc:xacml:3.0:attribute-category:action" -> new URI("sxacml:action:action-class-id"),
+    "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" -> new URI("sxacml:environment:environment-class-id")
+  )
+
   def getCategoryIndividualIds(requestId: String, attributes: Seq[ContextAttributeValue]) = {
     val categoryAttributes = attributes.groupBy(at => at.categoryId)
     categoryAttributes.map { case (cat, atts) => {
@@ -32,16 +39,22 @@ object RequestOntologyGenerator {
     def axiomsFromAttributes(parent: OWLNamedIndividual, attributes: Seq[ContextAttributeValue], categoryIndividuals: Map[URI, OWLNamedIndividual], factory: OWLDataFactory): Seq[OWLIndividualAxiom] = {
       attributes.flatMap {
         case attributeValue: FlatAttributeValue =>
-          val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
-          val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
-            factory.getOWLDatatype(IRI.create(attributeValue.valueType))
-          else
-            factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
+          if(attributeValue.attributeId == classIdForCategory(attributeValue.categoryId.toString)){
+            val elementClass = factory.getOWLClass(IRI.create(attributeValue.valueString))
+            val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, parent)
 
-          val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
+            Seq(classAxiom)
+          } else {
+            val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
+            val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
+              factory.getOWLDatatype(IRI.create(attributeValue.valueType))
+            else
+              factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
 
-          Seq(factory.getOWLDataPropertyAssertionAxiom(attribute, parent, value))
+            val value = factory.getOWLLiteral(attributeValue.valueString, datatype)
 
+            Seq(factory.getOWLDataPropertyAssertionAxiom(attribute, parent, value))
+          }
         case NestedAttributeValue(categoryId, propertyId, namespace, localName, children) =>
           val elementId = new URI(namespace + "#" + localName)
           val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId)))
