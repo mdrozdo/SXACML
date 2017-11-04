@@ -12,7 +12,7 @@ import play.api.mvc._;
   * application's home page.
   */
 @Singleton
-class HomeController @Inject()(val ontoReader: OntologyReader) extends Controller {
+class HomeController extends Controller {
 
 
   /**
@@ -22,9 +22,7 @@ class HomeController @Inject()(val ontoReader: OntologyReader) extends Controlle
     * a path of `/`.
     */
   def index = Action {
-    val owlClass = getOwlClassFromName("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject")
     Ok(views.html.index())
   }
 
-  protected def getOwlClassFromName(className: String): OntoClass = ontoReader.getOwlClass(className)
 }

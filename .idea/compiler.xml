@@ -396,4 +396,7 @@
       <module name="wso2is-identity-samples-xacml" target="1.5" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf8 -g" />
+  </component>
 </project>

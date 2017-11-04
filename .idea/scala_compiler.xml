@@ -7,5 +7,13 @@
         <parameter value="C:\git\sxacml\sxacml\target/.scala_dependencies" />
       </parameters>
     </profile>
+    <profile name="SBT 2" modules="root,module">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <parameters>
+        <parameter value="-encoding" />
+        <parameter value="utf8" />
+      </parameters>
+    </profile>
   </component>
 </project>
