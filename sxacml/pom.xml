@@ -108,7 +108,13 @@
             <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.entitlement</artifactId>
             <version>5.5.0-m3</version>
-            <!--<exclusions>-->
+			<exclusions>
+				<exclusion>
+					<artifactId>xalan</artifactId>
+					<groupId>xalan</groupId>
+				</exclusion>
+			</exclusions>
+			<!--<exclusions>-->
                 <!--<exclusion>-->
                     <!--<artifactId>commons-io</artifactId>-->
                     <!--<groupId>commons-io</groupId>-->
