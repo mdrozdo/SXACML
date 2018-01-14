@@ -5,6 +5,8 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
+import ontoplay.FileOntoplayConfig;
+import ontoplay.OntoplayConfig;
 import ontoplay.controllers.*;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.models.ontologyReading.OntologyReader;
@@ -31,7 +33,7 @@ import java.io.File;
  */
 public class Module extends AbstractModule {
 
-    private OntoplayConfig configuration;
+    private final OntoplayConfig configuration;
 
     public Module(Environment environment, Configuration configuration) {
         File ontoPlayConfigFile = environment.getFile(configuration.getString("ontoplay.config"));
@@ -65,6 +67,8 @@ public class Module extends AbstractModule {
         install(new FactoryModuleBuilder()
                 .implement(IndividualGenerator.class, IndividualGenerator.class)
                 .build(IndividualGeneratorFactory.class));
+
+        //bind(MainTemplate.class).to(OntoPlayMainTemplate.class);
 
 //        bind(MainTemplate.class).to(OntoPlayMainTemplate.class); //needs to be defined in the main application's module
 //        install(new FactoryModuleBuilder()
@@ -115,7 +119,7 @@ public class Module extends AbstractModule {
     @Provides
     @Singleton
     private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory) {
-        return new JenaOwlReader(owlPropertyFactory, configuration, false);
+        return new JenaOwlReader(owlPropertyFactory, configuration, configuration.getIgnorePropertiesWithNoDomain());
     }
 
     @Provides
