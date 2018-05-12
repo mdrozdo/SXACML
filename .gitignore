@@ -60,3 +60,4 @@ fabric.properties
 dependency-reduced-pom.xml
 
 .idea/kotlinc.xml
+.idea/hydra.xml
