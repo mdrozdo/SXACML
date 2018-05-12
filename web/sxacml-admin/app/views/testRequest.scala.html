@@ -1,0 +1,51 @@
+@import ontoplay.models.ontologyModel.OntoClass
+@import play.data.Form
+@import ontoplay.views.html._
+
+@()
+
+@admin_main("Test XACML Request"){
+}{
+<form id="request" action="@routes.AuthorizationController.evaluateRequest()" method="post">
+    <div class="form-group">
+        <label for="requestContents">XACML Request:</label>
+        <textarea class="form-control" id="requestContents" name="requestContents"></textarea>
+    </div>
+    <div>
+        <input type="submit" id="submitButton"  name="submitButton" value="Submit"/>
+    </div>
+</form>
+<pre id="result" name="result" class='code'>
+</pre>
+<script type='text/javascript'>
+    /* attach a submit handler to the form */
+    $("#request").submit(function(event) {
+
+      /* stop form from submitting normally */
+      event.preventDefault();
+
+      /* get the action attribute from the <form action=""> element */
+      var $form = $( this ),
+          url = $form.attr( 'action' ),
+          data = $('#requestContents').val();
+
+      /* Send the data using post with element id name and name2*/
+      $.ajax({
+          url:url,
+          type:'POST',
+          data:data,
+          contentType:"application/xml; charset=utf-8",
+          dataType:"text",
+          success: function(response){
+            $('#result').text(response);
+          },
+          error: function(response){
+            alert('Error: ' + JSON.stringify(response));
+          },
+          timeout: function(){
+            alert('Timeout.');
+          }
+        });
+    });
+</script>
+}

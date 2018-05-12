@@ -26,5 +26,9 @@ class AdminController @Inject()(val ontoReader: OntologyReader) extends Controll
     Ok(views.html.admin())
   }
 
+  def testRequest = Action {
+    Ok(views.html.testRequest())
+  }
+
   protected def getOwlClassFromName(className: String): OntoClass = ontoReader.getOwlClass(className)
 }
