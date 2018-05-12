@@ -61,3 +61,4 @@ dependency-reduced-pom.xml
 
 .idea/kotlinc.xml
 .idea/hydra.xml
+web/sxacml-admin/.idea/hydra.xml
