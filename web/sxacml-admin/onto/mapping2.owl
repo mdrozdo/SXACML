@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2"
+     xml:base="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2"
+     xmlns:request="http://drozdowicz.net/sxacml/request#"
+     xmlns:mapping2="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:port2="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2">
+        <owl:imports rdf:resource="http://drozdowicz.net/sxacml/request"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/port2"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company-name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company-name"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/rafal/ontologies/2017/6/port2#Location -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#Location">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/rafal/ontologies/2017/6/port2#Person -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#Person">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </rdf:Description>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject -->
+
+    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:resource -->
+
+    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#cristiano.cosio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#cristiano.cosio">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#Person"/>
+        <mapping2:company-name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stark Transport</mapping2:company-name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#driver">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company_name">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">company-name mapping</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company-name"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#driver"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company_name"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#hasName"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company_name"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#isHiredBy"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#driver"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#company"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
