@@ -144,6 +144,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#Acme -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#Acme">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#Company"/>
+        <port2:isContractedBy rdf:resource="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#StarkTransport"/>
+        <port2:hasName>Acme</port2:hasName>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/rafal/ontologies/2017/6/mapping2#Globex -->
 
 
