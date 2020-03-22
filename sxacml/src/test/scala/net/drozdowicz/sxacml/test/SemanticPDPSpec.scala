@@ -12,9 +12,26 @@ import collection.JavaConversions._
 import scala.net.drozdowicz.sxacml.SemanticPDP
 
 /**
- * Created by michal on 2015-03-13.
- */
+  * Created by michal on 2015-03-13.
+  */
 class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest {
+
+  describe("SemanticPDP custom function") {
+
+    val policyLocation = relativeToAbsolute("basic/policies_function")
+
+    describe("for boolean text compare (sample) function") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/test1")
+
+      it("returns permit") {
+        val request = readFile("basic/requests/Adult.xml")
+        val actualResponse = pdp.evaluate(request)
+        val expectedResponse = readFile("basic/responses/Permit.xml")
+
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
+  }
 
   describe("SemanticPDP") {
 
@@ -40,34 +57,34 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
       }
     }
 
-    describe("for multiple requests in a single document"){
+    describe("for multiple requests in a single document") {
       val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/testMultiRequests")
 
       it("returns multiple decisions in single response, with data from ontology") {
         val request = readFile("basic/requests/MultiRequest.xml")
         val actualResponse = pdp.evaluate(request)
-        val expectedResponse = readFile("basic/responses/MultiResponse.xml").replace("\r\n","" )
+        val expectedResponse = readFile("basic/responses/MultiResponse.xml").replace("\r\n", "")
 
         assertThat(actualResponse, isSimilarTo(expectedResponse)
           .ignoreWhitespace()
           .withNodeMatcher(new DefaultNodeMatcher(
             ElementSelectors.conditionalBuilder()
-             .whenElementIsNamed("Result")
-             .thenUse(ElementSelectors.byXPath("./xacml:Decision",
-               Map("xacml"->"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
-               ElementSelectors.byNameAndText))
-             .whenElementIsNamed("Attributes")
-             .thenUse(ElementSelectors.byNameAndAllAttributes)
-             .whenElementIsNamed("Attribute")
-             .thenUse(ElementSelectors.byNameAndAllAttributes)
-             .elseUse(ElementSelectors.byName)
-             .build())
+              .whenElementIsNamed("Result")
+              .thenUse(ElementSelectors.byXPath("./xacml:Decision",
+                Map("xacml" -> "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
+                ElementSelectors.byNameAndText))
+              .whenElementIsNamed("Attributes")
+              .thenUse(ElementSelectors.byNameAndAllAttributes)
+              .whenElementIsNamed("Attribute")
+              .thenUse(ElementSelectors.byNameAndAllAttributes)
+              .elseUse(ElementSelectors.byName)
+              .build())
           )
         )
       }
     }
 
-    describe("when using resource finder"){
+    describe("when using resource finder") {
 
       it("retrieves individuals from class specified in request") {
         val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/testResourceHierarchy")
@@ -82,7 +99,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
             ElementSelectors.conditionalBuilder()
               .whenElementIsNamed("Result")
               .thenUse(ElementSelectors.byXPath("./xacml:Attributes/xacml:Attribute[@AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"]/xacml:AttributeValue",
-                Map("xacml"->"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
+                Map("xacml" -> "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
                 ElementSelectors.byNameAndText))
               .whenElementIsNamed("Attributes")
               .thenUse(ElementSelectors.byNameAndAllAttributes)
@@ -107,7 +124,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
             ElementSelectors.conditionalBuilder()
               .whenElementIsNamed("Result")
               .thenUse(ElementSelectors.byXPath("./xacml:Attributes/xacml:Attribute[@AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"]/xacml:AttributeValue",
-                Map("xacml"->"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
+                Map("xacml" -> "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
                 ElementSelectors.byNameAndText))
               .whenElementIsNamed("Attributes")
               .thenUse(ElementSelectors.byNameAndAllAttributes)
@@ -142,7 +159,8 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
 
   private def relativeToAbsolute(relativePath: String): String = {
     (new File(".")).getCanonicalPath +
-     File.separator + "src" +
+      File.separator + "sxacml" +
+      File.separator + "src" +
       File.separator + "test" +
       File.separator + "resources" +
       File.separator + relativePath.replace("/", File.separator)

@@ -23,6 +23,24 @@
     <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.4" level="project" />
     <orderEntry type="library" name="Maven: org.antlr:stringtemplate:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: antlr:antlr:2.7.7" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
+    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-ext:1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-core:1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.tinyjee.jgraphx:jgraphx:2.0.0.1" level="project" />
+    <orderEntry type="library" name="Maven: jgraph:jgraph:5.13.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr4-runtime:4.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-core:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-iri:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.11.0" level="project" />
+    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-base:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-arq:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-shaded-guava:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-cache:4.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.thrift:libthrift:0.9.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.owlapi:owlapi-distribution:5.1.0" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.owlapi:owlapi-compatibility:5.1.0" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.owlapi:owlapi-apibinding:5.1.0" level="project" />
@@ -56,7 +74,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.rdf4j:rdf4j-util:2.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.github.jsonld-java:jsonld-java:0.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-osgi:4.5.2" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpmime:4.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:fluent-hc:4.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore-osgi:4.4.4" level="project" />
@@ -75,27 +92,27 @@
     <orderEntry type="library" name="Maven: com.github.galigator.openllet:openllet-owlapi:2.6.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.galigator.openllet:openllet-core:2.6.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.galigator.openllet:openllet-functions:2.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-ext:1.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-core:1.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.tinyjee.jgraphx:jgraphx:2.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: jgraph:jgraph:5.13.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.antlr:antlr4-runtime:4.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-ext:1.4.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-core:1.4.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.jheaps:jheaps:0.13" level="project" />
+    <orderEntry type="library" name="Maven: com.github.vlsi.mxgraph:jgraphx:4.0.5" level="project" />
     <orderEntry type="library" name="Maven: com.github.galigator.openllet:openllet-query:2.6.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.galigator.openllet:openllet-jena:2.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jena:jena-core:3.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jena:jena-iri:3.4.0" level="project" />
-    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.11.0" level="project" />
-    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-core:3.14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-iri:3.14.0" level="project" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jena:jena-base:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-base:3.14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.19" level="project" />
     <orderEntry type="library" name="Maven: com.github.andrewoma.dexx:collection:0.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jena:jena-arq:3.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jena:jena-shaded-guava:3.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-cache:4.5.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.thrift:libthrift:0.9.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-arq:3.14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jena:jena-shaded-guava:3.14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.10" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-cache:4.5.10" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.thrift:libthrift:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.5.2" level="project" />
   </component>
 </module>

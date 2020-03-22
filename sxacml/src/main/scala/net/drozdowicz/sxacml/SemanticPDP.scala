@@ -1,18 +1,20 @@
 package scala.net.drozdowicz.sxacml
 
-import java.io.{IOException, File}
+import java.io.{File, IOException}
 import java.util
 import java.util.Properties
 
 import net.drozdowicz.sxacml.OwlAttributeModule
-import org.wso2.balana.finder.{ResourceFinderModule, AttributeFinderModule, AttributeFinder, ResourceFinder}
-import org.wso2.balana.{PDPConfig, PDP, Balana}
+import org.wso2.balana.cond.{FunctionFactory, StandardFunctionFactory}
+import org.wso2.balana.finder.{AttributeFinder, AttributeFinderModule, ResourceFinder, ResourceFinderModule}
+import org.wso2.balana.{Balana, PDP, PDPConfig}
 import org.wso2.balana.finder.impl.FileBasedPolicyFinderModule
+
 import collection.JavaConversions._
 
 /**
- * Created by michal on 2015-05-02.
- */
+  * Created by michal on 2015-05-02.
+  */
 class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntologyId: String) {
 
   val balana = initBalana()
@@ -29,15 +31,18 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
 
   private def createPdp(): PDP = {
     val pdpConfig = balana.getPdpConfig
+    initializeFunctions(pdpConfig)
     pdpConfig.getPolicyFinder.setModules(Set(new FileBasedPolicyFinderModule()))
     pdpConfig.getPolicyFinder.init()
     val attributeFinder = initializeAttributeFinder(pdpConfig)
     val resourceFinder = initializeResourceFinders(pdpConfig)
 
+
+
     return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, resourceFinder, true))
   }
 
-  def initializeAttributeFinder(pdpConfig: PDPConfig): AttributeFinder = {
+  private def initializeAttributeFinder(pdpConfig: PDPConfig): AttributeFinder = {
     val attributeFinder = pdpConfig.getAttributeFinder
     val finderModules = attributeFinder.getModules.filter(m => m.getClass() != classOf[OwlAttributeModule]);
     finderModules.add(createAttributeModule)
@@ -56,7 +61,7 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     attributeModule
   }
 
-  def initializeResourceFinders(pdpConfig: PDPConfig): ResourceFinder = {
+  private def initializeResourceFinders(pdpConfig: PDPConfig): ResourceFinder = {
     val resourceFinder = pdpConfig.getResourceFinder
     val finderModules = resourceFinder.getModules.filter(m =>
       m.getClass() != classOf[OwlResourceClassFinderModule]
@@ -71,4 +76,11 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     resourceFinder
   }
 
+  private def initializeFunctions(pdpConfig: PDPConfig) = {
+    val factoryProxy = StandardFunctionFactory.getNewFactoryProxy()
+    val factory = factoryProxy.getGeneralFactory()
+    factory.addFunction(new BoolTextCompare)
+    FunctionFactory.setDefaultFactory(factoryProxy)
   }
+
+}
