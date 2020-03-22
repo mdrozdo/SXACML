@@ -8,7 +8,7 @@ import java.util.{Properties, UUID}
 import onto.utils.OntologyUtils
 import org.apache.commons.logging.LogFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
-import org.semanticweb.owlapi.model.{OWLOntologyIRIMapper, IRI, OWLOntology, OWLOntologyManager}
+import org.semanticweb.owlapi.model.{IRI, OWLOntology, OWLOntologyIRIMapper, OWLOntologyManager}
 import org.semanticweb.owlapi.util.AutoIRIMapper
 import org.wso2.balana.attr.{AttributeFactory, AttributeValue, BagAttribute}
 import org.wso2.balana.cond.EvaluationResult
@@ -16,7 +16,8 @@ import org.wso2.balana.ctx.EvaluationCtx
 import org.wso2.balana.finder.AttributeFinderModule
 import org.wso2.carbon.identity.entitlement.pip.PIPAttributeFinder
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
+import scala.net.drozdowicz.sxacml.OwlAttributeStore
 import scala.util.control.ControlThrowable
 
 //TODO Make this a super simple wrapper over something more functional etc.
@@ -27,17 +28,17 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private var ontologyFolderPath: String = "/"
   private var rootOntologyId: String = "http://drozdowicz.net/sxacml/request"
 
+  private var owlStore: Option[OwlAttributeStore] = None
 
   log.info("OwlAttributeModule defined.")
 
-  private val ontoMgr = OWLManager.createOWLOntologyManager()
 
   override def findAttribute(attributeType: URI, attributeId: URI, issuer: String, category: URI, context: EvaluationCtx): EvaluationResult = {
     try {
       val attributeValues = findAttributeValues(attributeId, category, context)
-      val values = attributeValues.map(flatAttr => flatAttr.createAttributeValue).toList
+      val values = attributeValues.map(flatAttr => flatAttr.createAttributeValue)
 
-      new EvaluationResult(new BagAttribute(attributeType, values))
+      new EvaluationResult(new BagAttribute(attributeType, values.toList.asJava))
     } catch safely {
       case e: Throwable => {
         log.error("Error while processing the request: findAttribute. " + e.getClass.getName + e.getMessage, e)
@@ -48,7 +49,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   override def getAttributeValues(attributeType: URI, attributeId: URI, category: URI, issuer: String, context: EvaluationCtx): util.Set[String] = {
     try {
-      findAttributeValues(attributeId, category, context).map(f => f.valueString)
+      findAttributeValues(attributeId, category, context).map(f => f.valueString).asJava
     } catch safely {
       case e: Throwable => {
         log.error("Error while processing the request: getAttributeValues. " + e.getClass.getName + e.getMessage, e)
@@ -69,40 +70,16 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   }
 
   private def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
-    val requestId = UUID.randomUUID().toString
-
-    log.debug(s"Locating attribute: '$attributeId', category: '$category'.")
-    val attributes = ContextParser.Parse(context.getRequestCtx)
-    if(log.isDebugEnabled) {
-      val attributesString = attributes
-        .map(_.toString)
-        .mkString(";\r\n")
-      log.debug(s"Received context with attributes: \r\n$attributesString")
-    }
-    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(requestId, attributes)
-    val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
-    val result = OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
-
-    if(log.isDebugEnabled){
-      //TODO: Move to a toString implementation.
-      val attributesString = result
-        .map(at => "'"+at.categoryId+"' : '"+at.attributeId+"' = '"+ at.valueString +"@" + at.valueType)
-        .mkString(";\r\n")
-      log.debug(s"Retrieved attribute values: \r\n$attributesString")
-    }
-    result
+    owlStore.map(store => store.findAttributeValues(attributeId, category, context)).getOrElse(Set.empty)
   }
 
   override def init(properties: Properties): Unit = {
-    try{
+    try {
       log.info("Initializing SXACML attribute finder")
       ontologyFolderPath = properties.getProperty("ontologyFolderPath")
       rootOntologyId = properties.getProperty("rootOntologyId")
 
-      log.info("Mapping ontology folder to:" + ontologyFolderPath)
-      ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-        new AutoIRIMapper(new File(ontologyFolderPath), true))
-      )
+      owlStore = Some(new OwlAttributeStore(ontologyFolderPath, rootOntologyId))
     } catch safely {
       case e: Throwable => {
         log.error("Error while processing the request: init. " + e.getClass.getName + e.getMessage, e)
@@ -117,41 +94,23 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     Set("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
       "urn:oasis:names:tc:xacml:3.0:attribute-category:action",
-      "urn:oasis:names:tc:xacml:3.0:attribute-category:environment")
+      "urn:oasis:names:tc:xacml:3.0:attribute-category:environment").asJava
 
   override def getSupportedAttributes: util.Set[String] = {
-   try{
-     val ontology = getOntologyById(rootOntologyId)
-     if(ontology == null){
-       log.error("Couldn't load ontology with id: " + rootOntologyId)
-       return Set.empty[String]
-     }
-     OntologyAttributeFinder.getAllSupportedAttributes(ontology) //assuming root onto imports others and
-  } catch safely {
-     case e: Throwable => {
-       log.error("Error while processing the request: getSupportedAttributes. " + e.getClass.getName + e.getMessage, e)
-       throw e
-     }
-   }
-  }
-
-  private def getOntologyById(ontoId: String): OWLOntology = {
-    val iri = IRI.create(ontoId)
-    val ontology = ontoMgr.getOntology(iri)
-    if(ontology != null){
-      ontology
-    } else {
-      ontoMgr.loadOntology(iri)
+    try {
+      owlStore.map(store => store.getSupportedAttributes).getOrElse(Set.empty).asJava
+    } catch safely {
+      case e: Throwable => {
+        log.error("Error while processing the request: getSupportedAttributes. " + e.getClass.getName + e.getMessage, e)
+        throw e
+      }
     }
-  }
-
-  private def createFileIri(filePath: String): IRI = {
-    IRI.create(getClass.getResource(filePath).toURI)
   }
 
   override def getModuleName: String = "OwlAttributeFinder"
 
   override def overrideDefaultCache(): Boolean = true
+
   //TODO: implement cache?
   override def clearCache(): Unit = {}
 
