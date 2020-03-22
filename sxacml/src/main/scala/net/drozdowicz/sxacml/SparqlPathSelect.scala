@@ -1,10 +1,15 @@
 package scala.net.drozdowicz.sxacml
 
+import java.net.URI
 import java.util
 
-import org.wso2.balana.attr.{AttributeValue, BooleanAttribute, StringAttribute}
+import org.apache.commons.logging.LogFactory
+import org.wso2.balana.attr.{AttributeValue, BagAttribute, BooleanAttribute, StringAttribute}
 import org.wso2.balana.cond.{Evaluatable, EvaluationResult, FunctionBase}
 import org.wso2.balana.ctx.EvaluationCtx
+
+import scala.collection.JavaConverters._
+import scala.util.control.ControlThrowable
 
 /**
   * Created by drozd on 22.03.2020.
@@ -22,17 +27,43 @@ object SparqlPathSelect { // the name of the function, which will be used public
   }
 }
 
-class SparqlPathSelect() // use the constructor that handles mixed argument types
+class SparqlPathSelect(owlAttributeStore: OwlAttributeStore) // use the constructor that handles mixed argument types
   extends FunctionBase(SparqlPathSelect.NAME, 0, SparqlPathSelect.params, SparqlPathSelect.bagParams, StringAttribute.identifier, true) {
+
+  private val log = LogFactory.getLog(classOf[SparqlPathSelect])
+
   override def evaluate(inputs: util.List[Evaluatable], context: EvaluationCtx): EvaluationResult = { // Evaluate the arguments using the helper method...this will
     // catch any errors, and return values that can be compared
     val argValues = new Array[AttributeValue](inputs.size)
     val result = evalArgs(inputs, context, argValues)
     if (result != null) return result
     // cast the resolved values into specific types
-    val str = argValues(0).asInstanceOf[StringAttribute]
+    val sparql = argValues(0).asInstanceOf[StringAttribute].getValue
 
+    try {
+      val results = owlAttributeStore.queryOntology(sparql, context)
+
+      val values = results.map(flatAttr => flatAttr.createAttributeValue)
+
+      new EvaluationResult(new BagAttribute(new URI(StringAttribute.identifier), values.toList.asJava))
+    } catch safely {
+      case e: Throwable => {
+        log.error("Error while processing the function: SparqlPathSelect. " + e.getClass.getName + e.getMessage, e)
+        throw e
+      }
+    }
     // boolean returns are common, so there's a getInstance() for that
     EvaluationResult.getInstance(true)
+  }
+
+  def safely[T](handler: PartialFunction[Throwable, T]): PartialFunction[Throwable, T] = {
+    case ex: ControlThrowable => throw ex
+    // case ex: OutOfMemoryError (Assorted other nasty exceptions you don't want to catch)
+
+    //If it's an exception they handle, pass it on
+    case ex: Throwable if handler.isDefinedAt(ex) => handler(ex)
+
+    // If they didn't handle it, rethrow. This line isn't necessary, just for clarity
+    case ex: Throwable => throw ex
   }
 }

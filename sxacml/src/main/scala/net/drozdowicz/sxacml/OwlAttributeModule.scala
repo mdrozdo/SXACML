@@ -88,6 +88,12 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
     }
   }
 
+  def init(owlAttributeStore: OwlAttributeStore): Unit = {
+    log.info("Initializing SXACML attribute finder")
+
+    owlStore = Some(owlAttributeStore)
+  }
+
   override def isDesignatorSupported() = true
 
   override def getSupportedCategories(): java.util.Set[String] =

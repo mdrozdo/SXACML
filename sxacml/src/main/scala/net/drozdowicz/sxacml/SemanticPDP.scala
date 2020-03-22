@@ -31,10 +31,12 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
 
   private def createPdp(): PDP = {
     val pdpConfig = balana.getPdpConfig
-    initializeFunctions(pdpConfig)
+    val owlStore = new OwlAttributeStore(ontologyFolderPath, rootOntologyId)
+    val owlAttributeModule = createAttributeModule(owlStore)
+    initializeFunctions(pdpConfig, owlStore)
     pdpConfig.getPolicyFinder.setModules(Set(new FileBasedPolicyFinderModule()))
     pdpConfig.getPolicyFinder.init()
-    val attributeFinder = initializeAttributeFinder(pdpConfig)
+    val attributeFinder = initializeAttributeFinder(pdpConfig, owlAttributeModule)
     val resourceFinder = initializeResourceFinders(pdpConfig)
 
 
@@ -42,22 +44,18 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     return new PDP(new PDPConfig(attributeFinder, pdpConfig.getPolicyFinder, resourceFinder, true))
   }
 
-  private def initializeAttributeFinder(pdpConfig: PDPConfig): AttributeFinder = {
+  private def initializeAttributeFinder(pdpConfig: PDPConfig, owlAttributeModule: OwlAttributeModule): AttributeFinder = {
     val attributeFinder = pdpConfig.getAttributeFinder
     val finderModules = attributeFinder.getModules.filter(m => m.getClass() != classOf[OwlAttributeModule]);
-    finderModules.add(createAttributeModule)
+    finderModules.add(owlAttributeModule)
     attributeFinder.setModules(finderModules)
     attributeFinder
   }
 
-  private def createAttributeModule: AttributeFinderModule = {
+  private def createAttributeModule(owlAttributeStore: OwlAttributeStore): OwlAttributeModule = {
     val attributeModule = new OwlAttributeModule
-    val properties = new Properties
-    properties.putAll(Map(
-      "ontologyFolderPath" -> ontologyFolderPath,
-      "rootOntologyId" -> rootOntologyId
-    ))
-    attributeModule.init(properties)
+
+    attributeModule.init(owlAttributeStore)
     attributeModule
   }
 
@@ -76,10 +74,11 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     resourceFinder
   }
 
-  private def initializeFunctions(pdpConfig: PDPConfig) = {
+  private def initializeFunctions(pdpConfig: PDPConfig, owlAttributeStore: OwlAttributeStore) = {
     val factoryProxy = StandardFunctionFactory.getNewFactoryProxy()
     val factory = factoryProxy.getGeneralFactory()
     factory.addFunction(new BoolTextCompare)
+    factory.addFunction(new SparqlPathSelect(owlAttributeStore))
     FunctionFactory.setDefaultFactory(factoryProxy)
   }
 

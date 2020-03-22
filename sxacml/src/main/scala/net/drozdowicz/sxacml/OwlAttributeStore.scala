@@ -4,9 +4,9 @@ import java.io.File
 import java.net.URI
 import java.util
 import java.util.{Properties, UUID}
-import scala.collection.JavaConverters._
 
-import net.drozdowicz.sxacml.{ContextParser, FlatAttributeValue, OntologyAttributeFinder, RequestOntologyGenerator}
+import scala.collection.JavaConverters._
+import net.drozdowicz.sxacml._
 import org.apache.commons.logging.LogFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{IRI, OWLOntology, OWLOntologyIRIMapper}
@@ -33,10 +33,13 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
     new AutoIRIMapper(new File(ontologyFolderPath), true)).asJava
   )
 
-  def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
+  private var requestOntology: Option[RequestOntology] = None
+
+  private case class RequestOntology(context: EvaluationCtx, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String])
+
+  private def generateNewRequestOntology(context: EvaluationCtx): RequestOntology = {
     val requestId = UUID.randomUUID().toString
 
-    log.debug(s"Locating attribute: '$attributeId', category: '$category'.")
     val attributes = ContextParser.Parse(context.getRequestCtx)
     if (log.isDebugEnabled) {
       val attributesString = attributes
@@ -44,9 +47,29 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
         .mkString(";\r\n")
       log.debug(s"Received context with attributes: \r\n$attributesString")
     }
+
     val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(requestId, attributes)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
-    val result = OntologyAttributeFinder.findAttributeValues(requestOntology, categoryIndividualIds(category), category.toString, attributeId.toString)
+
+    new RequestOntology(context, requestOntology, categoryIndividualIds)
+  }
+
+  private def getRequestOntology(context: EvaluationCtx) = {
+    val ontology =
+      if (requestOntology.map(ro => ro.context.hashCode() != context.hashCode()).getOrElse(true))
+        generateNewRequestOntology(context)
+      else requestOntology.get
+
+    requestOntology = Some(ontology)
+    ontology
+  }
+
+
+  def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
+    log.debug(s"Locating attribute: '$attributeId', category: '$category'.")
+
+    val ontology = getRequestOntology(context)
+    val result = OntologyAttributeFinder.findAttributeValues(ontology.requestOntology, ontology.categoryIndividualIds(category), category.toString, attributeId.toString)
 
     if (log.isDebugEnabled) {
       //TODO: Move to a toString implementation.
@@ -66,6 +89,12 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
     }
 
     OntologyAttributeFinder.getAllSupportedAttributes(ontology) //assuming root onto imports others and
+  }
+
+  def queryOntology(sparql: String, context: EvaluationCtx): Set[FlatAttributeValue] = {
+    val ontology = getRequestOntology(context)
+
+    OntologyAttributeFinder.queryOntology(sparql, ontology.requestOntology, ontology.categoryIndividualIds)
   }
 
   private def getOntologyById(ontoId: String): OWLOntology = {

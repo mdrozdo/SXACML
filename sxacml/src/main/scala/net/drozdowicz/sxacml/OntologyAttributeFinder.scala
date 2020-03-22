@@ -19,6 +19,10 @@ import scala.util.matching.Regex
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
+  def queryOntology(sparql: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[FlatAttributeValue] = {
+    Set.empty
+  }
+
 
   def getHierarchyDesignator(rootOntology: OWLOntology) = {
     val factory = rootOntology.getOWLOntologyManager.getOWLDataFactory
