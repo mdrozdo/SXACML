@@ -15,7 +15,7 @@ import java.util
 object BoolTextCompare { // the name of the function, which will be used publicly
   val NAME = "bool-text-compare"
   // the parameter types, in order, and whether or not they're bags
-  private val params = Array(BooleanAttribute.identifier, StringAttribute.identifier)
+  private val params = Array(StringAttribute.identifier, BooleanAttribute.identifier)
   private val bagParams = Array(false, false)
 
   def getSupportedIdentifiers: util.Set[String] = {
@@ -33,8 +33,8 @@ class BoolTextCompare() // use the constructor that handles mixed argument types
     val result = evalArgs(inputs, context, argValues)
     if (result != null) return result
     // cast the resolved values into specific types
-    val bool = argValues(0).asInstanceOf[BooleanAttribute]
-    val str = argValues(1).asInstanceOf[StringAttribute]
+    val str = argValues(0).asInstanceOf[StringAttribute]
+    val bool = argValues(1).asInstanceOf[BooleanAttribute]
     var evalResult = false
     // now compare the values
     if (bool.getValue) { // see if the string is "true"

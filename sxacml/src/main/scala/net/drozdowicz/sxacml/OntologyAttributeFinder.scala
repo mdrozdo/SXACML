@@ -9,7 +9,7 @@ import org.semanticweb.owlapi.model._
 import org.semanticweb.owlapi.model.parameters.Imports
 import org.semanticweb.owlapi.search.EntitySearcher
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 import scala.net.drozdowicz.sxacml.Constants
 import scala.compat.java8.OptionConverters._
 //import scala.net.drozdowicz.sxacml.JavaOptionals._
@@ -22,27 +22,25 @@ object OntologyAttributeFinder {
 
   val categoryUris = Map(
     "?subject" -> new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-    "?resource" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource" ),
-    "?action" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action" )
+    "?resource" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+    "?action" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action")
   )
 
   def queryOntology(sparqlPath: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {
 
-    val query =
-      s"""PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        |PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
-        |PREFIX port2: <http://www.semanticweb.org/rafal/ontologies/2017/6/port2#>
-        |SELECT ?value WHERE
-        |{
-        | $sparqlPath ?value
-        |}""".stripMargin
+    val query = getOntologyPrefixesString(requestOntology) +
+      s"""PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
+         |SELECT ?value WHERE
+         |{
+         | $sparqlPath ?value
+         |}""".stripMargin
 
-    val finalQuery = categoryUris.foldLeft(query)((q, c) => q.replaceAllLiterally(c._1, "<"+categoryIndividualIds(c._2)+">"))
+    val finalQuery = categoryUris.foldLeft(query)((q, c) => q.replaceAllLiterally(c._1, "<" + categoryIndividualIds(c._2) + ">"))
 
     val sparql = new SparqlReader(requestOntology)
 
     var result = Set.empty[String]
-    sparql.executeQuery(finalQuery , new ValueSetResultProcessor {
+    sparql.executeQuery(finalQuery, new ValueSetResultProcessor {
       override def processSolution(sol: QuerySolution): Unit = {
         result += sol.get("value").toString
       }
@@ -54,7 +52,7 @@ object OntologyAttributeFinder {
   def getHierarchyDesignator(rootOntology: OWLOntology) = {
     val factory = rootOntology.getOWLOntologyManager.getOWLDataFactory
     //TODO change to non-deprecated
-    rootOntology.getObjectPropertiesInSignature(Imports.INCLUDED)
+    rootOntology.getObjectPropertiesInSignature(Imports.INCLUDED).asScala
       .filter(p =>
         EntitySearcher.getAnnotations(p, rootOntology, factory.getOWLAnnotationProperty(
           IRI.create("http://drozdowicz.net/sxacml/request#hierarchyDesignator"))
@@ -74,11 +72,11 @@ object OntologyAttributeFinder {
         |}""".stripMargin
 
     val sparql = new SparqlReader(rootOntology)
-    var result : Option[String] = None
+    var result: Option[String] = None
     sparql.executeQuery(query, new ValueSetResultProcessor {
       override def processSolution(sol: QuerySolution): Unit = {
         val solution = sol.getResource("prop")
-        if(solution != null){
+        if (solution != null) {
           result = Some(solution.getURI)
         }
       }
@@ -88,11 +86,11 @@ object OntologyAttributeFinder {
 
   def findInstancesOfClass(ontology: OWLOntology, categoryId: String, attributeId: String, classIdOrName: String): Set[FlatAttributeValue] = {
 
-    val classId = if(isIRI(classIdOrName)){
-        classIdOrName
-      } else {
+    val classId = if (isIRI(classIdOrName)) {
+      classIdOrName
+    } else {
       ontology.getOntologyID.getOntologyIRI.asScala
-        .map(iri=>iri.toString).get + "#" + classIdOrName;
+        .map(iri => iri.toString).get + "#" + classIdOrName;
     }
 
     executeQuery(ontology,
@@ -168,6 +166,19 @@ object OntologyAttributeFinder {
 
   def getAllSupportedAttributes(ontology: OWLOntology): Set[String] = {
     var model = OntologyUtils.createJenaModel(ontology)
-    ontology.getDataPropertiesInSignature().map(dp => dp.getIRI.toString).toSet + Constants.TYPE_PROPERTY_URI
+    ontology.getDataPropertiesInSignature().asScala.map(dp => dp.getIRI.toString).toSet + Constants.TYPE_PROPERTY_URI
+  }
+
+  private def getOntologyPrefixesString(ontology: OWLOntology): String = {
+    val ontologyManager = ontology.getOWLOntologyManager
+    val prefixes = ontology.importsClosure().iterator().asScala
+      .map(o => ontologyManager.getOntologyFormat(o).asPrefixOWLDocumentFormat().getPrefixName2PrefixMap.asScala.toMap)
+      .reduce(_ ++ _) //convert list of maps to a single map
+
+    prefixes.map { case (key, value) => s"PREFIX $key <$value${if (!value.endsWith("#")) "#"}>" }
+      .toList
+      .distinct
+      .mkString("", scala.compat.Platform.EOL, scala.compat.Platform.EOL)
+
   }
 }

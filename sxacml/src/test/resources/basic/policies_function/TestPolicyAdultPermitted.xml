@@ -4,8 +4,8 @@
         <Condition>
             <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of">
                 <Function FunctionId="bool-text-compare"></Function>
-                <AttributeDesignator AttributeId="http://drozdowicz.net/sxacml/test1#isAdult" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#boolean" MustBePresent="true"></AttributeDesignator>
                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">true</AttributeValue>
+                <AttributeDesignator AttributeId="http://drozdowicz.net/sxacml/test1#isAdult" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#boolean" MustBePresent="true"></AttributeDesignator>
             </Apply>
         </Condition>
     </Rule>
