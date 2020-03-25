@@ -19,8 +19,35 @@ import scala.util.matching.Regex
   * Created by michal on 2015-03-18.
   */
 object OntologyAttributeFinder {
-  def queryOntology(sparql: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[FlatAttributeValue] = {
-    Set.empty
+
+  val categoryUris = Map(
+    "?subject" -> new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+    "?resource" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource" ),
+    "?action" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action" )
+  )
+
+  def queryOntology(sparqlPath: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {
+
+    val query =
+      s"""PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        |PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
+        |PREFIX port2: <http://www.semanticweb.org/rafal/ontologies/2017/6/port2#>
+        |SELECT ?value WHERE
+        |{
+        | $sparqlPath ?value
+        |}""".stripMargin
+
+    val finalQuery = categoryUris.foldLeft(query)((q, c) => q.replaceAllLiterally(c._1, "<"+categoryIndividualIds(c._2)+">"))
+
+    val sparql = new SparqlReader(requestOntology)
+
+    var result = Set.empty[String]
+    sparql.executeQuery(finalQuery , new ValueSetResultProcessor {
+      override def processSolution(sol: QuerySolution): Unit = {
+        result += sol.get("value").toString
+      }
+    })
+    result
   }
 
 
@@ -68,7 +95,7 @@ object OntologyAttributeFinder {
         .map(iri=>iri.toString).get + "#" + classIdOrName;
     }
 
-    queryOntology(ontology,
+    executeQuery(ontology,
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         |SELECT ?val WHERE
         |{
@@ -82,7 +109,7 @@ object OntologyAttributeFinder {
   }
 
   def findInstancesFromHierarchy(ontology: OWLOntology, categoryId: String, attributeId: String, rootIdOrName: String, hierarchyDesignatorId: String): Set[FlatAttributeValue] = {
-    queryOntology(ontology,
+    executeQuery(ontology,
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         |SELECT ?val WHERE
         |{
@@ -97,7 +124,7 @@ object OntologyAttributeFinder {
 
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
     if (attributeId.equalsIgnoreCase(Constants.TYPE_PROPERTY_URI)) {
-      queryOntology(ontology,
+      executeQuery(ontology,
         """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           |SELECT ?val WHERE
           |{
@@ -109,7 +136,7 @@ object OntologyAttributeFinder {
         }
       )
     } else {
-      queryOntology(ontology,
+      executeQuery(ontology,
         """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           |SELECT ?val WHERE
           |{
@@ -127,7 +154,7 @@ object OntologyAttributeFinder {
     return "" != IRI.create(value).getNamespace
   }
 
-  private def queryOntology(ontology: OWLOntology, sparqlQuery: String, valueGetter: (QuerySolution) => FlatAttributeValue): Set[FlatAttributeValue] = {
+  private def executeQuery(ontology: OWLOntology, sparqlQuery: String, valueGetter: (QuerySolution) => FlatAttributeValue): Set[FlatAttributeValue] = {
     val sparql = new SparqlReader(ontology)
 
     var result = Set.empty[FlatAttributeValue]

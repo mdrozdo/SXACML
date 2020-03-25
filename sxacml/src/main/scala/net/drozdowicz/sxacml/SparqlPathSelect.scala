@@ -4,7 +4,7 @@ import java.net.URI
 import java.util
 
 import org.apache.commons.logging.LogFactory
-import org.wso2.balana.attr.{AttributeValue, BagAttribute, BooleanAttribute, StringAttribute}
+import org.wso2.balana.attr._
 import org.wso2.balana.cond.{Evaluatable, EvaluationResult, FunctionBase}
 import org.wso2.balana.ctx.EvaluationCtx
 
@@ -43,7 +43,7 @@ class SparqlPathSelect(owlAttributeStore: OwlAttributeStore) // use the construc
     try {
       val results = owlAttributeStore.queryOntology(sparql, context)
 
-      val values = results.map(flatAttr => flatAttr.createAttributeValue)
+      val values = results.map(value => AttributeFactory.getInstance().createValue(new URI(StringAttribute.identifier), value))
 
       new EvaluationResult(new BagAttribute(new URI(StringAttribute.identifier), values.toList.asJava))
     } catch safely {
@@ -52,8 +52,6 @@ class SparqlPathSelect(owlAttributeStore: OwlAttributeStore) // use the construc
         throw e
       }
     }
-    // boolean returns are common, so there's a getInstance() for that
-    EvaluationResult.getInstance(true)
   }
 
   def safely[T](handler: PartialFunction[Throwable, T]): PartialFunction[Throwable, T] = {

@@ -4,12 +4,11 @@
     <Rule Effect="Permit" RuleId="DriverPermitted">
         <Condition>
             <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of">
-                <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal"></Function>
-                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
-                <AttributeDesignator AttributeId="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#isHiredByContracted"
-                                     Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
-                                     DataType="http://www.w3.org/2001/XMLSchema#boolean"
-                                     MustBePresent="true"></AttributeDesignator>
+                <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"></Function>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://www.semanticweb.org/rafal/ontologies/2017/6/port2#ValenciaPort</AttributeValue>
+                <Apply FunctionId="sparql-path-select">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">?subject port2:isHiredBy/port2:isContractedBy</AttributeValue>
+                </Apply>
             </Apply>
         </Condition>
     </Rule>
