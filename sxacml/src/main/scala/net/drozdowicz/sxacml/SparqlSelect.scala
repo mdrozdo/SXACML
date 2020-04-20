@@ -14,8 +14,8 @@ import scala.util.control.ControlThrowable
 /**
   * Created by drozd on 22.03.2020.
   */
-object SparqlPathSelect { // the name of the function, which will be used publicly
-  val NAME = "sparql-path-select"
+object SparqlSelect { // the name of the function, which will be used publicly
+  val NAME = "sparql-select"
   // the parameter types, in order, and whether or not they're bags
   private val params = Array(StringAttribute.identifier)
   private val bagParams = Array(false)
@@ -27,10 +27,10 @@ object SparqlPathSelect { // the name of the function, which will be used public
   }
 }
 
-class SparqlPathSelect(owlAttributeStore: OwlAttributeStore) // use the constructor that handles mixed argument types
-  extends FunctionBase(SparqlPathSelect.NAME, 0, SparqlPathSelect.params, SparqlPathSelect.bagParams, StringAttribute.identifier, true) {
+class SparqlSelect(owlAttributeStore: OwlAttributeStore) // use the constructor that handles mixed argument types
+  extends FunctionBase(SparqlPathSelect.NAME, 0, SparqlSelect.params, SparqlSelect.bagParams, StringAttribute.identifier, true) {
 
-  private val log = LogFactory.getLog(classOf[SparqlPathSelect])
+  private val log = LogFactory.getLog(classOf[SparqlSelect])
 
   override def evaluate(inputs: util.List[Evaluatable], context: EvaluationCtx): EvaluationResult = { // Evaluate the arguments using the helper method...this will
     // catch any errors, and return values that can be compared
@@ -41,7 +41,7 @@ class SparqlPathSelect(owlAttributeStore: OwlAttributeStore) // use the construc
     val sparql = argValues(0).asInstanceOf[StringAttribute].getValue
 
     try {
-      val results = owlAttributeStore.queryOntologyWithSparqlPath(sparql, context)
+      val results = owlAttributeStore.queryOntologyWithSparql(sparql, context)
 
       val values = results.map(value => AttributeFactory.getInstance().createValue(new URI(StringAttribute.identifier), value))
 

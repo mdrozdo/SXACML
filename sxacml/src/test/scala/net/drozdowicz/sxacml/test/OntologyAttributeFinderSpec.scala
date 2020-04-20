@@ -20,7 +20,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   describe("OntologyAttributeFinder") {
     val ontoMgr = OWLManager.createOWLOntologyManager()
     ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new AutoIRIMapper(new File("./src/test/resources/ontologies/"), true))
+      new AutoIRIMapper(new File("./sxacml/src/test/resources/ontologies/"), true))
     )
 
     val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr) _
@@ -212,6 +212,8 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
             "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#foo2"))
       }
 
+
+
 //      it("given class name should return individuals from class defined in attribute value") {
 //        val values = OntologyAttributeFinder.findInstancesOfClass(ontology,
 //          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
@@ -229,6 +231,28 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 //            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
 //            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
 //      }
+    }
+
+    describe("queryOntologyWithSparql") {
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/test1"))
+
+      it("should return single result") {
+        var query = "" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testResourceHierarchy#>" +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" +
+          "SELECT ?id " +
+          "WHERE {" +
+          "test:alice subject:id ?id" +
+          "}"
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
+          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
+        ))
+
+        actual should be(Some("alice"))
+      }
     }
   }
 

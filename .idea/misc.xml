@@ -18,7 +18,6 @@
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="C:/github/balana/modules/balana-core/pom.xml" />
         <option value="C:/github/balana/modules/balana-distribution/pom.xml" />
         <option value="C:/github/balana/modules/balana-documentation/pom.xml" />
@@ -30,10 +29,11 @@
         <option value="C:/github/balana/modules/balana-utils/pom.xml" />
         <option value="C:/github/balana/pom.xml" />
         <option value="C:/wso2/t/products/is/5.0.0/modules/samples/oauth2/playground2/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SvnBranchConfigurationManager">
