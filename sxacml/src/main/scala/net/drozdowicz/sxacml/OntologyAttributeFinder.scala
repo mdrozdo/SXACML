@@ -39,6 +39,8 @@ object OntologyAttributeFinder {
         val varNames = sol.varNames().asScala.toList
         if(varNames.size == 1)
           result += sol.get(varNames(0)).toString
+        else
+          result += varNames.map(v=>s"$v:${sol.get(v)}").mkString(";")
       }
     })
     result

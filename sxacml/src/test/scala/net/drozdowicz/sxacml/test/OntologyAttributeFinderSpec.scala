@@ -253,6 +253,44 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
         actual should be(Set("bart@simpsons.com"))
       }
+
+      it("should return multiple results") {
+        var query = "" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
+          "SELECT ?id ?name" + System.lineSeparator() +
+          "WHERE {" + System.lineSeparator() +
+          "<http://dbpedia.org/page/Bart_Simpson> subject:subject-id ?id ." + System.lineSeparator() +
+          "<http://dbpedia.org/page/Bart_Simpson> test:hasFirstName ?name ." + System.lineSeparator() +
+          "}"
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
+          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
+        ))
+
+        actual should be(Set("id:bart@simpsons.com;name:Bart"))
+      }
+
+      it("should return multiple results and elements in Set") {
+        var query = "" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
+          "SELECT ?id ?name" + System.lineSeparator() +
+          "WHERE {" + System.lineSeparator() +
+          "?ind subject:subject-id ?id ." + System.lineSeparator() +
+          "?ind test:hasFirstName ?name ." + System.lineSeparator() +
+          "}"
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
+          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
+        ))
+
+        actual should be(Set("id:bart@simpsons.com;name:Bart", "id:homer@simpsons.com;name:Homer"))
+      }
     }
   }
 
