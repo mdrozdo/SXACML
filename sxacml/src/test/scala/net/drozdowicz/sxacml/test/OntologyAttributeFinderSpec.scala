@@ -20,7 +20,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   describe("OntologyAttributeFinder") {
     val ontoMgr = OWLManager.createOWLOntologyManager()
     ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-      new AutoIRIMapper(new File("./sxacml/src/test/resources/ontologies/"), true))
+      new AutoIRIMapper(new File("./src/test/resources/ontologies/"), true))
     )
 
     val convertToOntology = RequestOntologyGenerator.convertToOntology(ontoMgr) _
@@ -234,15 +234,15 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     }
 
     describe("queryOntologyWithSparql") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/test1"))
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testIdMatch"))
 
       it("should return single result") {
         var query = "" +
-          "PREFIX test: <http://drozdowicz.net/sxacml/testResourceHierarchy#>" +
-          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" +
-          "SELECT ?id " +
-          "WHERE {" +
-          "test:alice subject:id ?id" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
+          "SELECT ?id " + System.lineSeparator() +
+          "WHERE {" + System.lineSeparator() +
+          "<http://dbpedia.org/page/Bart_Simpson> subject:subject-id ?id" + System.lineSeparator() +
           "}"
 
         var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
@@ -251,7 +251,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
         ))
 
-        actual should be(Some("alice"))
+        actual should be(Set("bart@simpsons.com"))
       }
     }
   }

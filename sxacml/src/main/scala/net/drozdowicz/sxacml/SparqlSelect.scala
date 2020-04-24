@@ -28,7 +28,7 @@ object SparqlSelect { // the name of the function, which will be used publicly
 }
 
 class SparqlSelect(owlAttributeStore: OwlAttributeStore) // use the constructor that handles mixed argument types
-  extends FunctionBase(SparqlPathSelect.NAME, 0, SparqlSelect.params, SparqlSelect.bagParams, StringAttribute.identifier, true) {
+  extends FunctionBase(SparqlSelect.NAME, 0, SparqlSelect.params, SparqlSelect.bagParams, StringAttribute.identifier, true) {
 
   private val log = LogFactory.getLog(classOf[SparqlSelect])
 
@@ -48,7 +48,7 @@ class SparqlSelect(owlAttributeStore: OwlAttributeStore) // use the constructor 
       new EvaluationResult(new BagAttribute(new URI(StringAttribute.identifier), values.toList.asJava))
     } catch safely {
       case e: Throwable => {
-        log.error("Error while processing the function: SparqlPathSelect. " + e.getClass.getName + e.getMessage, e)
+        log.error("Error while processing the function: SparqlSelect. " + e.getClass.getName + e.getMessage, e)
         throw e
       }
     }

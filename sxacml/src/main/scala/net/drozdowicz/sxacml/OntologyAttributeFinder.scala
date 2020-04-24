@@ -35,7 +35,10 @@ object OntologyAttributeFinder {
     var result = Set.empty[String]
     sparql.executeQuery(finalQuery, new ValueSetResultProcessor {
       override def processSolution(sol: QuerySolution): Unit = {
-        result += sol.get("id").toString
+
+        val varNames = sol.varNames().asScala.toList
+        if(varNames.size == 1)
+          result += sol.get(varNames(0)).toString
       }
     })
     result

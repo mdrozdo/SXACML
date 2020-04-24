@@ -79,6 +79,7 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     val factory = factoryProxy.getGeneralFactory()
     factory.addFunction(new BoolTextCompare)
     factory.addFunction(new SparqlPathSelect(owlAttributeStore))
+    factory.addFunction(new SparqlSelect(owlAttributeStore))
     FunctionFactory.setDefaultFactory(factoryProxy)
   }
 
