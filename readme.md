@@ -1,4 +1,7 @@
-# Step by step instructions to run the SXACML web site.
+# SXACML
+Semantic extensions to XACML attribute based access control
+
+## Step by step instructions to run the SXACML web site.
 
 1. Clone the SXACML repository. I later assume you clone to c:\sxacml
 2. Start IntelliJ Idea. Make sure you have the Scala plugin installed.

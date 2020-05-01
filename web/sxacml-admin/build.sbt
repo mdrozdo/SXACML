@@ -14,7 +14,7 @@ lazy val root = (project in file("."))
 
 scriptClasspath := Seq("../conf/", "*")
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.12"
 
 resolvers += "Local Maven Repository" at Path.userHome.asFile.toURI.toURL+".m2/repository/"
 

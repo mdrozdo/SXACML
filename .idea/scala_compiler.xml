@@ -7,7 +7,7 @@
         <parameter value="D:\git\sxacml\sxacml\target/.scala_dependencies" />
       </parameters>
     </profile>
-    <profile name="SBT 2" modules="root,module">
+    <profile name="SBT 2" modules="OntoPlay,module,root,sxacml-admin,web-sxacml-admin">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <parameters>

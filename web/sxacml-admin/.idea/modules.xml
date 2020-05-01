@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/module.iml" filepath="$PROJECT_DIR$/.idea/modules/module.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/module-build.iml" filepath="$PROJECT_DIR$/.idea/modules/module-build.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/root.iml" filepath="$PROJECT_DIR$/.idea/modules/root.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/root-build.iml" filepath="$PROJECT_DIR$/.idea/modules/root-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/OntoPlay.iml" filepath="$PROJECT_DIR$/.idea/modules/OntoPlay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sxacml-admin.iml" filepath="$PROJECT_DIR$/.idea/modules/sxacml-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sxacml-admin-build.iml" filepath="$PROJECT_DIR$/.idea/modules/sxacml-admin-build.iml" />
     </modules>
   </component>
 </project>

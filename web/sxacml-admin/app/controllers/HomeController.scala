@@ -22,7 +22,8 @@ class HomeController extends Controller {
     * a path of `/`.
     */
   def index = Action {
-    Ok(views.html.index())
+    //Ok(views.html.index())
+    Redirect(controllers.routes.AdminController.admin())
   }
 
 }
