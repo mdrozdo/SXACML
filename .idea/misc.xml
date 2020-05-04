@@ -14,11 +14,12 @@
         <option value="C:/github/pellet/pom.xml" />
         <option value="C:/wso2/t/components/identity/pom.xml" />
         <option value="C:/wso2/t/components/identity/org.wso2.carbon.identity.samples.entitlement.pip/pom.xml" />
+        <option value="$PROJECT_DIR$/modules/geoxacml/pom.xml" />
+        <option value="$PROJECT_DIR$/modules/onto/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="C:/github/balana/modules/balana-core/pom.xml" />
         <option value="C:/github/balana/modules/balana-distribution/pom.xml" />
         <option value="C:/github/balana/modules/balana-documentation/pom.xml" />
@@ -30,6 +31,7 @@
         <option value="C:/github/balana/modules/balana-utils/pom.xml" />
         <option value="C:/github/balana/pom.xml" />
         <option value="C:/wso2/t/products/is/5.0.0/modules/samples/oauth2/playground2/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </set>
     </option>
   </component>

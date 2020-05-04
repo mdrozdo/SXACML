@@ -12,9 +12,29 @@
       <option name="url" value="http://maven.wso2.org/nexus/content/groups/wso2-public" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="osgeo-snapshot" />
+      <option name="name" value="OSGeo Snapshot Repository" />
+      <option name="url" value="https://repo.osgeo.org/repository/snapshot/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="osgeo" />
+      <option name="name" value="OSGeo Release Repository" />
+      <option name="url" value="https://repo.osgeo.org/repository/release/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="osgeo" />
+      <option name="name" value="Open Source Geospatial Foundation Repository" />
+      <option name="url" value="http://download.osgeo.org/webdav/geotools/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="sonatype-nexus-snapshots" />
@@ -25,6 +45,11 @@
       <option name="id" value="bintray" />
       <option name="name" value="bintray" />
       <option name="url" value="http://dl.bintray.com/scalaz/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="osgeo" />
+      <option name="name" value="Open Source Geospatial Foundation Repository" />
+      <option name="url" value="https://download.osgeo.org/webdav/geotools/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="jboss.community" />

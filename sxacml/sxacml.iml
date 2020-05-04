@@ -10,10 +10,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="scala-sdk-2.11.0" level="application" />
-    <orderEntry type="library" name="Maven: net.drozdowicz:onto:0.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: ca.juliusdavies:not-yet-commons-ssl:0.3.9" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: xml-resolver:xml-resolver:1.2" level="project" />
     <orderEntry type="library" name="Maven: xalan:serializer:2.7.1" level="project" />
@@ -274,5 +273,7 @@
     <orderEntry type="library" name="Maven: org.xmlunit:xmlunit-core:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.xmlunit:xmlunit-matchers:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.5" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.1" level="project" />
   </component>
 </module>

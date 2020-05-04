@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="geoXACML" />
+        <module name="onto" />
+        <module name="sxacml" />
+      </profile>
+    </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="balana" target="1.5" />
       <module name="balana-distribution" target="1.5" />
@@ -11,6 +21,8 @@
       <module name="carbon-parent" target="1.6" />
       <module name="carbon-ui-menu-parent" target="1.6" />
       <module name="feature-manager" target="1.6" />
+      <module name="geoXACML" target="1.5" />
+      <module name="gs-geoxacml" target="1.5" />
       <module name="identity" target="1.6" />
       <module name="identity-features" target="1.5" />
       <module name="identity-integration-tests" target="1.5" />
@@ -191,6 +203,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf8 -g" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="geoXACML" options="" />
       <module name="onto" options="" />
       <module name="sxacml" options="" />
     </option>

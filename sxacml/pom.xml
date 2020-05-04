@@ -30,30 +30,19 @@
 		<scala.version>2.11.12</scala.version>
 		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
-	<repositories>
-		<!--<repository>-->
-			<!--<id>wso2-nexus</id>-->
-			<!--<name>WSO2 internal Repository</name>-->
-			<!--<url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>-->
-			<!--<releases>-->
-				<!--<enabled>true</enabled>-->
-				<!--<updatePolicy>daily</updatePolicy>-->
-				<!--<checksumPolicy>ignore</checksumPolicy>-->
-			<!--</releases>-->
-		<!--</repository>-->
-		<repository>
-			<id>wso2-nexus</id>
-			<url>http://maven.wso2.org/nexus/content/groups/wso2-public</url>
-		</repository>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>bintray</id>
-			<name>bintray</name>
-			<url>http://dl.bintray.com/scalaz/releases</url>
-		</repository>
-	</repositories>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>wso2-nexus</id>-->
+<!--			<name>WSO2 internal Repository</name>-->
+<!--			<url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>-->
+<!--			<releases>-->
+<!--				<enabled>true</enabled>-->
+<!--				<updatePolicy>daily</updatePolicy>-->
+<!--				<checksumPolicy>ignore</checksumPolicy>-->
+<!--			</releases>-->
+<!--		</repository>-->
+<!--		-->
+<!--	</repositories>-->
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -174,6 +163,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
+		</dependency>
 		<!--<dependency>-->
             <!--<groupId>org.slf4j</groupId>-->
             <!--<artifactId>slf4j-jdk14</artifactId>-->

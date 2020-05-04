@@ -34,6 +34,19 @@
             </releases>
         </repository>
 
+        <repository>
+            <id>wso2-nexus</id>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/scalaz/releases</url>
+        </repository>
+
     </repositories>
 
 
