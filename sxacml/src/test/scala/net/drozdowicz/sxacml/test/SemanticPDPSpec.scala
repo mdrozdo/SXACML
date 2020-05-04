@@ -151,8 +151,22 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
       }
     }
 
-    describe("port ontology spqrql sample") {
+    describe("port ontology sparql path sample") {
       val pdp = new SemanticPDP(relativeToAbsolute("port2/policies_sparql"),
+        relativeToAbsolute("ontologies"),
+        "http://www.semanticweb.org/rafal/ontologies/2017/6/port2")
+
+      it("driver should be permitted") {
+        val request = readFile("port2/requests/Driver.xml")
+        val actualResponse = pdp.evaluate(request)
+        val expectedResponse = readFile("port2/responses/Permit.xml")
+
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
+
+    describe("port ontology sparql sample") {
+      val pdp = new SemanticPDP(relativeToAbsolute("port2/policies_sparql_full"),
         relativeToAbsolute("ontologies"),
         "http://www.semanticweb.org/rafal/ontologies/2017/6/port2")
 
@@ -173,7 +187,7 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
 
   private def relativeToAbsolute(relativePath: String): String = {
     (new File(".")).getCanonicalPath +
-      File.separator + "sxacml" +
+      //File.separator + "sxacml" +
       File.separator + "src" +
       File.separator + "test" +
       File.separator + "resources" +

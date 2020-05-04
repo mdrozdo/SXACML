@@ -91,10 +91,17 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
     OntologyAttributeFinder.getAllSupportedAttributes(ontology) //assuming root onto imports others and
   }
 
-  def queryOntology(sparql: String, context: EvaluationCtx): Set[String] = {
+
+  def queryOntologyWithSparqlPath(sparql: String, context: EvaluationCtx): Set[String] = {
     val ontology = getRequestOntology(context)
 
-    OntologyAttributeFinder.queryOntology(sparql, ontology.requestOntology, ontology.categoryIndividualIds)
+    OntologyAttributeFinder.queryOntologyWithSparqlPath(sparql, ontology.requestOntology, ontology.categoryIndividualIds)
+  }
+
+  def queryOntologyWithSparql(sparql: String, context: EvaluationCtx): Set[String] = {
+    val ontology = getRequestOntology(context)
+
+    OntologyAttributeFinder.queryOntologyWithSparql(sparql, ontology.requestOntology, ontology.categoryIndividualIds)
   }
 
   private def getOntologyById(ontoId: String): OWLOntology = {

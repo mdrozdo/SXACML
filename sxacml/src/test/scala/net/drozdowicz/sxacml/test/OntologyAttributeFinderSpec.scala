@@ -212,6 +212,8 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
             "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#foo2"))
       }
 
+
+
 //      it("given class name should return individuals from class defined in attribute value") {
 //        val values = OntologyAttributeFinder.findInstancesOfClass(ontology,
 //          "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
@@ -229,6 +231,66 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 //            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
 //            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
 //      }
+    }
+
+    describe("queryOntologyWithSparql") {
+      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testIdMatch"))
+
+      it("should return single result") {
+        var query = "" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
+          "SELECT ?id " + System.lineSeparator() +
+          "WHERE {" + System.lineSeparator() +
+          "<http://dbpedia.org/page/Bart_Simpson> subject:subject-id ?id" + System.lineSeparator() +
+          "}"
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
+          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
+        ))
+
+        actual should be(Set("bart@simpsons.com"))
+      }
+
+      it("should return multiple results") {
+        var query = "" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
+          "SELECT ?id ?name" + System.lineSeparator() +
+          "WHERE {" + System.lineSeparator() +
+          "<http://dbpedia.org/page/Bart_Simpson> subject:subject-id ?id ." + System.lineSeparator() +
+          "<http://dbpedia.org/page/Bart_Simpson> test:hasFirstName ?name ." + System.lineSeparator() +
+          "}"
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
+          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
+        ))
+
+        actual should be(Set("id:bart@simpsons.com;name:Bart"))
+      }
+
+      it("should return multiple results and elements in Set") {
+        var query = "" +
+          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
+          "SELECT ?id ?name" + System.lineSeparator() +
+          "WHERE {" + System.lineSeparator() +
+          "?ind subject:subject-id ?id ." + System.lineSeparator() +
+          "?ind test:hasFirstName ?name ." + System.lineSeparator() +
+          "}"
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
+          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
+        ))
+
+        actual should be(Set("id:bart@simpsons.com;name:Bart", "id:homer@simpsons.com;name:Homer"))
+      }
     }
   }
 

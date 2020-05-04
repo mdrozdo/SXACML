@@ -78,6 +78,11 @@
         <hasFirstName rdf:datatype="&xsd;string">Bart</hasFirstName>
         <subject:subject-id>bart@simpsons.com</subject:subject-id>
     </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://dbpedia.org/page/Homer_Simpson">
+            <hasFirstName rdf:datatype="&xsd;string">Homer</hasFirstName>
+            <subject:subject-id>homer@simpsons.com</subject:subject-id>
+        </owl:NamedIndividual>
 </rdf:RDF>
 
 

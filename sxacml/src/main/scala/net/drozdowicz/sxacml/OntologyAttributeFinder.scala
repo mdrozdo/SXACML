@@ -26,7 +26,27 @@ object OntologyAttributeFinder {
     "?action" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action")
   )
 
-  def queryOntology(sparqlPath: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {
+  def queryOntologyWithSparql(query: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {
+
+    val finalQuery = categoryUris.foldLeft(query)((q, c) => q.replaceAllLiterally(c._1, "<" + categoryIndividualIds(c._2) + ">"))
+
+    val sparql = new SparqlReader(requestOntology)
+
+    var result = Set.empty[String]
+    sparql.executeQuery(finalQuery, new ValueSetResultProcessor {
+      override def processSolution(sol: QuerySolution): Unit = {
+
+        val varNames = sol.varNames().asScala.toList
+        if(varNames.size == 1)
+          result += sol.get(varNames(0)).toString
+        else
+          result += varNames.map(v=>s"$v:${sol.get(v)}").mkString(";")
+      }
+    })
+    result
+  }
+
+  def queryOntologyWithSparqlPath(sparqlPath: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {
 
     val query = getOntologyPrefixesString(requestOntology) +
       s"""PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
