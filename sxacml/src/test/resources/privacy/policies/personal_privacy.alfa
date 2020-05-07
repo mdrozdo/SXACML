@@ -1,0 +1,36 @@
+namespace personal_privacy {
+	
+	policyset privacyPolicySet {
+		apply firstApplicable
+		lawEnforcement
+		personalPreferences
+	}
+	
+	policy lawEnforcement {				
+		apply firstApplicable
+		rule checkLocation {
+			target clause Attributes.subjectId == "policeDepartment" 
+				and Attributes.actionId == "read" 
+				and SxacmlAttributes.resourceClassId == "http://drozdowicz.net/onto/fitness-tracking#Location":anyURI
+			condition  
+				dateTimeOneAndOnly(PrivacyAttributes.resultTime) >= dateTimeSubtractDayTimeDuration(dateTimeOneAndOnly(PrivacyAttributes.eventTime), "P1H":dayTimeDuration)
+				&& dateTimeOneAndOnly(PrivacyAttributes.resultTime) < dateTimeAddDayTimeDuration(dateTimeOneAndOnly(PrivacyAttributes.eventTime), "P1H":dayTimeDuration)
+				&& GeoXACML.geometryIsWithinDistance(
+					GeoXACML.geometryOneAndOnly(PrivacyAttributes.eventLocation), 
+					GeoXACML.geometryOneAndOnly(GeoXACML.pointFromString(PrivacyAttributes.latLong)), 
+					0.029234507657761036
+				)			
+			
+			permit
+		}
+	}
+	
+	policy personalPreferences {				
+		apply denyUnlessPermit
+			
+		rule {		
+			condition SxacmlAttributes.requestClassId == "http://drozdowicz.net/onto/access-control#PermittedRequest":anyURI
+			permit
+		}
+	}
+}
