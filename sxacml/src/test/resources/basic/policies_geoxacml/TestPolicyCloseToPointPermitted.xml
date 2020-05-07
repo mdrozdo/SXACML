@@ -1,0 +1,22 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"  PolicyId="IsWithinDistance" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0">
+    <Target></Target>
+    <Rule Effect="Permit" RuleId="CloseToWarsaw">
+        <Condition>
+
+            <Apply FunctionId="urn:ogc:def:function:geoxacml:1.0:geometry-is-within-distance">
+                <AttributeValue DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry">
+                    <gml:Point xmlns:gml="http://www.opengis.net/gml" srsName="EPSG:4326">
+                        <!-- position Warsaw center //-->
+                        <gml:coordinates>52.2305503,21.0064682</gml:coordinates>
+                    </gml:Point>
+                </AttributeValue>
+                <Apply FunctionId="urn:ogc:def:function:geoxacml:1.0:geometry-one-and-only">
+                    <AttributeDesignator AttributeId="http://drozdowicz.net/sxacml/test1#location" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry" MustBePresent="true"></AttributeDesignator>
+                </Apply>
+                <!-- Value in degrees (~20km), because of the spatial reference system -->
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#double">0.292</AttributeValue>
+            </Apply>
+
+        </Condition>
+    </Rule>
+</Policy>

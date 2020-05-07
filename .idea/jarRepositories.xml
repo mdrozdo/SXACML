@@ -12,6 +12,11 @@
       <option name="url" value="http://maven.wso2.org/nexus/content/groups/wso2-public" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="mvnrepository" />
+      <option name="name" value="mvnrepository" />
+      <option name="url" value="https://mvnrepository.com" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="osgeo-snapshot" />
       <option name="name" value="OSGeo Snapshot Repository" />
       <option name="url" value="https://repo.osgeo.org/repository/snapshot/" />
@@ -25,9 +30,6 @@
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
-      <option name="id" value="mvnrepository" />
-      <option name="name" value="mvnrepository" />
-      <option name="url" value="https://mvnrepository.com" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />

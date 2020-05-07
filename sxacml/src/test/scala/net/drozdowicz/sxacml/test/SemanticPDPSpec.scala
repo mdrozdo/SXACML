@@ -33,6 +33,35 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
     }
   }
 
+  describe("GeoXACML function") {
+
+    val policyLocation = relativeToAbsolute("basic/policies_geoxacml")
+
+    describe("if subject is close to Warsaw") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/test1")
+
+      it("returns permit") {
+        val request = readFile("basic/requests/CloseToWarsaw.xml")
+        val actualResponse = pdp.evaluate(request)
+        val expectedResponse = readFile("basic/responses/Permit.xml")
+
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
+
+    describe("if subject is far from Warsaw") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/sxacml/test1")
+
+      it("returns deny") {
+        val request = readFile("basic/requests/FarFromWarsaw.xml")
+        val actualResponse = pdp.evaluate(request)
+        val expectedResponse = readFile("basic/responses/Deny.xml")
+
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
+  }
+
   describe("SemanticPDP") {
 
     val policyLocation = relativeToAbsolute("basic/policies")
@@ -187,7 +216,6 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
 
   private def relativeToAbsolute(relativePath: String): String = {
     (new File(".")).getCanonicalPath +
-      //File.separator + "sxacml" +
       File.separator + "src" +
       File.separator + "test" +
       File.separator + "resources" +

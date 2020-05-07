@@ -5,7 +5,8 @@ import java.util
 import java.util.Properties
 
 import net.drozdowicz.sxacml.OwlAttributeModule
-import org.wso2.balana.cond.{FunctionFactory, StandardFunctionFactory}
+import org.geotools.xacml.geoxacml.config.GeoXACML
+import org.wso2.balana.cond.{FunctionFactory, FunctionFactoryProxy, StandardFunctionFactory}
 import org.wso2.balana.finder.{AttributeFinder, AttributeFinderModule, ResourceFinder, ResourceFinderModule}
 import org.wso2.balana.{Balana, PDP, PDPConfig}
 import org.wso2.balana.finder.impl.FileBasedPolicyFinderModule
@@ -33,6 +34,7 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
     val pdpConfig = balana.getPdpConfig
     val owlStore = new OwlAttributeStore(ontologyFolderPath, rootOntologyId)
     val owlAttributeModule = createAttributeModule(owlStore)
+
     initializeFunctions(pdpConfig, owlStore)
     pdpConfig.getPolicyFinder.setModules(Set(new FileBasedPolicyFinderModule()))
     pdpConfig.getPolicyFinder.init()
@@ -75,11 +77,16 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
   }
 
   private def initializeFunctions(pdpConfig: PDPConfig, owlAttributeStore: OwlAttributeStore) = {
-    val factoryProxy = StandardFunctionFactory.getNewFactoryProxy()
+
+    //val factoryProxy = FunctionFactory.getInstance()
+    val factoryProxy = StandardFunctionFactory.getNewFactoryProxy
     val factory = factoryProxy.getGeneralFactory()
     factory.addFunction(new BoolTextCompare)
     factory.addFunction(new SparqlPathSelect(owlAttributeStore))
     factory.addFunction(new SparqlSelect(owlAttributeStore))
+
+    GeoXACML.initialize(factoryProxy);
+
     FunctionFactory.setDefaultFactory(factoryProxy)
   }
 

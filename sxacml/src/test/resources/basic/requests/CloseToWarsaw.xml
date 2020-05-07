@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <Attribute IncludeInResult="false" AttributeId="http://drozdowicz.net/sxacml/test1#location">
+            <AttributeValue DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry">
+                <gml:Point xmlns:gml="http://www.opengis.net/gml" srsName="EPSG:4326">
+                    <gml:coordinates>52.269402,20.8738153</gml:coordinates>
+                </gml:Point>
+            </AttributeValue>
+        </Attribute>
+    </Attributes>
+</Request>
