@@ -37,10 +37,10 @@ object OntologyAttributeFinder {
       override def processSolution(sol: QuerySolution): Unit = {
 
         val varNames = sol.varNames().asScala.toList
-        if(varNames.size == 1)
+        if (varNames.size == 1)
           result += sol.get(varNames(0)).toString
         else
-          result += varNames.map(v=>s"$v:${sol.get(v)}").mkString(";")
+          result += varNames.map(v => s"$v:${sol.get(v)}").mkString(";")
       }
     })
     result
@@ -141,32 +141,34 @@ object OntologyAttributeFinder {
   }
 
   def findAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
-    if (attributeId.equalsIgnoreCase(Constants.TYPE_PROPERTY_URI)) {
-      executeQuery(ontology,
-        """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-          |SELECT ?val WHERE
-          |{
-          | <%s> rdf:type ?val
-          |}""".stripMargin.format(individualId),
-        (sol: QuerySolution) => {
-          val solution = sol.getResource("val")
-          FlatAttributeValue(URI.create(categoryId), URI.create(attributeId), URI.create("http://www.w3.org/2001/XMLSchema#anyURI"), solution.getURI)
-        }
-      )
-    } else {
-      executeQuery(ontology,
-        """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-          |SELECT ?val WHERE
-          |{
-          | <%s> <%s> ?val
-          |}""".stripMargin.format(individualId, attributeId),
-        (sol: QuerySolution) => {
-          val literal = sol.getLiteral("val")
-          FlatAttributeValue(URI.create(categoryId), URI.create(attributeId), URI.create(literal.getDatatypeURI), literal.getString)
-        }
-      )
-    }
+    executeQuery(ontology,
+      """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        |SELECT ?val WHERE
+        |{
+        | <%s> <%s> ?val
+        |}""".stripMargin.format(individualId, attributeId),
+      (sol: QuerySolution) => {
+        val literal = sol.getLiteral("val")
+        FlatAttributeValue(URI.create(categoryId), URI.create(attributeId), URI.create(literal.getDatatypeURI), literal.getString)
+      }
+    )
+
   }
+
+  def findClassAttributeValues(ontology: OWLOntology, individualId: String, categoryId: String, attributeId: String): Set[FlatAttributeValue] = {
+    executeQuery(ontology,
+      """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        |SELECT ?val WHERE
+        |{
+        | <%s> rdf:type ?val
+        |}""".stripMargin.format(individualId),
+      (sol: QuerySolution) => {
+        val solution = sol.getResource("val")
+        FlatAttributeValue(URI.create(categoryId), URI.create(attributeId), URI.create("http://www.w3.org/2001/XMLSchema#anyURI"), solution.getURI)
+      }
+    )
+  }
+
 
   private def isIRI(value: String): Boolean = {
     return "" != IRI.create(value).getNamespace
@@ -186,7 +188,8 @@ object OntologyAttributeFinder {
 
   def getAllSupportedAttributes(ontology: OWLOntology): Set[String] = {
     var model = OntologyUtils.createJenaModel(ontology)
-    ontology.getDataPropertiesInSignature().asScala.map(dp => dp.getIRI.toString).toSet + Constants.TYPE_PROPERTY_URI
+    ontology.getDataPropertiesInSignature().asScala.map(dp => dp.getIRI.toString).toSet ++
+      Constants.classIdForCategory.values.map(uri=>uri.toString)
   }
 
   private def getOntologyPrefixesString(ontology: OWLOntology): String = {
@@ -195,7 +198,11 @@ object OntologyAttributeFinder {
       .map(o => ontologyManager.getOntologyFormat(o).asPrefixOWLDocumentFormat().getPrefixName2PrefixMap.asScala.toMap)
       .reduce(_ ++ _) //convert list of maps to a single map
 
-    prefixes.map { case (key, value) => s"PREFIX $key <$value${if (!value.endsWith("#")) "#"}>" }
+    prefixes.map {
+      case (key, value) => s"PREFIX $key <$value${
+        if (!value.endsWith("#")) "#"
+      }>"
+    }
       .toList
       .distinct
       .mkString("", scala.compat.Platform.EOL, scala.compat.Platform.EOL)

@@ -27,8 +27,8 @@ namespace System {
 	type ipAddress = "urn:oasis:names:tc:xacml:2.0:data-type:ipAddress"
 	type time = "http://www.w3.org/2001/XMLSchema#time"
 	type string = "http://www.w3.org/2001/XMLSchema#string"
-	type dayTimeDuration = "http://www.w3.org/2001/XMLSchema#dayTimeDuration"
-	type yearMonthDuration = "http://www.w3.org/2001/XMLSchema#yearMonthDuration"
+	type dayTimeDuration = "http://www.w3.org/TR/2002/WD-xquery-operators-20020816#dayTimeDuration"
+	type yearMonthDuration = "http://www.w3.org/TR/2002/WD-xquery-operators-20020816#yearMonthDuration"
 	type x500Name = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name"
 	type rfc822Name = "urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"
 	type hexBinary = "http://www.w3.org/2001/XMLSchema#hexBinary"
@@ -161,9 +161,9 @@ namespace System {
     function doubleGreaterThanOrEqual = "urn:oasis:names:tc:xacml:1.0:function:double-greater-than-or-equal" : double double -> boolean
     function doubleLessThan = "urn:oasis:names:tc:xacml:1.0:function:double-less-than" : double double -> boolean
     function doubleLessThanOrEqual = "urn:oasis:names:tc:xacml:1.0:function:double-less-than-or-equal" : double double -> boolean
-    function dateTimeAddDayTimeDuration = "urn:oasis:names:tc:xacml:3.0:function:dateTime-add-dayTimeDuration" : dateTime dayTimeDuration -> dateTime
+    function dateTimeAddDayTimeDuration = "urn:oasis:names:tc:xacml:1.0:function:dateTime-add-dayTimeDuration" : dateTime dayTimeDuration -> dateTime
     function dateTimeAddYearMonthDuration = "urn:oasis:names:tc:xacml:3.0:function:dateTime-add-yearMonthDuration" : dateTime yearMonthDuration -> dateTime
-    function dateTimeSubtractDayTimeDuration = "urn:oasis:names:tc:xacml:3.0:function:dateTime-subtract-dayTimeDuration" : dateTime dayTimeDuration -> dateTime
+    function dateTimeSubtractDayTimeDuration = "urn:oasis:names:tc:xacml:1.0:function:dateTime-subtract-dayTimeDuration" : dateTime dayTimeDuration -> dateTime
     function dateTimeSubtractYearMonthDuration = "urn:oasis:names:tc:xacml:3.0:function:dateTime-subtract-yearMonthDuration" : dateTime yearMonthDuration -> dateTime
     function dateAddYearMonthDuration = "urn:oasis:names:tc:xacml:3.0:function:date-add-yearMonthDuration" : date yearMonthDuration -> date
     function dateSubtractYearMonthDuration = "urn:oasis:names:tc:xacml:3.0:function:date-subtract-yearMonthDuration" : date yearMonthDuration -> date

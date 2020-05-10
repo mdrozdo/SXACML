@@ -65,11 +65,19 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
   }
 
 
+  def isClassAttributeId(attributeId: URI): Boolean = {
+    return Constants.classIdForCategory.values.toList.contains(attributeId)
+  }
+
   def findAttributeValues(attributeId: URI, category: URI, context: EvaluationCtx): Set[FlatAttributeValue] = {
     log.debug(s"Locating attribute: '$attributeId', category: '$category'.")
 
     val ontology = getRequestOntology(context)
-    val result = OntologyAttributeFinder.findAttributeValues(ontology.requestOntology, ontology.categoryIndividualIds(category), category.toString, attributeId.toString)
+    val result = if(isClassAttributeId(attributeId)){
+      OntologyAttributeFinder.findClassAttributeValues(ontology.requestOntology, ontology.categoryIndividualIds(category), category.toString, attributeId.toString)
+    } else {
+      OntologyAttributeFinder.findAttributeValues(ontology.requestOntology, ontology.categoryIndividualIds(category), category.toString, attributeId.toString)
+    }
 
     if (log.isDebugEnabled) {
       //TODO: Move to a toString implementation.

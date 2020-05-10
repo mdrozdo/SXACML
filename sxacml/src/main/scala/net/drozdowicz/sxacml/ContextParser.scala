@@ -1,6 +1,7 @@
 package net.drozdowicz.sxacml
 
 import java.net.URI
+
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.sax.SAXResult
 
@@ -8,6 +9,7 @@ import scala.collection.JavaConversions._
 import org.wso2.balana.ctx.AbstractRequestCtx
 import org.wso2.balana.xacml3.Attributes
 
+import scala.net.drozdowicz.sxacml.Constants
 import scala.xml.{Elem, Node, Text}
 
 /**
@@ -33,16 +35,6 @@ object ContextParser {
       adapter.rootElem
     }
 
-
-    def classIdForCategory(category: URI): URI = {
-      category.toString match {
-        case "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" => new URI("sxacml:subject:subject-class-id")
-        case "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" => new URI("sxacml:resource:resource-class-id")
-        case "urn:oasis:names:tc:xacml:3.0:attribute-category:action" => new URI("sxacml:action:action-class-id")
-        case "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" => new URI("sxacml:environment:environment-class-id")
-      }
-    }
-
     def parseAttributes(as: Attributes) = {
       as.getAttributes.flatMap(
         a => a.getValues.map(
@@ -57,7 +49,7 @@ object ContextParser {
       if (contentRoot != null) {
         Some(FlatAttributeValue(
           category,
-          classIdForCategory(category),
+          Constants.classIdForCategory(category.toString),
           new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
           contentRoot.namespace + "#" + contentRoot.label
         ))

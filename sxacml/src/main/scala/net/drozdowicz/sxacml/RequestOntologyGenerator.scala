@@ -6,7 +6,9 @@ import java.util.jar.Attributes
 import net.drozdowicz.sxacml.RequestOntologyGenerator.getCategoryIndividualUri
 import org.semanticweb.owlapi.io.SystemOutDocumentTarget
 import org.semanticweb.owlapi.model._
+
 import scala.collection.JavaConversions._
+import scala.net.drozdowicz.sxacml.Constants
 
 /**
   * Created by michal on 2015-03-18.
@@ -16,13 +18,6 @@ object RequestOntologyGenerator {
     "urn:oasis:names:tc:xacml:1.0:subject:subject-id",
     "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
     "urn:oasis:names:tc:xacml:1.0:action:action-id"
-  )
-
-  val classIdForCategory = Map(
-    "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" -> new URI("sxacml:subject:subject-class-id"),
-    "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" -> new URI("sxacml:resource:resource-class-id"),
-    "urn:oasis:names:tc:xacml:3.0:attribute-category:action" -> new URI("sxacml:action:action-class-id"),
-    "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" -> new URI("sxacml:environment:environment-class-id")
   )
 
   def getCategoryIndividualIds(requestId: String, attributes: Seq[ContextAttributeValue]) = {
@@ -39,7 +34,7 @@ object RequestOntologyGenerator {
     def axiomsFromAttributes(parent: OWLNamedIndividual, attributes: Seq[ContextAttributeValue], categoryIndividuals: Map[URI, OWLNamedIndividual], factory: OWLDataFactory): Seq[OWLIndividualAxiom] = {
       attributes.flatMap {
         case attributeValue: FlatAttributeValue =>
-          if(attributeValue.attributeId == classIdForCategory(attributeValue.categoryId.toString)){
+          if(attributeValue.attributeId == Constants.classIdForCategory(attributeValue.categoryId.toString)){
             val elementClass = factory.getOWLClass(IRI.create(attributeValue.valueString))
             val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, parent)
 

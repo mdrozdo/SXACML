@@ -5,23 +5,22 @@ namespace PrivacyAttributes{
 	    category = resourceCat
 	}
 	
-	attribute eventTime {
-		id = "sxacml:privacy:resource:eventTime"
-	    type = dateTime
-	    category = resourceCat
-	}
-
 	attribute latLong {
 		id = "http://www.w3.org/2003/01/geo/wgs84_pos#lat_long"
 	    type = string
 	    category = resourceCat
 	}
 	
-
+	attribute eventTime {
+		id = "sxacml:privacy:environment:eventTime"
+	    type = dateTime
+	    category = environmentCat
+	}
+	
 	attribute eventLocation {
-		id = "sxacml:privacy:resource:eventLocation"
+		id = "sxacml:privacy:environment:eventLocation"
 	    type = GeoXACML.geometry
-	    category = resourceCat
+	    category = environmentCat
 	}
 	
 }

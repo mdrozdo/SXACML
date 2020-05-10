@@ -28,7 +28,6 @@ namespace GeoXACML {
 	function geometrySymDifference = "urn:ogc:def:function:geoxacml:1.0:geometry-sym-difference" : geometry geometry -> bag[geometry]
 	function geometryTouches = "urn:ogc:def:function:geoxacml:1.0:geometry-touches" : geometry geometry -> boolean
 	function geometryUnion = "urn:ogc:def:function:geoxacml:1.0:geometry-union" : geometry geometry -> bag[geometry]
-	function geometryWithin = "urn:ogc:def:function:geoxacml:1.0:geometry-within" : geometry geometry -> boolean
-	function pointFromString = "geo:point-from-string" : bag[string] -> bag[geometry]
+	function geometryWithin = "urn:ogc:def:function:geoxacml:1.0:geometry-within" : geometry geometry -> boolean	
 }
 	

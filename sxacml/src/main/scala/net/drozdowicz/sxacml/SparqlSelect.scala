@@ -15,7 +15,7 @@ import scala.util.control.ControlThrowable
   * Created by drozd on 22.03.2020.
   */
 object SparqlSelect { // the name of the function, which will be used publicly
-  val NAME = "sparql-select"
+  val NAME = "net:drozdowicz:sxacml:sparql-select"
   // the parameter types, in order, and whether or not they're bags
   private val params = Array(StringAttribute.identifier)
   private val bagParams = Array(false)

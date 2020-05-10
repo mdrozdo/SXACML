@@ -10,7 +10,7 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance#"
     xml:base="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#"
     xmlns="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#">
-  <owl:Ontology rdf:about="#P3P1.0">
+  <owl:Ontology rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#P3P1.0">
     <owl:versionInfo>1.0</owl:versionInfo>
   <rdfs:comment>P3P1.0 Modelled in OWL</rdfs:comment>
   </owl:Ontology>
