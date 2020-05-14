@@ -93,6 +93,32 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         result should not equal None
       }
 
+      it("should create a request individual") {
+        val qry =
+          """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            |SELECT ?req WHERE
+            |{
+            |	?req rdf:type <sxacml:attribute-category:request>
+            |}""".stripMargin
+        val result = getSingleSparqlResult(ontology, qry)
+
+        result should not equal None
+      }
+
+      it("should link category to the request individual") {
+        val qry =
+          """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            |SELECT ?req WHERE
+            |{
+            |	?req rdf:type <sxacml:attribute-category:request> .
+            | ?cat rdf:type <urn:oasis:names:tc:xacml:3.0:attribute-category:action> .
+            | ?req <http://drozdowicz.net/onto/access-control#concernsAction> ?cat
+            |}""".stripMargin
+        val result = getSingleSparqlResult(ontology, qry)
+
+        result should not equal None
+      }
+
 
     }
 

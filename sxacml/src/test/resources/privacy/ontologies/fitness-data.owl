@@ -13,7 +13,8 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="http://schema.org/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:fitness-tracking="http://drozdowicz.net/onto/fitness-tracking#">
     <owl:Ontology rdf:about="http://drozdowicz.net/onto/fitness-data">
         <owl:imports rdf:resource="http://drozdowicz.net/onto/fitness-tracking"/>
     </owl:Ontology>
@@ -31,18 +32,48 @@
     
 
 
+    <!-- http://drozdowicz.net/onto/fitness-data#agg_dist_201904 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#agg_dist_201904">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
+        <fitness-tracking:aggregatesMetric rdf:resource="http://drozdowicz.net/onto/fitness-data#dist_20190401"/>
+        <fitness-tracking:aggregatesMetric rdf:resource="http://drozdowicz.net/onto/fitness-data#dist_20190402"/>
+        <fitness-tracking:aggregatesMetric rdf:resource="http://drozdowicz.net/onto/fitness-data#dist_20190403"/>
+        <fitness-tracking:aggregationDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</fitness-tracking:aggregationDays>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-data#dist_20190401 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#dist_20190401">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-data#dist_20190402 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#dist_20190402">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-data#dist_20190403 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#dist_20190403">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://drozdowicz.net/onto/fitness-data#loc_1559197812 -->
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#loc_1559197812">
         <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Location"/>
         <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.232500,20.960139</wgs84_pos:lat_long>
         <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T06:30:12+00:00</sosa:resultTime>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#loc_1559210590">
-        <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Location"/>
-        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.242347, 21.003451</wgs84_pos:lat_long>
-        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T10:03:10+00:00</sosa:resultTime>
     </owl:NamedIndividual>
     
 
@@ -53,6 +84,16 @@
         <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Location"/>
         <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.234688,20.960021</wgs84_pos:lat_long>
         <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T09:12:10+00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-data#loc_1559210590 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/fitness-data#loc_1559210590">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Location"/>
+        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.242347, 21.003451</wgs84_pos:lat_long>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T10:03:10+00:00</sosa:resultTime>
     </owl:NamedIndividual>
     
 

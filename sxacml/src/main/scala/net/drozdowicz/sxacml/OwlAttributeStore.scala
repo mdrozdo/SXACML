@@ -49,9 +49,10 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
     }
 
     val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(requestId, attributes)
+    val requestIndividualId = RequestOntologyGenerator.getRequestIndividualId(requestId)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
 
-    new RequestOntology(context, requestOntology, categoryIndividualIds)
+    new RequestOntology(context, requestOntology, categoryIndividualIds + (new URI(Constants.REQUEST_CLASS_ID) -> requestIndividualId))
   }
 
   private def getRequestOntology(context: EvaluationCtx) = {
@@ -73,7 +74,7 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
     log.debug(s"Locating attribute: '$attributeId', category: '$category'.")
 
     val ontology = getRequestOntology(context)
-    val result = if(isClassAttributeId(attributeId)){
+    val result = if (isClassAttributeId(attributeId)) {
       OntologyAttributeFinder.findClassAttributeValues(ontology.requestOntology, ontology.categoryIndividualIds(category), category.toString, attributeId.toString)
     } else {
       OntologyAttributeFinder.findAttributeValues(ontology.requestOntology, ontology.categoryIndividualIds(category), category.toString, attributeId.toString)

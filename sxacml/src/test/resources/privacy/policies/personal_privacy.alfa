@@ -3,7 +3,7 @@ namespace personal_privacy {
 	policyset privacyPolicySet {
 		apply firstApplicable
 		lawEnforcement
-//		personalPreferences
+		personalPreferences
 	}	
 	
 	policy lawEnforcement {				
@@ -25,12 +25,12 @@ namespace personal_privacy {
 		}
 	}
 	
-//	policy personalPreferences {				
-//		apply denyUnlessPermit
-//			
-//		rule {		
-//			condition anyURIIsIn("http://drozdowicz.net/onto/access-control#PermittedRequest":anyURI, SxacmlAttributes.requestClassId) 
-//			permit
-//		}
-//	}
+	policy personalPreferences {				
+		apply firstApplicable
+			
+		rule {		
+			condition anyURIIsIn("http://drozdowicz.net/onto/access-control#PermittedRequest":anyURI, SxacmlAttributes.requestClassId) 
+			permit
+		}
+	}
 }

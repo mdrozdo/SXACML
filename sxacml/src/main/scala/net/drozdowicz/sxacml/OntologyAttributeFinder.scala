@@ -23,7 +23,9 @@ object OntologyAttributeFinder {
   val categoryUris = Map(
     "?subject" -> new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
     "?resource" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-    "?action" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action")
+    "?action" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action"),
+    "?environment" -> new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:environment"),
+    "?request" -> new URI("sxacml:attribute-category:request")
   )
 
   def queryOntologyWithSparql(query: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {

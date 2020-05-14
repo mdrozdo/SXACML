@@ -8,8 +8,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://drozdowicz.net/onto/request">
-        <owl:versionIRI rdf:resource="http://drozdowicz.net/onto/request/1.0.0"/>
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control/1.0.0"/>
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control"/>
     </owl:Ontology>
     
 

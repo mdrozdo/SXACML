@@ -2,4 +2,6 @@ namespace Sxacml{
 	function sparqlSelect = "net:drozdowicz:sxacml:sparql-select" : string -> bag[string]
 	function sparqlPathSelect = "net:drozdowicz:sxacml:sparql-path-select" : string -> bag[string]
 	function pointFromString = "net:drozdowicz:sxacml:point-from-string" : string -> GeoXACML.geometry
+	
+	category requestCat  = "sxacml:attribute-category:request"
 }

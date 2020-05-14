@@ -17,7 +17,7 @@ import org.wso2.balana.finder.AttributeFinderModule
 import org.wso2.carbon.identity.entitlement.pip.PIPAttributeFinder
 
 import scala.collection.JavaConverters._
-import scala.net.drozdowicz.sxacml.OwlAttributeStore
+import scala.net.drozdowicz.sxacml.{Constants, OwlAttributeStore}
 import scala.util.control.ControlThrowable
 
 //TODO Make this a super simple wrapper over something more functional etc.
@@ -96,11 +96,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
   override def isDesignatorSupported() = true
 
-  override def getSupportedCategories(): java.util.Set[String] =
-    Set("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject",
-      "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
-      "urn:oasis:names:tc:xacml:3.0:attribute-category:action",
-      "urn:oasis:names:tc:xacml:3.0:attribute-category:environment").asJava
+  override def getSupportedCategories(): java.util.Set[String] = Constants.classIdForCategory.keySet.asJava
 
   override def getSupportedAttributes: util.Set[String] = {
     try {

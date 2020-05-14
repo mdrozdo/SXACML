@@ -18,8 +18,8 @@ namespace SxacmlAttributes{
 	}
 	
 	attribute requestClassId {
-		id = "sxacml:environment:request-class-id"
+		id = "sxacml:request:request-class-id"
 	    type = anyURI
-	    category = environmentCat	 
+	    category = Sxacml.requestCat 
 	}
 }
