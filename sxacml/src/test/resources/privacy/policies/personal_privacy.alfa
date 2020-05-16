@@ -1,7 +1,7 @@
 namespace personal_privacy {
 	
 	policyset privacyPolicySet {
-		apply firstApplicable
+		apply denyUnlessPermit
 		lawEnforcement
 		personalPreferences
 	}	
