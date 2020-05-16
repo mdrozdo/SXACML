@@ -1,0 +1,1077 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://drozdowicz.net/onto/port_inst#"
+     xml:base="http://drozdowicz.net/onto/port_inst"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:DUL="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:port="http://drozdowicz.net/onto/port#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:ssn="http://www.w3.org/ns/ssn/"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:logico="http://ontology.tno.nl/logico#"
+     xmlns:schema="http://schema.org/"
+     xmlns:logiserv="http://ontology.tno.nl/logiserv#"
+     xmlns:transport="http://ontology.tno.nl/transport#"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <owl:Ontology rdf:about="http://drozdowicz.net/onto/port_inst">
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/port"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Dock"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Parking"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#Barrier_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParking -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParking">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Parking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Yard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#AccessCardObservation_20190501120314 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#AccessCardObservation_20190501120314">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+        <sosa:madeBySensor rdf:resource="http://drozdowicz.net/onto/port_inst#AccessCardReader_1"/>
+        <sosa:observedProperty rdf:resource="http://drozdowicz.net/onto/port#UserName"/>
+        <sosa:hasSimpleResult rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClarkContoso</sosa:hasSimpleResult>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:14</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#AccessCardReader_1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#AccessCardReader_1">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#AccessCardReader"/>
+        <sosa:observes rdf:resource="http://drozdowicz.net/onto/port#UserName"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Address_FabrikamInc -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Address_FabrikamInc">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Madrid"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasStreet rdf:resource="http://drozdowicz.net/onto/port_inst#Calle_del_Papel20"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8032PH</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Physical Address Fabrikam Inc.</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Address_MSC_Terminal -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Address_MSC_Terminal">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Valencia"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasStreet rdf:resource="http://drozdowicz.net/onto/port_inst#Moll_de_Ponent"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3629HL</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delivery address</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Barcelona -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Barcelona">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barcelona</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barcelona</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#BarrierController_1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#BarrierController_1">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#BarrierController"/>
+        <ssn:forProperty rdf:resource="http://drozdowicz.net/onto/port#OpenClosedState"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Barrier_1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Barrier_1">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Barrier"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Calle_del_Papel20 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Calle_del_Papel20">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calle del Papel</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calle del Papel 20</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Calle_del_Papel22 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Calle_del_Papel22">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calle del Papel</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calle del Papel 22</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ClarkContoso -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ClarkContoso">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Driver"/>
+        <port:employedBy rdf:resource="http://drozdowicz.net/onto/port_inst#StarkTransport"/>
+        <logico:hasIDValue>ClarkContoso</logico:hasIDValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Company_FabrikamInc -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Company_FabrikamInc">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#FabrikamInc_4354355"/>
+        <transport:hasContactDetails rdf:resource="http://drozdowicz.net/onto/port_inst#Contact_FabrikamInc"/>
+        <transport:hasPhysicalLocation rdf:resource="http://drozdowicz.net/onto/port_inst#Address_FabrikamInc"/>
+        <transport:hasPostalAddress rdf:resource="http://drozdowicz.net/onto/port_inst#Address_FabrikamInc"/>
+        <transport:hasRegistrationAddress rdf:resource="http://drozdowicz.net/onto/port_inst#Address_FabrikamInc"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fabrikam Inc.</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fabrikam Inc. </rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ConsignmentIdentification_CONS1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ConsignmentIdentification_CONS1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CONS1</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> Consignment Identification CONS1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Consignment_CONS1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Consignment_CONS1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Consignment"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#ConsignmentIdentification_CONS1"/>
+        <logico:hasInvoiceTotalAmount rdf:resource="http://drozdowicz.net/onto/port_inst#InvoiceTotalAmount_CONS1"/>
+        <transport:hasConsignee rdf:resource="http://drozdowicz.net/onto/port_inst#MSC_Terminal"/>
+        <transport:hasConsignor rdf:resource="http://drozdowicz.net/onto/port_inst#Company_FabrikamInc"/>
+        <transport:hasPlannedDelivery rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedDeliveryTransportEvent"/>
+        <transport:hasPlannedPickup rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedPickupTransportEvent"/>
+        <transport:hasRequestedDelivery rdf:resource="http://drozdowicz.net/onto/port_inst#RequestedDeliveryTransportEvent"/>
+        <transport:hasRequestedPickup rdf:resource="http://drozdowicz.net/onto/port_inst#RequestedPickupTransportEvent"/>
+        <transport:hasTransportContract rdf:resource="http://drozdowicz.net/onto/port_inst#TransportContract_2"/>
+        <transport:hasTransportHandlingUnit rdf:resource="http://drozdowicz.net/onto/port_inst#Truck_KT3311"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignment_CONS1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Contact_FabrikamInc -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Contact_FabrikamInc">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">info@fabrikam.com</logico:hasEmail>
+        <logico:hasFaxNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031384567222</logico:hasFaxNr>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fabrikam Inc.</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031384567222</logico:hasPhoneNr>
+        <transport:hasNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A free text note</transport:hasNote>
+        <transport:hasOtherCommunication rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter @Fabrikam</transport:hasOtherCommunication>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact Fabrikam Inc.</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Contact_GlobexCorp -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Contact_GlobexCorp">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">logistics@GlobexCorp.nl</logico:hasEmail>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Logistics manager</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031450557000</logico:hasPhoneNr>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact Globex Corp</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Contact_MSC_Terminal -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Contact_MSC_Terminal">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delivery@msc.com</logico:hasEmail>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delivery manager</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031384657000</logico:hasPhoneNr>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact MSC Terminal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Contact_StarkTransport -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Contact_StarkTransport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">info@starktransport.com</logico:hasEmail>
+        <logico:hasFaxNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031884567200</logico:hasFaxNr>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stark Transport</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031884567111</logico:hasPhoneNr>
+        <transport:hasNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A free text note</transport:hasNote>
+        <transport:hasOtherCommunication rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter @StarkTrans</transport:hasOtherCommunication>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact Stark Transport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Dock"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Parking"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#Barrier_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParking -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParking">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Parking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Yard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ContractIdentifier_FW-2019-12345 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContractIdentifier_FW-2019-12345">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FW-2019-12345</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contract Identifier FW-2019-12345</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#FabrikamInc_4354355 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#FabrikamInc_4354355">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">58263657</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignor Identification 58263657</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#GlobexCorp -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#GlobexCorp">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Carrier"/>
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <transport:hasContactDetails rdf:resource="http://drozdowicz.net/onto/port_inst#Contact_GlobexCorp"/>
+        <transport:hasPostalAddress rdf:resource="http://drozdowicz.net/onto/port_inst#PostalAddress_GlobexCorp"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Globex Corp</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Globex Corp</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Identification_MSC_Terminal_123123 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Identification_MSC_Terminal_123123">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CONS1_123123</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignee Identification CONS1_123123</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Identifier_TEP-20190524-1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Identifier_TEP-20190524-1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TEP-20190524-1</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identifier TEP-20190524-1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_PlanendPickupEnd -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_PlanendPickupEnd">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-05T10:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planend pickup end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_PlanendPickupStart -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_PlanendPickupStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-05T09:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planend pickup start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryEnd -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryEnd">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:45:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planned delivery end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryStart -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T13:45:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planned delivery start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_PlannedPickupStart -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_PlannedPickupStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planned pickup start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_RequestedDeliveryEnd -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_RequestedDeliveryEnd">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Requested delivery end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_RequestedDeliveryStart -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_RequestedDeliveryStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Requested delivery start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_RequestedPickupEnd -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_RequestedPickupEnd">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-05T12:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant requested Pickup end </rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Instant_RequestedPickupStart -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Instant_RequestedPickupStart">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-05T09:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant requested  Pickup start </rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#InsuranceValueAmount_100EUR -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#InsuranceValueAmount_100EUR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#MonetaryAmount"/>
+        <logico:isMeasuredIn rdf:resource="http://ontology.tno.nl/logico#EUR"/>
+        <logico:hasAmountValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">100.0</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insurance value amount 100 EUR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#InsuranceValueAmount_300EUR -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#InsuranceValueAmount_300EUR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#MonetaryAmount"/>
+        <logico:isMeasuredIn rdf:resource="http://ontology.tno.nl/logico#EUR"/>
+        <logico:hasAmountValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">300.0</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insurance value amount 300 EUR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#InvoiceTotalAmount_CONS1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#InvoiceTotalAmount_CONS1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#InvoiceTotalAmount"/>
+        <logico:isMeasuredIn rdf:resource="http://ontology.tno.nl/logico#EUR"/>
+        <logico:hasAmountValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">300.0</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Invoice total amount 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Juniper_Serra_22 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Juniper_Serra_22">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juniper Serra</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juniper Serra</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Juniper_Serra_23 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Juniper_Serra_23">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juniper Serra</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juniper Serra 23</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#LPRCamera_1 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#LPRCamera_1">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#LPRCamera"/>
+        <sosa:observes rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#LicenseNo_KT3311 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#LicenseNo_KT3311">
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KT3311</logico:hasIDValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#LicenseObservation_20190501120101 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#LicenseObservation_20190501120101">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+        <sosa:madeBySensor rdf:resource="http://drozdowicz.net/onto/port_inst#LPRCamera_1"/>
+        <sosa:observedProperty rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
+        <sosa:hasSimpleResult rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KT3311</sosa:hasSimpleResult>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:01:01</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#LocationIdentification_4048623000003 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#LocationIdentification_4048623000003">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Location identification 4048623000003</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#LocationIdentification_4058673827000 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#LocationIdentification_4058673827000">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="http://ontology.tno.nl/transport#CodeIssuingAgency_GLN"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4058673827000</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Location Identification 4058673827000</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#LocationIdentification_4058673827003 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#LocationIdentification_4058673827003">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="http://ontology.tno.nl/transport#CodeIssuingAgency_GLN"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4058673827003</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LocationIdentification 4058673827003</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#MSC_Terminal -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#MSC_Terminal">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#Identification_MSC_Terminal_123123"/>
+        <transport:hasContactDetails rdf:resource="http://drozdowicz.net/onto/port_inst#Contact_MSC_Terminal"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MSC Terminal</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MSC Terminal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Madrid -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Madrid">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Madrid</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Madrid</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Moll_de_Ponent -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Moll_de_Ponent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moll de Ponent</logico:hasStreetName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moll de Ponent</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PhysicalAddress_StarkTransport -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PhysicalAddress_StarkTransport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Barcelona"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasStreet rdf:resource="http://drozdowicz.net/onto/port_inst#Juniper_Serra_22"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2719DA</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PhysicalAddress_StarkTransport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PhysicalLocation_StarkTransport -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PhysicalLocation_StarkTransport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="http://drozdowicz.net/onto/port_inst#PhysicalAddress_StarkTransport"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Physical location StarkTransport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedDeliveryLocation -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedDeliveryLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <logico:hasAddress rdf:resource="http://drozdowicz.net/onto/port_inst#Address_MSC_Terminal"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned delivery location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedDeliveryPeriod -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedDeliveryPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryStart"/>
+        <time:hasEnd rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned Delivery Period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedDeliveryTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedDeliveryTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <logico:hasLocation rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedDeliveryLocation"/>
+        <logiserv:hasTime rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedDeliveryPeriod"/>
+        <logiserv:hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned</logiserv:hasStatus>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1001</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned delivery transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedPickupLocation -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedPickupLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="http://drozdowicz.net/onto/port_inst#Address_FabrikamInc"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#LocationIdentification_4048623000003"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DC Fabrikam Inc.</logico:hasName>
+        <transport:hasValidityPeriodEndTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">17:30:10+01:00</transport:hasValidityPeriodEndTime>
+        <transport:hasValidityPeriodStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">07:30:10+01:00</transport:hasValidityPeriodStartTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">planned pickup location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedPickupPeriod -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedPickupPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_PlanendPickupStart"/>
+        <time:hasEnd rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_PlanendPickupEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned pickup period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedPickupTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedPickupTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <logico:hasLocation rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedPickupLocation"/>
+        <logiserv:hasTime rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedPickupPeriod"/>
+        <logico:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text descrbing this location</logico:hasDescription>
+        <logiserv:hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned</logiserv:hasStatus>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1000</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned pickup transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PlannedTransportActivity_2 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PlannedTransportActivity_2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportActivity"/>
+        <logiserv:hasConsumer rdf:resource="http://drozdowicz.net/onto/port_inst#GlobexCorp"/>
+        <logiserv:hasDestination rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedDeliveryLocation"/>
+        <logiserv:hasOrigin rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedPickupLocation"/>
+        <logiserv:hasProvider rdf:resource="http://drozdowicz.net/onto/port_inst#StarkTransport"/>
+        <DUL:hasConstituent rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedTransportActivity_2"/>
+        <DUL:isConstituentOf rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedTransportActivity_2"/>
+        <time:hasBeginning rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_PlannedPickupStart"/>
+        <time:hasEnd rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_PlannedDeliveryEnd"/>
+        <logiserv:hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned</logiserv:hasStatus>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned Transport activity 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PostalAddress_FabrikamInc -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PostalAddress_FabrikamInc">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Madrid"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8023RT</logico:hasPostalCode>
+        <logico:hasPostbox rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PO Box 1245</logico:hasPostbox>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postal address Fabrikam Inc.</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PostalAddress_GlobexCorp -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PostalAddress_GlobexCorp">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Madrid"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1357PW</logico:hasPostalCode>
+        <logico:hasPostbox rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PO Box 2546</logico:hasPostbox>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postal address Globex Corp</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#PostalAddress_StarkTransport -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#PostalAddress_StarkTransport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Barcelona"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2719DA</logico:hasPostalCode>
+        <logico:hasPostbox rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PO Box 3008</logico:hasPostbox>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PostalAddress_StarkTransport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RegistrationAddress_FabrikamInc -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RegistrationAddress_FabrikamInc">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Madrid"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasStreet rdf:resource="http://drozdowicz.net/onto/port_inst#Calle_del_Papel22"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8032PH</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Registration address Fabrikam Inc.</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RegistrationAddress_StarkTransport -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RegistrationAddress_StarkTransport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="http://drozdowicz.net/onto/port_inst#Barcelona"/>
+        <logico:hasCountry rdf:resource="http://drozdowicz.net/onto/port_inst#Spain"/>
+        <logico:hasStreet rdf:resource="http://drozdowicz.net/onto/port_inst#Juniper_Serra_23"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2719DA</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RegistrationAddress_StarkTransport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RequestedDeliveryLocation -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RequestedDeliveryLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="http://drozdowicz.net/onto/port_inst#Address_MSC_Terminal"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#LocationIdentification_4058673827000"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MSC Terminal Valencia</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested delivery location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RequestedDeliveryPeriod -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RequestedDeliveryPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_RequestedDeliveryStart"/>
+        <time:hasEnd rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_RequestedDeliveryEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested delivery period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RequestedDeliveryTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RequestedDeliveryTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <logico:hasLocation rdf:resource="http://drozdowicz.net/onto/port_inst#RequestedDeliveryLocation"/>
+        <logiserv:hasTime rdf:resource="http://drozdowicz.net/onto/port_inst#RequestedDeliveryPeriod"/>
+        <logiserv:hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested</logiserv:hasStatus>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1001</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested delivery transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RequestedPickupLocation -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RequestedPickupLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="http://drozdowicz.net/onto/port_inst#Address_FabrikamInc"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#LocationIdentification_4058673827003"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DC Fabrikam Inc.</logico:hasName>
+        <transport:hasValidityPeriodEndTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">17:30:10+01:00</transport:hasValidityPeriodEndTime>
+        <transport:hasValidityPeriodStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">07:30:10+01:00</transport:hasValidityPeriodStartTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">requested pickup location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RequestedPickupPeriod -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RequestedPickupPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_RequestedPickupStart"/>
+        <time:hasEnd rdf:resource="http://drozdowicz.net/onto/port_inst#Instant_RequestedPickupEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">requested pickup period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#RequestedPickupTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#RequestedPickupTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <logico:hasLocation rdf:resource="http://drozdowicz.net/onto/port_inst#RequestedPickupLocation"/>
+        <logiserv:hasTime rdf:resource="http://drozdowicz.net/onto/port_inst#RequestedPickupPeriod"/>
+        <logiserv:hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested</logiserv:hasStatus>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1000</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested pickup transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Spain -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Spain">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Country"/>
+        <logico:hasCountryName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spain</logico:hasCountryName>
+        <logico:hasID>NL</logico:hasID>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spain</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#StarkTransport -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#StarkTransport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <transport:hasContactDetails rdf:resource="http://drozdowicz.net/onto/port_inst#Contact_StarkTransport"/>
+        <transport:hasPhysicalLocation rdf:resource="http://drozdowicz.net/onto/port_inst#PhysicalAddress_StarkTransport"/>
+        <transport:hasPostalAddress rdf:resource="http://drozdowicz.net/onto/port_inst#PostalAddress_StarkTransport"/>
+        <transport:hasRegistrationAddress rdf:resource="http://drozdowicz.net/onto/port_inst#RegistrationAddress_StarkTransport"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stark Transport</logico:hasName>
+        <logico:hasWebsiteURI rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.starktransport.com</logico:hasWebsiteURI>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stark Transport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportContract_2 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportContract_2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contract"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#ContractIdentifier_FW-2019-12345"/>
+        <transport:hasDocumentType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FWAGREEMENT</transport:hasDocumentType>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport contract 2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_1.44MTR -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_1.44MTR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Height"/>
+        <logico:isMeasuredIn rdf:resource="http://ontology.tno.nl/logico#MTR"/>
+        <logico:hasHeightValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.44</logico:hasHeightValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport Equipment Height 1.44 MTR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_2.44MTR -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_2.44MTR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Height"/>
+        <logico:isMeasuredIn rdf:resource="http://ontology.tno.nl/logico#MTR"/>
+        <logico:hasHeightValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.44</logico:hasHeightValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport Equipment Height 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441511 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441511">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="http://ontology.tno.nl/transport#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141223345441511</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport Equipment ID 00007141223345441511</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441512 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441512">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="http://ontology.tno.nl/transport#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141223345441512</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141223345441512</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441513 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441513">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="http://ontology.tno.nl/transport#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141223345441513</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141223345441513</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441511 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441511">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:hasHeight rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441511"/>
+        <logico:hasSize rdf:resource="http://ontology.tno.nl/logico#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141223345441511</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441512 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441512">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:hasAmount rdf:resource="http://drozdowicz.net/onto/port_inst#InsuranceValueAmount_300EUR"/>
+        <logico:hasHeight rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441512"/>
+        <logico:hasSize rdf:resource="http://ontology.tno.nl/logico#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141223345441512</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441513 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441513">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:hasAmount rdf:resource="http://drozdowicz.net/onto/port_inst#InsuranceValueAmount_300EUR"/>
+        <logico:hasHeight rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipmentID_00007141223345441513"/>
+        <logico:hasSize rdf:resource="http://ontology.tno.nl/logico#ISO0_halfEURO"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141223345441513</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportPlan_2 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportPlan_2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportPlan"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#Identifier_TEP-20190524-1"/>
+        <logiserv:hasConsumer rdf:resource="http://drozdowicz.net/onto/port_inst#GlobexCorp"/>
+        <logiserv:hasProvider rdf:resource="http://drozdowicz.net/onto/port_inst#StarkTransport"/>
+        <logiserv:instantiates rdf:resource="http://drozdowicz.net/onto/port_inst#PlannedTransportActivity_2"/>
+        <transport:hasConsignment rdf:resource="http://drozdowicz.net/onto/port_inst#Consignment_CONS1"/>
+        <transport:satisfies rdf:resource="http://drozdowicz.net/onto/port_inst#TransportRequest_2"/>
+        <transport:hasIssueDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2019-04-17</transport:hasIssueDate>
+        <transport:hasStatusCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Confirmed</transport:hasStatusCode>
+        <transport:hasUUID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6feca890-51e8-11e3-8f96-0800200c9a66</transport:hasUUID>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport plan 2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#TransportRequest_2 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#TransportRequest_2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportRequest"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#Identifier_TEP-20190524-1"/>
+        <logiserv:hasConsumer rdf:resource="http://drozdowicz.net/onto/port_inst#StarkTransport"/>
+        <logiserv:hasProvider rdf:resource="http://drozdowicz.net/onto/port_inst#GlobexCorp"/>
+        <transport:hasConsignment rdf:resource="http://drozdowicz.net/onto/port_inst#Consignment_CONS1"/>
+        <transport:hasIssueDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2019-04-17</transport:hasIssueDate>
+        <transport:hasStatusCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NotConfirmed</transport:hasStatusCode>
+        <transport:hasUUID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a7f755c0-252c-11e3-8224-0800200c9a66</transport:hasUUID>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport request 2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Truck_KT3311 -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Truck_KT3311">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#NormalTruck"/>
+        <port:hasOwner rdf:resource="http://drozdowicz.net/onto/port_inst#StarkTransport"/>
+        <logico:contains rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441511"/>
+        <logico:contains rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441512"/>
+        <logico:contains rdf:resource="http://drozdowicz.net/onto/port_inst#TransportEquipment_00007141223345441513"/>
+        <logico:hasID rdf:resource="http://drozdowicz.net/onto/port_inst#LicenseNo_KT3311"/>
+        <logico:hasSpecialRequirement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Handle with care</logico:hasSpecialRequirement>
+        <logico:isDangerous rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</logico:isDangerous>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#Valencia -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#Valencia">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Valencia</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Valencia</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ValenciaPort -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ValenciaPort">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Port"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ValenciaPort_ContainerTerminal"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ValenciaPort_PassengerTerminal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ValenciaPort_ContainerTerminal -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ValenciaPort_ContainerTerminal">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Terminal"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParking"/>
+        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://drozdowicz.net/onto/port_inst#ValenciaPort_PassengerTerminal -->
+
+    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ValenciaPort_PassengerTerminal">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Terminal"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

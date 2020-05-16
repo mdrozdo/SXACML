@@ -1,0 +1,33 @@
+namespace GeoXACML {
+	type geometry = "urn:ogc:def:dataType:geoxacml:1.0:geometry"
+	function geometryEquals = "urn:ogc:def:function:geoxacml:1.0:geometry-equals" : geometry geometry -> boolean
+	function convertToMetre = "urn:ogc:def:function:geoxacml:1.0:convert-to-metre" : double string -> double
+	function convertToSquareMetre = "urn:ogc:def:function:geoxacml:1.0:convert-to-square-metre" : double string -> double
+	function geometryArea = "urn:ogc:def:function:geoxacml:1.0:geometry-area" : geometry -> double
+	function geometryBagSize = "urn:ogc:def:function:geoxacml:1.0:geometry-bag-size" : bag[geometry] -> integer
+	function geometryBag = "urn:ogc:def:function:geoxacml:1.0:geometry-bag" : geometry* -> bag[geometry]
+	function geometryBoundary = "urn:ogc:def:function:geoxacml:1.0:geometry-boundary" : geometry -> bag[geometry]
+	function geometryBuffer = "urn:ogc:def:function:geoxacml:1.0:geometry-buffer" : geometry double -> bag[geometry]
+	function geometryCentroid = "urn:ogc:def:function:geoxacml:1.0:geometry-centroid" : geometry -> geometry
+	function geometryContains = "urn:ogc:def:function:geoxacml:1.0:geometry-contains" : geometry geometry -> boolean
+	function geometryConvexHull = "urn:ogc:def:function:geoxacml:1.0:geometry-convex-hull" : geometry -> geometry
+	function geometryCrosses = "urn:ogc:def:function:geoxacml:1.0:geometry-crosses" : geometry geometry -> boolean
+	function geometryDifference = "urn:ogc:def:function:geoxacml:1.0:geometry-difference" : geometry geometry -> bag[geometry]
+	function geometryDisjoint = "urn:ogc:def:function:geoxacml:1.0:geometry-disjoint" : geometry geometry -> boolean
+	function geometryDistance = "urn:ogc:def:function:geoxacml:1.0:geometry-distance" : geometry geometry -> double
+	function geometryIntersection = "urn:ogc:def:function:geoxacml:1.0:geometry-intersection" : geometry geometry -> bag[geometry]
+	function geometryIntersects = "urn:ogc:def:function:geoxacml:1.0:geometry-intersects" : geometry geometry -> boolean
+	function geometryIsClosed = "urn:ogc:def:function:geoxacml:1.0:geometry-is-closed" : geometry -> boolean
+	function geometryIsIn = "urn:ogc:def:function:geoxacml:1.0:geometry-is-in" : geometry bag[geometry] -> boolean
+	function geometryIsSimple = "urn:ogc:def:function:geoxacml:1.0:geometry-is-simple" : geometry -> boolean
+	function geometryIsValid = "urn:ogc:def:function:geoxacml:1.0:geometry-is-valid" : geometry -> boolean
+	function geometryIsWithinDistance = "urn:ogc:def:function:geoxacml:1.0:geometry-is-within-distance" : geometry geometry double -> boolean
+	function geometryLength = "urn:ogc:def:function:geoxacml:1.0:geometry-length" : geometry -> double
+	function geometryOneAndOnly = "urn:ogc:def:function:geoxacml:1.0:geometry-one-and-only" : bag[geometry] -> geometry
+	function geometryOverlaps = "urn:ogc:def:function:geoxacml:1.0:geometry-overlaps" : geometry geometry -> boolean
+	function geometrySymDifference = "urn:ogc:def:function:geoxacml:1.0:geometry-sym-difference" : geometry geometry -> bag[geometry]
+	function geometryTouches = "urn:ogc:def:function:geoxacml:1.0:geometry-touches" : geometry geometry -> boolean
+	function geometryUnion = "urn:ogc:def:function:geoxacml:1.0:geometry-union" : geometry geometry -> bag[geometry]
+	function geometryWithin = "urn:ogc:def:function:geoxacml:1.0:geometry-within" : geometry geometry -> boolean	
+}
+	
