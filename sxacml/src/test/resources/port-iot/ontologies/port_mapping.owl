@@ -22,14 +22,15 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:logico="http://ontology.tno.nl/logico#"
      xmlns:schema="http://schema.org/"
+     xmlns:request="http://drozdowicz.net/onto/request#"
      xmlns:logiserv="http://ontology.tno.nl/logiserv#"
      xmlns:port_inst="http://drozdowicz.net/onto/port_inst#"
      xmlns:transport="http://ontology.tno.nl/transport#"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/port_mapping">        
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="http://drozdowicz.net/onto/port_mapping">
         <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control-action"/>
         <owl:imports rdf:resource="http://drozdowicz.net/onto/port_inst"/>
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
     </owl:Ontology>
     
 
@@ -81,7 +82,15 @@
 
     <!-- http://ontology.tno.nl/logico#hasIDValue -->
 
-    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasIDValue"/>
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasIDValue">
+        <owl:equivalentProperty rdf:resource="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject:subject-id -->
+
+    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
     
 
 
@@ -108,7 +117,7 @@
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://ontology.tno.nl/logico#Carrier"/>
+                                    <rdf:Description rdf:about="http://ontology.tno.nl/transport#TransportParty"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://drozdowicz.net/onto/port#ownsEquipment"/>
                                         <owl:someValuesFrom>
@@ -190,8 +199,6 @@
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control-action#PhysicalAction"/>
     </rdf:Description>
     
-
-
 
 
     <!-- 

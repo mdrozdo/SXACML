@@ -2,13 +2,14 @@ namespace PortPolicies {
 	policy access_internal_parking {
 		target
 			clause Attributes.actionId == "http://drozdowicz.net/onto/access-control-action#Open" 
-				and anyURIIsIn("http://drozdowicz.net/onto/port#Barrier":anyURI, SxacmlAttributes.resourceClassId)
+				and SxacmlAttributes.resourceClassId == "http://drozdowicz.net/onto/port#BarrierController":anyURI
 		apply permitUnlessDeny
 		
 		rule {
 			deny
 			condition not (anyURIIsIn("http://drozdowicz.net/onto/port_mapping#ObservedUser":anyURI, SxacmlAttributes.subjectClassId))
-		}
+		} 
+		
 		
 		rule {
 			deny

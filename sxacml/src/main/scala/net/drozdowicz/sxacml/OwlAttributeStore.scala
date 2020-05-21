@@ -14,13 +14,15 @@ import org.semanticweb.owlapi.util.AutoIRIMapper
 import org.wso2.balana.attr.BagAttribute
 import org.wso2.balana.cond.EvaluationResult
 import org.wso2.balana.ctx.EvaluationCtx
+import uk.ac.manchester.cs.owl.owlapi
+import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl
 
 import scala.util.control.ControlThrowable
 
 /**
   * Created by drozd on 22.03.2020.
   */
-class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
+class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String, ontologyURIMap: Map[URI, URI] = Map.empty[URI, URI]) {
 
   private val log = LogFactory.getLog(classOf[OwlAttributeStore])
 
@@ -29,8 +31,14 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String) {
   log.info("Initializing SXACML OWL attribute manager")
 
   log.info("Mapping ontology folder to:" + ontologyFolderPath)
+
+  val mapper = new owlapi.OWLOntologyIRIMapperImpl();
+  ontologyURIMap.foreach {case (uri, path) => mapper.addMapping(IRI.create(uri), IRI.create(path))}
+
   ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-    new AutoIRIMapper(new File(ontologyFolderPath), true)).asJava
+    mapper,
+    new AutoIRIMapper(new File(ontologyFolderPath), true)
+    ).asJava
   )
 
   private var requestOntology: Option[RequestOntology] = None

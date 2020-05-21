@@ -1,6 +1,7 @@
 package scala.net.drozdowicz.sxacml
 
 import java.io.File
+import java.net.URI
 
 import net.drozdowicz.sxacml.OntologyAttributeFinder
 import org.apache.commons.logging.LogFactory
@@ -9,23 +10,31 @@ import org.semanticweb.owlapi.model.{IRI, OWLOntologyIRIMapper}
 import org.semanticweb.owlapi.util.AutoIRIMapper
 import org.wso2.balana.attr.AttributeValue
 import org.wso2.balana.ctx.EvaluationCtx
-import org.wso2.balana.finder.{ResourceFinderResult, ResourceFinderModule}
+import org.wso2.balana.finder.{ResourceFinderModule, ResourceFinderResult}
+import uk.ac.manchester.cs.owl.owlapi
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 import scala.util.control.ControlThrowable
 
 /**
   * Created by michal on 19.03.2016.
   */
-class OwlResourceClassFinderModule(ontologyFolderPath: String, rootOntologyId: String) extends ResourceFinderModule() {
+class OwlResourceClassFinderModule(ontologyFolderPath: String, rootOntologyId: String, ontologyURIMap: Map[URI, URI] = Map.empty[URI, URI]) extends ResourceFinderModule() {
   private val log = LogFactory.getLog(classOf[OwlResourceClassFinderModule])
 
   log.info("OwlResourceClassFinderModule defined.")
 
   private val ontoMgr = OWLManager.createOWLOntologyManager()
+
+  val mapper = new owlapi.OWLOntologyIRIMapperImpl();
+  ontologyURIMap.foreach {case (uri, path) => mapper.addMapping(IRI.create(uri), IRI.create(path))}
+
   ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-    new AutoIRIMapper(new File(ontologyFolderPath), true))
+    mapper,
+    new AutoIRIMapper(new File(ontologyFolderPath), true)
+  ).asJava
   )
+
   private val rootOntology = ontoMgr.loadOntology(IRI.create(rootOntologyId))
 
   override def isChildSupported() = false
@@ -42,7 +51,7 @@ class OwlResourceClassFinderModule(ontologyFolderPath: String, rootOntologyId: S
       if(instances.isEmpty)
         new ResourceFinderResult()
       else
-        new ResourceFinderResult(instances.map(f => f.createAttributeValue())
+        new ResourceFinderResult(instances.map(f => f.createAttributeValue()).asJava
       )
     } catch safely {
       case e: Throwable => {

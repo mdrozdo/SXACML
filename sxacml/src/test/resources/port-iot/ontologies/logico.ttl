@@ -282,9 +282,9 @@ Desc: To identify equipment.""" .
 	rdfs:domain :ProductClass ;
 	rdfs:range :PhysicalState .
 # 
-# http://ontology.tno.nl/logico#hasQuantity
+# http://ontology.tno.nl/logico#hasAmount
 
-:hasQuantity a owl:ObjectProperty ;
+:hasAmount a owl:ObjectProperty ;
 	rdfs:domain :Object .
 # 
 # http://ontology.tno.nl/logico#hasRegion
@@ -1767,7 +1767,7 @@ _:genid103 a owl:Restriction ;
 :PhysicalResource rdfs:subClassOf _:genid104 .
 
 _:genid104 a owl:Restriction ;
-	owl:onProperty :hasQuantity ;
+	owl:onProperty :hasAmount ;
 	owl:someValuesFrom :Amount .
 
 :PhysicalResource rdfs:subClassOf _:genid105 .

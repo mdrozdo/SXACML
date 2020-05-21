@@ -1,6 +1,7 @@
 package scala.net.drozdowicz.sxacml
 
 import java.io.{File, IOException}
+import java.net.URI
 import java.util
 import java.util.Properties
 
@@ -16,7 +17,7 @@ import collection.JavaConversions._
 /**
   * Created by michal on 2015-05-02.
   */
-class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntologyId: String) {
+class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntologyId: String, ontologyURIMap: Map[URI, URI] = Map.empty[URI, URI]) {
 
   val balana = initBalana()
   val pdp = createPdp()
@@ -32,7 +33,7 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
 
   private def createPdp(): PDP = {
     val pdpConfig = balana.getPdpConfig
-    val owlStore = new OwlAttributeStore(ontologyFolderPath, rootOntologyId)
+    val owlStore = new OwlAttributeStore(ontologyFolderPath, rootOntologyId, ontologyURIMap)
     val owlAttributeModule = createAttributeModule(owlStore)
 
     initializeFunctions(pdpConfig, owlStore)
@@ -67,10 +68,10 @@ class SemanticPDP(policyLocation: String, ontologyFolderPath: String, rootOntolo
       m.getClass() != classOf[OwlResourceClassFinderModule]
         && m.getClass() != classOf[OwlResourceHierarchyFinderModule]);
     finderModules.add({
-      new OwlResourceClassFinderModule(ontologyFolderPath, rootOntologyId)
+      new OwlResourceClassFinderModule(ontologyFolderPath, rootOntologyId, ontologyURIMap)
     })
     finderModules.add({
-      new OwlResourceHierarchyFinderModule(ontologyFolderPath, rootOntologyId)
+      new OwlResourceHierarchyFinderModule(ontologyFolderPath, rootOntologyId, ontologyURIMap)
     })
     resourceFinder.setModules(finderModules)
     resourceFinder

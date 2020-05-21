@@ -86,7 +86,7 @@ object RequestOntologyGenerator {
 
   private def getNewCategoryIndividualUri(requestId: String, categoryId: URI) = categoryId + "#request_" + requestId
 
-  private def getIndividualUri(requestId: String, elementId: URI): String = elementId + "_request_" + requestId
+  private def getIndividualUri(requestId: String, elementId: URI, counter: Int): String = s"${elementId}_${counter}_${requestId}"
 
   private def isIRI(value: String): Boolean = {
     return "" != IRI.create(value).getNamespace
@@ -113,8 +113,8 @@ object RequestOntologyGenerator {
   }
 
   private def axiomsFromAttributes(requestId: String, parent: OWLNamedIndividual, attributes: Seq[ContextAttributeValue], categoryIndividuals: Map[URI, OWLNamedIndividual], factory: OWLDataFactory, ontology: OWLOntology): Seq[OWLIndividualAxiom] = {
-    attributes.flatMap {
-      case attributeValue: FlatAttributeValue =>
+    attributes.zipWithIndex.flatMap {
+      case (attributeValue: FlatAttributeValue, i) =>
         if (attributeValue.attributeId == Constants.classIdForCategory(attributeValue.categoryId.toString)) {
           val elementClass = factory.getOWLClass(IRI.create(attributeValue.valueString))
           val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, parent)
@@ -138,9 +138,9 @@ object RequestOntologyGenerator {
 
           Seq(factory.getOWLDataPropertyAssertionAxiom(attribute, parent, value))
         }
-      case NestedAttributeValue(categoryId, propertyId, namespace, localName, children) =>
+      case (NestedAttributeValue(categoryId, propertyId, namespace, localName, children), i) =>
         val elementId = new URI(namespace + "#" + localName)
-        val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId)))
+        val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId, i)))
         val elementClass = factory.getOWLClass(IRI.create(elementId))
         val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, element)
 

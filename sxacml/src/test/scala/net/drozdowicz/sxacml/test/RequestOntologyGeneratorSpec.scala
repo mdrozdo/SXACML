@@ -387,6 +387,75 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           )
         }
       }
+
+
+
+      describe("for a resource with multiple nested attributes of same type") {
+        val input = Seq(
+          NestedAttributeValue(
+            new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            None,
+            "urn:example:med:schemas:record",
+            "patient",
+            Seq(
+              FlatAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                new URI("urn:example:med:schemas:record#patientDoB"),
+                new URI("http://www.w3.org/2001/XMLSchema#string"),
+                "1992-03-21"
+              ),
+              FlatAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                new URI(
+                  "urn:example:med:schemas:record#patient-number"),
+                new URI("http://www.w3.org/2001/XMLSchema#string"),
+                "555555"
+              )
+            )
+          ),
+          NestedAttributeValue(
+            new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+            None,
+            "urn:example:med:schemas:record",
+            "patient",
+            Seq(
+              FlatAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                new URI("urn:example:med:schemas:record#patientDoB"),
+                new URI("http://www.w3.org/2001/XMLSchema#string"),
+                "1991-01-11"
+              ),
+              FlatAttributeValue(
+                new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+                new URI(
+                  "urn:example:med:schemas:record#patient-number"),
+                new URI("http://www.w3.org/2001/XMLSchema#string"),
+                "333333"
+              )
+            )
+          )
+        )
+
+        val ontology = convertToOntology("111", input, Set.empty[IRI])
+
+        it("should output multiple individuals of class id from element uri") {
+          val qry =
+            """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+              |SELECT ?ind WHERE
+              |{
+              |	?ind rdf:type <urn:example:med:schemas:record#patient>
+              |}""".stripMargin
+          val result = getMultiSparqlResult(ontology, qry)
+
+          result should not equal None
+          result.length should equal(2)
+          val res1 = result.get(0).getResource("ind")
+          val res2 = result.get(1).getResource("ind")
+          res1.getNameSpace should equal("urn:example:med:schemas:record#")
+          res2.getNameSpace should equal("urn:example:med:schemas:record#")
+          res1.getLocalName should not equal(res2.getLocalName)
+        }
+      }
     }
   }
 }
