@@ -120,17 +120,7 @@
                                     <rdf:Description rdf:about="http://ontology.tno.nl/transport#TransportParty"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://drozdowicz.net/onto/port#ownsEquipment"/>
-                                        <owl:someValuesFrom>
-                                            <owl:Class>
-                                                <owl:intersectionOf rdf:parseType="Collection">
-                                                    <rdf:Description rdf:about="http://ontology.tno.nl/logico#Truck"/>
-                                                    <owl:Restriction>
-                                                        <owl:onProperty rdf:resource="http://ontology.tno.nl/logico#hasID"/>
-                                                        <owl:someValuesFrom rdf:resource="http://drozdowicz.net/onto/port_mapping#ObservedLicense"/>
-                                                    </owl:Restriction>
-                                                </owl:intersectionOf>
-                                            </owl:Class>
-                                        </owl:someValuesFrom>
+                                        <owl:someValuesFrom rdf:resource="http://drozdowicz.net/onto/port#ObservedTruck"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
                             </owl:Class>
@@ -144,54 +134,12 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/port_mapping#ObservedLicense -->
-
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port_mapping#ObservedLicense">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
-    </owl:Class>
-    
-
-
-    <!-- http://drozdowicz.net/onto/port_mapping#ObservedTruck -->
-
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port_mapping#ObservedTruck">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.tno.nl/logico#Truck"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.tno.nl/logico#hasID"/>
-                        <owl:someValuesFrom rdf:resource="http://drozdowicz.net/onto/port_mapping#ObservedLicense"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Truck"/>
-    </owl:Class>
-    
-
-
-    <!-- http://drozdowicz.net/onto/port_mapping#ObservedUser -->
-
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port_mapping#ObservedUser">
-        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Actor"/>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.tno.nl/logico#Actor -->
 
     <rdf:Description rdf:about="http://ontology.tno.nl/logico#Actor">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Subject"/>
     </rdf:Description>
     
-
-
-    <!-- http://ontology.tno.nl/logico#Truck -->
-
-    <owl:Class rdf:about="http://ontology.tno.nl/logico#Truck"/>
-    
-
 
     <!-- http://www.w3.org/ns/sosa/Actuation -->
 
@@ -209,158 +157,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port_mapping#o">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port_mapping#v">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port_mapping#l">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port_mapping#a">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
-    <rdf:Description>
-        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ObservedLicense</rdfs:label>
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#o"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/sosa/hasSimpleResult"/>
-                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#o"/>
-                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port_mapping#v"/>
-                            </rdf:Description>
-                        </rdf:first>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
-                                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#l"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/logico#hasIDValue"/>
-                                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#l"/>
-                                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port_mapping#v"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                    </rdf:Description>
-                                </rdf:rest>
-                            </rdf:Description>
-                        </rdf:rest>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port_mapping#ObservedLicense"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#l"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ObservedUser</rdfs:label>
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#o"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/sosa/hasSimpleResult"/>
-                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#o"/>
-                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port_mapping#v"/>
-                            </rdf:Description>
-                        </rdf:first>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://ontology.tno.nl/logico#Actor"/>
-                                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#a"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/logico#hasIDValue"/>
-                                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#a"/>
-                                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port_mapping#v"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                    </rdf:Description>
-                                </rdf:rest>
-                            </rdf:Description>
-                        </rdf:rest>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port_mapping#ObservedUser"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port_mapping#a"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
 </rdf:RDF>
 
 

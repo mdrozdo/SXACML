@@ -7,7 +7,7 @@ namespace PortPolicies {
 		
 		rule {
 			deny
-			condition not (anyURIIsIn("http://drozdowicz.net/onto/port_mapping#ObservedUser":anyURI, SxacmlAttributes.subjectClassId))
+			condition not (anyURIIsIn("http://drozdowicz.net/onto/port#ObservedUser":anyURI, SxacmlAttributes.subjectClassId))
 		} 
 		
 		
@@ -15,5 +15,7 @@ namespace PortPolicies {
 			deny
 			condition not (anyURIIsIn("http://drozdowicz.net/onto/port_mapping#DriverAuthorizedForTruck":anyURI, SxacmlAttributes.subjectClassId))			
 		}				
+		
+		
 	}
 }
