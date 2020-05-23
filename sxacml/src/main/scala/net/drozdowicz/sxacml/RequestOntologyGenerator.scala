@@ -3,6 +3,7 @@ package net.drozdowicz.sxacml
 import java.net.URI
 import java.util.jar.Attributes
 
+import org.apache.commons.validator.routines.UrlValidator
 import org.semanticweb.owlapi.io.SystemOutDocumentTarget
 import org.semanticweb.owlapi.model._
 import org.semanticweb.owlapi.model.parameters.Imports
@@ -88,9 +89,7 @@ object RequestOntologyGenerator {
 
   private def getIndividualUri(requestId: String, elementId: URI, counter: Int): String = s"${elementId}_${counter}_${requestId}"
 
-  private def isIRI(value: String): Boolean = {
-    return "" != IRI.create(value).getNamespace
-  }
+  private def isIRI(value: String): Boolean = new UrlValidator().isValid(value)
 
   private def attributeDescribesId(attributeValue: FlatAttributeValue): Boolean = {
     idAttributes.contains(attributeValue.attributeId.toString) && isIRI(attributeValue.valueString)
