@@ -191,7 +191,7 @@ object OntologyAttributeFinder {
   def getAllSupportedAttributes(ontology: OWLOntology): Set[String] = {
     var model = OntologyUtils.createJenaModel(ontology)
     ontology.getDataPropertiesInSignature().asScala.map(dp => dp.getIRI.toString).toSet ++
-      Constants.classIdForCategory.values.map(uri=>uri.toString)
+      Constants.classIdForCategory.values.map(uri => uri.toString)
   }
 
   private def getOntologyPrefixesString(ontology: OWLOntology): String = {
@@ -201,9 +201,10 @@ object OntologyAttributeFinder {
       .reduce(_ ++ _) //convert list of maps to a single map
 
     prefixes.map {
-      case (key, value) => s"PREFIX $key <$value${
-        if (!value.endsWith("#")) "#"
-      }>"
+      case (key, value) => {
+        val prefixStr = s"PREFIX $key <$value${if (!value.endsWith("#")) "#" else ""}>"
+        prefixStr
+      }
     }
       .toList
       .distinct
