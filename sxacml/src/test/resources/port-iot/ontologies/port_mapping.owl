@@ -141,21 +141,13 @@
     </rdf:Description>
     
 
+
     <!-- http://www.w3.org/ns/sosa/Actuation -->
 
     <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Actuation">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control-action#PhysicalAction"/>
     </rdf:Description>
     
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Rules
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
 
 </rdf:RDF>
 

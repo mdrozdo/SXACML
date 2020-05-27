@@ -10,8 +10,10 @@
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:action="urn:oasis:names:tc:xacml:1.0:action:"
      xmlns:logico="http://ontology.tno.nl/logico#"
@@ -135,6 +137,8 @@
     <owl:NamedIndividual rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:environment#request_54a6d247-12f0-4dbb-a98b-80be1e599250">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
     </owl:NamedIndividual>
+    
+
 </rdf:RDF>
 
 

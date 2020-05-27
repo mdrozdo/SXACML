@@ -16,6 +16,14 @@ namespace PortPolicies {
 			condition not (anyURIIsIn("http://drozdowicz.net/onto/port_mapping#DriverAuthorizedForTruck":anyURI, SxacmlAttributes.subjectClassId))			
 		}				
 		
-		
+		rule {
+			deny
+			condition not (
+				dateTimeFromString(stringOneAndOnly(Sxacml.sparqlPathSelect("?subject port:drivesTruck/port:hasPlannedDelivery/logiserv:hasTime/time:hasBeginning/time:inXsdTime"))) 
+					>= dateTimeSubtractDayTimeDuration(dateTimeOneAndOnly(Attributes.currentDateTime), "PT1H":dayTimeDuration)
+				&& dateTimeFromString(stringOneAndOnly(Sxacml.sparqlPathSelect("?subject port:drivesTruck/port:hasPlannedDelivery/logiserv:hasTime/time:hasEnd/time:inXsdTime"))) 
+					< dateTimeAddDayTimeDuration(dateTimeOneAndOnly(Attributes.currentDateTime), "PT1H":dayTimeDuration))
+			
+			}
 	}
 }

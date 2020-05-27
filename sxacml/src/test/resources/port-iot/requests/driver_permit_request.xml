@@ -35,6 +35,10 @@
               </sosa:Observation>
           </req:environment>
       </Content>
+
+      <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-dateTime">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T09:30:10+00:00</AttributeValue>
+      </Attribute>
   </Attributes>
 </Request>
 
