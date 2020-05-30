@@ -7,7 +7,7 @@
   </Attributes>
   <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
     <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
-      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://drozdowicz.net/onto/port_inst#BarrierController_1</AttributeValue>
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://drozdowicz.net/onto/port_inst#BarrierController_2</AttributeValue>
     </Attribute>    
   </Attributes>
   <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
@@ -17,7 +17,7 @@
   </Attributes>
   <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment">
       <Content>
-          <req:environment xmlns:req="http://drozdowicz.net/sxacml/request#"
+          <req:environment xmlns:req="http://drozdowicz.net/sxacml/request"
                                xmlns:sosa="http://www.w3.org/ns/sosa/"
                                xmlns:port="http://drozdowicz.net/onto/port#"
                                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -25,13 +25,13 @@
                   <sosa:madeBySensor>http://drozdowicz.net/onto/port_inst#AccessCardReader_1</sosa:madeBySensor>
                   <sosa:observedProperty>http://drozdowicz.net/onto/port#UserName</sosa:observedProperty>
                   <sosa:hasSimpleResult rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClarkContoso</sosa:hasSimpleResult>
-                  <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:14+00:00</sosa:resultTime>
+                  <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:14</sosa:resultTime>
               </sosa:Observation>
               <sosa:Observation>
                   <sosa:madeBySensor>http://drozdowicz.net/onto/port_inst#LPRCamera_1</sosa:madeBySensor>
                   <sosa:observedProperty>http://drozdowicz.net/onto/port#LicenseNumber</sosa:observedProperty>
                   <sosa:hasSimpleResult rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KT3311</sosa:hasSimpleResult>
-                  <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:01+00:00</sosa:resultTime>
+                  <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:01</sosa:resultTime>
               </sosa:Observation>
           </req:environment>
       </Content>

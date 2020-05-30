@@ -24,6 +24,22 @@ namespace PortPolicies {
 				&& dateTimeFromString(stringOneAndOnly(Sxacml.sparqlPathSelect("?subject port:drivesTruck/port:hasPlannedDelivery/logiserv:hasTime/time:hasEnd/time:inXsdTime"))) 
 					< dateTimeAddDayTimeDuration(dateTimeOneAndOnly(Attributes.currentDateTime), "PT1H":dayTimeDuration))
 			
-			}
+		}
+		
+		
+		rule {
+			deny
+			condition not (
+				stringBagSize(Sxacml.sparqlPathSelect("?resource port:isHostedBy")) > 0 
+				&&				
+				stringBagSize(Sxacml.sparqlPathSelect("?environment sosa:hasObservation/sosa:madeBySensor/port:isHostedBy")) > 0
+				&&
+				allOf(
+					function [stringEqual],
+					stringOneAndOnly(Sxacml.sparqlPathSelect("?resource port:isHostedBy")),
+					Sxacml.sparqlPathSelect("?environment sosa:hasObservation/sosa:madeBySensor/port:isHostedBy")
+					)
+				)
+		}
 	}
 }

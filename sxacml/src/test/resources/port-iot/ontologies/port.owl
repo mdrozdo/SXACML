@@ -92,12 +92,26 @@
     
 
 
+    <!-- http://drozdowicz.net/onto/port#isHostedBy -->
+
+    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#isHostedBy">
+        <owl:inverseOf rdf:resource="http://ontology.tno.nl/logico#hosts"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://drozdowicz.net/onto/port#ownsEquipment -->
 
     <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#ownsEquipment">
         <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
         <rdfs:range rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hosts -->
+
+    <rdf:Description rdf:about="http://ontology.tno.nl/logico#hosts"/>
     
 
 

@@ -34,8 +34,28 @@ class IoTPortUseCases extends path.FunSpec with Matchers with OneInstancePerTest
       val request = readFile("requests/driver_permit_request.xml")
       val actualResponse = pdp.evaluate(request)
 
+      //TODO: Fails because all content property assertions use dataproperties and not object properties
       it("is permitted") {
         val expectedResponse = readFile("responses/Permit.xml")
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
+
+    describe("observed driver of expected transport accessing dock") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/onto/port_mapping",
+        Map(
+          (new URI("http://purl.org/dc/elements/1.1/"), relativeToAbsoluteURI("ontologies/dc.ttl")),
+          (new URI("http://ontology.tno.nl/transport"), relativeToAbsoluteURI("ontologies/transport.ttl")),
+          (new URI("http://www.w3.org/ns/ssn/"), relativeToAbsoluteURI("ontologies/ssn.ttl")),
+          (new URI("http://www.w3.org/ns/sosa/"), relativeToAbsoluteURI("ontologies/sosa.ttl")),
+          (new URI("http://ontology.tno.nl/logiserv"), relativeToAbsoluteURI("ontologies/logiserv.ttl")),
+          (new URI("http://ontology.tno.nl/logico"), relativeToAbsoluteURI("ontologies/logico.ttl"))
+        ))
+      val request = readFile("requests/driver_deny_request_rule4.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is denied") {
+        val expectedResponse = readFile("responses/Deny.xml")
         assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
       }
     }
