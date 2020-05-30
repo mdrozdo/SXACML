@@ -202,7 +202,7 @@ object OntologyAttributeFinder {
 
     prefixes.map {
       case (key, value) => {
-        val prefixStr = s"PREFIX $key <$value${if (!value.endsWith("#")) "#" else ""}>"
+        val prefixStr = s"PREFIX $key <$value>"
         prefixStr
       }
     }
