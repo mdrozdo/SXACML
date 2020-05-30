@@ -56,9 +56,12 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String, onto
       log.debug(s"Received context with attributes: \r\n$attributesString")
     }
 
-    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(requestId, attributes)
-    val requestIndividualId = RequestOntologyGenerator.getRequestIndividualId(requestId)
+    //TODO Move RequestOntology to a real class and make generator return it.
+    val ontologyId = RequestOntologyGenerator.createOntologyId(requestId)
+    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(ontologyId, attributes)
+    val requestIndividualId = RequestOntologyGenerator.getRequestIndividualId(ontologyId)
     val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
+
 
     new RequestOntology(context, requestOntology, categoryIndividualIds + (new URI(Constants.REQUEST_CLASS_ID) -> requestIndividualId))
   }

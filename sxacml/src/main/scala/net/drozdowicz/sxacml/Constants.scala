@@ -19,4 +19,12 @@ object Constants {
     "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" -> new URI("sxacml:environment:environment-class-id"),
     REQUEST_CLASS_ID -> new URI("sxacml:request:request-class-id")
   )
+
+  val shortNames = Map(
+    "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" -> "Subject",
+    "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" -> "Resource",
+    "urn:oasis:names:tc:xacml:3.0:attribute-category:action" -> "Action",
+    "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" -> "Environment",
+    REQUEST_CLASS_ID -> "request"
+  )
 }
