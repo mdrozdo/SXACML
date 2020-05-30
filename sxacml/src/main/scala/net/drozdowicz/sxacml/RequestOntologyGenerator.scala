@@ -85,7 +85,7 @@ object RequestOntologyGenerator {
       .getOrElse(getNewCategoryIndividualUri(requestId, catId))
   }
 
-  private def getNewCategoryIndividualUri(requestId: String, categoryId: URI) = categoryId + "#request_" + requestId
+  private def getNewCategoryIndividualUri(requestId: String, categoryId: URI) = categoryId + "request_" + requestId
 
   private def getIndividualUri(requestId: String, elementId: URI, counter: Int): String = s"${elementId}_${counter}_${requestId}"
 
@@ -128,7 +128,7 @@ object RequestOntologyGenerator {
         }
         else {
           val attribute = factory.getOWLDataProperty(IRI.create(attributeValue.attributeId))
-          val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema#"))
+          val datatype = if (attributeValue.valueType.toString.startsWith("http://www.w3.org/2001/XMLSchema"))
             factory.getOWLDatatype(IRI.create(attributeValue.valueType))
           else
             factory.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"))
@@ -138,12 +138,12 @@ object RequestOntologyGenerator {
           Seq(factory.getOWLDataPropertyAssertionAxiom(attribute, parent, value))
         }
       case (NestedAttributeValue(categoryId, propertyId, namespace, localName, children), i) =>
-        val elementId = new URI(namespace + "#" + localName)
+        val elementId = new URI(namespace + localName)
         val element = factory.getOWLNamedIndividual(IRI.create(getIndividualUri(requestId, elementId, i)))
         val elementClass = factory.getOWLClass(IRI.create(elementId))
         val classAxiom = factory.getOWLClassAssertionAxiom(elementClass, element)
 
-        val propertyIdVal = propertyId.map(p => p.toString).getOrElse(namespace + "#has" + localName.capitalize)
+        val propertyIdVal = propertyId.map(p => p.toString).getOrElse(namespace + "has" + localName.capitalize)
         val property = factory.getOWLObjectProperty(propertyIdVal)
         val propertyAxiom = factory.getOWLObjectPropertyAssertionAxiom(property, parent, element)
         Seq(classAxiom, propertyAxiom) ++ axiomsFromAttributes(requestId, element, children, categoryIndividuals, factory, ontology)

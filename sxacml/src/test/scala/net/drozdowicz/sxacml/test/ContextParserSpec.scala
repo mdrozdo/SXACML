@@ -37,6 +37,26 @@ class ContextParserSpec extends FunSpec with Matchers {
       )
     }
 
+    it("should parse simple datetime attribute value") {
+      val reqStr = """<Request xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" CombinedDecision="false" ReturnPolicyIdList="false">
+                     |<Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+                     |<Attribute AttributeId="some:attribute_id" IncludeInResult="false">
+                     |<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:01+00:00</AttributeValue>
+                     |</Attribute>
+                     |</Attributes>
+                     |</Request>""".stripMargin
+
+      val reqCtx = RequestCtxFactory.getFactory.getRequestCtx(reqStr)
+      val attributeValues = ContextParser.Parse(reqCtx)
+
+      attributeValues should contain only FlatAttributeValue(
+        new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action"),
+        new URI("some:attribute_id"),
+        new URI("http://www.w3.org/2001/XMLSchema#dateTime"),
+        "2019-05-01T12:03:01+00:00"
+      )
+    }
+
     it("should parse list of simple attribute values") {
       val reqStr = """<?xml version="1.0" encoding="utf-8"?>
                      |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -75,7 +95,7 @@ class ContextParserSpec extends FunSpec with Matchers {
                      |  <Attributes
                      |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
                      |    <Content>
-                     |      <md:record xmlns:md="urn:example:med:schemas:record">
+                     |      <md:record xmlns:md="urn:example:med:schemas:record:">
                      |        <md:patientDoB>1992-03-21</md:patientDoB>
                      |        <md:patient-number>555555</md:patient-number>
                      |      </md:record>
@@ -89,18 +109,44 @@ class ContextParserSpec extends FunSpec with Matchers {
       attributeValues should contain (
         FlatAttributeValue(
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-          new URI("urn:example:med:schemas:record#patientDoB"),
+          new URI("urn:example:med:schemas:record:patientDoB"),
           new URI("http://www.w3.org/2001/XMLSchema#string"),
           "1992-03-21"
         ))
       attributeValues should contain (
         FlatAttributeValue(
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-          new URI("urn:example:med:schemas:record#patient-number"),
+          new URI("urn:example:med:schemas:record:patient-number"),
           new URI("http://www.w3.org/2001/XMLSchema#string"),
           "555555"
         )
       )
+    }
+
+    it("should parse content with datetime attribute values") {
+      val reqStr = """<?xml version="1.0" encoding="utf-8"?>
+                     |<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     |  <Attributes
+                     |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+                     |    <Content>
+                     |      <md:record xmlns:md="urn:example:med:schemas:record:" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                     |        <md:patientDoB rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:14+00:00</md:patientDoB>
+                     |      </md:record>
+                     |    </Content>
+                     |  </Attributes>
+                     |</Request>""".stripMargin
+
+      val reqCtx = RequestCtxFactory.getFactory.getRequestCtx(reqStr)
+      val attributeValues = ContextParser.Parse(reqCtx)
+
+      attributeValues should contain (
+        FlatAttributeValue(
+          new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
+          new URI("urn:example:med:schemas:record:patientDoB"),
+          new URI("http://www.w3.org/2001/XMLSchema#dateTime"),
+          "2019-05-01T12:03:14+00:00"
+        ))
+
     }
 
     it("should parse content with resource class id") {
@@ -110,7 +156,7 @@ class ContextParserSpec extends FunSpec with Matchers {
                      |  <Attributes
                      |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
                      |    <Content>
-                     |      <md:record xmlns:md="urn:example:med:schemas:record">
+                     |      <md:record xmlns:md="urn:example:med:schemas:record:">
                      |        <md:patientDoB>1992-03-21</md:patientDoB>
                      |        <md:patient-number>555555</md:patient-number>
                      |      </md:record>
@@ -126,7 +172,7 @@ class ContextParserSpec extends FunSpec with Matchers {
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
           new URI("sxacml:resource:resource-class-id"),
           new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-          "urn:example:med:schemas:record#record"
+          "urn:example:med:schemas:record:record"
         )
       )
     }
@@ -138,12 +184,12 @@ class ContextParserSpec extends FunSpec with Matchers {
                      |  <Attributes
                      |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
                      |    <Content>
-                     |      <md:record xmlns:md="urn:example:med:schemas:record"
+                     |      <md:record xmlns:md="urn:example:med:schemas:record:"
                      |        xsi:schemaLocation="urn:example:med:schemas:record
                      |        http://www.med.example.com/schemas/record.xsd">
                      |        <md:patient>
                      |          <md:patientDoB>1992-03-21</md:patientDoB>
-                     |          <md:patient-number>555555</md:patient-number>                     |
+                     |          <md:patient-number>555555</md:patient-number>
                      |          <md:patientContact>
                      |            <md:email>b.simpson@example.com</md:email>
                      |          </md:patientContact>
@@ -160,32 +206,32 @@ class ContextParserSpec extends FunSpec with Matchers {
         NestedAttributeValue(
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
           None,
-          "urn:example:med:schemas:record",
+          "urn:example:med:schemas:record:",
           "patient",
           Seq(
             FlatAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-              new URI("urn:example:med:schemas:record#patientDoB"),
+              new URI("urn:example:med:schemas:record:patientDoB"),
               new URI("http://www.w3.org/2001/XMLSchema#string"),
               "1992-03-21"
             ),
             FlatAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
               new URI(
-                "urn:example:med:schemas:record#patient-number"),
+                "urn:example:med:schemas:record:patient-number"),
               new URI("http://www.w3.org/2001/XMLSchema#string"),
               "555555"
             ),
             NestedAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
               None,
-              "urn:example:med:schemas:record",
+              "urn:example:med:schemas:record:",
               "patientContact",
               Seq(
                 FlatAttributeValue(
                   new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
                   new URI(
-                    "urn:example:med:schemas:record#email"),
+                    "urn:example:med:schemas:record:email"),
                   new URI("http://www.w3.org/2001/XMLSchema#string"),
                   "b.simpson@example.com"
                 )
@@ -203,8 +249,8 @@ class ContextParserSpec extends FunSpec with Matchers {
           |  <Attributes
           |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
           |    <Content>
-          |      <md:record xmlns:md="urn:example:med:schemas:record" xmlns:req="http://drozdowicz.net/sxacml/request">
-          |        <md:patient req:property="urn:example:med:schemas:record#describes">
+          |      <md:record xmlns:md="urn:example:med:schemas:record:" xmlns:req="http://drozdowicz.net/sxacml/request">
+          |        <md:patient req:property="urn:example:med:schemas:record:describes">
           |          <md:patientDoB>1992-03-21</md:patientDoB>
           |          <md:patient-number>555555</md:patient-number>
           |        </md:patient>
@@ -221,24 +267,24 @@ class ContextParserSpec extends FunSpec with Matchers {
         new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
         new URI("sxacml:resource:resource-class-id"),
         new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-        "urn:example:med:schemas:record#record"
+        "urn:example:med:schemas:record:record"
       ),
       NestedAttributeValue(
           new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-          Some(new URI("urn:example:med:schemas:record#describes")),
-          "urn:example:med:schemas:record",
+          Some(new URI("urn:example:med:schemas:record:describes")),
+          "urn:example:med:schemas:record:",
           "patient",
           Seq(
             FlatAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
-              new URI("urn:example:med:schemas:record#patientDoB"),
+              new URI("urn:example:med:schemas:record:patientDoB"),
               new URI("http://www.w3.org/2001/XMLSchema#string"),
               "1992-03-21"
             ),
             FlatAttributeValue(
               new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
               new URI(
-                "urn:example:med:schemas:record#patient-number"),
+                "urn:example:med:schemas:record:patient-number"),
               new URI("http://www.w3.org/2001/XMLSchema#string"),
               "555555"
             )

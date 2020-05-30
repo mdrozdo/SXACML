@@ -51,7 +51,7 @@ object ContextParser {
           category,
           Constants.classIdForCategory(category.toString),
           new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-          contentRoot.namespace + "#" + contentRoot.label
+          contentRoot.namespace + contentRoot.label
         ))
       } else {
         None
@@ -63,14 +63,15 @@ object ContextParser {
         contentRoot.nonEmptyChildren.flatMap(node => {
           node match {
             case el: Elem =>
-              val name = new URI(el.namespace + "#" + el.label)
-              val xsdType = new URI("http://www.w3.org/2001/XMLSchema#string")
+              val name = new URI(el.namespace + el.label)
+              //Always grab first datatype attribute value
+              val xsdType = node.attribute("http://www.w3.org/1999/02/22-rdf-syntax-ns#", "datatype").map(attributes=>attributes.text).getOrElse("http://www.w3.org/2001/XMLSchema#string")
               val propertyId = el.attribute("http://drozdowicz.net/sxacml/request", "property").map(a => new URI(a.text))
 
               el.nonEmptyChildren.flatMap(c => {
                 c match {
                   case text: Text =>
-                    if (text.data.trim() != "") Some(FlatAttributeValue(category, name, xsdType, text.data))
+                    if (text.data.trim() != "") Some(FlatAttributeValue(category, name, new URI(xsdType), text.data))
                     else None
                   case child: Elem =>
                     Some(NestedAttributeValue(category, propertyId, el.namespace, el.label, parseContentAttributes(category, el)))

@@ -457,5 +457,38 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         }
       }
     }
+
+    describe("for a request with object property value") {
+
+      val input = Seq(FlatAttributeValue(
+        new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+        new URI("http://www.semanticweb.org/rafal/ontologies/2017/6/port2#isHiredBy"),
+        null,
+        "http://www.semanticweb.org/rafal/ontologies/2017/6/port2#StarkTransport"
+      ))
+
+      val toImport = IRI.create("http://www.semanticweb.org/rafal/ontologies/2017/6/port2")
+      ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
+        new SimpleIRIMapper(IRI.create("http://www.semanticweb.org/rafal/ontologies/2017/6/port2"), IRI.create(new File(getClass.getResource("/ontologies/port2.owl").toURI))),
+        new SimpleIRIMapper(IRI.create("http://drozdowicz.net/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
+      ))
+
+      val ontology = convertToOntology("456", input, Set(toImport))
+
+      it("should create ontology including object property assertion") {
+        val qry =
+          """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            |PREFIX port2: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            |SELECT ?cat WHERE
+            |{
+            |	?cat rdf:type <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject>.
+            | ?cat port2:isHiredBy <http://www.semanticweb.org/rafal/ontologies/2017/6/port2#StarkTransport>
+            |}""".stripMargin
+        val result = getSingleSparqlResult(ontology, qry)
+
+        result should not equal None
+        result.get.getResource("cat").getURI should contain("456")
+      }
+    }
   }
 }
