@@ -249,7 +249,7 @@ class ContextParserSpec extends FunSpec with Matchers {
           |  <Attributes
           |  Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
           |    <Content>
-          |      <md:record xmlns:md="urn:example:med:schemas:record:" xmlns:req="http://drozdowicz.net/sxacml/request">
+          |      <md:record xmlns:md="urn:example:med:schemas:record:" xmlns:req="http://drozdowicz.net/sxacml/request#">
           |        <md:patient req:property="urn:example:med:schemas:record:describes">
           |          <md:patientDoB>1992-03-21</md:patientDoB>
           |          <md:patient-number>555555</md:patient-number>

@@ -3,7 +3,7 @@ package net.drozdowicz.sxacml.test
 import java.io.File
 import java.net.URI
 
-import net.drozdowicz.sxacml.{FlatAttributeValue, OntologyAttributeFinder, RequestOntologyGenerator}
+import net.drozdowicz.sxacml.{ContextAttributeValue, FlatAttributeValue, OntologyAttributeFinder, RequestOntologyGenerator}
 import onto.utils.OntologyUtils
 import org.scalatest.{Matchers, path}
 import org.semanticweb.owlapi.apibinding.OWLManager
@@ -41,7 +41,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       val ontology = convertToOntology("123", input, Set(toImport))
 
       it("should find value of derived attribute ") {
-        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject#request_123",
+        val values = OntologyAttributeFinder.findAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/test1#isAdult")
 
         values should contain only (FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
@@ -51,11 +51,11 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
       }
 
       it("should output type of the individual as an attribute value") {
-        val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject#request_123",
-          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "urn:sxacml:attributes:type")
+        val values = OntologyAttributeFinder.findClassAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
+          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "sxacml:subject:subject-class-id")
 
         values should contain(FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          URI.create("urn:sxacml:attributes:type"),
+          URI.create("sxacml:subject:subject-class-id"),
           URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
           "http://drozdowicz.net/sxacml/test1#Adult"))
       }
@@ -72,7 +72,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       it("should return type property") {
         val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
-        attributes should contain("urn:sxacml:attributes:type")
+        attributes should contain("sxacml:subject:subject-class-id")
       }
     }
 
@@ -126,7 +126,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         val ontology = convertToOntology("123", input, Set(toImport))
 
         it("should match subject by id") {
-          val values = OntologyAttributeFinder.findAttributeValues(ontology, "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject#request_123",
+          val values = OntologyAttributeFinder.findAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
             "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testIdMatch#hasFirstName")
 
           values.size should be(1)
@@ -236,6 +236,14 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     describe("queryOntologyWithSparql") {
       val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testIdMatch"))
 
+      val individualIdMap = Map(
+        URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
+        URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
+        URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake",
+        URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:environment") -> "fake",
+        URI.create("sxacml:attribute-category:request") -> "fake"
+      )
+
       it("should return single result") {
         var query = "" +
           "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
@@ -245,11 +253,8 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           "<http://dbpedia.org/page/Bart_Simpson> subject:subject-id ?id" + System.lineSeparator() +
           "}"
 
-        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
-          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
-          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
-          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
-        ))
+
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, individualIdMap)
 
         actual should be(Set("bart@simpsons.com"))
       }
@@ -264,11 +269,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           "<http://dbpedia.org/page/Bart_Simpson> test:hasFirstName ?name ." + System.lineSeparator() +
           "}"
 
-        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
-          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
-          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
-          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
-        ))
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, individualIdMap)
 
         actual should be(Set("id:bart@simpsons.com;name:Bart"))
       }
@@ -283,15 +284,15 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           "?ind test:hasFirstName ?name ." + System.lineSeparator() +
           "}"
 
-        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, Map(
-          URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
-          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> "fake",
-          URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> "fake"
-        ))
+        var actual = OntologyAttributeFinder.queryOntologyWithSparql(query, ontology, individualIdMap)
 
         actual should be(Set("id:bart@simpsons.com;name:Bart", "id:homer@simpsons.com;name:Homer"))
       }
     }
+  }
+
+  private def getIndividualId(requestId: String, categoryId: String) = {
+    RequestOntologyGenerator.getCategoryIndividualIds(RequestOntologyGenerator.createOntologyId(requestId), Seq.empty[ContextAttributeValue])(new URI(categoryId))
   }
 
   def getOntologyIRI(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {

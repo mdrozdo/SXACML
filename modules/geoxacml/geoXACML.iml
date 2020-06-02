@@ -10,9 +10,9 @@
     <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
-    <orderEntry type="library" name="Maven: org.wso2.balana:org.wso2.balana:1.0.4" level="project" />
-    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.wso2.balana:org.wso2.balana.utils:1.0.4" level="project" />
+    <orderEntry type="library" name="Maven: org.wso2.balana:org.wso2.balana:1.2.5-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.ops4j.pax.logging:pax-logging-api:1.10.1" level="project" />
+    <orderEntry type="library" name="Maven: org.wso2.balana:org.wso2.balana.utils:1.2.5-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: xerces.wso2:xercesImpl:2.8.1.wso2v2" level="project" />
     <orderEntry type="library" name="Maven: com.vividsolutions:jts:1.13" level="project" />
     <orderEntry type="library" name="Maven: org.geotools:gt-api:10.2" level="project" />

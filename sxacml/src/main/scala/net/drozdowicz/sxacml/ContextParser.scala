@@ -65,8 +65,8 @@ object ContextParser {
             case el: Elem =>
               val name = new URI(el.namespace + el.label)
               //Always grab first datatype attribute value
-              val xsdType = node.attribute("http://www.w3.org/1999/02/22-rdf-syntax-ns#", "datatype").map(attributes=>attributes.text).getOrElse("http://www.w3.org/2001/XMLSchema#string")
-              val propertyId = el.attribute("http://drozdowicz.net/sxacml/request", "property").map(a => new URI(a.text))
+              val xsdType = el.attribute("http://www.w3.org/1999/02/22-rdf-syntax-ns#", "datatype").map(attributes=>attributes.text).getOrElse("http://www.w3.org/2001/XMLSchema#string")
+              val propertyId = el.attribute("http://drozdowicz.net/sxacml/request#", "property").map(a => new URI(a.text))
 
               el.nonEmptyChildren.flatMap(c => {
                 c match {
