@@ -95,7 +95,7 @@
     <!-- http://drozdowicz.net/onto/port#isHostedBy -->
 
     <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#isHostedBy">
-        <owl:inverseOf rdf:resource="http://ontology.tno.nl/logico#hosts"/>
+        <owl:inverseOf rdf:resource="http://ontology.tno.nl/logico#hostsResource"/>
     </owl:ObjectProperty>
     
 
@@ -109,9 +109,9 @@
     
 
 
-    <!-- http://ontology.tno.nl/logico#hosts -->
+    <!-- http://ontology.tno.nl/logico#hostsResource -->
 
-    <rdf:Description rdf:about="http://ontology.tno.nl/logico#hosts"/>
+    <rdf:Description rdf:about="http://ontology.tno.nl/logico#hostsResource"/>
     
 
 

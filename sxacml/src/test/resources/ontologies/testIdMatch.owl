@@ -22,7 +22,7 @@
      xmlns:testIdMatch="http://drozdowicz.net/sxacml/testIdMatch#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
     <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testIdMatch">
-        <owl:imports rdf:resource="http://drozdowicz.net/sxacml/request"/>
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
     </owl:Ontology>
     
 

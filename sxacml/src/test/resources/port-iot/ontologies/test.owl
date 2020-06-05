@@ -107,10 +107,10 @@
 
 
 
-    <!-- http://drozdowicz.net/sxacml/request#environment -->
+    <!-- http://drozdowicz.net/onto/request#environment -->
 
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/request#environment"/>
+    <owl:Class rdf:about="http://drozdowicz.net/onto/request#environment"/>
 
 
 
@@ -157,7 +157,7 @@
 
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment">
-        <rdf:type rdf:resource="http://drozdowicz.net/sxacml/request#environment"/>
+        <rdf:type rdf:resource="http://drozdowicz.net/onto/request#environment"/>
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
         <sosa:hasObservation rdf:resource="http://www.w3.org/ns/sosa/Observation_0_6d9db33a-70a0-4e05-975c-12925c9f94ed"/>
         <sosa:hasObservation rdf:resource="http://www.w3.org/ns/sosa/Observation_3_6d9db33a-70a0-4e05-975c-12925c9f94ed"/>

@@ -5,7 +5,7 @@
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY subject "urn:oasis:names:tc:xacml:1.0:subject:" >
-    <!ENTITY request "http://drozdowicz.net/sxacml/request#" >
+    <!ENTITY request "http://drozdowicz.net/onto/request#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY conformance-test "urn:oasis:names:tc:xacml:2.0:conformance-test:" >
@@ -16,13 +16,13 @@
      xml:base="http://drozdowicz.net/sxacml/testResourceHierarchyByProperty"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:subject="urn:oasis:names:tc:xacml:1.0:subject:"
-     xmlns:request="http://drozdowicz.net/sxacml/request#"
+     xmlns:request="http://drozdowicz.net/onto/request#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
     <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchyByProperty">
-        <owl:imports rdf:resource="http://drozdowicz.net/sxacml/request"/>
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
     </owl:Ontology>
     
 

@@ -149,6 +149,18 @@
     </rdf:Description>
     
 
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://ontology.tno.nl/logico#hostsResource">
+        <request:hierarchyDesignator></request:hierarchyDesignator>
+    </rdf:Description>
 </rdf:RDF>
 
 

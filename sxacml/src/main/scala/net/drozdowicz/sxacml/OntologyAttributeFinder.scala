@@ -77,7 +77,7 @@ object OntologyAttributeFinder {
     rootOntology.getObjectPropertiesInSignature(Imports.INCLUDED).asScala
       .filter(p =>
         EntitySearcher.getAnnotations(p, rootOntology, factory.getOWLAnnotationProperty(
-          IRI.create("http://drozdowicz.net/sxacml/request#hierarchyDesignator"))
+          IRI.create("http://drozdowicz.net/onto/request#hierarchyDesignator"))
         ).findAny().isPresent)
       .map(p => p.getIRI.toString)
       .headOption

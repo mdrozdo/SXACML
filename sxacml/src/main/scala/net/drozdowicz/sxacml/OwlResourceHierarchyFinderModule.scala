@@ -38,7 +38,7 @@ class OwlResourceHierarchyFinderModule(ontologyFolderPath: String, rootOntologyI
 
   private val rootOntology = ontoMgr.loadOntology(IRI.create(rootOntologyId))
 
-  private val hierarchyDesignatorId = OntologyAttributeFinder.getHierarchyDesignator(rootOntology)
+  private val hierarchyDesignatorId = OntologyAttributeFinder.getHierarchyDesignator(rootOntology).getOrElse("http://drozdowicz.net/onto/request#hasSubResource")
 
   override def isChildSupported() = false
 
@@ -46,11 +46,12 @@ class OwlResourceHierarchyFinderModule(ontologyFolderPath: String, rootOntologyI
 
   override def findDescendantResources(parentResourceId: AttributeValue , context: EvaluationCtx ) = {
     try {
+
       new ResourceFinderResult(OntologyAttributeFinder.findInstancesFromHierarchy(rootOntology,
           "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
           "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
           parentResourceId.encode(),
-          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild")
+        hierarchyDesignatorId)
         .map(f => f.createAttributeValue()).asJava
       )
     } catch safely {

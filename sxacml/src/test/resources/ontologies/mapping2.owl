@@ -13,7 +13,7 @@
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Prefix name="port2" IRI="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#"/>
-    <Import>http://drozdowicz.net/sxacml/request</Import>
+    <Import>http://drozdowicz.net/onto/request</Import>
     <Import>http://www.semanticweb.org/rafal/ontologies/2017/6/port2</Import>
     <Declaration>
         <AnnotationProperty IRI="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>

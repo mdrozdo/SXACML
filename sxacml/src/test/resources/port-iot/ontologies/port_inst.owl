@@ -263,7 +263,7 @@
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking">
         <rdf:type rdf:resource="http://drozdowicz.net/onto/port#Parking"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#Barrier_1"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#Barrier_1"/>
     </owl:NamedIndividual>
     
 
@@ -1023,8 +1023,8 @@
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ValenciaPort">
         <rdf:type rdf:resource="http://ontology.tno.nl/logico#Port"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ValenciaPort_ContainerTerminal"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ValenciaPort_PassengerTerminal"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#ValenciaPort_ContainerTerminal"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#ValenciaPort_PassengerTerminal"/>
     </owl:NamedIndividual>
     
 
@@ -1033,10 +1033,10 @@
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port_inst#ValenciaPort_ContainerTerminal">
         <rdf:type rdf:resource="http://ontology.tno.nl/logico#Terminal"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParkingGate"/>
-        <sosa:hosts rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Dock"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_ExternalParking"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_InternalParkingGate"/>
+        <logico:hostsResource rdf:resource="http://drozdowicz.net/onto/port_inst#ContainerTerminal_Yard"/>
     </owl:NamedIndividual>
     
 

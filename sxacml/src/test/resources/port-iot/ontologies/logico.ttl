@@ -282,11 +282,6 @@ Desc: To identify equipment.""" .
 	rdfs:domain :ProductClass ;
 	rdfs:range :PhysicalState .
 # 
-# http://ontology.tno.nl/logico#hasAmount
-
-:hasAmount a owl:ObjectProperty ;
-	rdfs:domain :Object .
-# 
 # http://ontology.tno.nl/logico#hasRegion
 
 :hasRegion a owl:ObjectProperty ;
@@ -382,9 +377,9 @@ Desc: To identify equipment.""" .
 	rdfs:range :Width ;
 	rdfs:label "has width"^^xsd:string .
 # 
-# http://ontology.tno.nl/logico#hosts
+# http://ontology.tno.nl/logico#hostsResource
 
-:hosts a owl:ObjectProperty ;
+:hostsResource a owl:ObjectProperty ;
 	rdfs:domain :StaticResource ;
 	rdfs:range _:genid14 .
 
@@ -1335,7 +1330,7 @@ With this definition of event in LogiCO, we specialize the concept of Event defi
 	rdfs:subClassOf :GeoPoint , :StaticResource , _:genid70 .
 
 _:genid70 a owl:Restriction ;
-	owl:onProperty :hosts ;
+	owl:onProperty :hostsResource ;
 	owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
 	owl:onClass :StaticEquipment .
 
@@ -1370,7 +1365,7 @@ Specialization of the concept of Physical Place in:
 	rdfs:subClassOf :GeoArea , :StaticResource , _:genid74 .
 
 _:genid74 a owl:Restriction ;
-	owl:onProperty :hosts ;
+	owl:onProperty :hostsResource ;
 	owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
 	owl:onClass :StaticEquipment .
 
@@ -1761,14 +1756,14 @@ _:genid101 a rdf:List ;
 :PhysicalResource rdfs:subClassOf :Object , _:genid103 .
 
 _:genid103 a owl:Restriction ;
-	owl:onProperty :hasPhysicalAttribute ;
-	owl:someValuesFrom :PhysicalAttribute .
+	owl:onProperty :hasAmount ;
+	owl:someValuesFrom :Amount .
 
 :PhysicalResource rdfs:subClassOf _:genid104 .
 
 _:genid104 a owl:Restriction ;
-	owl:onProperty :hasAmount ;
-	owl:someValuesFrom :Amount .
+	owl:onProperty :hasPhysicalAttribute ;
+	owl:someValuesFrom :PhysicalAttribute .
 
 :PhysicalResource rdfs:subClassOf _:genid105 .
 
@@ -2360,12 +2355,7 @@ Desc: To identify equipment.""" , <http://www.unece.org/fileadmin/DAM/trade/untd
 Desc: Code specifying the party that is the supplier of the equipment.""" .
 # 
 
-<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
-	rdfs:label "geo" ;
-	<http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
- altitude information in the WGS84 geodetic reference datum. 
- Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
-	rdfs:comment """
+<http://www.w3.org/2003/01/geo/wgs84_pos#> rdfs:comment """
 Recent changes to this namespace:
 $Log: wgs84_pos.rdf,v $
 Revision 1.22  2009/04/20 15:00:30  timbl
@@ -2449,6 +2439,11 @@ date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
 basic geo vocab
 
 """ ;
+	<http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
+	rdfs:label "geo" ;
+	<http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
 	<http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" .
 # 
 
@@ -2467,16 +2462,16 @@ geo:location rdfs:label "location" ;
  """ .
 # 
 
-<http://www.w3.org/2006/time#DateTimeDescription> :mappingToEDI """UN/EDIFACT D.12B Data Element  2379  Date or time or period format code
-Desc: Code specifying the representation of a date, time or period.
-
-D.12B Core Component Library UN02000153""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> .
-# 
-
-<http://www.w3.org/2006/time#DurationDescription> :mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> , """UN/EDIFACT D.12B Data Element  2379  Date or time or period format code
+<http://www.w3.org/2006/time#DateTimeDescription> :mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> , """UN/EDIFACT D.12B Data Element  2379  Date or time or period format code
 Desc: Code specifying the representation of a date, time or period.
 
 D.12B Core Component Library UN02000153""" .
+# 
+
+<http://www.w3.org/2006/time#DurationDescription> :mappingToEDI """UN/EDIFACT D.12B Data Element  2379  Date or time or period format code
+Desc: Code specifying the representation of a date, time or period.
+
+D.12B Core Component Library UN02000153""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> .
 # 
 
 <http://www.w3.org/2006/time#TemporalEntity> :mappingToEDI """UN/EDIFACT D.12B Data Element 2005  Date or time or period function code qualifier
