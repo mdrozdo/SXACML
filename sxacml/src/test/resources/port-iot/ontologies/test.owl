@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#" xml:base="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed" 
+<rdf:RDF xmlns="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#" xml:base="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed" 
     xmlns:dc="http://purl.org/dc/elements/1.1/" 
     xmlns:org="http://www.w3.org/ns/org#" 
     xmlns:owl="http://www.w3.org/2002/07/owl#" 
@@ -16,15 +16,15 @@
     xmlns:action="urn:oasis:names:tc:xacml:1.0:action:" 
     xmlns:logico="http://ontology.tno.nl/logico#" 
     xmlns:schema="http://schema.org/" 
-    xmlns:request="http://drozdowicz.net/onto/request#" 
+    xmlns:request="https://w3id.org/sxacml/request#" 
     xmlns:subject="urn:oasis:names:tc:xacml:1.0:subject:" 
     xmlns:logiserv="http://ontology.tno.nl/logiserv#" 
     xmlns:resource="urn:oasis:names:tc:xacml:1.0:resource:" 
     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#" 
     xmlns:environment="urn:oasis:names:tc:xacml:1.0:environment:" 
-    xmlns:access-control="http://drozdowicz.net/onto/access-control#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/port_mapping"/>
+    xmlns:access-control="https://w3id.org/sxacml/access-control#">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/sample-port/port-mapping"/>
     </owl:Ontology>
 
 
@@ -41,31 +41,31 @@
 
 
 
-    <!-- http://drozdowicz.net/onto/access-control#concernsAction -->
+    <!-- https://w3id.org/sxacml/access-control#concernsAction -->
 
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/access-control#concernsAction"/>
-
-
-
-    <!-- http://drozdowicz.net/onto/access-control#concernsResource -->
-
-
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/access-control#concernsResource"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#concernsAction"/>
 
 
 
-    <!-- http://drozdowicz.net/onto/access-control#inContextOf -->
+    <!-- https://w3id.org/sxacml/access-control#concernsResource -->
 
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/access-control#inContextOf"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#concernsResource"/>
 
 
 
-    <!-- http://drozdowicz.net/onto/access-control#requestedBy -->
+    <!-- https://w3id.org/sxacml/access-control#inContextOf -->
 
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/access-control#requestedBy"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#inContextOf"/>
+
+
+
+    <!-- https://w3id.org/sxacml/access-control#requestedBy -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#requestedBy"/>
 
 
 
@@ -107,10 +107,10 @@
 
 
 
-    <!-- http://drozdowicz.net/onto/request#environment -->
+    <!-- https://w3id.org/sxacml/request#environment -->
 
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/request#environment"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/request#environment"/>
 
 
 
@@ -133,31 +133,31 @@
 
 
 
-    <!-- http://drozdowicz.net/onto/access-control-action#Open -->
+    <!-- https://w3id.org/sxacml/access-control-action#Open -->
 
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control-action#Open">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control-action#Open">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
-        <action:action-id>http://drozdowicz.net/onto/access-control-action#Open</action:action-id>
+        <action:action-id>https://w3id.org/sxacml/access-control-action#Open</action:action-id>
     </rdf:Description>
 
 
 
-    <!-- http://drozdowicz.net/onto/port_inst#BarrierController_1 -->
+    <!-- https://w3id.org/sxacml/sample-port/port-data#BarrierController_1 -->
 
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port_inst#BarrierController_1">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port-data#BarrierController_1">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
-        <resource:resource-id>http://drozdowicz.net/onto/port_inst#BarrierController_1</resource:resource-id>
+        <resource:resource-id>https://w3id.org/sxacml/sample-port/port-data#BarrierController_1</resource:resource-id>
     </rdf:Description>
 
 
 
-    <!-- http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment -->
+    <!-- https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment -->
 
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment">
-        <rdf:type rdf:resource="http://drozdowicz.net/onto/request#environment"/>
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/request#environment"/>
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
         <sosa:hasObservation rdf:resource="http://www.w3.org/ns/sosa/Observation_0_6d9db33a-70a0-4e05-975c-12925c9f94ed"/>
         <sosa:hasObservation rdf:resource="http://www.w3.org/ns/sosa/Observation_3_6d9db33a-70a0-4e05-975c-12925c9f94ed"/>
@@ -166,23 +166,23 @@
 
 
 
-    <!-- http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#request -->
+    <!-- https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#request -->
 
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#request">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#request">
         <rdf:type rdf:resource="sxacml:attribute-category:request"/>
-        <access-control:concernsAction rdf:resource="http://drozdowicz.net/onto/access-control-action#Open"/>
-        <access-control:concernsResource rdf:resource="http://drozdowicz.net/onto/port_inst#BarrierController_1"/>
-        <access-control:inContextOf rdf:resource="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment"/>
-        <access-control:requestedBy rdf:resource="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#subject"/>
+        <access-control:concernsAction rdf:resource="https://w3id.org/sxacml/access-control-action#Open"/>
+        <access-control:concernsResource rdf:resource="https://w3id.org/sxacml/sample-port/port-data#BarrierController_1"/>
+        <access-control:inContextOf rdf:resource="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#environment"/>
+        <access-control:requestedBy rdf:resource="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#subject"/>
     </owl:NamedIndividual>
 
 
 
-    <!-- http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#subject -->
+    <!-- https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#subject -->
 
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/onto/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#subject">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/6d9db33a-70a0-4e05-975c-12925c9f94ed#subject">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
         <subject:subject-id>ClarkContoso</subject:subject-id>
     </owl:NamedIndividual>
@@ -194,8 +194,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/ns/sosa/Observation_0_6d9db33a-70a0-4e05-975c-12925c9f94ed">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-        <sosa:madeBySensor rdf:resource="http://drozdowicz.net/onto/port_inst#LPRCamera_1"/>
-        <sosa:observedProperty rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
+        <sosa:madeBySensor rdf:resource="https://w3id.org/sxacml/sample-port/port-data#LPRCamera_1"/>
+        <sosa:observedProperty rdf:resource="https://w3id.org/sxacml/sample-port/port#LicenseNumber"/>
         <sosa:hasSimpleResult>KT3311</sosa:hasSimpleResult>
         <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:01+00:00</sosa:resultTime>
     </owl:NamedIndividual>
@@ -207,8 +207,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/ns/sosa/Observation_3_6d9db33a-70a0-4e05-975c-12925c9f94ed">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-        <sosa:madeBySensor rdf:resource="http://drozdowicz.net/onto/port_inst#AccessCardReader_1"/>
-        <sosa:observedProperty rdf:resource="http://drozdowicz.net/onto/port#UserName"/>
+        <sosa:madeBySensor rdf:resource="https://w3id.org/sxacml/sample-port/port-data#AccessCardReader_1"/>
+        <sosa:observedProperty rdf:resource="https://w3id.org/sxacml/sample-port/port#UserName"/>
         <sosa:hasSimpleResult>ClarkContoso</sosa:hasSimpleResult>
         <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-01T12:03:14+00:00</sosa:resultTime>
     </owl:NamedIndividual>

@@ -7,7 +7,7 @@
         <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:age">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">45</AttributeValue>
         </Attribute>
-       <!--  <Attribute IncludeInResult="false" AttributeId="http://drozdowicz.net/sxacml/test1#isAdult">
+       <!--  <Attribute IncludeInResult="false" AttributeId="https://w3id.org/sxacml/test1#isAdult">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#boolean">true</AttributeValue>
         </Attribute> -->
     </Attributes>

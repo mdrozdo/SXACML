@@ -23,10 +23,10 @@ object RequestOntologyGenerator {
   )
 
   private val categoryAssignmentProperties = Map(
-    new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> new URI("http://drozdowicz.net/onto/access-control#requestedBy"),
-    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> new URI("http://drozdowicz.net/onto/access-control#concernsResource"),
-    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> new URI("http://drozdowicz.net/onto/access-control#concernsAction"),
-    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:environment") -> new URI("http://drozdowicz.net/onto/access-control#inContextOf")
+    new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> new URI("https://w3id.org/sxacml/access-control#requestedBy"),
+    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:resource") -> new URI("https://w3id.org/sxacml/access-control#concernsResource"),
+    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:action") -> new URI("https://w3id.org/sxacml/access-control#concernsAction"),
+    new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:environment") -> new URI("https://w3id.org/sxacml/access-control#inContextOf")
   )
 
   def getCategoryIndividualIds(ontologyId: String, attributes: Seq[ContextAttributeValue]) = {
@@ -43,7 +43,7 @@ object RequestOntologyGenerator {
     getNewCategoryIndividualUri(ontologyId, Constants.REQUEST_CLASS_ID)
   }
 
-  def createOntologyId(requestId: String) = "http://drozdowicz.net/sxacml/onto/request/" + requestId
+  def createOntologyId(requestId: String) = "https://w3id.org/sxacml/request/" + requestId
 
   def convertToOntology(owlManager: OWLOntologyManager)(requestId: String, requestAttributes: Seq[ContextAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
     val requestAttributesOnlyCategories = requestAttributes.filter(at => categoryAssignmentProperties.contains(at.categoryId))

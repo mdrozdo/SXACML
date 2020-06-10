@@ -42,10 +42,10 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       it("should find value of derived attribute ") {
         val values = OntologyAttributeFinder.findAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/test1#isAdult")
+          "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "https://w3id.org/sxacml/test1#isAdult")
 
         values should contain only (FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-          URI.create("http://drozdowicz.net/sxacml/test1#isAdult"),
+          URI.create("https://w3id.org/sxacml/test1#isAdult"),
           URI.create("http://www.w3.org/2001/XMLSchema#boolean"),
           "true"))
       }
@@ -57,17 +57,17 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
         values should contain(FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           URI.create("sxacml:subject:subject-class-id"),
           URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-          "http://drozdowicz.net/sxacml/test1#Adult"))
+          "https://w3id.org/sxacml/test1#Adult"))
       }
 
     }
 
     describe("getSupportedAttributes") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/test1"))
+      val ontology = ontoMgr.loadOntology(IRI.create("https://w3id.org/sxacml/test1"))
 
       it("should return data properties from ontology") {
         val attributes = OntologyAttributeFinder.getAllSupportedAttributes(ontology)
-        attributes should contain("http://drozdowicz.net/sxacml/test1#isAdult")
+        attributes should contain("https://w3id.org/sxacml/test1#isAdult")
       }
 
       it("should return type property") {
@@ -94,16 +94,16 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
         it("should return all inferred values") {
           val values = OntologyAttributeFinder.findAttributeValues(ontology, "http://dbpedia.org/page/Bart_Simpson",
-            "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testMultiValue#hasParentName")
+            "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "https://w3id.org/sxacml/testMultiValue#hasParentName")
 
           values.size should be(2)
           values should contain only(
             FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-              URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
+              URI.create("https://w3id.org/sxacml/testMultiValue#hasParentName"),
               URI.create("http://www.w3.org/2001/XMLSchema#string"),
               "Homer Simpson"),
             FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-              URI.create("http://drozdowicz.net/sxacml/testMultiValue#hasParentName"),
+              URI.create("https://w3id.org/sxacml/testMultiValue#hasParentName"),
               URI.create("http://www.w3.org/2001/XMLSchema#string"),
               "Marge Simpson"))
         }
@@ -127,12 +127,12 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
         it("should match subject by id") {
           val values = OntologyAttributeFinder.findAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-            "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "http://drozdowicz.net/sxacml/testIdMatch#hasFirstName")
+            "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject", "https://w3id.org/sxacml/testIdMatch#hasFirstName")
 
           values.size should be(1)
           values should contain only (
             FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
-              URI.create("http://drozdowicz.net/sxacml/testIdMatch#hasFirstName"),
+              URI.create("https://w3id.org/sxacml/testIdMatch#hasFirstName"),
               URI.create("http://www.w3.org/2001/XMLSchema#string"),
               "Bart"))
         }
@@ -141,24 +141,24 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
     }
 
     describe("findInstancesOfClass") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchy"))
+      val ontology = ontoMgr.loadOntology(IRI.create("https://w3id.org/sxacml/testResourceHierarchy"))
 
       it("given class id should return individuals from class defined in attribute value") {
         val values = OntologyAttributeFinder.findInstancesOfClass(ontology,
           "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
           "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
-          "http://drozdowicz.net/sxacml/testResourceHierarchy#foo")
+          "https://w3id.org/sxacml/testResourceHierarchy#foo")
 
         values.size should be(2)
         values should contain only(
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo1"),
+            "https://w3id.org/sxacml/testResourceHierarchy#foo1"),
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
+            "https://w3id.org/sxacml/testResourceHierarchy#foo2"))
       }
 
       it("given class name should return individuals from class defined in attribute value") {
@@ -172,44 +172,44 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo1"),
+            "https://w3id.org/sxacml/testResourceHierarchy#foo1"),
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
+            "https://w3id.org/sxacml/testResourceHierarchy#foo2"))
       }
     }
 
     describe("findHierarchyDesignator") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty"))
+      val ontology = ontoMgr.loadOntology(IRI.create("https://w3id.org/sxacml/testResourceHierarchyByProperty"))
 
       it("should return id of property marked with hierarchyDesignator annotation") {
         var actual = OntologyAttributeFinder.getHierarchyDesignator(ontology)
 
-        actual should be(Some("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild"))
+        actual should be(Some("https://w3id.org/sxacml/testResourceHierarchyByProperty#hasChild"))
       }
     }
 
     describe("findInstancesFromHierarchy") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testResourceHierarchyByProperty"))
+      val ontology = ontoMgr.loadOntology(IRI.create("https://w3id.org/sxacml/testResourceHierarchyByProperty"))
 
       it("given individual id should return individuals related by the hierarchyDesignator property") {
         val values = OntologyAttributeFinder.findInstancesFromHierarchy(ontology,
           "urn:oasis:names:tc:xacml:3.0:attribute-category:resource",
           "urn:oasis:names:tc:xacml:1.0:resource:resource-id",
-          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#fooRoot",
-          "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#hasChild")
+          "https://w3id.org/sxacml/testResourceHierarchyByProperty#fooRoot",
+          "https://w3id.org/sxacml/testResourceHierarchyByProperty#hasChild")
 
         values.size should be(2)
         values should contain only(
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#foo1"),
+            "https://w3id.org/sxacml/testResourceHierarchyByProperty#foo1"),
           FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
             URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
             URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-            "http://drozdowicz.net/sxacml/testResourceHierarchyByProperty#foo2"))
+            "https://w3id.org/sxacml/testResourceHierarchyByProperty#foo2"))
       }
 
 
@@ -225,16 +225,16 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 //          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
 //            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
 //            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-//            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo1"),
+//            "https://w3id.org/sxacml/testResourceHierarchy#foo1"),
 //          FlatAttributeValue(URI.create("urn:oasis:names:tc:xacml:3.0:attribute-category:resource"),
 //            URI.create("urn:oasis:names:tc:xacml:1.0:resource:resource-id"),
 //            URI.create("http://www.w3.org/2001/XMLSchema#anyURI"),
-//            "http://drozdowicz.net/sxacml/testResourceHierarchy#foo2"))
+//            "https://w3id.org/sxacml/testResourceHierarchy#foo2"))
 //      }
     }
 
     describe("queryOntologyWithSparql") {
-      val ontology = ontoMgr.loadOntology(IRI.create("http://drozdowicz.net/sxacml/testIdMatch"))
+      val ontology = ontoMgr.loadOntology(IRI.create("https://w3id.org/sxacml/testIdMatch"))
 
       val individualIdMap = Map(
         URI.create("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject") -> "fake",
@@ -246,7 +246,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       it("should return single result") {
         var query = "" +
-          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX test: <https://w3id.org/sxacml/testIdMatch#>" + System.lineSeparator() +
           "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
           "SELECT ?id " + System.lineSeparator() +
           "WHERE {" + System.lineSeparator() +
@@ -261,7 +261,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       it("should return multiple results") {
         var query = "" +
-          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX test: <https://w3id.org/sxacml/testIdMatch#>" + System.lineSeparator() +
           "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
           "SELECT ?id ?name" + System.lineSeparator() +
           "WHERE {" + System.lineSeparator() +
@@ -276,7 +276,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       it("should return multiple results and elements in Set") {
         var query = "" +
-          "PREFIX test: <http://drozdowicz.net/sxacml/testIdMatch#>" + System.lineSeparator() +
+          "PREFIX test: <https://w3id.org/sxacml/testIdMatch#>" + System.lineSeparator() +
           "PREFIX subject: <urn:oasis:names:tc:xacml:1.0:subject:>" + System.lineSeparator() +
           "SELECT ?id ?name" + System.lineSeparator() +
           "WHERE {" + System.lineSeparator() +
@@ -296,7 +296,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   }
 
   def getOntologyIRI(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {
-    IRI.create("http://drozdowicz.net/sxacml/" + ontoName)
+    IRI.create("https://w3id.org/sxacml/" + ontoName)
   }
 
 }

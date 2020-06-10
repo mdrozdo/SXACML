@@ -8,7 +8,7 @@
                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://www.semanticweb.org/rafal/ontologies/2017/6/port2#ValenciaPort</AttributeValue>
                 <Apply FunctionId="net:drozdowicz:sxacml:sparql-select">
                     <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">
-                        PREFIX sxacml: &lt;http://drozdowicz.net/sxacml/request#&gt;
+                        PREFIX sxacml: &lt;https://w3id.org/sxacml/request#&gt;
                         PREFIX port2: &lt;http://www.semanticweb.org/rafal/ontologies/2017/6/port2#&gt;
                         SELECT ?company
                         WHERE {

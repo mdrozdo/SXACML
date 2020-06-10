@@ -7,17 +7,17 @@
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">BeckyTurner@healthcenter.com</AttributeValue>
         </Attribute>
         <Attribute IncludeInResult="false" AttributeId="http://www.w3.org/ns/org#memberOf">
-            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://drozdowicz.net/onto/privacy-sample#healthCenter</AttributeValue>
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/sxacml/privacy-sample#healthCenter</AttributeValue>
         </Attribute>
     </Attributes>
     <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
         <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
-            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://drozdowicz.net/onto/fitness-data#dist_20190401</AttributeValue>
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190401</AttributeValue>
         </Attribute>
     </Attributes>
     <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
         <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
-            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://drozdowicz.net/onto/access-control#Read</AttributeValue>
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/sxacml/access-control#Read</AttributeValue>
         </Attribute>
     </Attributes>
 

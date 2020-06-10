@@ -10,15 +10,15 @@
 ]> 
 
 
-<rdf:RDF xmlns="http://drozdowicz.net/sxacml/test1#"
-     xml:base="http://drozdowicz.net/sxacml/test1"
+<rdf:RDF xmlns="https://w3id.org/sxacml/test1#"
+     xml:base="https://w3id.org/sxacml/test1"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/test1">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/test1">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
     </owl:Ontology>
     
 
@@ -34,9 +34,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/test1#isAdult -->
+    <!-- https://w3id.org/sxacml/test1#isAdult -->
 
-    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/sxacml/test1#isAdult">
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/test1#isAdult">
         <rdfs:range rdf:resource="&xsd;boolean"/>
         <rdfs:domain rdf:resource="&owl;Thing"/>
     </owl:DatatypeProperty>
@@ -60,15 +60,15 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/test1#Adult -->
+    <!-- https://w3id.org/sxacml/test1#Adult -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1#Adult">
+    <owl:Class rdf:about="https://w3id.org/sxacml/test1#Adult">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/sxacml/test1#isAdult"/>
                         <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -90,14 +90,14 @@
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/sxacml/test1#UnderAge"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/test1#UnderAge"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/sxacml/test1#UnderAge -->
+    <!-- https://w3id.org/sxacml/test1#UnderAge -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/test1#UnderAge">
+    <owl:Class rdf:about="https://w3id.org/sxacml/test1#UnderAge">
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&conformance-test;age"/>
@@ -118,7 +118,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/sxacml/test1#isAdult"/>
                         <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -135,8 +135,8 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1#Adult"/>
-                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/test1#UnderAge"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/test1#Adult"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/test1#UnderAge"/>
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>

@@ -11,7 +11,7 @@
                     </gml:Point>
                 </AttributeValue>
                 <Apply FunctionId="urn:ogc:def:function:geoxacml:1.0:geometry-one-and-only">
-                    <AttributeDesignator AttributeId="http://drozdowicz.net/sxacml/test1#location" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry" MustBePresent="true"></AttributeDesignator>
+                    <AttributeDesignator AttributeId="https://w3id.org/sxacml/test1#location" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry" MustBePresent="true"></AttributeDesignator>
                 </Apply>
                 <!-- Value in degrees (~20km), because of the spatial reference system -->
                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#double">0.292</AttributeValue>

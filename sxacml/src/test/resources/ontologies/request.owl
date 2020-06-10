@@ -1,21 +1,15 @@
 <?xml version="1.0"?>
-
-
-<!DOCTYPE rdf:RDF [
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-]>
-
-
-<rdf:RDF xmlns="http://drozdowicz.net/onto/request#"
-     xml:base="http://drozdowicz.net/onto/request"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+<rdf:RDF xmlns="https://w3id.org/sxacml/request/"
+     xml:base="https://w3id.org/sxacml/request/"
+     xmlns:request="https://w3id.org/sxacml/request#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/request"/>
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/request">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/access-control"/>
+    </owl:Ontology>
     
 
 
@@ -30,9 +24,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#hierarchyDesignator -->
+    <!-- https://w3id.org/sxacml/request#hierarchyDesignator -->
 
-    <owl:AnnotationProperty rdf:about="http://drozdowicz.net/onto/request#hierarchyDesignator"/>
+    <owl:AnnotationProperty rdf:about="https://w3id.org/sxacml/request#hierarchyDesignator"/>
     
 
 
@@ -47,11 +41,11 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#identifier -->
+    <!-- https://w3id.org/sxacml/request#identifier -->
 
-    <rdfs:Datatype rdf:about="http://drozdowicz.net/onto/request#identifier">
-        <owl:equivalentClass rdf:resource="&xsd;anyURI"/>
-        <owl:equivalentClass rdf:resource="&xsd;string"/>
+    <rdfs:Datatype rdf:about="https://w3id.org/sxacml/request#identifier">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"/>
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:x500Name"/>
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:2.0:data-type:dnsName"/>
@@ -63,7 +57,7 @@
     <!-- urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name -->
 
     <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">
-        <owl:equivalentClass rdf:resource="&xsd;string"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </rdfs:Datatype>
     
 
@@ -71,7 +65,7 @@
     <!-- urn:oasis:names:tc:xacml:1.0:data-type:x500Name -->
 
     <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:1.0:data-type:x500Name">
-        <owl:equivalentClass rdf:resource="&xsd;string"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </rdfs:Datatype>
     
 
@@ -79,7 +73,7 @@
     <!-- urn:oasis:names:tc:xacml:2.0:data-type:dnsName -->
 
     <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:2.0:data-type:dnsName">
-        <owl:equivalentClass rdf:resource="&xsd;string"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </rdfs:Datatype>
     
 
@@ -87,7 +81,7 @@
     <!-- urn:oasis:names:tc:xacml:2.0:data-type:ipAddress -->
 
     <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:2.0:data-type:ipAddress">
-        <owl:equivalentClass rdf:resource="&xsd;string"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </rdfs:Datatype>
     
 
@@ -95,7 +89,7 @@
     <!-- urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression -->
 
     <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression">
-        <owl:equivalentClass rdf:resource="&xsd;string"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </rdfs:Datatype>
     
 
@@ -111,10 +105,19 @@
     
 
 
+    <!-- https://w3id.org/sxacml/request#hierarchyDesignatorId -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/request#hierarchyDesignatorId">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- urn:oasis:names:tc:xacml:1.0:action:action-id -->
 
     <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:action:action-id">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
     </owl:DatatypeProperty>
     
@@ -123,7 +126,7 @@
     <!-- urn:oasis:names:tc:xacml:1.0:resource:resource-id -->
 
     <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
     </owl:DatatypeProperty>
     
@@ -132,8 +135,35 @@
     <!-- urn:oasis:names:tc:xacml:1.0:subject:subject-id -->
 
     <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:resource:resource-ancestor -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:2.0:resource:resource-ancestor">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:resource:resource-parent -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:2.0:resource:resource-parent">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:subject:role -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:2.0:subject:role">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
     </owl:DatatypeProperty>
     
 
@@ -146,6 +176,38 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Action -->
+
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Action">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Environment -->
+
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Environment">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Resource -->
+
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Resource">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Subject -->
+
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Subject">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </rdf:Description>
     
 
 
@@ -186,5 +248,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
 

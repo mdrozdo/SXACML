@@ -5,7 +5,7 @@
     <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
         <Content>
             <port2:Person xmlns:port2="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#"
-                          xmlns:req="http://drozdowicz.net/sxacml/request#">
+                          xmlns:req="https://w3id.org/sxacml/request#">
                 <port2:Company req:property="http://www.semanticweb.org/rafal/ontologies/2017/6/port2#isHiredBy">
                     <port2:hasName>Stark Transport</port2:hasName>
                 </port2:Company>

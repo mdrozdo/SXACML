@@ -38,7 +38,7 @@ class OwlResourceHierarchyFinderModule(ontologyFolderPath: String, rootOntologyI
 
   private val rootOntology = ontoMgr.loadOntology(IRI.create(rootOntologyId))
 
-  private val hierarchyDesignatorId = OntologyAttributeFinder.getHierarchyDesignator(rootOntology).getOrElse("http://drozdowicz.net/onto/request#hasSubResource")
+  private val hierarchyDesignatorId = OntologyAttributeFinder.getHierarchyDesignator(rootOntology).getOrElse("https://w3id.org/sxacml/request#hasSubResource")
 
   override def isChildSupported() = false
 

@@ -6,23 +6,23 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY subject "urn:oasis:names:tc:xacml:1.0:subject:" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY testIdMatch "http://drozdowicz.net/sxacml/testIdMatch#" >
+    <!ENTITY testIdMatch "https://w3id.org/sxacml/testIdMatch#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY conformance-test "urn:oasis:names:tc:xacml:2.0:conformance-test:" >
 ]>
 
 
-<rdf:RDF xmlns="http://drozdowicz.net/sxacml/testIdMatch#"
-     xml:base="http://drozdowicz.net/sxacml/testIdMatch"
+<rdf:RDF xmlns="https://w3id.org/sxacml/testIdMatch#"
+     xml:base="https://w3id.org/sxacml/testIdMatch"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:subject="urn:oasis:names:tc:xacml:1.0:subject:"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:testIdMatch="http://drozdowicz.net/sxacml/testIdMatch#"
+     xmlns:testIdMatch="https://w3id.org/sxacml/testIdMatch#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testIdMatch">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/testIdMatch">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
     </owl:Ontology>
     
 
@@ -38,7 +38,7 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testIdMatch#hasFirstName -->
+    <!-- https://w3id.org/sxacml/testIdMatch#hasFirstName -->
 
     <owl:DatatypeProperty rdf:about="&testIdMatch;hasFirstName">
         <rdfs:range rdf:resource="&xsd;string"/>

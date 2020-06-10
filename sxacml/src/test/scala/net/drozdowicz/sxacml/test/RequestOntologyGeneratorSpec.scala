@@ -112,7 +112,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
             |{
             |	?req rdf:type <sxacml:attribute-category:request> .
             | ?cat rdf:type <urn:oasis:names:tc:xacml:3.0:attribute-category:action> .
-            | ?req <http://drozdowicz.net/onto/access-control#concernsAction> ?cat
+            | ?req <https://w3id.org/sxacml/access-control#concernsAction> ?cat
             |}""".stripMargin
         val result = getSingleSparqlResult(ontology, qry)
 
@@ -192,10 +192,10 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
       }
 
       it("should import additional ontologies") {
-        val toImport = IRI.create("http://drozdowicz.net/sxacml/test1")
+        val toImport = IRI.create("https://w3id.org/sxacml/test1")
         ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
-          new SimpleIRIMapper(IRI.create("http://drozdowicz.net/sxacml/test1"), IRI.create(new File(getClass.getResource("/ontologies/test1.owl").toURI))),
-          new SimpleIRIMapper(IRI.create("http://drozdowicz.net/onto/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
+          new SimpleIRIMapper(IRI.create("https://w3id.org/sxacml/test1"), IRI.create(new File(getClass.getResource("/ontologies/test1.owl").toURI))),
+          new SimpleIRIMapper(IRI.create("https://w3id.org/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
         ))
 
         val ontology = convertToOntology("456", input, Set(toImport))
@@ -237,7 +237,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           new URI("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
           new URI("sxacml:subject:subject-class-id"),
           new URI("http://www.w3.org/2001/XMLSchema#anyURI"),
-          "http://drozdowicz.net/sxacml/test#SomeSubjectClass"
+          "https://w3id.org/sxacml/test#SomeSubjectClass"
         )
       )
 
@@ -248,7 +248,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             |SELECT ?uri WHERE
             |{
-            |	?uri rdf:type <http://drozdowicz.net/sxacml/test#SomeSubjectClass>
+            |	?uri rdf:type <https://w3id.org/sxacml/test#SomeSubjectClass>
             |}""".stripMargin
         val result = getSingleSparqlResult(ontology, qry)
 
@@ -470,7 +470,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
       val toImport = IRI.create("http://www.semanticweb.org/rafal/ontologies/2017/6/port2")
       ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
         new SimpleIRIMapper(IRI.create("http://www.semanticweb.org/rafal/ontologies/2017/6/port2"), IRI.create(new File(getClass.getResource("/ontologies/port2.owl").toURI))),
-        new SimpleIRIMapper(IRI.create("http://drozdowicz.net/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
+        new SimpleIRIMapper(IRI.create("https://w3id.org/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
       ))
 
       val ontology = convertToOntology("456", input, Set(toImport))

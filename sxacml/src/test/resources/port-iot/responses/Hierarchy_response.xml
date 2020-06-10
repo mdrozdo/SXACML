@@ -7,7 +7,7 @@
         <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
             <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
-                    http://drozdowicz.net/onto/port_inst#AccessCardReader_1
+                    https://w3id.org/sxacml/sample-port/port-data#AccessCardReader_1
                 </AttributeValue>
             </Attribute>
         </Attributes>
@@ -20,7 +20,7 @@
         <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
             <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
-                    http://drozdowicz.net/onto/port_inst#LPRCamera_1
+                    https://w3id.org/sxacml/sample-port/port-data#LPRCamera_1
                 </AttributeValue>
             </Attribute>
         </Attributes>
@@ -33,7 +33,7 @@
         <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
             <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
-                    http://drozdowicz.net/onto/port_inst#BarrierController_1
+                    https://w3id.org/sxacml/sample-port/port-data#BarrierController_1
                 </AttributeValue>
             </Attribute>
         </Attributes>

@@ -5,24 +5,24 @@
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY subject "urn:oasis:names:tc:xacml:1.0:subject:" >
-    <!ENTITY request "http://drozdowicz.net/onto/request#" >
+    <!ENTITY request "https://w3id.org/sxacml/request#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY conformance-test "urn:oasis:names:tc:xacml:2.0:conformance-test:" >
 ]>
 
 
-<rdf:RDF xmlns="http://drozdowicz.net/sxacml/testResourceHierarchy#"
-     xml:base="http://drozdowicz.net/sxacml/testResourceHierarchy"
+<rdf:RDF xmlns="https://w3id.org/sxacml/testResourceHierarchy#"
+     xml:base="https://w3id.org/sxacml/testResourceHierarchy"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:subject="urn:oasis:names:tc:xacml:1.0:subject:"
-     xmlns:request="http://drozdowicz.net/onto/request#"
+     xmlns:request="https://w3id.org/sxacml/request#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/testResourceHierarchy">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
     </owl:Ontology>
     
 
@@ -38,9 +38,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/test1#isAdult -->
+    <!-- https://w3id.org/sxacml/test1#isAdult -->
 
-    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/sxacml/test1#isAdult">
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/test1#isAdult">
         <rdfs:range rdf:resource="&xsd;boolean"/>
         <rdfs:domain rdf:resource="&owl;Thing"/>
     </owl:DatatypeProperty>
@@ -64,9 +64,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#Adult -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#Adult -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#Adult">
+    <owl:Class rdf:about="https://w3id.org/sxacml/testResourceHierarchy#Adult">
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&conformance-test;age"/>
@@ -87,27 +87,27 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/sxacml/test1#isAdult"/>
                         <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/sxacml/testResourceHierarchy#UnderAge"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/testResourceHierarchy#UnderAge"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#UnderAge -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#UnderAge -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#UnderAge">
+    <owl:Class rdf:about="https://w3id.org/sxacml/testResourceHierarchy#UnderAge">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://drozdowicz.net/sxacml/test1#isAdult"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/sxacml/test1#isAdult"/>
                         <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -133,9 +133,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#foo -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#foo -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#foo">
+    <owl:Class rdf:about="https://w3id.org/sxacml/testResourceHierarchy#foo">
         <rdfs:subClassOf rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
     </owl:Class>
     
@@ -147,8 +147,8 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#Adult"/>
-                    <rdf:Description rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#UnderAge"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/testResourceHierarchy#Adult"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/testResourceHierarchy#UnderAge"/>
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
@@ -167,9 +167,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#alice -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#alice -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#alice">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/testResourceHierarchy#alice">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
         <conformance-test:age rdf:datatype="&xsd;integer">15</conformance-test:age>
         <subject:subject-id rdf:datatype="&xsd;string">alice</subject:subject-id>
@@ -177,9 +177,9 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#bob -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#bob -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#bob">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/testResourceHierarchy#bob">
         <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
         <conformance-test:age rdf:datatype="&xsd;integer">23</conformance-test:age>
         <subject:subject-id rdf:datatype="&xsd;string">bob</subject:subject-id>
@@ -187,18 +187,18 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#foo1 -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#foo1 -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#foo1">
-        <rdf:type rdf:resource="http://drozdowicz.net/sxacml/testResourceHierarchy#foo"/>
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/testResourceHierarchy#foo1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/testResourceHierarchy#foo"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testResourceHierarchy#foo2 -->
+    <!-- https://w3id.org/sxacml/testResourceHierarchy#foo2 -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/sxacml/testResourceHierarchy#foo2">
-        <rdf:type rdf:resource="http://drozdowicz.net/sxacml/testResourceHierarchy#foo"/>
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/testResourceHierarchy#foo2">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/testResourceHierarchy#foo"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

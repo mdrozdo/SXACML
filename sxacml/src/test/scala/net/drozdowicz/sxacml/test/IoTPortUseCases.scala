@@ -24,7 +24,7 @@ class IoTPortUseCases extends path.FunSpec with Matchers with OneInstancePerTest
     val policyLocation = relativeToAbsolute("policies/src-gen")
 
     describe("observed driver of expected transport accessing internal parking") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/onto/port_mapping",
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "https://w3id.org/sxacml/sample-port/port-mapping",
         Map(
           (new URI("http://purl.org/dc/elements/1.1/"), relativeToAbsoluteURI("ontologies/dc.ttl")),
           (new URI("http://ontology.tno.nl/transport"), relativeToAbsoluteURI("ontologies/transport.ttl")),
@@ -43,7 +43,7 @@ class IoTPortUseCases extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("request using hierarchical resource approach") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/onto/port_mapping",
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "https://w3id.org/sxacml/sample-port/port-mapping",
         Map(
           (new URI("http://purl.org/dc/elements/1.1/"), relativeToAbsoluteURI("ontologies/dc.ttl")),
           (new URI("http://ontology.tno.nl/transport"), relativeToAbsoluteURI("ontologies/transport.ttl")),
@@ -75,7 +75,7 @@ class IoTPortUseCases extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("observed driver of expected transport accessing dock") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "http://drozdowicz.net/onto/port_mapping",
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "https://w3id.org/sxacml/sample-port/port-mapping",
         Map(
           (new URI("http://purl.org/dc/elements/1.1/"), relativeToAbsoluteURI("ontologies/dc.ttl")),
           (new URI("http://ontology.tno.nl/transport"), relativeToAbsoluteURI("ontologies/transport.ttl")),

@@ -1,13 +1,13 @@
-@prefix : <http://drozdowicz.net/sxacml/eHealthSample#> .
+@prefix : <https://w3id.org/sxacml/eHealthSample#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix conformance-test: <urn:oasis:names:tc:xacml:2.0:conformance-test:> .
-@base <http://drozdowicz.net/sxacml/eHealthSample> .
+@base <https://w3id.org/sxacml/eHealthSample> .
 
-<http://drozdowicz.net/sxacml/eHealthSample> rdf:type owl:Ontology .
+<https://w3id.org/sxacml/eHealthSample> rdf:type owl:Ontology .
 
 
 #################################################################
@@ -17,7 +17,7 @@
 #################################################################
 
 
-###  http://drozdowicz.net/sxacml/eHealthSample#isAdult
+###  https://w3id.org/sxacml/eHealthSample#isAdult
 
 :isAdult rdf:type owl:DatatypeProperty ;
          
@@ -42,33 +42,33 @@ conformance-test:age rdf:type owl:DatatypeProperty .
 #################################################################
 
 
-###  http://drozdowicz.net/sxacml/eHealthSample:BloodPressure
+###  https://w3id.org/sxacml/eHealthSample:BloodPressure
 
-<http://drozdowicz.net/sxacml/eHealthSample:BloodPressure> rdf:type owl:Class ;
+<https://w3id.org/sxacml/eHealthSample:BloodPressure> rdf:type owl:Class ;
                                                            
-                                                           rdfs:subClassOf <http://drozdowicz.net/sxacml/eHealthSample:MedicalData> .
+                                                           rdfs:subClassOf <https://w3id.org/sxacml/eHealthSample:MedicalData> .
 
 
 
-###  http://drozdowicz.net/sxacml/eHealthSample:GlucoseLevel
+###  https://w3id.org/sxacml/eHealthSample:GlucoseLevel
 
-<http://drozdowicz.net/sxacml/eHealthSample:GlucoseLevel> rdf:type owl:Class ;
+<https://w3id.org/sxacml/eHealthSample:GlucoseLevel> rdf:type owl:Class ;
                                                           
-                                                          rdfs:subClassOf <http://drozdowicz.net/sxacml/eHealthSample:MedicalData> .
+                                                          rdfs:subClassOf <https://w3id.org/sxacml/eHealthSample:MedicalData> .
 
 
 
-###  http://drozdowicz.net/sxacml/eHealthSample:MedicalData
+###  https://w3id.org/sxacml/eHealthSample:MedicalData
 
-<http://drozdowicz.net/sxacml/eHealthSample:MedicalData> rdf:type owl:Class ;
+<https://w3id.org/sxacml/eHealthSample:MedicalData> rdf:type owl:Class ;
                                                          
                                                          rdfs:subClassOf <urn:oasis:names:tc:xacml:3.0:attribute-category:resource> .
 
 
 
-###  http://drozdowicz.net/sxacml/eHealthSample:underAge
+###  https://w3id.org/sxacml/eHealthSample:underAge
 
-<http://drozdowicz.net/sxacml/eHealthSample:underAge> rdf:type owl:Class ;
+<https://w3id.org/sxacml/eHealthSample:underAge> rdf:type owl:Class ;
                                                       
                                                       owl:equivalentClass [ rdf:type owl:Restriction ;
                                                                             owl:onProperty conformance-test:age ;

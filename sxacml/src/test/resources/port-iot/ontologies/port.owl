@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/onto/port#"
-     xml:base="http://drozdowicz.net/onto/port"
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-port/port#"
+     xml:base="https://w3id.org/sxacml/sample-port/port"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -18,8 +18,8 @@
      xmlns:schema="http://schema.org/"
      xmlns:logiserv="http://ontology.tno.nl/logiserv#"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/port">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/iot"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-port/port">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/iot"/>
         <owl:imports rdf:resource="http://ontology.tno.nl/transport"/>
     </owl:Ontology>
     
@@ -53,56 +53,56 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/port#drivesTruck -->
+    <!-- https://w3id.org/sxacml/sample-port/port#drivesTruck -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#drivesTruck">
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/port#Driver"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#drivesTruck">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-port/port#Driver"/>
         <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Truck"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#employedBy -->
+    <!-- https://w3id.org/sxacml/sample-port/port#employedBy -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#employedBy">
-        <owl:inverseOf rdf:resource="http://drozdowicz.net/onto/port#hasEmployee"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#employedBy">
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-port/port#hasEmployee"/>
         <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
         <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Actor"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#hasEmployee -->
+    <!-- https://w3id.org/sxacml/sample-port/port#hasEmployee -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#hasEmployee">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#hasEmployee">
         <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
         <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Actor"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#hasOwner -->
+    <!-- https://w3id.org/sxacml/sample-port/port#hasOwner -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#hasOwner">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#hasOwner">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <owl:inverseOf rdf:resource="http://drozdowicz.net/onto/port#ownsEquipment"/>
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-port/port#ownsEquipment"/>
         <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
         <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Actor"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#isHostedBy -->
+    <!-- https://w3id.org/sxacml/sample-port/port#isHostedBy -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#isHostedBy">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#isHostedBy">
         <owl:inverseOf rdf:resource="http://ontology.tno.nl/logico#hostsResource"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#ownsEquipment -->
+    <!-- https://w3id.org/sxacml/sample-port/port#ownsEquipment -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/port#ownsEquipment">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#ownsEquipment">
         <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
         <rdfs:range rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
     </owl:ObjectProperty>
@@ -126,80 +126,80 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/port#AccessCardReader -->
+    <!-- https://w3id.org/sxacml/sample-port/port#AccessCardReader -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#AccessCardReader">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#AccessCardReader">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#Barrier -->
+    <!-- https://w3id.org/sxacml/sample-port/port#Barrier -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#Barrier">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Barrier">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#StaticEquipment"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#BarrierController -->
+    <!-- https://w3id.org/sxacml/sample-port/port#BarrierController -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#BarrierController">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#BarrierController">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#Dock -->
+    <!-- https://w3id.org/sxacml/sample-port/port#Dock -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#Dock">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Dock">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Facility"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#Driver -->
+    <!-- https://w3id.org/sxacml/sample-port/port#Driver -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#Driver">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Driver">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Carrier"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#LPRCamera -->
+    <!-- https://w3id.org/sxacml/sample-port/port#LPRCamera -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#LPRCamera">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#LPRCamera">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#LicenseNumber -->
+    <!-- https://w3id.org/sxacml/sample-port/port#LicenseNumber -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#LicenseNumber">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#LicenseNumber">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#ObservedLicense -->
+    <!-- https://w3id.org/sxacml/sample-port/port#ObservedLicense -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#ObservedLicense">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedLicense">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-port/port#LicenseNumber"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#ObservedTruck -->
+    <!-- https://w3id.org/sxacml/sample-port/port#ObservedTruck -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#ObservedTruck">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedTruck">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://ontology.tno.nl/logico#Truck"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://ontology.tno.nl/logico#hasID"/>
-                        <owl:someValuesFrom rdf:resource="http://drozdowicz.net/onto/port#ObservedLicense"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedLicense"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -209,25 +209,25 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/port#ObservedUser -->
+    <!-- https://w3id.org/sxacml/sample-port/port#ObservedUser -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#ObservedUser">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedUser">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Actor"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#Parking -->
+    <!-- https://w3id.org/sxacml/sample-port/port#Parking -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#Parking">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Parking">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Facility"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#Yard -->
+    <!-- https://w3id.org/sxacml/sample-port/port#Yard -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port#Yard">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Yard">
         <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Facility"/>
     </owl:Class>
     
@@ -244,25 +244,25 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/port#LicenseNumber -->
+    <!-- https://w3id.org/sxacml/sample-port/port#LicenseNumber -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port#LicenseNumber">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port#LicenseNumber">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#OpenClosedState -->
+    <!-- https://w3id.org/sxacml/sample-port/port#OpenClosedState -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port#OpenClosedState">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port#OpenClosedState">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ActuatableProperty"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://drozdowicz.net/onto/port#UserName -->
+    <!-- https://w3id.org/sxacml/sample-port/port#UserName -->
 
-    <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/port#UserName">
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port#UserName">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
     </owl:NamedIndividual>
     
@@ -276,31 +276,31 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#d">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#d">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#t">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#t">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#o">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#o">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#v">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#v">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#l">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#l">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#a">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#a">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#consignment">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#consignment">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#vehicle">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#vehicle">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#event">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#event">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
     <rdf:Description>
@@ -315,7 +315,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#o"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -325,8 +325,8 @@
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/sosa/hasSimpleResult"/>
-                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#o"/>
-                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#v"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
+                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
                             </rdf:Description>
                         </rdf:first>
                         <rdf:rest>
@@ -335,8 +335,8 @@
                                 <rdf:first>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#LicenseNumber"/>
-                                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#l"/>
+                                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#LicenseNumber"/>
+                                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#l"/>
                                     </rdf:Description>
                                 </rdf:first>
                                 <rdf:rest>
@@ -346,8 +346,8 @@
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                                 <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/logico#hasIDValue"/>
-                                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#l"/>
-                                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#v"/>
+                                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#l"/>
+                                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
                                             </rdf:Description>
                                         </rdf:first>
                                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -365,8 +365,8 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#ObservedLicense"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#l"/>
+                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedLicense"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#l"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -385,7 +385,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#o"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -395,8 +395,8 @@
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/sosa/hasSimpleResult"/>
-                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#o"/>
-                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#v"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
+                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
                             </rdf:Description>
                         </rdf:first>
                         <rdf:rest>
@@ -406,7 +406,7 @@
                                     <rdf:Description>
                                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                                         <swrl:classPredicate rdf:resource="http://ontology.tno.nl/logico#Actor"/>
-                                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#a"/>
+                                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#a"/>
                                     </rdf:Description>
                                 </rdf:first>
                                 <rdf:rest>
@@ -416,8 +416,8 @@
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                                 <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/logico#hasIDValue"/>
-                                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#a"/>
-                                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#v"/>
+                                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#a"/>
+                                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
                                             </rdf:Description>
                                         </rdf:first>
                                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -435,8 +435,8 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#ObservedUser"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#a"/>
+                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedUser"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#a"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -455,8 +455,8 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/transport#hasTransportHandlingUnit"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#consignment"/>
-                        <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#vehicle"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#consignment"/>
+                        <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#vehicle"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -466,8 +466,8 @@
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/transport#hasPlannedDelivery"/>
-                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#consignment"/>
-                                <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#event"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#consignment"/>
+                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#event"/>
                             </rdf:Description>
                         </rdf:first>
                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -482,8 +482,8 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/transport#hasPlannedDelivery"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#vehicle"/>
-                        <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#event"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#vehicle"/>
+                        <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#event"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -501,8 +501,8 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#Driver"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#d"/>
+                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#Driver"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -511,8 +511,8 @@
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#ObservedUser"/>
-                                <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#d"/>
+                                <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedUser"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#d"/>
                             </rdf:Description>
                         </rdf:first>
                         <rdf:rest>
@@ -521,8 +521,8 @@
                                 <rdf:first>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://drozdowicz.net/onto/port#ObservedTruck"/>
-                                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#t"/>
+                                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedTruck"/>
+                                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#t"/>
                                     </rdf:Description>
                                 </rdf:first>
                                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -538,9 +538,9 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://drozdowicz.net/onto/port#drivesTruck"/>
-                        <swrl:argument1 rdf:resource="http://drozdowicz.net/onto/port#d"/>
-                        <swrl:argument2 rdf:resource="http://drozdowicz.net/onto/port#t"/>
+                        <swrl:propertyPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#drivesTruck"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#d"/>
+                        <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#t"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>

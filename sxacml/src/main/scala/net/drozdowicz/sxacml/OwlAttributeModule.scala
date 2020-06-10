@@ -26,7 +26,7 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
   private val log = LogFactory.getLog(classOf[OwlAttributeModule])
 
   private var ontologyFolderPath: String = "/"
-  private var rootOntologyId: String = "http://drozdowicz.net/sxacml/request"
+  private var rootOntologyId: String = "https://w3id.org/sxacml/request"
 
   private var owlStore: Option[OwlAttributeStore] = None
 

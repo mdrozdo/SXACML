@@ -51,7 +51,7 @@ object OntologyAttributeFinder {
   def queryOntologyWithSparqlPath(sparqlPath: String, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String]): Set[String] = {
 
     val query = getOntologyPrefixesString(requestOntology) +
-      s"""PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
+      s"""PREFIX sxacml: <https://w3id.org/sxacml/request#>
          |SELECT ?value WHERE
          |{
          | $sparqlPath ?value
@@ -77,7 +77,7 @@ object OntologyAttributeFinder {
     rootOntology.getObjectPropertiesInSignature(Imports.INCLUDED).asScala
       .filter(p =>
         EntitySearcher.getAnnotations(p, rootOntology, factory.getOWLAnnotationProperty(
-          IRI.create("http://drozdowicz.net/onto/request#hierarchyDesignator"))
+          IRI.create("https://w3id.org/sxacml/request#hierarchyDesignator"))
         ).findAny().isPresent)
       .map(p => p.getIRI.toString)
       .headOption
@@ -87,7 +87,7 @@ object OntologyAttributeFinder {
   def getHierarchyDesignatorSparql(rootOntology: OWLOntology) = {
     val query =
       """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        |PREFIX sxacml: <http://drozdowicz.net/sxacml/request#>
+        |PREFIX sxacml: <https://w3id.org/sxacml/request#>
         |SELECT ?prop WHERE
         |{
         | ?prop sxacml:hierarchyDesignator ?ignored

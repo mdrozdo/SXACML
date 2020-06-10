@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/onto/port_mapping#"
-     xml:base="http://drozdowicz.net/onto/port_mapping"
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-port/port-mapping#"
+     xml:base="https://w3id.org/sxacml/sample-port/port-mapping"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:DUL="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#"
      xmlns:org="http://www.w3.org/ns/org#"
@@ -10,7 +10,7 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
-     xmlns:port="http://drozdowicz.net/onto/port#"
+     xmlns:port="https://w3id.org/sxacml/sample-port/port#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:sosa="http://www.w3.org/ns/sosa/"
@@ -22,15 +22,15 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:logico="http://ontology.tno.nl/logico#"
      xmlns:schema="http://schema.org/"
-     xmlns:request="http://drozdowicz.net/onto/request#"
+     xmlns:request="https://w3id.org/sxacml/request#"
      xmlns:logiserv="http://ontology.tno.nl/logiserv#"
-     xmlns:port_inst="http://drozdowicz.net/onto/port_inst#"
+     xmlns:port-data="https://w3id.org/sxacml/sample-port/port-data#"
      xmlns:transport="http://ontology.tno.nl/transport#"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/port_mapping">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control-action"/>
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/port_inst"/>
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-port/port-mapping">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/access-control-action"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/sample-port/port-data"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
     </owl:Ontology>
     
 
@@ -105,22 +105,22 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/port_mapping#DriverAuthorizedForTruck -->
+    <!-- https://w3id.org/sxacml/sample-port/port-mapping#DriverAuthorizedForTruck -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/port_mapping#DriverAuthorizedForTruck">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port-mapping#DriverAuthorizedForTruck">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://drozdowicz.net/onto/port#Driver"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#Driver"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://drozdowicz.net/onto/port#employedBy"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/sxacml/sample-port/port#employedBy"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
                                     <rdf:Description rdf:about="http://ontology.tno.nl/transport#TransportParty"/>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://drozdowicz.net/onto/port#ownsEquipment"/>
-                                        <owl:someValuesFrom rdf:resource="http://drozdowicz.net/onto/port#ObservedTruck"/>
+                                        <owl:onProperty rdf:resource="https://w3id.org/sxacml/sample-port/port#ownsEquipment"/>
+                                        <owl:someValuesFrom rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedTruck"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
                             </owl:Class>
@@ -129,7 +129,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/port#Driver"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-port/port#Driver"/>
     </owl:Class>
     
 
@@ -137,7 +137,7 @@
     <!-- http://ontology.tno.nl/logico#Actor -->
 
     <rdf:Description rdf:about="http://ontology.tno.nl/logico#Actor">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Subject"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Subject"/>
     </rdf:Description>
     
 
@@ -145,7 +145,7 @@
     <!-- http://www.w3.org/ns/sosa/Actuation -->
 
     <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Actuation">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control-action#PhysicalAction"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control-action#PhysicalAction"/>
     </rdf:Description>
     
 

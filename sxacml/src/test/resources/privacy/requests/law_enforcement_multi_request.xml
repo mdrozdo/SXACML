@@ -12,7 +12,7 @@
   <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
     <Attribute IncludeInResult="false" AttributeId="sxacml:resource:resource-class-id">
       <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
-          http://drozdowicz.net/onto/fitness-tracking#Location</AttributeValue>
+          https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location</AttributeValue>
     </Attribute>    
   </Attributes>
   <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">

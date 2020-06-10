@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/onto/iot#"
-     xml:base="http://drozdowicz.net/onto/iot"
+<rdf:RDF xmlns="https://w3id.org/sxacml/iot#"
+     xml:base="https://w3id.org/sxacml/iot"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:org="http://www.w3.org/ns/org#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -13,7 +13,7 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="http://schema.org/">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/iot">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/iot">
         <owl:imports rdf:resource="http://www.opengis.net/ont/geosparql"/>
         <owl:imports rdf:resource="http://www.w3.org/ns/ssn/"/>
     </owl:Ontology>

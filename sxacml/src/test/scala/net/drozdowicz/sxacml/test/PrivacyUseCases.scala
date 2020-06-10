@@ -21,7 +21,7 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
     val policyLocation = relativeToAbsolute("privacy/policies/src-gen")
 
     describe("law enforcement accessing a location close to crime location") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "http://drozdowicz.net/onto/privacy-mapping")
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
       val request = readFile("/privacy/requests/law_enforcement_permit_request.xml")
       val actualResponse = pdp.evaluate(request)
 
@@ -32,7 +32,7 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("health center accessing an aggregate distance metric") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "http://drozdowicz.net/onto/privacy-mapping")
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
       val request = readFile("/privacy/requests/health_center_permit_request.xml")
       val actualResponse = pdp.evaluate(request)
 
@@ -43,7 +43,7 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
     }
 
     describe("health center accessing an non-aggregated distance metric") {
-      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "http://drozdowicz.net/onto/privacy-mapping")
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
       val request = readFile("/privacy/requests/health_center_deny_request.xml")
       val actualResponse = pdp.evaluate(request)
 

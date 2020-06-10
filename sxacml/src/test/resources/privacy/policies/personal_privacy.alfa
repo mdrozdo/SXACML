@@ -11,7 +11,7 @@ namespace personal_privacy {
 		rule checkLocation {
 			target clause Attributes.subjectId == "policeDepartment" 
 				and Attributes.actionId == "read" 
-				and SxacmlAttributes.resourceClassId == "http://drozdowicz.net/onto/fitness-tracking#Location":anyURI
+				and SxacmlAttributes.resourceClassId == "https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location":anyURI
 			condition  
 				dateTimeOneAndOnly(PrivacyAttributes.resultTime) >= dateTimeSubtractDayTimeDuration(dateTimeOneAndOnly(PrivacyAttributes.eventTime), "PT1H":dayTimeDuration)
 				&& dateTimeOneAndOnly(PrivacyAttributes.resultTime) < dateTimeAddDayTimeDuration(dateTimeOneAndOnly(PrivacyAttributes.eventTime), "PT1H":dayTimeDuration)
@@ -30,7 +30,7 @@ namespace personal_privacy {
 		apply firstApplicable
 			
 		rule {		
-			condition anyURIIsIn("http://drozdowicz.net/onto/access-control#PermittedRequest":anyURI, SxacmlAttributes.requestClassId) 
+			condition anyURIIsIn("https://w3id.org/sxacml/access-control#PermittedRequest":anyURI, SxacmlAttributes.requestClassId) 
 			permit
 		}
 	}

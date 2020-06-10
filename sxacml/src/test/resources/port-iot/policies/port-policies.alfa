@@ -1,19 +1,19 @@
 namespace PortPolicies {
 	policy access_internal_parking {
 		target
-			clause Attributes.actionId == "http://drozdowicz.net/onto/access-control-action#Open" 
-				and SxacmlAttributes.resourceClassId == "http://drozdowicz.net/onto/port#BarrierController":anyURI
+			clause Attributes.actionId == "https://w3id.org/sxacml/access-control-action#Open" 
+				and SxacmlAttributes.resourceClassId == "https://w3id.org/sxacml/sample-port/port#BarrierController":anyURI
 		apply permitUnlessDeny
 		
 		rule {
 			deny
-			condition not (anyURIIsIn("http://drozdowicz.net/onto/port#ObservedUser":anyURI, SxacmlAttributes.subjectClassId))
+			condition not (anyURIIsIn("https://w3id.org/sxacml/sample-port/port#ObservedUser":anyURI, SxacmlAttributes.subjectClassId))
 		} 
 		
 		
 		rule {
 			deny
-			condition not (anyURIIsIn("http://drozdowicz.net/onto/port_mapping#DriverAuthorizedForTruck":anyURI, SxacmlAttributes.subjectClassId))			
+			condition not (anyURIIsIn("https://w3id.org/sxacml/sample-port/port-mapping#DriverAuthorizedForTruck":anyURI, SxacmlAttributes.subjectClassId))			
 		}				
 		
 		rule {

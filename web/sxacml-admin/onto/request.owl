@@ -9,13 +9,13 @@
 ]>
 
 
-<rdf:RDF xmlns="http://drozdowicz.net/onto/request#"
-     xml:base="http://drozdowicz.net/onto/request"
+<rdf:RDF xmlns="https://w3id.org/sxacml/request#"
+     xml:base="https://w3id.org/sxacml/request"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/request"/>
     
 
 
@@ -30,9 +30,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#hierarchyDesignator -->
+    <!-- https://w3id.org/sxacml/request#hierarchyDesignator -->
 
-    <owl:AnnotationProperty rdf:about="http://drozdowicz.net/onto/request#hierarchyDesignator"/>
+    <owl:AnnotationProperty rdf:about="https://w3id.org/sxacml/request#hierarchyDesignator"/>
     
 
 
@@ -47,9 +47,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#identifier -->
+    <!-- https://w3id.org/sxacml/request#identifier -->
 
-    <rdfs:Datatype rdf:about="http://drozdowicz.net/onto/request#identifier">
+    <rdfs:Datatype rdf:about="https://w3id.org/sxacml/request#identifier">
         <owl:equivalentClass rdf:resource="&xsd;anyURI"/>
         <owl:equivalentClass rdf:resource="&xsd;string"/>
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"/>

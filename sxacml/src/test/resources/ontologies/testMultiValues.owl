@@ -6,23 +6,23 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY testMultiValue2 "http://drozdowicz.net/sxacml/testMultiValue#" >
-    <!ENTITY testMultiValue "http://drozdowicz.net/sxacml/testMultiValue:" >
+    <!ENTITY testMultiValue2 "https://w3id.org/sxacml/testMultiValue#" >
+    <!ENTITY testMultiValue "https://w3id.org/sxacml/testMultiValue:" >
     <!ENTITY conformance-test "urn:oasis:names:tc:xacml:2.0:conformance-test:" >
 ]>
 
 
-<rdf:RDF xmlns="http://drozdowicz.net/sxacml/testMultiValues#"
-     xml:base="http://drozdowicz.net/sxacml/testMultiValues"
+<rdf:RDF xmlns="https://w3id.org/sxacml/testMultiValues#"
+     xml:base="https://w3id.org/sxacml/testMultiValues"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:testMultiValue="http://drozdowicz.net/sxacml/testMultiValue:"
+     xmlns:testMultiValue="https://w3id.org/sxacml/testMultiValue:"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:testMultiValue2="http://drozdowicz.net/sxacml/testMultiValue#"
+     xmlns:testMultiValue2="https://w3id.org/sxacml/testMultiValue#"
      xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
-    <owl:Ontology rdf:about="http://drozdowicz.net/sxacml/testMultiValues">
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/request"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/testMultiValues">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
     </owl:Ontology>
     
 
@@ -38,7 +38,7 @@
     
 
 
-    <!-- http://drozdowicz.net/sxacml/testMultiValue#hasParentName -->
+    <!-- https://w3id.org/sxacml/testMultiValue#hasParentName -->
 
     <owl:DatatypeProperty rdf:about="&testMultiValue2;hasParentName">
         <rdfs:range rdf:resource="&xsd;string"/>
