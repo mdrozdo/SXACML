@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/web/sxacml-admin/.idea/modules/OntoPlay.iml" filepath="$PROJECT_DIR$/web/sxacml-admin/.idea/modules/OntoPlay.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/geoxacml/geoXACML.iml" filepath="$PROJECT_DIR$/modules/geoxacml/geoXACML.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/onto/onto.iml" filepath="$PROJECT_DIR$/modules/onto/onto.iml" />
       <module fileurl="file://$PROJECT_DIR$/sxacml/sxacml.iml" filepath="$PROJECT_DIR$/sxacml/sxacml.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web/sxacml-admin/.idea/modules/sxacml-admin.iml" filepath="$PROJECT_DIR$/web/sxacml-admin/.idea/modules/sxacml-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/sxacml-admin/.idea/modules/sxacml-admin-build.iml" filepath="$PROJECT_DIR$/web/sxacml-admin/.idea/modules/sxacml-admin-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/sxacml-parent.iml" filepath="$PROJECT_DIR$/sxacml-parent.iml" />
     </modules>

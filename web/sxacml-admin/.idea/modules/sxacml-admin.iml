@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="root [file:/D:/git/sxacml/web/sxacml-admin/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+<module external.linked.project.id="root [file:/D:/git/github/SXACML/web/sxacml-admin/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/../../target/scala-2.11/classes" />
     <output-test url="file://$MODULE_DIR$/../../target/scala-2.11/test-classes" />
     <exclude-output />
@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../target/scala-2.11/routes/main" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../target/scala-2.11/twirl/main" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../conf" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../../target" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/coffeescript" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/jshint" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/less" />
@@ -17,7 +18,7 @@
       <excludeFolder url="file://$MODULE_DIR$/../../target/streams" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/web" />
     </content>
-    <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: aopalliance:aopalliance:1.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: cglib:cglib-nodep:3.2.4:jar" level="project" />

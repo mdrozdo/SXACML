@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaSbtSettings">
+    <option name="customVMPath" />
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/web/sxacml-admin" />
@@ -12,6 +13,7 @@
           </set>
         </option>
         <option name="sbtVersion" value="0.13.18" />
+        <option name="useQualifiedModuleNames" value="true" />
       </SbtProjectSettings>
     </option>
   </component>
