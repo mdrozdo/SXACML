@@ -1,0 +1,25 @@
+namespace SxacmlAttributes{
+    attribute resourceClassId {
+	    id = "sxacml:resource:resource-class-id"
+	    type = anyURI
+	    category = resourceCat
+	}
+	
+	attribute subjectClassId {
+	    id = "sxacml:subject:subject-class-id"
+	    type = anyURI
+	    category = subjectCat
+	}
+	
+	attribute actionClassId {
+	    id = "sxacml:action:action-class-id"
+	    type = anyURI
+	    category = actionCat
+	}
+	
+	attribute requestClassId {
+		id = "sxacml:request:request-class-id"
+	    type = anyURI
+	    category = Sxacml.requestCat 
+	}
+}

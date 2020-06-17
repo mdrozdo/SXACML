@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy
+  xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17
+  http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd"
+  PolicyId="urn:oasis:names:tc:xacml:3.0:example:SimplePolicy1"
+  Version="1.0"
+  RuleCombiningAlgId="identifier:rule-combining-algorithm:deny-overrides">
+  <Description> Springfield Hospital access control policy </Description>
+  <Target/>
+  <Rule RuleId= "urn:oasis:names:tc:xacml:3.0:example:SimpleRule1" Effect="Permit">
+    <Description>
+      Any subject with a role of physician can read any health record object.
+    </Description>
+    <Target>
+      <AnyOf>
+        <AllOf>
+          <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
+            http://hl7.org/ontology/RoleOntology.owl#PhysicianFunctionalRole
+          </AttributeValue>
+          <AttributeDesignator MustBePresent="false" 
+            Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
+            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-role-id"
+            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+          </Match>
+          <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
+            http://hl7.org/ontology/ObjectOntology.owl#ExternalClinicalInformation
+          </AttributeValue>
+          <AttributeDesignator MustBePresent="false" 
+            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+            AttributeId="sxacml:resource:resource-class-id"
+            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+          </Match>
+        </AllOf>
+      </AnyOf>
+    </Target>
+  </Rule>
+</Policy>

@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-ehealth/ehealth-data#"
+     xml:base="https://w3id.org/sxacml/sample-ehealth/ehealth-data"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:hl7="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rbac="https://w3id.org/sxacml/rbac"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:hl7_object="http://hl7.org/ontology/ObjectOntology.owl/1.0.0#"
+     xmlns:ehealth-data="https://w3id.org/sxacml/sample-ehealth/ehealth-data">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data">
+        <owl:imports rdf:resource="http://hl7.org/ontology/ObjectOntology.owl/1.0.0"/>
+        <owl:imports rdf:resource="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl/1.0.0"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/rbac"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorActivatedRole -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorActivatedRole">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorRole"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorRole -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorRole">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/rbac#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#BloodPressure -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#BloodPressure">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#SensorObservation"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#GlucoseLevel -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#GlucoseLevel">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#SensorObservation"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistActivatedRole -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistActivatedRole">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistRole"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistRole -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistRole">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/rbac#Role"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianRole"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianActivatedRole -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianActivatedRole">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianRole"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianRole -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianRole">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/rbac#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#SensorObservation -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#SensorObservation">
+        <rdfs:subClassOf rdf:resource="http://hl7.org/ontology/ObjectOntology.owl#ExternalClinicalInformation"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file://med/bsimpson/20151015/bloodPressure.json -->
+
+    <owl:NamedIndividual rdf:about="file://med/bsimpson/20151015/bloodPressure.json">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#BloodPressure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#hayley.lewis -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#hayley.lewis">
+        <rdf:type rdf:resource="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#UserIdentity"/>
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistRole"/>
+        <hl7:hasIdentifier>hayley.lewis@sfhospital.org</hl7:hasIdentifier>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-ehealth/ehealth-data#nick.riviera -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#nick.riviera">
+        <rdf:type rdf:resource="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#UserIdentity"/>
+        <hl7:hasIdentifier>nick.riviera@sfhospital.org</hl7:hasIdentifier>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorActivatedRole"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PharmacistActivatedRole"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianActivatedRole"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

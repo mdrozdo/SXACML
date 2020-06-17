@@ -1,0 +1,426 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://hl7.org/ontology/RoleOntology.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://hl7.org/ontology/RoleOntology.owl"
+     versionIRI="http://hl7.org/ontology/RoleOntology.owl/1.0.0">
+    <Prefix name="" IRI="http://hl7.org/ontology/RoleOntology.owl"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="xsi" IRI="http://www.w3.org/2001/XMLSchema-instance"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://hl7.org/ontology/SecurityAndPrivacyOntology.owl</Import>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/creator"/>
+        <Literal>HL7 Security and CBCC Work Groups</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/date"/>
+        <Literal>September 2013</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <Literal>This ontology extends the HL7 Security and Privacy Ontology with sample structural and functional role classes.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/language"/>
+        <Literal>en</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <Literal>De novo</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <Literal>ISO/TS 21298 Health informatics – Functional and structural roles, 2008.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/subject"/>
+        <Literal>RBAC</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/subject"/>
+        <Literal>Roles</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/title"/>
+        <Literal>RoleOntology</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>Sample content.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal>Release 1</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#AdministratorFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AdministratorStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NurseFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NursePractitionerFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NursePractitionerStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NurseStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PharmacistFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PharmacistStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PhysicianFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PhysicianStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RegisteredNurseFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RegisteredNurseStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#AdministratorFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#AdministratorStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NurseFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NursePractitionerFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NursePractitionerStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NurseStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PharmacistFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PharmacistStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PhysicialStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PhysicianFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RegisteredNurseFunctionalRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RegisteredNurseStructuralRole"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/subject"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#AdministratorFunctionalRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#FunctionalRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AdministratorStructuralRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#StructuralRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NurseFunctionalRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#FunctionalRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NursePractitionerFunctionalRole"/>
+        <Class IRI="#NurseFunctionalRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NursePractitionerStructuralRole"/>
+        <Class IRI="#NurseStructuralRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NurseStructuralRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#StructuralRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PharmacistFunctionalRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#FunctionalRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PharmacistStructuralRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#StructuralRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PhysicianFunctionalRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#FunctionalRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PhysicianStructuralRole"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#StructuralRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RegisteredNurseFunctionalRole"/>
+        <Class IRI="#NurseFunctionalRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RegisteredNurseStructuralRole"/>
+        <Class IRI="#NurseStructuralRole"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#AdministratorStructuralRole"/>
+        <Class IRI="#NurseStructuralRole"/>
+        <Class IRI="#PharmacistStructuralRole"/>
+        <Class IRI="#PhysicianStructuralRole"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#NursePractitionerFunctionalRole"/>
+        <Class IRI="#RegisteredNurseFunctionalRole"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#NursePractitionerStructuralRole"/>
+        <Class IRI="#RegisteredNurseStructuralRole"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#AdministratorFunctionalRole"/>
+        <NamedIndividual IRI="#AdministratorFunctionalRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AdministratorStructuralRole"/>
+        <NamedIndividual IRI="#AdministratorStructuralRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#NurseFunctionalRole"/>
+        <NamedIndividual IRI="#NurseFunctionalRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#NursePractitionerFunctionalRole"/>
+        <NamedIndividual IRI="#NursePractitionerFunctionalRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#NursePractitionerStructuralRole"/>
+        <NamedIndividual IRI="#NursePractitionerStructuralRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#NurseStructuralRole"/>
+        <NamedIndividual IRI="#NurseStructuralRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PharmacistFunctionalRole"/>
+        <NamedIndividual IRI="#PharmacistFunctionalRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PharmacistStructuralRole"/>
+        <NamedIndividual IRI="#PharmacistStructuralRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PhysicianStructuralRole"/>
+        <NamedIndividual IRI="#PhysicialStructuralRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PhysicianFunctionalRole"/>
+        <NamedIndividual IRI="#PhysicianFunctionalRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegisteredNurseFunctionalRole"/>
+        <NamedIndividual IRI="#RegisteredNurseFunctionalRole"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegisteredNurseStructuralRole"/>
+        <NamedIndividual IRI="#RegisteredNurseStructuralRole"/>
+    </ClassAssertion>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#AdministratorFunctionalRole"/>
+        <NamedIndividual IRI="#AdministratorStructuralRole"/>
+        <NamedIndividual IRI="#NurseFunctionalRole"/>
+        <NamedIndividual IRI="#NursePractitionerFunctionalRole"/>
+        <NamedIndividual IRI="#NursePractitionerStructuralRole"/>
+        <NamedIndividual IRI="#NurseStructuralRole"/>
+        <NamedIndividual IRI="#PharmacistFunctionalRole"/>
+        <NamedIndividual IRI="#PharmacistStructuralRole"/>
+        <NamedIndividual IRI="#PhysicialStructuralRole"/>
+        <NamedIndividual IRI="#PhysicianFunctionalRole"/>
+        <NamedIndividual IRI="#RegisteredNurseFunctionalRole"/>
+        <NamedIndividual IRI="#RegisteredNurseStructuralRole"/>
+    </DifferentIndividuals>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AdministratorFunctionalRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Administrator function.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AdministratorFunctionalRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#AdministratorFunctionalRole</IRI>
+        <Literal>administrator functional role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AdministratorStructuralRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Administrator position.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AdministratorStructuralRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#AdministratorStructuralRole</IRI>
+        <Literal>administrator structural role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#NurseFunctionalRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Nurse function.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#NurseFunctionalRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#NurseFunctionalRole</IRI>
+        <Literal>nurse functional role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#NursePractitionerFunctionalRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Nurse Practitioner function.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#NursePractitionerFunctionalRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#NursePractitionerStructuralRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Nurse Practitioner position.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#NursePractitionerStructuralRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#NurseStructuralRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Nurse position.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#NurseStructuralRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#NurseStructuralRole</IRI>
+        <Literal>nurse structural role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PharmacistFunctionalRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Pharmacist function.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PharmacistFunctionalRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PharmacistFunctionalRole</IRI>
+        <Literal>pharmacist functional role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PharmacistStructuralRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Pharmacist position.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PharmacistStructuralRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PharmacistStructuralRole</IRI>
+        <Literal>pharmacist structural role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PhysicianFunctionalRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Physician function.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PhysicianFunctionalRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PhysicianFunctionalRole</IRI>
+        <Literal>physician functional role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PhysicianStructuralRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Physician position.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PhysicianStructuralRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PhysicianStructuralRole</IRI>
+        <Literal>physician structural role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#RegisteredNurseFunctionalRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Registered Nurse function.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#RegisteredNurseFunctionalRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#RegisteredNurseStructuralRole</IRI>
+        <Literal>[de novo] The aggregation of permissions given to the Registered Nurse position.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#RegisteredNurseStructuralRole</IRI>
+        <Literal>De novo</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

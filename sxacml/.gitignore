@@ -10,7 +10,7 @@ syntax: glob
 # eclipse conf file
 .settings
 .classpath
-.project
+#.project commenting out because of Alfa plugin for Eclipse
 .manager
 .scala_dependencies
 .cache

@@ -91,7 +91,7 @@ object RequestOntologyGenerator {
 
   private def getIndividualUri(requestId: String, elementId: URI, counter: Int): String = s"${elementId}_${counter}_${requestId}"
 
-  private def isIRI(value: String): Boolean = new UrlValidator().isValid(value)
+  private def isIRI(value: String): Boolean = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES).isValid(value)
 
   private def attributeDescribesId(attributeValue: FlatAttributeValue): Boolean = {
     idAttributes.contains(attributeValue.attributeId.toString) && isIRI(attributeValue.valueString)

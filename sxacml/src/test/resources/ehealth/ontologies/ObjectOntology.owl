@@ -1,0 +1,2947 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://hl7.org/ontology/ObjectOntology.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://hl7.org/ontology/ObjectOntology.owl"
+     versionIRI="http://hl7.org/ontology/ObjectOntology.owl/1.0.0">
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://hl7.org/ontology/SecurityAndPrivacyOntology.owl</Import>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/creator"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 Security and CBCC Work Groups</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Contains Objects from the HL7 RBAC Healthcare Permission Catalog.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Release 1</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/contributor"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Tony Weida</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/language"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">en</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 Version 3 Standard: Role-Based Access Control Healthcare Permission Catalog, Release 2 (HL7 V3 RBAC, R2)</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/date"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">September 2013</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/title"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ObjectOntology</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/subject"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Objects</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#ADT(Admission,Discharge,Transfer)Function"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AccountReceivable"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AdministrativeAdHocReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AdministrativeReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AdmissionRecord"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AdvanceDirective"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Alert"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AmbulanceRunReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AppointmentSchedule"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AppointmentScheduleFunction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Assessment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AuditTrail"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BillingAttachment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BiologicOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BloodBankOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BloodProductAdministrationRecord"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BusinessRule"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CarePlan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ChiefComplaint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ClaimsandReimbursement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ClinicalAdHocReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ClinicalGuideline"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ClinicalReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Coding"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConsentDirective(consentfortreatment)"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConsentDirective(informational)"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConsultOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConsultationFinding"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CurrentDirectoryofProviderInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#De-identifiedPatientData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DietOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DischargeSummary"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DoNotResuscitate(DNR)Order"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DurableMedicalEquipmentOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EmergencyCareRecord"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EmergencyContactInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EmergencyHealthcareResourceInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EncounterData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ExplanationofBenefits(EOB)"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ExternalClinicalInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FamilyHistory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Formulary"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GeneticInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HealthOutcomeRecord"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HealthRecordExtraction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HealthStatusData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoryandPhysical"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ImmunizationList"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InpatientMedicationOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Inter-ProviderCommunication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LaboratoryOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MasterPatientIndex"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MedicalHistory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MedicationAdministrationRecord(M.A.R.)"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NursingOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#On-SiteCareRecord"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OrderSet"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutpatientPrescriptionOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PastVisit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Patient-SpecificInstructions"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Patient/FamilyPreferences"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientAcuity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientAllergyorAdverseReaction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientBedAssignment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientDemographics"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientEducation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientHealthDatafromAdministrativeorFinancialSource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientIdentification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientLocationInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientLookup"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientOriginatedData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientResidenceInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PatientTestReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PointofCareTestingResults"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PopulationGroup"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PrescriptionCostingInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProblemList"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProgressNote"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProstheticOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProviderAccessLevel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProviderCaseloadInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProviderGroupInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProviderLocationInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PublicHealthReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#QualityofCareInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RadiologyOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RecordObject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RecordTracking"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ReferralInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Registration"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ReleaseofInformation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RemotelyMonitoredDeviceData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ResearchProtocol"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ResultInterpretation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceAuthorization"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceRequest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SkinTestOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#StandingOrder(s)PRN"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SupplyOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SurgicalReport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TaskAssignment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Transcription"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TransferSummary"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TreatmentPlan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VerbalandTelephoneOrder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VitalSigns/PatientMeasurements"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkflowObject"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#belongsToHealthRecord"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#ADT(Admission,Discharge,Transfer)Function"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AccountReceivable"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AdministrativeAdHocReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AdministrativeReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AdmissionRecord"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AdvanceDirective"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Alert"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AmbulanceRunReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AppointmentSchedule"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AppointmentScheduleFunction"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Assessment"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AuditTrail"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BillingAttachment"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BiologicOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BloodBankOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BloodProductAdministrationRecord"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BusinessRule"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CarePlan"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ChiefComplaint"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ClaimsandReimbursement"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ClinicalAdHocReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ClinicalGuideline"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ClinicalReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Coding"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConsentDirective(consentfortreatment)"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConsentDirective(informational)"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConsultOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConsultationFinding"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CurrentDirectoryofProviderInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#De-identifiedPatientData"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DietOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DischargeSummary"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DoNotResuscitate(DNR)Order"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DurableMedicalEquipmentOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EmergencyCareRecord"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EmergencyContactInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EmergencyHealthcareResourceInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EncounterData"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ExplanationofBenefits(EOB)"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ExternalClinicalInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FamilyHistory"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Formulary"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GeneticInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HealthOutcomeRecord"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HealthRecordExtraction"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HealthStatusData"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoryandPhysical"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ImmunizationList"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InpatientMedicationOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Inter-ProviderCommunication"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LaboratoryOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MasterPatientIndex"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MedicalHistory"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MedicationAdministrationRecord(M.A.R.)"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NursingOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#On-SiteCareRecord"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OrderSet"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutpatientPrescriptionOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PastVisit"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Patient-SpecificInstructions"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Patient/FamilyPreferences"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientAcuity"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientAllergyorAdverseReaction"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientBedAssignment"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientDemographics"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientEducation"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientHealthDatafromAdministrativeorFinancialSource"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientIdentification"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientLocationInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientLookup"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientOriginatedData"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientResidenceInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PatientTestReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PointofCareTestingResults"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PopulationGroup"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PrescriptionCostingInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProblemList"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProgressNote"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProstheticOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProviderAccessLevel"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProviderCaseloadInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProviderGroupInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProviderLocationInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PublicHealthReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#QualityofCareInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RadiologyOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RecordObject"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#Object"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RecordObject"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#belongsToHealthRecord"/>
+            <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#HealthRecord"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RecordTracking"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ReferralInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Registration"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ReleaseofInformation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RemotelyMonitoredDeviceData"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ResearchProtocol"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ResultInterpretation"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ServiceAuthorization"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ServiceRequest"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SkinTestOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#StandingOrder(s)PRN"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SupplyOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SurgicalReport"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TaskAssignment"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Transcription"/>
+        <Class IRI="#WorkflowObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TransferSummary"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TreatmentPlan"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VerbalandTelephoneOrder"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VitalSigns/PatientMeasurements"/>
+        <Class IRI="#RecordObject"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkflowObject"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#Object"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#ADT(Admission,Discharge,Transfer)Function"/>
+        <Class IRI="#AppointmentScheduleFunction"/>
+        <Class IRI="#Coding"/>
+        <Class IRI="#Inter-ProviderCommunication"/>
+        <Class IRI="#PatientEducation"/>
+        <Class IRI="#PatientLookup"/>
+        <Class IRI="#RecordTracking"/>
+        <Class IRI="#Transcription"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#AccountReceivable"/>
+        <Class IRI="#AdministrativeAdHocReport"/>
+        <Class IRI="#AdministrativeReport"/>
+        <Class IRI="#AdmissionRecord"/>
+        <Class IRI="#AdvanceDirective"/>
+        <Class IRI="#Alert"/>
+        <Class IRI="#AmbulanceRunReport"/>
+        <Class IRI="#AppointmentSchedule"/>
+        <Class IRI="#Assessment"/>
+        <Class IRI="#AuditTrail"/>
+        <Class IRI="#BillingAttachment"/>
+        <Class IRI="#BiologicOrder"/>
+        <Class IRI="#BloodBankOrder"/>
+        <Class IRI="#BloodProductAdministrationRecord"/>
+        <Class IRI="#BusinessRule"/>
+        <Class IRI="#CarePlan"/>
+        <Class IRI="#ChiefComplaint"/>
+        <Class IRI="#ClaimsandReimbursement"/>
+        <Class IRI="#ClinicalAdHocReport"/>
+        <Class IRI="#ClinicalGuideline"/>
+        <Class IRI="#ClinicalReport"/>
+        <Class IRI="#ConsentDirective(consentfortreatment)"/>
+        <Class IRI="#ConsentDirective(informational)"/>
+        <Class IRI="#ConsultOrder"/>
+        <Class IRI="#ConsultationFinding"/>
+        <Class IRI="#CurrentDirectoryofProviderInformation"/>
+        <Class IRI="#De-identifiedPatientData"/>
+        <Class IRI="#DietOrder"/>
+        <Class IRI="#DischargeSummary"/>
+        <Class IRI="#DoNotResuscitate(DNR)Order"/>
+        <Class IRI="#DurableMedicalEquipmentOrder"/>
+        <Class IRI="#EmergencyCareRecord"/>
+        <Class IRI="#EmergencyContactInformation"/>
+        <Class IRI="#EmergencyHealthcareResourceInformation"/>
+        <Class IRI="#EncounterData"/>
+        <Class IRI="#ExplanationofBenefits(EOB)"/>
+        <Class IRI="#ExternalClinicalInformation"/>
+        <Class IRI="#FamilyHistory"/>
+        <Class IRI="#Formulary"/>
+        <Class IRI="#GeneticInformation"/>
+        <Class IRI="#HealthOutcomeRecord"/>
+        <Class IRI="#HealthRecordExtraction"/>
+        <Class IRI="#HealthStatusData"/>
+        <Class IRI="#HistoryandPhysical"/>
+        <Class IRI="#ImmunizationList"/>
+        <Class IRI="#InpatientMedicationOrder"/>
+        <Class IRI="#LaboratoryOrder"/>
+        <Class IRI="#MasterPatientIndex"/>
+        <Class IRI="#MedicalHistory"/>
+        <Class IRI="#MedicationAdministrationRecord(M.A.R.)"/>
+        <Class IRI="#NursingOrder"/>
+        <Class IRI="#On-SiteCareRecord"/>
+        <Class IRI="#OrderSet"/>
+        <Class IRI="#OutpatientPrescriptionOrder"/>
+        <Class IRI="#PastVisit"/>
+        <Class IRI="#Patient-SpecificInstructions"/>
+        <Class IRI="#Patient/FamilyPreferences"/>
+        <Class IRI="#PatientAcuity"/>
+        <Class IRI="#PatientAllergyorAdverseReaction"/>
+        <Class IRI="#PatientBedAssignment"/>
+        <Class IRI="#PatientDemographics"/>
+        <Class IRI="#PatientHealthDatafromAdministrativeorFinancialSource"/>
+        <Class IRI="#PatientIdentification"/>
+        <Class IRI="#PatientLocationInformation"/>
+        <Class IRI="#PatientOriginatedData"/>
+        <Class IRI="#PatientResidenceInformation"/>
+        <Class IRI="#PatientTestReport"/>
+        <Class IRI="#PointofCareTestingResults"/>
+        <Class IRI="#PopulationGroup"/>
+        <Class IRI="#PrescriptionCostingInformation"/>
+        <Class IRI="#ProblemList"/>
+        <Class IRI="#ProgressNote"/>
+        <Class IRI="#ProstheticOrder"/>
+        <Class IRI="#ProviderAccessLevel"/>
+        <Class IRI="#ProviderCaseloadInformation"/>
+        <Class IRI="#ProviderGroupInformation"/>
+        <Class IRI="#ProviderLocationInformation"/>
+        <Class IRI="#PublicHealthReport"/>
+        <Class IRI="#QualityofCareInformation"/>
+        <Class IRI="#RadiologyOrder"/>
+        <Class IRI="#ReferralInformation"/>
+        <Class IRI="#Registration"/>
+        <Class IRI="#ReleaseofInformation"/>
+        <Class IRI="#RemotelyMonitoredDeviceData"/>
+        <Class IRI="#ResearchProtocol"/>
+        <Class IRI="#ResultInterpretation"/>
+        <Class IRI="#ServiceAuthorization"/>
+        <Class IRI="#ServiceRequest"/>
+        <Class IRI="#SkinTestOrder"/>
+        <Class IRI="#StandingOrder(s)PRN"/>
+        <Class IRI="#SupplyOrder"/>
+        <Class IRI="#SurgicalReport"/>
+        <Class IRI="#TaskAssignment"/>
+        <Class IRI="#TransferSummary"/>
+        <Class IRI="#TreatmentPlan"/>
+        <Class IRI="#VerbalandTelephoneOrder"/>
+        <Class IRI="#VitalSigns/PatientMeasurements"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#RecordObject"/>
+        <Class IRI="#WorkflowObject"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#HealthRecord"/>
+    </DisjointClasses>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#belongsToHealthRecord"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#belongsToHealthRecord"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#belongsToHealthRecord"/>
+        <Class IRI="#RecordObject"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#belongsToHealthRecord"/>
+        <Class IRI="http://hl7.org/ontology/SecurityAndPrivacyOntology.owl#HealthRecord"/>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ADT(Admission,Discharge,Transfer)Function</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The administrative functions of patient registration status, admission, discharge, and transfer.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ADT(Admission,Discharge,Transfer)Function</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2004</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ADT(Admission,Discharge,Transfer)Function</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AccountReceivable</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of an account for collecting charges, reversals, adjustments and payments, including deductibles, copayments, coinsurance (financial transactions) credited or debited to the account receivable account for a patient’s encounter.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AccountReceivable</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2001</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AccountReceivable</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AdministrativeAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information generated on an ad hoc (one time) basis that contains administrative data; no clinical data will be included.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AdministrativeAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2002</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AdministrativeAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#AdministrativeAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.1.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AdministrativeReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of data (patient-specific and/or summary) generated for a variety of administrative purposes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AdministrativeReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2003</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AdministrativeReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AdmissionRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of patient registration upon being admitted to (accepted into) hospital.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AdmissionRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2005</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AdmissionRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ASTM E1239-04</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AdvanceDirective</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a living will written by the patient to the physician in case of incapacitation to give further instructions.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AdvanceDirective</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2006</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AdvanceDirective</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#AdvanceDirective</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.3.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a brief online notice that is issued to users as they complete a cycle through the menu system.  An alert is designed to provide interactive notification of pending computing activities, such as the need to reorder supplies or review a patient’s clinical test results.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2007</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.8.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.1.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.5.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.6.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Alert</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.6.3 </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AmbulanceRunReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">See On-site Care Record</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AmbulanceRunReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AmbulanceRunReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Emergency Responder Electronic Health Record, Detailed Use Case, ONCHIT, 2006.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AppointmentSchedule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of an appointment representing a booked slot or group of slots on a schedule, relating to one or more services or resources.  Two examples might include a patient visit scheduled at a clinic and a reservation for a piece of equipment.  A record of an appointment including past, present, and future appointments.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AppointmentSchedule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2009</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AppointmentSchedule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AppointmentScheduleFunction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The process of interacting with systems and applications for the purpose of scheduling time for healthcare resources or patient care.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AppointmentScheduleFunction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2010</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AppointmentScheduleFunction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#AppointmentScheduleFunction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Assessment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a clinical evaluation consisting of a careful and complete history from the patient (or those who have information about the patient) and the reason(s) for their need of medical care in order to establish a diagnosis.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Assessment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2011</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Assessment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Adapted from Tabers Cyclopedic Medical Dictionary, 1993</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Assessment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Assessment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.1.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#AuditTrail</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of access attempts and resource usage to verify enforcement of business, data integrity, security and access control rules.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#AuditTrail</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2012</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#AuditTrail</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ISO TS 18330, EHR-Fm specification, Chapter 5, Section IN.2.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#AuditTrail</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">IN.2.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#BillingAttachment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the processing of financial transactions related to the provision of healthcare services including the processing of eligibility verification, prior authorization, pre-determination, claims and remittance advice.  The processing of patient information in the context of the EHR for reimbursement support.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#BillingAttachment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2013</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#BillingAttachment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#BiologicOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for (general) medicinal compounds which are prepared from living organisms and their products.  Includes serums, vaccines, antigens and antitoxins.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#BiologicOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2016</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#BiologicOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Adapted from Tabers Cyclopedic Medical Dictionary, 1993</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#BiologicOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC 2.4.5.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#BiologicOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.17.2.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#BloodBankOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for whole blood or certain derived blood components.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#BloodBankOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2014</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#BloodBankOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Adapted from Tabers Cyclopedic Medical Dictionary, 1993</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#BloodBankOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.17.2.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#BloodProductAdministrationRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the blood products or certain derived blood components administered to a particular patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#BloodProductAdministrationRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2015</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#BloodProductAdministrationRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section DC.2.4.5.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#BloodProductAdministrationRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC 2.4.5.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#BloodProductAdministrationRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.17.2.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#BusinessRule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a computable statement that alters system behavior in accordance with specified policies or clinical algorithms.  Alerts that provide clinical decisions support typically rely on underlying business rules.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#BusinessRule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2017</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#BusinessRule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 5, Section IN.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#BusinessRule</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">IN.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#CarePlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of expected or planned activities, including observations, goals, services, appointments and procedures, usually organized in phases or sessions, which have the objective of organizing and managing health care activity for the patient, often focused upon one or more of the patient’s health care problems.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#CarePlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2018</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#CarePlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-S Functional Model, Glossary</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#CarePlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.6.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#CarePlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.6.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ChiefComplaint</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the reason for the episode/encounter and patient’s complaints and symptoms reflecting their own perceptions of their needs.  The nature and duration of symptoms that caused the patient to seek medical attention, as stated in the patient’s own words.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ChiefComplaint</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2019</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ChiefComplaint</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ClaimsandReimbursement</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for payment from third-party payers for health-care-related services received by a patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ClaimsandReimbursement</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2020</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ClaimsandReimbursement</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 Claims and Reimbursement Glossary</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ClaimsandReimbursement</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.3.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ClaimsandReimbursement</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.3.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ClinicalAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information generated on an ad hoc (one time) basis that contains clinical data.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ClinicalAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2021</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ClinicalAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3 Section DC.1.1.5; HL7 RBAC Task Force</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ClinicalAdHocReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.1.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ClinicalGuideline</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record that describes the processes used to evaluate and treat a patient having a specific diagnosis, condition, or symptom.  Clinical practice guidelines are found in the literature under many names - practice parameters, practice guidelines, patient care protocols, standards of practice, clinical pathways or highways, care maps, and other descriptive names.   Clinical practice guidelines should be evidence-based, authoritative, efficacious and effective within the targeted patient populations.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ClinicalGuideline</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2022</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ClinicalGuideline</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ClinicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record that summarizes clinical, as opposed to administrative, information about a patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ClinicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2023</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ClinicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3 Section DC.1.1.4; HL7 RBAC Task Force</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ClinicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.1.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Coding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A process where medical records produced by the health care provider are translated into a code that identifies each diagnosis and procedure utilized in treating the patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Coding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2024</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Coding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Coding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.2.1, S.3.2.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ConsentDirective(consentfortreatment)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a patient’s consent indicating that (s)he has been informed of the nature of the treatment, risks, complications, alternative forms of treatment and treatment consequences and has authorized that treatment.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ConsentDirective(consentfortreatment)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2026</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ConsentDirective(consentfortreatment)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ConsentDirective(consentfortreatment)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Corrected error in source specification: changed from &quot;consent to treat&quot; to &quot;consent for treatment&quot;.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ConsentDirective(informational)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a patient’s consent or dissent to collection, access, use or disclosure of individually identifiable health information as permitted under the applicable privacy policies about which they have been informed.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ConsentDirective(informational)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2025</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ConsentDirective(informational)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ConsultOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for a consult (service/sub-specialty evaluation) or procedure (i.e., Electrocardiogram) to be completed for a patient.  Referral of a patient by the primary care physician to another hospital service/ specialty, to obtain a medical opinion based on patient evaluation and completion of any procedures, modalities, or treatments the consulting specialist deems necessary to render a medical opinion.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ConsultOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2027</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ConsultOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ConsultationFinding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the recommendations made by the consulting practitioner.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ConsultationFinding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2028</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ConsultationFinding</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#CurrentDirectoryofProviderInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The current directory of provider information in accordance with relevant laws, regulations, and conventions, including full name, address or physical location, and a 24x7 telecommunications address (e.g., phone or pager access number) to support delivery of effective healthcare.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#CurrentDirectoryofProviderInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2029</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#CurrentDirectoryofProviderInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#CurrentDirectoryofProviderInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.7</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#De-identifiedPatientData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of patient data from which important identifiers (Birth date, gender, address, age, etc.) have been removed before they can be used for research or other purposes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#De-identifiedPatientData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2030</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#De-identifiedPatientData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">http://www.informatics-review.com/wiki/index.php/De-Identified_Patient_Data</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#De-identifiedPatientData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#DietOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a patient diet.  A patient may have only one effective diet order at a time.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#DietOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2031</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#DietOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBA</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#DietOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">R1-2008&quot;</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#DischargeSummary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a summary of hospitalization to the Primary Care Provider (PCP) who will follow the patient in clinic after his/her stay or to the admitting doctor at next hospitalization.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#DischargeSummary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2032</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#DischargeSummary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#DoNotResuscitate(DNR)Order</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record in the patient’s medical record instructing the medical staff not to try to revive the patient if breathing or heartbeat has stopped.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#DoNotResuscitate(DNR)Order</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2033</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#DoNotResuscitate(DNR)Order</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#DurableMedicalEquipmentOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for durable medical equipment.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#DurableMedicalEquipmentOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2034</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#DurableMedicalEquipmentOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">http://www.ssa.gov/OP_Home/ssact/title18/1861.htm#n</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#DurableMedicalEquipmentOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.2.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#EmergencyCareRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of patient care given in an Emergency Department</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#EmergencyCareRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2035</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#EmergencyCareRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Emergency Responder Electronic Health Record, Detailed Use Case, ONCHIT, 2006.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#EmergencyContactInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information required to contact an individual selected by the patient in case of an emergency.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#EmergencyContactInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2036</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#EmergencyContactInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Emergency Responder Electronic Health Record, Detailed Use Case, ONCHIT, 2006.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#EmergencyHealthcareResourceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of health care resources (such as beds, operating theatres, medical supplies, and vaccines) which are available in response to local or national emergencies.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#EmergencyHealthcareResourceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2037</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#EmergencyHealthcareResourceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.1.7</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#EmergencyHealthcareResourceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.7</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#EncounterData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of data relating to treatment or service rendered by a provider to a patient.  Used in determining the level of service.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#EncounterData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2038</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#EncounterData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ExplanationofBenefits(EOB)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record which identifies paid amount, adjudication results and informational items for invoice grouping.  The provider may forward EOB details from a primary payer unaltered to a secondary adjudicator for co-ordination of benefits.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ExplanationofBenefits(EOB)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2039</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ExplanationofBenefits(EOB)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 Claims and Reimbursement glossary </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ExplanationofBenefits(EOB)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.3.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ExternalClinicalInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of clinical data and documentation (such as diagnostic images) from outside the institution’s Electronic Health Record system.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ExternalClinicalInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2040</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ExternalClinicalInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHRS Functional Model, Release 1, 2007</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ExternalClinicalInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.1.3.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#FamilyHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the patient family’s relationships, major illnesses and causes of death.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#FamilyHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2041</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#FamilyHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">PHRS Functional Model, Release 1, May 2008.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#FamilyHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">PH.2.5.8</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Formulary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the list of medications that are a benefit for an individual or a defined group.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Formulary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2042</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Formulary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 Claims and Reimbursement glossary </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Formulary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#GeneticInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a genetic test that reveals information about a patient’s genotype, mutations or chromosomal changes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#GeneticInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2043</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#GeneticInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">PHRS Functional Model, Release 1, May 2008.  </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#GeneticInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.2.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#HealthOutcomeRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the effects of the health care process on patients and populations.  Examples of health outcome records include chronic disease and morbidity, physical functional status, and quality of life.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#HealthOutcomeRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2044</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#HealthOutcomeRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">http://www.nlm.nih.gov/nichsr/corelib/houtcomes.html</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#HealthOutcomeRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.2.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#HealthRecordExtraction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of patient data aggregated for analysis, reporting, or distribution.  May include de-identified patient data.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#HealthRecordExtraction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2045</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#HealthRecordExtraction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 5, Section IN.2.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#HealthRecordExtraction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">IN.2.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#HealthStatusData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the state of the health of a specified individual, group, or population.  Health Status Data Elements and Indicators - this item lists the data elements and indicators used in the data set to describe the health status of an individual or target population(s).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#HealthStatusData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2046</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#HealthStatusData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#HistoryandPhysical</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a patient’s history and physical examinations.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#HistoryandPhysical</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2047</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#HistoryandPhysical</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ImmunizationList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A detailed record of the immunizations administered to a patient over a given time period.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ImmunizationList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2048</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ImmunizationList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ImmunizationList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.4.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#InpatientMedicationOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of (a) the identity of the drug to be administered, (b) dosage of the drug, (c) route by which the drug is to be administered, (d) time and/or frequency of administration, (e) registration number and address for a controlled substance.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#InpatientMedicationOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2049</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#InpatientMedicationOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Inter-ProviderCommunication</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The process of supporting electronic messaging (inbound and outbound) between providers to trigger or respond to pertinent actions in the care process and document non-electronic communication (such as phone calls, correspondence or other encounters).  Messaging among providers involved in the care process can range from real time communication (for example, fulfillment of an injection while the patient is in the exam room), to asynchronous communication (for example, consult reports between physicians).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Inter-ProviderCommunication</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2050</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Inter-ProviderCommunication</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#LaboratoryOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for clinical laboratory services for a specified patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#LaboratoryOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2051</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#LaboratoryOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#MasterPatientIndex</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record used for of the tracking of patient information by assigning each patient an identifying series of characters.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#MasterPatientIndex</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2052</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#MasterPatientIndex</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#MedicalHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information about a patient’s medical, procedural/surgical, social and family history that can provide information useful in formulating a diagnosis and providing medical care to the patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#MedicalHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2053</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#MedicalHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#MedicalHistory</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#MedicationAdministrationRecord(M.A.R.)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a medication administration is generated by the EHR, based upon the medical orders and the patient’s plan of care.  This document is used to conduct rounds and dispense medications.  (i.e., The medication bar code, patient wristband, and the provider bar are used to uniquely identify each administration of a medication in the hospital and nursing home settings.)  </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#MedicationAdministrationRecord(M.A.R.)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2054</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#MedicationAdministrationRecord(M.A.R.)</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request to a nurse in a ward regarding nursing procedures for a patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2055</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.6.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#NursingOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#On-SiteCareRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record that is used to collect information at the scene of a healthcare incident by on-site care providers. On-site healthcare is often provided in emergency situations. Also called Ambulance Run Report.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#On-SiteCareRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2056</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#On-SiteCareRecord</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Emergency Responder Electronic Health Record, Detailed Use Case, ONCHIT, 2006.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a pre-filled ordering template, or electronic protocol that is derived from evidence based best practice guidelines.  The collection of proposed acts within the order set has been developed and edited to promote consistent and effective organization of health care activity.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2057</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 Glossary (1) Kamal J, Rogers P, Saltz J, Mekhjian HS. Information Warehouse as a Tool to Analyze Computerized Physician Order Entry Order Set Utilization: Opportunities for Improvement. In: AMIA 2003 Symposium Proceedings; 2003; Washington, DC; 2003. p. 336-41.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.6.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#OrderSet</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#OutpatientPrescriptionOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of request for a prescription medication to be dispensed to an outpatient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#OutpatientPrescriptionOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2058</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#OutpatientPrescriptionOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PastVisit</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of all prior admissions to a facility that may have been documented in Provider Visit notes, Non-Visit Encounter notes, and Non-Scheduled Provider Visit notes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PastVisit</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2059</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PastVisit</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Patient-SpecificInstructions</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of specific directions given to a patient in connection with his or her health care.  Examples include directions for taking medication, for activities that are required or prohibited shortly before or after a surgical procedure, or for a regimen to be followed after discharge from a hospital.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Patient-SpecificInstructions</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2067</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Patient-SpecificInstructions</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3 Sections DC.1.7.1, DC.1.7.2.1, and DC.1.9</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Patient-SpecificInstructions</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Patient-SpecificInstructions</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.2.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#Patient-SpecificInstructions</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.9</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Patient/FamilyPreferences</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of patient/family preferences and concerns, such as with native speaking language, medication choice, invasive testing, and consent and advance directives.  Improves patient safety and facilitates self-health management.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Patient/FamilyPreferences</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2071</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Patient/FamilyPreferences</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientAcuity</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the measurement of the intensity of care required for a patient accomplished by a registered nurse.  There are six categories ranging from minimal care (I) to intensive care (VI).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientAcuity</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2060</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientAcuity</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientAllergyorAdverseReaction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a misguided reaction to a foreign substance by the immune system, the body system of defense against foreign invaders, particularly pathogens (the agent/s of infection).  This includes noxious reaction from the administration of over-the-counter, prescription, or investigational/research drugs.  </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientAllergyorAdverseReaction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2061</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientAllergyorAdverseReaction</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientBedAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the available beds to which a patient can be assigned to optimize care and minimize risk (such as exposure to contagious patients).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientBedAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2062</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientBedAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.1.4.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientBedAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.4.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientDemographics</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the patient&apos;s demographic characteristics (such as age, gender, race/ethnicity, marital status, and occupation).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientDemographics</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2063</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientDemographics</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">http://www.usc.edu/schools/medicine/departments/preventive_medicine/divisions/epidemiology/research/csp/CSPedia/WebHelp/Patient_Demographics/Patient_Demographics_Introduction.htm</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientDemographics</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.5.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientDemographics</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.6.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientDemographics</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.3.2.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientEducation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A teaching program or information data sheet given to patients concerning their own health needs.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientEducation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2064</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientEducation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientHealthDatafromAdministrativeorFinancialSource</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of patient health data extracted from administrative or financial information source.  Such derived data should be clearly labeled to distinguish it from clinically authenticated data.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientHealthDatafromAdministrativeorFinancialSource</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2065</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientHealthDatafromAdministrativeorFinancialSource</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section S.1.1.3.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientHealthDatafromAdministrativeorFinancialSource</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC 1.1.3.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientIdentification</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of permanent identifying and demographic information about a patient used by applications as the main means of communicating this information to other systems.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientIdentification</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2066</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientIdentification</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a patient’s location within the premises of a health care facility during an episode of care.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2068</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 RBAC Task Force</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.4.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientLookup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A process by which the user queries the EHR for patient information by criteria such as name, date of birth, last name, and sex.  </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientLookup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2069</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientLookup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientOriginatedData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record containing data provided by the patient.  Such a record should be clearly labeled to distinguish it from clinically authenticated data entered by a provider.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientOriginatedData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2070</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientOriginatedData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section DC.1.1.3.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientOriginatedData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.1.3.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientResidenceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the patient’s residence, for the purpose of providing in-home health services or providing transportation assistance.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientResidenceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2072</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientResidenceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.1.4.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PatientResidenceInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.4.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PatientTestReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the result of any test or procedure performed on a patient or patient specimen.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PatientTestReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2073</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PatientTestReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PointofCareTestingResults</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the results of a diagnostic test performed at or near the site of patient care.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PointofCareTestingResults</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2074</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PointofCareTestingResults</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PopulationGroup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record which includes information from a group of individuals united by a common factor (e.g., geographic location, ethnicity, disease, age, gender)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PopulationGroup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2075</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PopulationGroup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">NCI Thesaurus/A7589551</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PopulationGroup</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.2.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PrescriptionCostingInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the cost of a prescription.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PrescriptionCostingInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2076</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PrescriptionCostingInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProblemList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of brief statements that catalog a patient’s medical, nursing, dental, social, preventative and psychiatric events and issues which are relevant to that patient’s health care (e.g., signs, symptoms, and defined conditions).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProblemList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2077</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProblemList</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProgressNote</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a description of the health care provider’s observations, their interpretations and conclusions about the clinical course of the patient or the steps taken, or to be taken, in the care of the patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProgressNote</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2078</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProgressNote</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProstheticOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for an appropriate prosthetic that affects the care and treatment of the beneficiary.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProstheticOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2079</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProstheticOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProviderAccessLevel</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record showing the system resources that each practitioner in a provider directory is authorized to use.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProviderAccessLevel</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2080</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProviderAccessLevel</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.1.3.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ProviderAccessLevel</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProviderCaseloadInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the caseload (i.e., panel of patients) for a given provider.  Information about the caseload or panel includes such things as whether or not a new member/patient/client can be added.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProviderCaseloadInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2081</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProviderCaseloadInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.1.3.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ProviderCaseloadInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProviderGroupInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record, directory, registry or repository containing information about teams or groups of providers.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProviderGroupInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2082</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProviderGroupInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.1.3.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ProviderGroupInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ProviderLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the location of a provider within a facility, at offices outside a facility, and when on call.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ProviderLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2083</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ProviderLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Sections S.1.3.2, S.1.3.3, and S.1.3.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ProviderLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ProviderLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ProviderLocationInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.1.3.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#PublicHealthReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information submitted to public health authorities regarding a particular patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#PublicHealthReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2084</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#PublicHealthReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3 Section DC.1.1.4 and Chapter 4 Section S.3.3.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PublicHealthReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.1.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#PublicHealthReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.3.6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#QualityofCareInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record containing information used by performance and accountability measures for health care delivery.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#QualityofCareInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2085</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#QualityofCareInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 4, Section S.2.1.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#QualityofCareInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.2.1.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#RadiologyOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for radiology and diagnostic services for a specified patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#RadiologyOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2086</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#RadiologyOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Derived from SNOMED CT.</Literal>
+        </Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#RecordObject</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record is an entity that is created by a person or persons for the purpose of providing other people with information about events or states of affairs. In general, a record is virtual, that is, it is independent of its particular physical instantiation(s), and consists of its information elements (usually words, phrases and sentences, but also numbers, graphs, and other information elements). Records need not be complete reports or complete records. They can be parts of larger records. For example, a complete health record is a record that also may contain other records in the form of individual documents or reports, which in turn may contain more finely granular records such as sections and even section headers.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#RecordObject</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 RBAC</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#RecordObject</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Record Object</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#RecordTracking</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A process for managing and tracking the location of patient medical records.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#RecordTracking</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2087</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#RecordTracking</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ReferralInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a referral of a patient from one health care provider to another, regardless of whether a provider is internal or external to the organization.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ReferralInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2088</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ReferralInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section S.1.7.2.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ReferralInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.1.7.2.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Registration</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information for legal or other records.  Information may be gathered by interview or other source documentation.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Registration</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2089</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Registration</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ReleaseofInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request by a patient or patient representative to release specified medical information to a third party.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ReleaseofInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2090</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ReleaseofInformation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#RemotelyMonitoredDeviceData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information from a medical device measuring a patient’s physiological, diagnostic, medication tracking or activities of daily living measurements in a non-clinical setting remote from the healthcare provider.  Such information can be communicated to the provider’s EHR or the patient’s PHR directly.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#RemotelyMonitoredDeviceData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2091</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#RemotelyMonitoredDeviceData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">PHRS Functional Model, Release 1, May 2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#RemotelyMonitoredDeviceData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">PH.3.1.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#RemotelyMonitoredDeviceData</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.1.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ResearchProtocol</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record describing an action plan for a research study, including enrollment criteria, interventions to be performed, and data to be collected.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ResearchProtocol</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2092</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ResearchProtocol</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section DC.2.2.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ResearchProtocol</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.2.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ResultInterpretation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of how results (from a diagnostic test) were interpreted in the context of the patient’s health care data.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ResultInterpretation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2093</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ResultInterpretation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section S.2.4.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ResultInterpretation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.2.4.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ServiceAuthorization</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of information needed to support verification of medical necessity and prior authorization of services at the appropriate juncture in the encounter workflow.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ServiceAuthorization</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2094</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ServiceAuthorization</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-S FM, Chapter 4, Section S.3.3.3.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ServiceAuthorization</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.3.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#ServiceRequest</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for additional clinical information.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#ServiceRequest</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2095</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#ServiceRequest</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-S FM, Chapter 4, Section S.3.3.4.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#ServiceRequest</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">S.3.3.4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#SkinTestOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A request for an epucutaneous or intradermal application of a sensitizer for demonstration of either delayed or immediate hypersensitivity.  Used in diagnosis of hypersensitivity or as a test for cellular immunity.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#SkinTestOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2096</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#SkinTestOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#StandingOrder(s)PRN</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Standing Orders - The record of a request to be carried out </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#StandingOrder(s)PRN</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2097</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#StandingOrder(s)PRN</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#SupplyOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a request for a quantity of manufactured material to be specified either by name, ID, or optionally, the manufacturer.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#SupplyOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2098</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#SupplyOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#SurgicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A report containing information regarding the surgical team, diagnoses, surgical interventions, and the method of anesthesia.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#SurgicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2099</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#SurgicalReport</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#TaskAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of the assignment or delegation of health care tasks to appropriate parties.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#TaskAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2100</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#TaskAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">EHR-FM specification, Chapter 3, Section DC.3.3.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/isRequiredBy"/>
+        <IRI>#TaskAssignment</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DC.3.3.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#Transcription</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The process of dictating or otherwise documenting information into an electronic format.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#Transcription</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2101</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#Transcription</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#TransferSummary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of a patient’s health information necessary to facilitate the transition of the patient from one healthcare provider to another and enable efficient and effective care.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#TransferSummary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2102</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#TransferSummary</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">FORE Library: HIM Body of Knowledge</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#TreatmentPlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">See Care Plan</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#TreatmentPlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2103</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#TreatmentPlan</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">(see Care Plan)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#VerbalandTelephoneOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record describing the healthcare services requested in a verbal or telephone communication.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#VerbalandTelephoneOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2104</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#VerbalandTelephoneOrder</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#VitalSigns/PatientMeasurements</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A record of physical signs that indicate an individual is alive, such as heart beat, breathing rate, temperature, and blood pressure.  These signs may be observed, measured, (documented in the patient’s chart) and monitored to assess an individual’s level of physical functioning.  </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/identifier"/>
+        <IRI>#VitalSigns/PatientMeasurements</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">B2105</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#VitalSigns/PatientMeasurements</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ANSI/HL7 V3 RBAC, R1-2008</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Definition from ASTM E2595-07 Standard Guide for Privilege Management Infrastructure</Literal>
+        </Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/description"/>
+        <IRI>#WorkflowObject</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A workflow object is a representation of an organizational or business process in which documents, information, or tasks are passed from one participant to another in a way that is governed by rules or procedures; a workflow separates the various activities of a given organizational process into a set of well-defined tasks.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/source"/>
+        <IRI>#WorkflowObject</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">HL7 RBAC</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#WorkflowObject</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Workflow Object</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
