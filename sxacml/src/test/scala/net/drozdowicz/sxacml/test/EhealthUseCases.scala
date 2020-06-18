@@ -34,6 +34,22 @@ class EhealthUseCases extends path.FunSpec with Matchers with OneInstancePerTest
         assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
       }
     }
+
+    describe("pharmacist attempting to read blood pressure as a physician") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ehealth/ontologies"), "https://w3id.org/sxacml/sample-ehealth/ehealth-mapping",
+        Map(
+          (new URI("http://hl7.org/ontology/ObjectOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/ObjectOntology.owl")),
+          (new URI("http://hl7.org/ontology/RoleOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/RoleOntology.owl"))
+        )
+      )
+      val request = readFile("/ehealth/requests/ssod_request_deny.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is denied due to static separation of duties") {
+        val expectedResponse = readFile("basic/responses/Deny.xml")
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
   }
 
   private def readFile(relativeFilePath: String): String = {
