@@ -62,7 +62,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         "buy"
       ))
 
-      val ontology = convertToOntology("123", input, Set.empty[IRI])
+      val ontology = convertToOntology(None, "123", input, Set.empty[IRI])
 
       it("should create ontology including request id in ontology id") {
         ontology.getOntologyID.getOntologyIRI.toString should include("123")
@@ -144,7 +144,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         )
       )
 
-      val ontology = convertToOntology("123", input, Set.empty[IRI])
+      val ontology = convertToOntology(None, "123", input, Set.empty[IRI])
 
       it("should output first property") {
         val qry =
@@ -198,7 +198,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           new SimpleIRIMapper(IRI.create("https://w3id.org/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
         ))
 
-        val ontology = convertToOntology("456", input, Set(toImport))
+        val ontology = convertToOntology(None, "456", input, Set(toImport))
         ontology.getDirectImports.size() should be(1)
         ontology.getDirectImports.head.getOntologyID.getOntologyIRI.get() should equal(toImport)
       }
@@ -215,7 +215,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         )
       )
 
-      val ontology = convertToOntology("123", input, Set.empty[IRI])
+      val ontology = convertToOntology(None, "123", input, Set.empty[IRI])
 
       it("should output subject with matching URI") {
         val qry =
@@ -241,7 +241,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         )
       )
 
-      val ontology = convertToOntology("123", input, Set.empty[IRI])
+      val ontology = convertToOntology(None, "123", input, Set.empty[IRI])
 
       it("should output subject of type matching class-id attribute") {
         val qry =
@@ -266,7 +266,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         )
       )
 
-      val ontology = convertToOntology("123", input, Set.empty[IRI])
+      val ontology = convertToOntology(None, "123", input, Set.empty[IRI])
 
       it("should output id with string datatype for reasoning compatibility") {
         val qry =
@@ -323,7 +323,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           )
         )
 
-        val ontology = convertToOntology("111", input, Set.empty[IRI])
+        val ontology = convertToOntology(None, "111", input, Set.empty[IRI])
 
         it("should output individual of class id from element uri") {
           val qry =
@@ -436,7 +436,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
           )
         )
 
-        val ontology = convertToOntology("111", input, Set.empty[IRI])
+        val ontology = convertToOntology(None, "111", input, Set.empty[IRI])
 
         it("should output multiple individuals of class id from element uri") {
           val qry =
@@ -473,7 +473,7 @@ class RequestOntologyGeneratorSpec extends path.FunSpec with Matchers with OneIn
         new SimpleIRIMapper(IRI.create("https://w3id.org/sxacml/request"), IRI.create(new File(getClass.getResource("/ontologies/request.owl").toURI)))
       ))
 
-      val ontology = convertToOntology("456", input, Set(toImport))
+      val ontology = convertToOntology(None, "456", input, Set(toImport))
 
       it("should create ontology including object property assertion") {
         val qry =

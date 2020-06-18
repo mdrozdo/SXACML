@@ -6,13 +6,14 @@ import java.util
 import java.util.{Properties, UUID}
 
 import onto.utils.OntologyUtils
+import openllet.core.exceptions.InconsistentOntologyException
 import org.apache.commons.logging.LogFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{IRI, OWLOntology, OWLOntologyIRIMapper, OWLOntologyManager}
 import org.semanticweb.owlapi.util.AutoIRIMapper
 import org.wso2.balana.attr.{AttributeFactory, AttributeValue, BagAttribute}
 import org.wso2.balana.cond.EvaluationResult
-import org.wso2.balana.ctx.EvaluationCtx
+import org.wso2.balana.ctx.{EvaluationCtx, Status}
 import org.wso2.balana.finder.AttributeFinderModule
 import org.wso2.carbon.identity.entitlement.pip.PIPAttributeFinder
 
@@ -40,6 +41,10 @@ class OwlAttributeModule extends AttributeFinderModule with PIPAttributeFinder {
 
       new EvaluationResult(new BagAttribute(attributeType, values.toList.asJava))
     } catch safely {
+      case e : InconsistentOntologyException => {
+        log.info("Failed to retrieve value due to inconsistent ontology. Details: " + e.toString)
+        new EvaluationResult(new Status(List(Status.STATUS_PROCESSING_ERROR).asJava, "Failed to retrieve value due to inconsistent ontology. Details: " + e.toString))
+      }
       case e: Throwable => {
         log.error("Error while processing the request: findAttribute. " + e.getClass.getName + e.getMessage, e)
         throw e

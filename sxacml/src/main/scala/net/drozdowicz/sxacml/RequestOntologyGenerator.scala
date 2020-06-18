@@ -29,28 +29,28 @@ object RequestOntologyGenerator {
     new URI("urn:oasis:names:tc:xacml:3.0:attribute-category:environment") -> new URI("https://w3id.org/sxacml/access-control#inContextOf")
   )
 
-  def getCategoryIndividualIds(ontologyId: String, attributes: Seq[ContextAttributeValue]) = {
+  def getCategoryIndividualIds(ontologyId: String, requestId: String, attributes: Seq[ContextAttributeValue]) = {
     val categoryAttributes = attributes.groupBy(at => at.categoryId).toMap
 
     categoryAssignmentProperties.keySet.map(cat => {
       (cat, if (categoryAttributes.contains(cat))
-        getCategoryIndividualUri(ontologyId, categoryAttributes(cat)) else
-        getNewCategoryIndividualUri(ontologyId, cat.toString))
+        getCategoryIndividualUri(ontologyId, requestId, categoryAttributes(cat)) else
+        getNewCategoryIndividualUri(ontologyId, requestId, cat.toString))
     }).toMap
   }
 
-  def getRequestIndividualId(ontologyId: String) = {
-    getNewCategoryIndividualUri(ontologyId, Constants.REQUEST_CLASS_ID)
+  def getRequestIndividualId(ontologyId: String, requestId: String) = {
+    getNewCategoryIndividualUri(ontologyId, requestId, Constants.REQUEST_CLASS_ID)
   }
 
-  def createOntologyId(requestId: String) = "https://w3id.org/sxacml/request/" + requestId
+  def createOntologyId(sessionId: Option[String], requestId: String) = "https://w3id.org/sxacml/request/" + sessionId.getOrElse(requestId)
 
-  def convertToOntology(owlManager: OWLOntologyManager)(requestId: String, requestAttributes: Seq[ContextAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
+  def convertToOntology(owlManager: OWLOntologyManager)(sessionId: Option[String], requestId: String, requestAttributes: Seq[ContextAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
     val requestAttributesOnlyCategories = requestAttributes.filter(at => categoryAssignmentProperties.contains(at.categoryId))
 
     val factory = owlManager.getOWLDataFactory()
 
-    val ontologyId = createOntologyId(requestId)
+    val ontologyId = createOntologyId(sessionId, requestId)
     val ontology = owlManager.createOntology(IRI.create(ontologyId))
 
     otherOntologies.foreach(ontologyIRI => {
@@ -59,7 +59,7 @@ object RequestOntologyGenerator {
       owlManager.loadOntology(ontologyIRI)
     })
 
-    val categoryIndividualIds = getCategoryIndividualIds(ontologyId, requestAttributesOnlyCategories)
+    val categoryIndividualIds = getCategoryIndividualIds(ontologyId, requestId, requestAttributesOnlyCategories)
 
     val (categoryIndividuals, categoryAxioms) = axiomsFromCategories(factory, categoryIndividualIds)
     owlManager.addAxioms(ontology, categoryAxioms.toStream)
@@ -67,7 +67,7 @@ object RequestOntologyGenerator {
     val categoryAttributes = requestAttributesOnlyCategories.groupBy(at => at.categoryId)
     val attributeAxioms = categoryAttributes.flatMap { case (id, attributes) => axiomsFromAttributes(requestId, categoryIndividuals(id), attributes, categoryIndividuals, factory, ontology) }
 
-    owlManager.addAxioms(ontology, createRequestAxioms(factory, ontologyId, categoryIndividuals))
+    owlManager.addAxioms(ontology, createRequestAxioms(factory, ontologyId, requestId, categoryIndividuals))
 
     owlManager.addAxioms(ontology, attributeAxioms.toStream)
 
@@ -75,7 +75,30 @@ object RequestOntologyGenerator {
     ontology
   }
 
-  private def getCategoryIndividualUri(ontologyId: String, attributes: Seq[ContextAttributeValue]): String = {
+  def updateOntology(owlManager: OWLOntologyManager)(existingOntology: OWLOntology, sessionId: Option[String], requestId: String, requestAttributes: Seq[ContextAttributeValue], otherOntologies: Set[IRI]): OWLOntology = {
+    val requestAttributesOnlyCategories = requestAttributes.filter(at => categoryAssignmentProperties.contains(at.categoryId))
+
+    val factory = owlManager.getOWLDataFactory()
+
+    val ontologyId = createOntologyId(sessionId, requestId)
+
+    val categoryIndividualIds = getCategoryIndividualIds(ontologyId, requestId, requestAttributesOnlyCategories)
+
+    val (categoryIndividuals, categoryAxioms) = axiomsFromCategories(factory, categoryIndividualIds)
+    owlManager.addAxioms(existingOntology, categoryAxioms.toStream)
+
+    val categoryAttributes = requestAttributesOnlyCategories.groupBy(at => at.categoryId)
+    val attributeAxioms = categoryAttributes.flatMap { case (id, attributes) => axiomsFromAttributes(requestId, categoryIndividuals(id), attributes, categoryIndividuals, factory, existingOntology) }
+
+    owlManager.addAxioms(existingOntology, createRequestAxioms(factory, ontologyId, requestId, categoryIndividuals))
+
+    owlManager.addAxioms(existingOntology, attributeAxioms.toStream)
+
+    owlManager.saveOntology(existingOntology, new SystemOutDocumentTarget())
+    existingOntology
+  }
+
+  private def getCategoryIndividualUri(ontologyId: String, requestId: String, attributes: Seq[ContextAttributeValue]): String = {
     val catId = attributes.head.categoryId
 
     val flatAttributes = (attributes.head match {
@@ -84,10 +107,10 @@ object RequestOntologyGenerator {
     }).filter(at => at.isInstanceOf[FlatAttributeValue]).map(at => at.asInstanceOf[FlatAttributeValue])
 
     flatAttributes.find(at => attributeDescribesId(at)).map(av => av.valueString)
-      .getOrElse(getNewCategoryIndividualUri(ontologyId, catId.toString))
+      .getOrElse(getNewCategoryIndividualUri(ontologyId, requestId, catId.toString))
   }
 
-  private def getNewCategoryIndividualUri(ontologyId: String, categoryId: String) = ontologyId + "#" + Constants.shortNames(categoryId)
+  private def getNewCategoryIndividualUri(ontologyId: String, requestId: String, categoryId: String) = s"$ontologyId#${Constants.shortNames(categoryId)}_$requestId"
 
   private def getIndividualUri(requestId: String, elementId: URI, counter: Int): String = s"${elementId}_${counter}_${requestId}"
 
@@ -153,8 +176,8 @@ object RequestOntologyGenerator {
     }
   }
 
-  private def createRequestAxioms(factory: OWLDataFactory, ontologyId: String, categoryIndividuals: Map[URI, OWLNamedIndividual]) = {
-    val requestIndividual = factory.getOWLNamedIndividual(getRequestIndividualId(ontologyId))
+  private def createRequestAxioms(factory: OWLDataFactory, ontologyId: String, requestId: String, categoryIndividuals: Map[URI, OWLNamedIndividual]) = {
+    val requestIndividual = factory.getOWLNamedIndividual(getRequestIndividualId(ontologyId, requestId))
     val requestClass = factory.getOWLClass(IRI.create(Constants.REQUEST_CLASS_ID))
     val requestAxiom = factory.getOWLClassAssertionAxiom(requestClass, requestIndividual)
 

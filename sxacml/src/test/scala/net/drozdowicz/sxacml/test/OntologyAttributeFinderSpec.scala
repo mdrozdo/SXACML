@@ -38,7 +38,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
       val toImport: IRI = getOntologyIRI(ontoMgr, "test1")
 
-      val ontology = convertToOntology("123", input, Set(toImport))
+      val ontology = convertToOntology(None, "123", input, Set(toImport))
 
       it("should find value of derived attribute ") {
         val values = OntologyAttributeFinder.findAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
@@ -90,7 +90,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
         val toImport: IRI = getOntologyIRI(ontoMgr, "testMultiValues")
 
-        val ontology = convertToOntology("456", input, Set(toImport))
+        val ontology = convertToOntology(None, "456", input, Set(toImport))
 
         it("should return all inferred values") {
           val values = OntologyAttributeFinder.findAttributeValues(ontology, "http://dbpedia.org/page/Bart_Simpson",
@@ -123,7 +123,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
 
         val toImport: IRI = getOntologyIRI(ontoMgr, "testIdMatch")
 
-        val ontology = convertToOntology("123", input, Set(toImport))
+        val ontology = convertToOntology(None, "123", input, Set(toImport))
 
         it("should match subject by id") {
           val values = OntologyAttributeFinder.findAttributeValues(ontology, getIndividualId("123", "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"),
@@ -292,7 +292,7 @@ class OntologyAttributeFinderSpec extends path.FunSpec with Matchers {
   }
 
   private def getIndividualId(requestId: String, categoryId: String) = {
-    RequestOntologyGenerator.getCategoryIndividualIds(RequestOntologyGenerator.createOntologyId(requestId), Seq.empty[ContextAttributeValue])(new URI(categoryId))
+    RequestOntologyGenerator.getCategoryIndividualIds(RequestOntologyGenerator.createOntologyId(None, requestId), requestId, Seq.empty[ContextAttributeValue])(new URI(categoryId))
   }
 
   def getOntologyIRI(ontoMgr: OWLOntologyManager, ontoName: String): IRI = {

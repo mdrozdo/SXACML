@@ -7,6 +7,7 @@ import java.util.{Properties, UUID}
 
 import scala.collection.JavaConverters._
 import net.drozdowicz.sxacml._
+import openllet.core.exceptions.InconsistentOntologyException
 import org.apache.commons.logging.LogFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{IRI, OWLOntology, OWLOntologyIRIMapper}
@@ -33,21 +34,39 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String, onto
   log.info("Mapping ontology folder to:" + ontologyFolderPath)
 
   val mapper = new owlapi.OWLOntologyIRIMapperImpl();
-  ontologyURIMap.foreach {case (uri, path) => mapper.addMapping(IRI.create(uri), IRI.create(path))}
+  ontologyURIMap.foreach { case (uri, path) => mapper.addMapping(IRI.create(uri), IRI.create(path)) }
 
   ontoMgr.setIRIMappers(scala.collection.mutable.Set[OWLOntologyIRIMapper](
     mapper,
     new AutoIRIMapper(new File(ontologyFolderPath), true)
-    ).asJava
+  ).asJava
   )
 
-  private var requestOntology: Option[RequestOntology] = None
+  private var requestOntologies: Map[Option[String], RequestOntology] = Map.empty[Option[String], RequestOntology]
 
-  private case class RequestOntology(context: EvaluationCtx, requestOntology: OWLOntology, categoryIndividualIds: Map[URI, String])
+  private case class RequestOntology(requestOntology: OWLOntology, requestId: String, categoryIndividualIds: Map[URI, String])
 
-  private def generateNewRequestOntology(context: EvaluationCtx): RequestOntology = {
-    val requestId = UUID.randomUUID().toString
+  private def generateNewRequestOntology(context: EvaluationCtx, sessionId: Option[String], requestId: String, attributes: Seq[ContextAttributeValue]): RequestOntology = {
+    //TODO Move RequestOntology to a real class and make generator return it.
+    val ontologyId = RequestOntologyGenerator.createOntologyId(sessionId, requestId)
+    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(ontologyId, requestId, attributes)
+    val requestIndividualId = RequestOntologyGenerator.getRequestIndividualId(ontologyId, requestId)
+    val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(sessionId, requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
 
+    new RequestOntology(requestOntology, requestId, categoryIndividualIds + (new URI(Constants.REQUEST_CLASS_ID) -> requestIndividualId))
+  }
+
+  private def updateRequestOntology(context: EvaluationCtx, existingOntology: RequestOntology, sessionId: Option[String], requestId: String, attributes: Seq[ContextAttributeValue]): RequestOntology = {
+    //TODO Move RequestOntology to a real class and make generator return it.
+    val ontologyId = RequestOntologyGenerator.createOntologyId(sessionId, requestId)
+    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(ontologyId, requestId, attributes)
+    val requestIndividualId = RequestOntologyGenerator.getRequestIndividualId(ontologyId, requestId)
+    RequestOntologyGenerator.updateOntology(ontoMgr)(existingOntology.requestOntology, sessionId, requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
+
+    new RequestOntology(existingOntology.requestOntology, requestId, categoryIndividualIds + (new URI(Constants.REQUEST_CLASS_ID) -> requestIndividualId))
+  }
+
+  private def getRequestOntology(context: EvaluationCtx) = {
     val attributes = ContextParser.Parse(context.getRequestCtx)
     if (log.isDebugEnabled) {
       val attributesString = attributes
@@ -56,24 +75,33 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String, onto
       log.debug(s"Received context with attributes: \r\n$attributesString")
     }
 
-    //TODO Move RequestOntology to a real class and make generator return it.
-    val ontologyId = RequestOntologyGenerator.createOntologyId(requestId)
-    val categoryIndividualIds = RequestOntologyGenerator.getCategoryIndividualIds(ontologyId, attributes)
-    val requestIndividualId = RequestOntologyGenerator.getRequestIndividualId(ontologyId)
-    val requestOntology = RequestOntologyGenerator.convertToOntology(ontoMgr)(requestId, attributes, collection.immutable.Set(IRI.create(rootOntologyId)))
+    val sessionId = attributes.collectFirst {
+      case attributeValue: FlatAttributeValue if attributeValue.attributeId.toString == Constants.SESSION_ID => attributeValue.valueString
+    }
 
+    val newRequestId = context.hashCode().toString
 
-    new RequestOntology(context, requestOntology, categoryIndividualIds + (new URI(Constants.REQUEST_CLASS_ID) -> requestIndividualId))
-  }
-
-  private def getRequestOntology(context: EvaluationCtx) = {
-    val ontology =
-      if (requestOntology.map(ro => ro.context.hashCode() != context.hashCode()).getOrElse(true))
-        generateNewRequestOntology(context)
-      else requestOntology.get
-
-    requestOntology = Some(ontology)
-    ontology
+    requestOntologies.get(sessionId).collectFirst {
+      case ontology: RequestOntology => {
+        if (ontology.requestId == newRequestId)
+          ontology
+        else {
+          if (sessionId == None) {
+            val ontology = generateNewRequestOntology(context, sessionId, newRequestId, attributes)
+            requestOntologies = requestOntologies + (sessionId -> ontology)
+            ontology
+          } else {
+            val updatedOntology = updateRequestOntology(context, ontology, sessionId, newRequestId, attributes)
+            requestOntologies = requestOntologies + (sessionId -> updatedOntology)
+            updatedOntology
+          }
+        }
+      }
+    }.getOrElse({
+      val ontology = generateNewRequestOntology(context, sessionId, newRequestId, attributes)
+      requestOntologies = requestOntologies + (sessionId -> ontology)
+      ontology
+    })
   }
 
 

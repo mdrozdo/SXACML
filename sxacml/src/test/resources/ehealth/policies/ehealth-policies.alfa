@@ -1,14 +1,12 @@
 namespace EhealthPolicies {
 	
 	policy access_clinical_information {
-		target
-			clause SxacmlAttributes.resourceClassId == "http://hl7.org/ontology/ObjectOntology.owl#ExternalClinicalInformation":anyURI
-		apply firstApplicable
+		apply denyUnlessPermit
 		
 		// User in Physician role can read external clinical information
 		rule physician_role_read_permitted{
 			permit
-			target clause Attributes.actionId == "read"
+			target clause Attributes.actionId == "read" and SxacmlAttributes.resourceClassId == "http://hl7.org/ontology/ObjectOntology.owl#ExternalClinicalInformation":anyURI 
 			
 			condition anyURIIsIn("https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianRole":anyURI, SxacmlAttributes.subjectClassId[issuer="SXACML"])
 		} 
@@ -16,15 +14,9 @@ namespace EhealthPolicies {
 		// User in Administrator role can write external clinical information
 		rule admin_role_write_permitted{
 			permit
-			target clause Attributes.actionId == "write"
+			target clause Attributes.actionId == "write" and SxacmlAttributes.resourceClassId == "http://hl7.org/ontology/ObjectOntology.owl#ExternalClinicalInformation":anyURI
 				
-			condition anyURIIsIn("https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorRole":anyURI, SxacmlAttributes.subjectClassId[issuer="SXACML"]) 
-					
-		} 
-		
-		rule deny_otherwise{
-			deny
-		}
-		
+			condition anyURIIsIn("https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorRole":anyURI, SxacmlAttributes.subjectClassId[issuer="SXACML"])				
+		}	
 	}
 }

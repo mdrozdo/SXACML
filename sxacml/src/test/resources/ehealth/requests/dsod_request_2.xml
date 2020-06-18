@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false" CombinedDecision="false" xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">nick.riviera@sfhospital.org</AttributeValue>
+    </Attribute>
+    <Attribute IncludeInResult="false" AttributeId="sxacml:subject:subject-class-id">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-ehealth/ehealth-data#AdministratorActivatedRole</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">file://med/bsimpson/20151015/bloodPressure.json</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">write</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="sxacml:attribute-category:request">
+    <Attribute IncludeInResult="false" AttributeId="sxacml:request:session-id">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">4ae90375-631a-413f-b944-dc275eedbbc6</AttributeValue>
+    </Attribute>
+  </Attributes>
+</Request>
+
+

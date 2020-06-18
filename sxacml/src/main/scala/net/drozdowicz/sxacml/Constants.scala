@@ -11,6 +11,7 @@ import scala.collection.JavaConversions._
  */
 object Constants {
   val REQUEST_CLASS_ID = "sxacml:attribute-category:request"
+  val SESSION_ID = "sxacml:request:session-id"
 
   val classIdForCategory = Map(
     "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" -> new URI("sxacml:subject:subject-class-id"),

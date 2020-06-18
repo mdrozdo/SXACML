@@ -50,6 +50,51 @@ class EhealthUseCases extends path.FunSpec with Matchers with OneInstancePerTest
         assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
       }
     }
+
+    describe("admin attempting to write blood pressure") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ehealth/ontologies"), "https://w3id.org/sxacml/sample-ehealth/ehealth-mapping",
+        Map(
+          (new URI("http://hl7.org/ontology/ObjectOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/ObjectOntology.owl")),
+          (new URI("http://hl7.org/ontology/RoleOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/RoleOntology.owl"))
+        )
+      )
+      val request = readFile("/ehealth/requests/dsod_request_2.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is permitted") {
+        val expectedResponse = readFile("basic/responses/Permit.xml")
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+
+    }
+
+    describe("pharmacist attempting to read blood pressure in a session") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ehealth/ontologies"), "https://w3id.org/sxacml/sample-ehealth/ehealth-mapping",
+        Map(
+          (new URI("http://hl7.org/ontology/ObjectOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/ObjectOntology.owl")),
+          (new URI("http://hl7.org/ontology/RoleOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/RoleOntology.owl"))
+        )
+      )
+      val request = readFile("/ehealth/requests/dsod_request_1.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is permitted") {
+        val expectedResponse = readFile("basic/responses/Permit.xml")
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+
+      describe("and then attempting to write as an administrator") {
+        val request = readFile("/ehealth/requests/dsod_request_2.xml")
+        val actualResponse = pdp.evaluate(request)
+
+        it("is denied due to dynamic separation of duties")
+        {
+          val expectedResponse = readFile("basic/responses/Deny.xml")
+          assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+        }
+      }
+
+    }
   }
 
   private def readFile(relativeFilePath: String): String = {

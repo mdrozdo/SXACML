@@ -22,4 +22,10 @@ namespace SxacmlAttributes{
 	    type = anyURI
 	    category = Sxacml.requestCat 
 	}
+	
+	attribute sessionId {
+		id = "sxacml:request:session-id"
+	    type = anyURI
+	    category = Sxacml.requestCat 
+	}
 }
