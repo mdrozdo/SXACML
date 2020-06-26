@@ -4,7 +4,7 @@
   <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
     <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">hayley.lewis@sfhospital.org</AttributeValue>
   </Attribute>
-  <Attribute IncludeInResult="false" AttributeId="net:drozdowicz:sxacml:subject:subject-role-id">
+  <Attribute IncludeInResult="false" AttributeId="sxacml:subject:subject-class-id">
     <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-ehealth/ehealth-data#PhysicianActivatedRole</AttributeValue>
   </Attribute>
 </Attributes>

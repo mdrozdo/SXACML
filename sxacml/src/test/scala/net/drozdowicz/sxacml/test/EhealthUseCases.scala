@@ -68,7 +68,7 @@ class EhealthUseCases extends path.FunSpec with Matchers with OneInstancePerTest
 
     }
 
-    describe("pharmacist attempting to read blood pressure in a session") {
+    describe("physician attempting to read blood pressure in a session") {
       val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ehealth/ontologies"), "https://w3id.org/sxacml/sample-ehealth/ehealth-mapping",
         Map(
           (new URI("http://hl7.org/ontology/ObjectOntology.owl/1.0.0"), relativeToAbsoluteURI("ehealth/ontologies/ObjectOntology.owl")),
