@@ -55,7 +55,7 @@
 
     <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port-data#AccessCardReader_1">
         <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/port#AccessCardReader"/>
-        <port:isHostedBy rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_InternalParkingGate"/>
+        <port:isHostedByResource rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_InternalParkingGate"/>
         <sosa:observes rdf:resource="https://w3id.org/sxacml/sample-port/port#UserName"/>
     </owl:NamedIndividual>
     
@@ -101,7 +101,7 @@
 
     <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port-data#BarrierController_1">
         <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/port#BarrierController"/>
-        <port:isHostedBy rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_InternalParkingGate"/>
+        <port:isHostedByResource rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_InternalParkingGate"/>
         <ssn:forProperty rdf:resource="https://w3id.org/sxacml/sample-port/port#OpenClosedState"/>
     </owl:NamedIndividual>
     
@@ -109,7 +109,7 @@
 
     <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port-data#BarrierController_2">
         <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/port#BarrierController"/>
-        <port:isHostedBy rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_Dock"/>
+        <port:isHostedByResource rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_Dock"/>
         <ssn:forProperty rdf:resource="https://w3id.org/sxacml/sample-port/port#OpenClosedState"/>
     </owl:NamedIndividual>
 
@@ -485,7 +485,7 @@
 
     <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port-data#LPRCamera_1">
         <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/port#LPRCamera"/>
-        <port:isHostedBy rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_InternalParkingGate"/>
+        <port:isHostedByResource rdf:resource="https://w3id.org/sxacml/sample-port/port-data#ContainerTerminal_InternalParkingGate"/>
         <sosa:observes rdf:resource="https://w3id.org/sxacml/sample-port/port#LicenseNumber"/>
     </owl:NamedIndividual>
     

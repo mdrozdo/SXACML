@@ -30,14 +30,14 @@ namespace PortPolicies {
 		rule {
 			deny
 			condition not (
-				stringBagSize(Sxacml.sparqlPathSelect("?resource port:isHostedBy")) > 0 
+				stringBagSize(Sxacml.sparqlPathSelect("?resource port:isHostedByResource")) > 0 
 				&&				
-				stringBagSize(Sxacml.sparqlPathSelect("?environment sosa:hasObservation/sosa:madeBySensor/port:isHostedBy")) > 0
+				stringBagSize(Sxacml.sparqlPathSelect("?environment sosa:hasObservation/sosa:madeBySensor/port:isHostedByResource")) > 0
 				&&
 				allOf(
 					function [stringEqual],
-					stringOneAndOnly(Sxacml.sparqlPathSelect("?resource port:isHostedBy")),
-					Sxacml.sparqlPathSelect("?environment sosa:hasObservation/sosa:madeBySensor/port:isHostedBy")
+					stringOneAndOnly(Sxacml.sparqlPathSelect("?resource port:isHostedByResource")),
+					Sxacml.sparqlPathSelect("?environment sosa:hasObservation/sosa:madeBySensor/port:isHostedByResource")
 					)
 				)
 		}
