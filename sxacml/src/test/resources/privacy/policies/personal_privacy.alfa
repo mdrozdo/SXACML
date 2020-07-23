@@ -18,7 +18,7 @@ namespace personal_privacy {
 				&& GeoXACML.geometryIsWithinDistance(
 					GeoXACML.geometryOneAndOnly(PrivacyAttributes.eventLocation), 
 					Sxacml.pointFromString(stringOneAndOnly(PrivacyAttributes.latLong)), 
-					0.029234507657761036
+					0.009
 				)			
 							
 			permit

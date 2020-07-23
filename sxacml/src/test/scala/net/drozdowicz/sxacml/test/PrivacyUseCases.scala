@@ -31,6 +31,17 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
       }
     }
 
+    describe("law enforcement accessing a location far from crime location") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
+      val request = readFile("/privacy/requests/law_enforcement_deny_request_distance.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is denied") {
+        val expectedResponse = readFile("basic/responses/Deny.xml")
+        assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
+      }
+    }
+
     describe("health center accessing an aggregate distance metric") {
       val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
       val request = readFile("/privacy/requests/health_center_permit_request.xml")
