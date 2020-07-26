@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Request xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 
-    http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false">
-  <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
-    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
-      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">
-        policeDepartment</AttributeValue>
-    </Attribute>
-  </Attributes>
-  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
-    <Attribute IncludeInResult="false" AttributeId="sxacml:resource:resource-class-id">
-      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">
-          https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location</AttributeValue>
-    </Attribute>    
-  </Attributes>
-  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
-    <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
-      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
-    </Attribute>
-  </Attributes>
-  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment">
-    <Attribute IncludeInResult="true" AttributeId="EventLocation">
-        <AttributeValue DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry">
-            <gml:Point xmlns:gml="http://www.opengis.net/gml/3.2" srsName="EPSG:4326">
-                <gml:pos srsDimension="2">38.889444 -77.035278</gml:pos>
-            </gml:Point>
-        </AttributeValue>
-    </Attribute>
-    <Attribute IncludeInResult="true" AttributeId="EventTime">
-        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">
-            2019-05-30T09:30:10+00:00</AttributeValue>
-    </Attribute>
-  </Attributes>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17
+    http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false"
+         CombinedDecision="false">
+    <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">policeDepartment</AttributeValue>
+        </Attribute>
+    </Attributes>
+    <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+        <Attribute IncludeInResult="true" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location</AttributeValue>
+        </Attribute>
+
+        <Attribute AttributeId="urn:oasis:names:tc:xacml:2.0:resource:scope" IncludeInResult="false">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Descendants</AttributeValue>
+        </Attribute>
+    </Attributes>
+    <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+        <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+        </Attribute>
+    </Attributes>
+    <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment">
+        <Attribute IncludeInResult="false" AttributeId="sxacml:privacy:environment:eventLocation">
+            <AttributeValue DataType="urn:ogc:def:dataType:geoxacml:1.0:geometry">
+                <gml:Point xmlns:gml="http://www.opengis.net/gml" srsName="EPSG:4326">
+                    <gml:pos srsDimension="2">52.233949 20.957060</gml:pos>
+                </gml:Point>
+            </AttributeValue>
+        </Attribute>
+        <Attribute IncludeInResult="false" AttributeId="sxacml:privacy:environment:eventTime">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T09:30:10+00:00</AttributeValue>
+        </Attribute>
+    </Attributes>
 </Request>
 
 

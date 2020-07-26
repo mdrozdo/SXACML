@@ -42,6 +42,32 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
       }
     }
 
+    describe("law enforcement accessing all locations") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
+      val request = readFile("/privacy/requests/law_enforcement_multi_request.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is evaluated for each location") {
+        val expectedResponse = readFile("/privacy/responses/law_enforcement_multi_response.xml")
+        assertThat(actualResponse, isSimilarTo(expectedResponse)
+          .ignoreWhitespace()
+          .withNodeMatcher(new DefaultNodeMatcher(
+            ElementSelectors.conditionalBuilder()
+              .whenElementIsNamed("Result")
+              .thenUse(ElementSelectors.byXPath("./xacml:Attributes/xacml:Attribute[@AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"]/xacml:AttributeValue",
+                Map("xacml" -> "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
+                ElementSelectors.byNameAndText))
+              .whenElementIsNamed("Attributes")
+              .thenUse(ElementSelectors.byNameAndAllAttributes)
+              .whenElementIsNamed("Attribute")
+              .thenUse(ElementSelectors.byNameAndAllAttributes)
+              .elseUse(ElementSelectors.byName)
+              .build())
+          )
+        )
+      }
+    }
+
     describe("health center accessing an aggregate distance metric") {
       val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
       val request = readFile("/privacy/requests/health_center_permit_request.xml")
