@@ -1,0 +1,46 @@
+<Response xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17">
+    <Result>
+        <Decision>Deny</Decision>
+        <Status>
+            <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
+        </Status>
+        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+            <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190401</AttributeValue>
+            </Attribute>
+        </Attributes>
+    </Result>
+    <Result>
+        <Decision>Deny</Decision>
+        <Status>
+            <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
+        </Status>
+        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+            <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190402</AttributeValue>
+            </Attribute>
+        </Attributes>
+    </Result>
+    <Result>
+        <Decision>Deny</Decision>
+        <Status>
+            <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
+        </Status>
+        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+            <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190403</AttributeValue>
+            </Attribute>
+        </Attributes>
+    </Result>
+    <Result>
+        <Decision>Permit</Decision>
+        <Status>
+            <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
+        </Status>
+        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+            <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" IncludeInResult="true">
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-data#agg_dist_201904</AttributeValue>
+            </Attribute>
+        </Attributes>
+    </Result>
+</Response>

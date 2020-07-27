@@ -49,22 +49,8 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
 
       it("is evaluated for each location") {
         val expectedResponse = readFile("/privacy/responses/law_enforcement_multi_response.xml")
-        assertThat(actualResponse, isSimilarTo(expectedResponse)
-          .ignoreWhitespace()
-          .withNodeMatcher(new DefaultNodeMatcher(
-            ElementSelectors.conditionalBuilder()
-              .whenElementIsNamed("Result")
-              .thenUse(ElementSelectors.byXPath("./xacml:Attributes/xacml:Attribute[@AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"]/xacml:AttributeValue",
-                Map("xacml" -> "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
-                ElementSelectors.byNameAndText))
-              .whenElementIsNamed("Attributes")
-              .thenUse(ElementSelectors.byNameAndAllAttributes)
-              .whenElementIsNamed("Attribute")
-              .thenUse(ElementSelectors.byNameAndAllAttributes)
-              .elseUse(ElementSelectors.byName)
-              .build())
-          )
-        )
+
+        assertMultipleResultEquals(actualResponse, expectedResponse)
       }
     }
 
@@ -89,6 +75,37 @@ class PrivacyUseCases extends path.FunSpec with Matchers with OneInstancePerTest
         assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
       }
     }
+
+    describe("health center accessing all metrics") {
+      val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("privacy/ontologies"), "https://w3id.org/sxacml/sample-privacy/privacy-mapping")
+      val request = readFile("/privacy/requests/health_center_multi_request.xml")
+      val actualResponse = pdp.evaluate(request)
+
+      it("is evaluated for each location") {
+        val expectedResponse = readFile("/privacy/responses/health_center_multi_response.xml")
+
+        assertMultipleResultEquals(actualResponse, expectedResponse)
+      }
+    }
+  }
+
+  private def assertMultipleResultEquals(actualResponse: String, expectedResponse: String): Unit ={
+    assertThat(actualResponse, isSimilarTo(expectedResponse)
+      .ignoreWhitespace()
+      .withNodeMatcher(new DefaultNodeMatcher(
+        ElementSelectors.conditionalBuilder()
+          .whenElementIsNamed("Result")
+          .thenUse(ElementSelectors.byXPath("./xacml:Attributes/xacml:Attribute[@AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"]/xacml:AttributeValue",
+            Map("xacml" -> "urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"),
+            ElementSelectors.byNameAndText))
+          .whenElementIsNamed("Attributes")
+          .thenUse(ElementSelectors.byNameAndAllAttributes)
+          .whenElementIsNamed("Attribute")
+          .thenUse(ElementSelectors.byNameAndAllAttributes)
+          .elseUse(ElementSelectors.byName)
+          .build())
+      )
+    )
   }
 
   private def readFile(relativeFilePath: String): String = {

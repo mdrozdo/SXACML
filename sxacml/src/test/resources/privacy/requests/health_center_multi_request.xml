@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Request xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 
-    http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd" ReturnPolicyIdList="false">
+<Request xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd"
+         ReturnPolicyIdList="false"
+         CombinedDecision="false">
     <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
         <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">BeckyTurner@healthcenter.com</AttributeValue>
         </Attribute>
         <Attribute IncludeInResult="false" AttributeId="http://www.w3.org/ns/org#memberOf">
-            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyUri">https://w3id.org/sxacml/privacy-sample#healthCenter</AttributeValue>
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/sxacml/privacy-sample#healthCenter</AttributeValue>
         </Attribute>
     </Attributes>
     <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
-        <Attribute IncludeInResult="false" AttributeId="sxacml:resource:resource-class-id">
-            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric</AttributeValue>
+        <Attribute IncludeInResult="true" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric</AttributeValue>
+        </Attribute>
+        <Attribute AttributeId="urn:oasis:names:tc:xacml:2.0:resource:scope" IncludeInResult="false">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Descendants</AttributeValue>
         </Attribute>
     </Attributes>
     <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
         <Attribute IncludeInResult="false" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/sxacml/access-control#Read</AttributeValue>
+        </Attribute>
+    </Attributes>
+
+    <!-- Due to bug in Balana, attribute finder is not called for a category that is not included in the request -->
+    <Attributes Category="sxacml:attribute-category:request">
+        <Attribute IncludeInResult="false" AttributeId="fakeAttribute">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">fakeValue</AttributeValue>
         </Attribute>
     </Attributes>
 </Request>
