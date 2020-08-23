@@ -4,6 +4,7 @@ import java.io.File
 
 import org.apache.commons.io.FileUtils
 import org.junit.Assert.assertThat
+import org.junit.Assert.assertTrue
 import org.scalatest.{OneInstancePerTest, Matchers, path}
 import org.xmlunit.diff.{ByNameAndTextRecSelector, ElementSelectors, DefaultNodeMatcher}
 import org.xmlunit.matchers.CompareMatcher.isSimilarTo
@@ -84,7 +85,24 @@ class SemanticPDPSpec extends path.FunSpec with Matchers with OneInstancePerTest
 
         assertThat(actualResponse, isSimilarTo(expectedResponse).ignoreWhitespace())
       }
+
+      it("should parse a sample request") {
+        val request = readFile("basic/requests/SampleRequest.xml")
+        val actualResponse = pdp.evaluate(request)
+
+        //no assert, just playing around
+        assertTrue(true)
+      }
+
+      it("should parse a sample request with content") {
+        val request = readFile("basic/requests/SampleRequestWithContent.xml")
+        val actualResponse = pdp.evaluate(request)
+
+        //no assert, just playing around
+        assertTrue(true)
+      }
     }
+
 
     describe("for multiple requests in a single document") {
       val pdp = new SemanticPDP(policyLocation, relativeToAbsolute("ontologies"), "https://w3id.org/sxacml/testMultiRequests")

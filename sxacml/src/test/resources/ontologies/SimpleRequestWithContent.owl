@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/request/1519927178#"
+     xml:base="https://w3id.org/sxacml/request/1519927178"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:action="urn:oasis:names:tc:xacml:1.0:action:"
+     xmlns:request="https://w3id.org/sxacml/request#"
+     xmlns:schemas="urn:example:med:schemas:"
+     xmlns:subject="urn:oasis:names:tc:xacml:1.0:subject:"
+     xmlns:access-control="https://w3id.org/sxacml/access-control#"
+     xmlns:conformance-test="urn:oasis:names:tc:xacml:2.0:conformance-test:">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/request/1519927178">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/test1"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- urn:example:med:schemas:recordhasPatient -->
+
+
+    <owl:ObjectProperty rdf:about="urn:example:med:schemas:recordhasPatient"/>
+    
+
+
+    <!-- urn:example:med:schemas:recordhasPatientContact -->
+
+
+    <owl:ObjectProperty rdf:about="urn:example:med:schemas:recordhasPatientContact"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- urn:example:med:schemas:recordemail -->
+
+
+    <owl:DatatypeProperty rdf:about="urn:example:med:schemas:recordemail"/>
+    
+
+
+    <!-- urn:example:med:schemas:recordpatient-number -->
+
+
+    <owl:DatatypeProperty rdf:about="urn:example:med:schemas:recordpatient-number"/>
+    
+
+
+    <!-- urn:example:med:schemas:recordpatientDoB -->
+
+
+    <owl:DatatypeProperty rdf:about="urn:example:med:schemas:recordpatientDoB"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-basic/sample#SomeRole -->
+
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-basic/sample#SomeRole"/>
+    
+
+
+    <!-- sxacml:attribute-category:request -->
+
+
+    <owl:Class rdf:about="sxacml:attribute-category:request"/>
+    
+
+
+    <!-- urn:example:med:schemas:recordpatient -->
+
+
+    <owl:Class rdf:about="urn:example:med:schemas:recordpatient"/>
+    
+
+
+    <!-- urn:example:med:schemas:recordpatientContact -->
+
+
+    <owl:Class rdf:about="urn:example:med:schemas:recordpatientContact"/>
+    
+
+
+    <!-- urn:example:med:schemas:recordrecord -->
+
+
+    <owl:Class rdf:about="urn:example:med:schemas:recordrecord"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- https://w3id.org/sxacml/request/1519927178#Action_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/1519927178#Action_1519927178">
+        <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
+        <action:action-id>read</action:action-id>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/request/1519927178#Environment_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/1519927178#Environment_1519927178">
+        <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/request/1519927178#Resource_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/1519927178#Resource_1519927178">
+        <rdf:type rdf:resource="urn:example:med:schemas:recordrecord"/>
+        <rdf:type rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <schemas:recordhasPatient rdf:resource="urn:example:med:schemas:recordpatient_1_1519927178"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/request/1519927178#Subject_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/1519927178#Subject_1519927178">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-basic/sample#SomeRole"/>
+        <rdf:type rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <subject:subject-id>bob</subject:subject-id>
+        <conformance-test:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</conformance-test:age>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/request/1519927178#request_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/request/1519927178#request_1519927178">
+        <rdf:type rdf:resource="sxacml:attribute-category:request"/>
+        <access-control:concernsAction rdf:resource="https://w3id.org/sxacml/request/1519927178#Action_1519927178"/>
+        <access-control:concernsResource rdf:resource="https://w3id.org/sxacml/request/1519927178#Resource_1519927178"/>
+        <access-control:inContextOf rdf:resource="https://w3id.org/sxacml/request/1519927178#Environment_1519927178"/>
+        <access-control:requestedBy rdf:resource="https://w3id.org/sxacml/request/1519927178#Subject_1519927178"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:example:med:schemas:recordpatientContact_2_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="urn:example:med:schemas:recordpatientContact_2_1519927178">
+        <rdf:type rdf:resource="urn:example:med:schemas:recordpatientContact"/>
+        <schemas:recordemail>b.simpson@example.com</schemas:recordemail>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:example:med:schemas:recordpatient_1_1519927178 -->
+
+
+    <owl:NamedIndividual rdf:about="urn:example:med:schemas:recordpatient_1_1519927178">
+        <rdf:type rdf:resource="urn:example:med:schemas:recordpatient"/>
+        <schemas:recordhasPatientContact rdf:resource="urn:example:med:schemas:recordpatientContact_2_1519927178"/>
+        <schemas:recordpatient-number>555555</schemas:recordpatient-number>
+        <schemas:recordpatientDoB>1992-03-21</schemas:recordpatientDoB>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.9.2018-12-12T06:37:32Z) https://github.com/owlcs/owlapi/ -->

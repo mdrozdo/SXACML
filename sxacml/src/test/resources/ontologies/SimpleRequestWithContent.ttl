@@ -1,0 +1,127 @@
+@prefix : <https://w3id.org/sxacml/request/1519927178#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix action: <urn:oasis:names:tc:xacml:1.0:action:> .
+@prefix request: <https://w3id.org/sxacml/request#> .
+@prefix schemas: <urn:example:med:schemas:> .
+@prefix subject: <urn:oasis:names:tc:xacml:1.0:subject:> .
+@prefix access-control: <https://w3id.org/sxacml/access-control#> .
+@prefix conformance-test: <urn:oasis:names:tc:xacml:2.0:conformance-test:> .
+@base <https://w3id.org/sxacml/request/1519927178> .
+
+<https://w3id.org/sxacml/request/1519927178> rdf:type owl:Ontology ;
+                                              owl:imports <https://w3id.org/sxacml/test1> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  urn:example:med:schemas:recordhasPatient
+schemas:recordhasPatient rdf:type owl:ObjectProperty .
+
+
+###  urn:example:med:schemas:recordhasPatientContact
+schemas:recordhasPatientContact rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  urn:example:med:schemas:recordemail
+schemas:recordemail rdf:type owl:DatatypeProperty .
+
+
+###  urn:example:med:schemas:recordpatient-number
+schemas:recordpatient-number rdf:type owl:DatatypeProperty .
+
+
+###  urn:example:med:schemas:recordpatientDoB
+schemas:recordpatientDoB rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/sxacml/sample-basic/sample#SomeRole
+<https://w3id.org/sxacml/sample-basic/sample#SomeRole> rdf:type owl:Class .
+
+
+###  sxacml:attribute-category:request
+<sxacml:attribute-category:request> rdf:type owl:Class .
+
+
+###  urn:example:med:schemas:recordpatient
+schemas:recordpatient rdf:type owl:Class .
+
+
+###  urn:example:med:schemas:recordpatientContact
+schemas:recordpatientContact rdf:type owl:Class .
+
+
+###  urn:example:med:schemas:recordrecord
+schemas:recordrecord rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/sxacml/request/1519927178#Action_1519927178
+:Action_1519927178 rdf:type owl:NamedIndividual ,
+                            <urn:oasis:names:tc:xacml:3.0:attribute-category:action> ;
+                   action:action-id "read" .
+
+
+###  https://w3id.org/sxacml/request/1519927178#Environment_1519927178
+:Environment_1519927178 rdf:type owl:NamedIndividual ,
+                                 <urn:oasis:names:tc:xacml:3.0:attribute-category:environment> .
+
+
+###  https://w3id.org/sxacml/request/1519927178#Resource_1519927178
+:Resource_1519927178 rdf:type owl:NamedIndividual ,
+                              schemas:recordrecord ,
+                              <urn:oasis:names:tc:xacml:3.0:attribute-category:resource> ;
+                     schemas:recordhasPatient schemas:recordpatient_1_1519927178 .
+
+
+###  https://w3id.org/sxacml/request/1519927178#Subject_1519927178
+:Subject_1519927178 rdf:type owl:NamedIndividual ,
+                             <https://w3id.org/sxacml/sample-basic/sample#SomeRole> ,
+                             <urn:oasis:names:tc:xacml:1.0:subject-category:access-subject> ;
+                    subject:subject-id "bob" ;
+                    conformance-test:age 45 .
+
+
+###  https://w3id.org/sxacml/request/1519927178#request_1519927178
+:request_1519927178 rdf:type owl:NamedIndividual ,
+                             <sxacml:attribute-category:request> ;
+                    access-control:concernsAction :Action_1519927178 ;
+                    access-control:concernsResource :Resource_1519927178 ;
+                    access-control:inContextOf :Environment_1519927178 ;
+                    access-control:requestedBy :Subject_1519927178 .
+
+
+###  urn:example:med:schemas:recordpatientContact_2_1519927178
+schemas:recordpatientContact_2_1519927178 rdf:type owl:NamedIndividual ,
+                                                   schemas:recordpatientContact ;
+                                          schemas:recordemail "b.simpson@example.com" .
+
+
+###  urn:example:med:schemas:recordpatient_1_1519927178
+schemas:recordpatient_1_1519927178 rdf:type owl:NamedIndividual ,
+                                            schemas:recordpatient ;
+                                   schemas:recordhasPatientContact schemas:recordpatientContact_2_1519927178 ;
+                                   schemas:recordpatient-number "555555" ;
+                                   schemas:recordpatientDoB "1992-03-21" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

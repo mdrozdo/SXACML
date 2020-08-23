@@ -11,9 +11,17 @@
         </Attribute>
     </Attributes>
     <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
-        <Attribute IncludeInResult="true" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
-            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/sxacml/sample-basic/sample#SomeResource</AttributeValue>
-        </Attribute>
+        <Content>
+            <md:record xmlns:md="urn:example:med:schemas:record:">
+                <md:patient>
+                    <md:patientDoB>1992-03-21</md:patientDoB>
+                    <md:patient-number>555555</md:patient-number>
+                    <md:patientContact>
+                        <md:email>b.simpson@example.com</md:email>
+                    </md:patientContact>
+                </md:patient>
+            </md:record>
+        </Content>
     </Attributes>
     <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
         <Attribute IncludeInResult="true" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
