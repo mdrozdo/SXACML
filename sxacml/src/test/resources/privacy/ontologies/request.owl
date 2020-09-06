@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/sxacml/request/"
-     xml:base="https://w3id.org/sxacml/request/"
+<rdf:RDF xmlns="https://w3id.org/sxacml/request#"
+     xml:base="https://w3id.org/sxacml/request"
      xmlns:request="https://w3id.org/sxacml/request#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
