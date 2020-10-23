@@ -12,12 +12,14 @@ import org.apache.commons.logging.LogFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.{IRI, OWLOntology, OWLOntologyIRIMapper}
 import org.semanticweb.owlapi.util.AutoIRIMapper
-import org.wso2.balana.attr.BagAttribute
+import org.wso2.balana.attr.{BagAttribute, DateAttribute, DateTimeAttribute, TimeAttribute}
 import org.wso2.balana.cond.EvaluationResult
-import org.wso2.balana.ctx.EvaluationCtx
+import org.wso2.balana.ctx.{Attribute, EvaluationCtx}
+import org.wso2.balana.xacml3.Attributes
 import uk.ac.manchester.cs.owl.owlapi
 import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl
 
+import scala.collection.{GenSeq, mutable}
 import scala.util.control.ControlThrowable
 
 /**
@@ -66,14 +68,18 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String, onto
     new RequestOntology(existingOntology.requestOntology, requestId, categoryIndividualIds + (new URI(Constants.REQUEST_CLASS_ID) -> requestIndividualId))
   }
 
+
   private def getRequestOntology(context: EvaluationCtx) = {
-    val attributes = ContextParser.Parse(context.getRequestCtx)
+    val requestAttributes = ContextParser.Parse(context.getRequestCtx)
+
     if (log.isDebugEnabled) {
-      val attributesString = attributes
+      val attributesString = requestAttributes
         .map(_.toString)
         .mkString(";\r\n")
       log.debug(s"Received context with attributes: \r\n$attributesString")
     }
+
+    val attributes = requestAttributes ++ getCurrentDateTimeAttributesMissingFromRequest(context)
 
     val sessionId = attributes.collectFirst {
       case attributeValue: FlatAttributeValue if attributeValue.attributeId.toString == Constants.SESSION_ID => attributeValue.valueString
@@ -102,6 +108,21 @@ class OwlAttributeStore(ontologyFolderPath: String, rootOntologyId: String, onto
       requestOntologies = requestOntologies + (sessionId -> ontology)
       ontology
     })
+  }
+
+  def containsAttribute(requestAttributeSet: scala.collection.Seq[Attribute], id: URI) = {
+    !requestAttributeSet.find(a=>a.getId.equals(id)).isEmpty
+  }
+
+  def getCurrentDateTimeAttributesMissingFromRequest(context: EvaluationCtx) = {
+    val envCatUri = URI.create(Constants.CATEGORY_ENVIRONMENT)
+    val requestAttributeSet = context.getRequestCtx.getAttributesSet.asScala.find(a=> a.getCategory.equals(envCatUri)).map(a=>a.getAttributes.asScala.toSeq).toSeq.flatten
+
+    List(FlatAttributeValue(envCatUri, URI.create("urn:oasis:names:tc:xacml:1.0:environment:current-date"), URI.create(DateAttribute.identifier), context.getCurrentDate.encode()),
+      FlatAttributeValue(envCatUri, URI.create("urn:oasis:names:tc:xacml:1.0:environment:current-time"), URI.create(TimeAttribute.identifier), context.getCurrentTime.encode()),
+      FlatAttributeValue(envCatUri, URI.create("urn:oasis:names:tc:xacml:1.0:environment:current-dateTime"), URI.create(DateTimeAttribute.identifier), context.getCurrentDateTime.encode()))
+      .flatMap(a => if(!containsAttribute(requestAttributeSet, a.attributeId)) Some(a) else None)
+      .toSeq
   }
 
 

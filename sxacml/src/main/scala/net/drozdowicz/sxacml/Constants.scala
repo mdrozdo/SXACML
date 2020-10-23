@@ -13,11 +13,16 @@ object Constants {
   val REQUEST_CLASS_ID = "sxacml:attribute-category:request"
   val SESSION_ID = "sxacml:request:session-id"
 
+  val CATEGORY_SUBJECT = "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
+  val CATEGORY_RESOURCE = "urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+  val CATEGORY_ACTION = "urn:oasis:names:tc:xacml:3.0:attribute-category:action"
+  val CATEGORY_ENVIRONMENT = "urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+
   val classIdForCategory = Map(
-    "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" -> new URI("sxacml:subject:subject-class-id"),
-    "urn:oasis:names:tc:xacml:3.0:attribute-category:resource" -> new URI("sxacml:resource:resource-class-id"),
-    "urn:oasis:names:tc:xacml:3.0:attribute-category:action" -> new URI("sxacml:action:action-class-id"),
-    "urn:oasis:names:tc:xacml:3.0:attribute-category:environment" -> new URI("sxacml:environment:environment-class-id"),
+    CATEGORY_SUBJECT -> new URI("sxacml:subject:subject-class-id"),
+    CATEGORY_RESOURCE -> new URI("sxacml:resource:resource-class-id"),
+    CATEGORY_ACTION -> new URI("sxacml:action:action-class-id"),
+    CATEGORY_ENVIRONMENT -> new URI("sxacml:environment:environment-class-id"),
     REQUEST_CLASS_ID -> new URI("sxacml:request:request-class-id")
   )
 

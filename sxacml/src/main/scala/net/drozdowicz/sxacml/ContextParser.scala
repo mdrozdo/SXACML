@@ -4,11 +4,13 @@ import java.net.URI
 
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.sax.SAXResult
+import org.wso2.balana.attr.{DateAttribute, DateTimeAttribute, TimeAttribute}
 
-import scala.collection.JavaConversions._
-import org.wso2.balana.ctx.AbstractRequestCtx
+import scala.collection.JavaConverters._
+import org.wso2.balana.ctx.{AbstractRequestCtx, EvaluationCtx}
 import org.wso2.balana.xacml3.Attributes
 
+import scala.collection.mutable
 import scala.net.drozdowicz.sxacml.Constants
 import scala.xml.{Elem, Node, Text}
 
@@ -36,8 +38,8 @@ object ContextParser {
     }
 
     def parseAttributes(as: Attributes) = {
-      as.getAttributes.flatMap(
-        a => a.getValues.map(
+      as.getAttributes.asScala.flatMap(
+        a => a.getValues.asScala.map(
           v => FlatAttributeValue(as.getCategory, a.getId, v.getType, v.encode())))
     }
 
@@ -86,7 +88,7 @@ object ContextParser {
       }
     }
 
-    ctx.getAttributesSet.flatMap(
+    ctx.getAttributesSet.asScala.flatMap(
       as => {
         parseAttributes(as) ++ parseContent(as.getCategory, asXml(as.getContent))
       }
