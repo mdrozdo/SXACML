@@ -1,0 +1,6 @@
+namespace Sxacml{
+	function sparqlSelect = "net:drozdowicz:sxacml:sparql-select" : string -> bag[string]
+	function sparqlPathSelect = "net:drozdowicz:sxacml:sparql-path-select" : string -> bag[string]
+	
+	category requestCat  = "sxacml:attribute-category:request"
+}

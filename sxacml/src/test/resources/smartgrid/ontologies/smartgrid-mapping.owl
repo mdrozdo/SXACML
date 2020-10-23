@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#"
+     xml:base="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="http://schema.org/"
+     xmlns:request="https://w3id.org/sxacml/request#"
+     xmlns:saref4bldg="https://saref.etsi.org/saref4bldg/">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/access-control-action"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/iot"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-data"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#time -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#time"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:environment:current-time -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:environment:current-time"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://saref.etsi.org/core/Actuator -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Actuator">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/core/Command -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Command">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/core/HVAC -->
+
+    <owl:Class rdf:about="https://saref.etsi.org/core/HVAC">
+        <owl:equivalentClass rdf:resource="https://w3id.org/sxacml/sample-smartgrid/testRequest#ClimateControlDevice"/>
+    </owl:Class>
+    
+
+
+    <!-- https://saref.etsi.org/core/Sensor -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Sensor">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mappingTemperature_change_permission -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mappingTemperature_change_permission">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Request"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://w3id.org/sxacml/access-control#concernsAction"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#SetTargetTemperatureCommand"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid#targetTemperatureCelsius"/>
+                                                <owl:someValuesFrom>
+                                                    <rdfs:Datatype>
+                                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+                                                        <owl:withRestrictions rdf:parseType="Collection">
+                                                            <rdf:Description>
+                                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#double">25.0</xsd:minExclusive>
+                                                            </rdf:Description>
+                                                        </owl:withRestrictions>
+                                                    </rdfs:Datatype>
+                                                </owl:someValuesFrom>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://w3id.org/sxacml/access-control#concernsResource"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#AirConditioningUnit"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="https://saref.etsi.org/saref4bldg/isContainedIn"/>
+                                                <owl:someValuesFrom rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid#MeetingRoom"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://w3id.org/sxacml/access-control#inContextOf"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Environment"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="urn:oasis:names:tc:xacml:1.0:environment:current-time"/>
+                                                <owl:someValuesFrom>
+                                                    <rdfs:Datatype>
+                                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
+                                                        <owl:withRestrictions rdf:parseType="Collection">
+                                                            <rdf:Description>
+                                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#time">19:00:00</xsd:minExclusive>
+                                                            </rdf:Description>
+                                                        </owl:withRestrictions>
+                                                    </rdfs:Datatype>
+                                                </owl:someValuesFrom>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#PermittedRequest"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/testRequest#ClimateControlDevice -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/testRequest#ClimateControlDevice"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#a_building -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#a_building">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4bldg/Building"/>
+        <saref4bldg:hasSpace rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_1"/>
+        <saref4bldg:hasSpace rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_2"/>
+        <saref4bldg:hasSpace rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_1">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+        <saref4bldg:hasSpace rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#meeting_room_1"/>
+        <saref4bldg:hasSpace rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#server_room_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_2 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_2">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+        <saref4bldg:hasSpace rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#maintenance_room"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_3 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#floor_3">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#maintenance_room -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#maintenance_room">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+        <saref4bldg:contains rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-data#heater_1"/>
+        <saref4bldg:contains rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-data#washingMachine_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#meeting_room_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#meeting_room_1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid#MeetingRoom"/>
+        <saref4bldg:contains rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-data#ac_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#server_room_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid-mapping#server_room_1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid#ServerRoom"/>
+        <saref4bldg:contains rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-data#ac_1"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

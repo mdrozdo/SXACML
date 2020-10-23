@@ -1,0 +1,11 @@
+namespace smartgrid {
+	
+	policy smartgrid_preferences {				
+		apply denyUnlessPermit
+			
+		rule {		
+			condition anyURIIsIn("https://w3id.org/sxacml/access-control#PermittedRequest":anyURI, SxacmlAttributes.requestClassId) 
+			permit
+		}
+	}
+}
